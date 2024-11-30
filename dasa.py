@@ -1,10 +1,3 @@
-import datetime
-import math
-from geopy.geocoders import Nominatim
-from geopy.exc import GeocoderTimedOut
-import ephem
-
-
 start_year = 0
 start_month =0
 
@@ -37,20 +30,6 @@ nakshatra_data = [
     {"name": "Uttara Bhadrapada", "start_degree": 333.3333, "end_degree": 346.6667, "ruler": "Saturn", "dasa_years": 19},
     {"name": "Revati", "start_degree": 346.6667, "end_degree": 360, "ruler": "Mercury", "dasa_years": 17}
 ]
-
-def get_lat_lon(location_name):
-    """Retrieve latitude and longitude for a given location name."""
-    geolocator = Nominatim(user_agent="astrology_calculator")
-    try:
-        location = geolocator.geocode(location_name)
-        if location:
-            return location.latitude, location.longitude
-        else:
-            raise ValueError("Location not found.")
-    except GeocoderTimedOut:
-        raise ConnectionError("Geocoding service timed out. Please try again.")
-    except Exception as e:
-        raise RuntimeError(f"An error occurred while geocoding: {e}")
     
 def add_year(start_year,start_month,year,month):
     start_year += year

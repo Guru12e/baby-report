@@ -2,7 +2,6 @@ import datetime
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
 from sunrise import get_sun_times
-import ephem
 import math
 import time
 
