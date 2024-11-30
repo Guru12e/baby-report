@@ -7,6 +7,7 @@ from pymongo import MongoClient
 from datetime import datetime, timedelta
 import os
 from waitress import serve
+from apscheduler.schedulers.background import BackgroundScheduler
 
 client = MongoClient(os.getenv("DATABASE_URL"))
 database = client["AstroKids"]
@@ -57,6 +58,13 @@ def generate_report(dob,location,gender,name):
     
     
 if __name__ == '__main__':
-    thread = Process(target=AstrokidsBot)
-    thread.start()
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(
+        AstrokidsBot,
+        'interval',
+        seconds=10,
+        max_instances=999999  
+    )
+    scheduler.start() 
+    print("Scheduler started")
     serve(app, host='0.0.0.0', port=5000)
