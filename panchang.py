@@ -91,47 +91,6 @@ def get_lat_lon(location_name, max_retries=3, timeout_duration=5):
     
     raise ConnectionError("Failed to retrieve location after multiple attempts.")
 
-
-def calculate_planetary_positions(date_str,lat,lon):
-    try:
-        date = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S") 
-    except ValueError:
-        raise ValueError("Error: Invalid date format. Expected format: 'YYYY-MM-DD HH:MM:SS'")
-    
-    observer = ephem.Observer()
-    observer.lat = str(lat)
-    observer.lon = str(lon)
-    observer.date = date
-    
-    planets = {
-        'Sun': ephem.Sun(observer),
-        'Moon': ephem.Moon(observer),
-    }
-    
-    positions = {}
-    for planet, body in planets.items():
-        positions[planet] = ephem.Ecliptic(body).lon
-        
-    planets_adjusted = []
-
-    for planet, position in positions.items():
-        position_deg = float(position) * 180.0 / ephem.pi
-        
-        if planet == 'Moon':
-            position_deg -= 27.42950711403201
-            
-        if planet == 'Sun':
-            position_deg -= 24.064498448272865
-
-        if position_deg < 0:
-            position_deg += 360
-        elif position_deg >= 360:
-            position_deg -= 360
-            
-        planets_adjusted.append({"name": planet, "degree": position_deg})
-                
-    return planets_adjusted
-
 nakshatrasData = [
     (0.000000000000000, 13.333333333333334),   
     (13.333333333333334, 26.666666666666668),  
@@ -275,24 +234,14 @@ def calculate_karana(tithi,sun_pos, moon_pos):
         return karanas[tithi - 1][0] , (tithi * 2 ) - 1
     
     
-def calculate_panchang(date_str, location):
-    try:
-        latitude, longitude = get_lat_lon(location)
-    except Exception as e:
-        return
-
-    try:
-        planets_adjusted = calculate_planetary_positions(date_str, latitude, longitude)
-    except Exception as e:
-        return        
-    
+def calculate_panchang(date_str, moon_pos, sun_pos, location):
     date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
     day_of_week = date_obj.strftime('%A')
         
-    thithi,thithi_number,paksha = calculate_tithi(planets_adjusted[0]["degree"],planets_adjusted[1]["degree"])
-    nakshatra,nakshatraIndex = calculate_nakshatra(planets_adjusted[1]["degree"])
-    yoga,yoga_index = calculate_yoga(planets_adjusted[0]["degree"],planets_adjusted[1]["degree"])
-    karanam,karanamIndex = calculate_karana(thithi_number,planets_adjusted[0]["degree"],planets_adjusted[1]["degree"])
+    thithi,thithi_number,paksha = calculate_tithi(sun_pos,moon_pos)
+    nakshatra,nakshatraIndex = calculate_nakshatra(moon_pos)
+    yoga,yoga_index = calculate_yoga(sun_pos,moon_pos)
+    karanam,karanamIndex = calculate_karana(thithi_number,sun_pos,moon_pos)
     sunrise,sunset = get_sun_times(location,date_str)
     
     panchang_values = {

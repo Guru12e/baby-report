@@ -1408,16 +1408,14 @@ def babyReport(dob,location,path,gender,name):
     print("Generating Baby Report")
     planets = find_planets(dob,location)
     print("Planets Found")
-    panchang = calculate_panchang(dob,location)
+    panchang = calculate_panchang(dob,planets[1]['full_degree'],planets[0]['full_degree'],location)
     print("Panchang Calculated")
     dasa = calculate_dasa(dob,planets[1])
     print("Dasa Calculated")    
     birthchart = generate_birth_navamsa_chart(planets,f'{path}/chart/',dob,location,name)
     print("Birth Chart Generated")
-    # birthchart = ''
     lat,lon = get_lat_lon(location)
     print("Lat Lon Found")
-    # lat , lon = 9.9261153,78.1140983
     dt = datetime.strptime(dob, "%Y-%m-%d %H:%M:%S")
     formatted_date = dt.strftime("%d %B %Y")
     formatted_time = dt.strftime("%I:%M:%S %p")

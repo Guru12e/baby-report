@@ -1,6 +1,3 @@
-import ephem
-import datetime
-import swisseph as swe
 from PIL import Image, ImageDraw, ImageFont
 import math
 import random

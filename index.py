@@ -1,5 +1,4 @@
 import swisseph as swe
-import ephem
 import datetime
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
