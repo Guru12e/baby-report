@@ -31,7 +31,7 @@ def AstrokidsBot():
             for child in childDeatils:
                 details = child["childDetails"]
                 try:
-                    generate_report(f"{details["dob"]} {details['time']}",details["place"],details['gender'],details['name'])
+                    generate_report(f"{details['dob']} {details['time']}",details['place'],details['gender'],details['name'])
                     print(f"{details['name']} report generated")
                     collection.update_one(
                         {"childDetails.orderId": details['orderId']},  
