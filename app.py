@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_cors import CORS
 from babyReport import babyReport
-import threading
+from multiprocessing import Process
 import time
 from pymongo import MongoClient
 from datetime import datetime, timedelta
@@ -57,6 +57,6 @@ def generate_report(dob,location,gender,name):
     
     
 if __name__ == '__main__':
-    thread = threading.Thread(target=AstrokidsBot, daemon=True)
+    thread = Process(target=AstrokidsBot)
     thread.start()
     serve(app, host='0.0.0.0', port=5000)
