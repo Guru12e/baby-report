@@ -1219,11 +1219,11 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     atma = list(filter(lambda x: x['order'] == 1,planets))[0]
     if atma['Name'] == "Ascendant":
         atma = list(filter(lambda x: x['order'] == 2,planets))[0]
-    pdf.image(f'{path}/babyImages/atma_{atma['Name']}.jpeg',pdf.w / 2 - 22.5, 95,45,0)
+    pdf.image(f"{path}/babyImages/atma_{atma['Name']}.jpeg",pdf.w / 2 - 22.5, 95,45,0)
     roundedBox(pdf,"#FFE7E7",45,182,pdf.w - 90,12)
     pdf.set_y(182)
     pdf.set_font('Karma-Semi', '', 20)
-    pdf.cell(0,12,f'{atma['Name']} is your Atmakaraka',align='C')
+    pdf.cell(0,12,f"{atma['Name']} is your Atmakaraka",align='C')
     pdf.set_xy(22.5,200)
     pdf.set_text_color(0,0,0)
     pdf.set_font('Karma-Regular', '', 18) 
@@ -1375,7 +1375,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         pdf.set_font('Karma-Heavy', '', 20)
         pdf.set_xy(20,pdf.get_y() + 5)
         pdf.multi_cell(pdf.w - 40,10,f"{planet['Name']} - {planetMain[planet['Name']]}",align='C')
-        pdf.image(f'{path}/babyImages/{planet['Name']}.png',20,pdf.get_y() + 5,50,50)
+        pdf.image(f"{path}/babyImages/{planet['Name']}.png",20,pdf.get_y() + 5,50,50)
         pdf.set_font('Karma-Regular', '', 12) 
         pdf.set_text_color(0,0,0)
         pdf.set_xy(87.5,pdf.get_y() + 5)
