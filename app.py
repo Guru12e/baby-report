@@ -58,6 +58,7 @@ def generate_report(dob,location,gender,name):
     
     
 if __name__ == '__main__':
+    serve(app, host='0.0.0.0', port=5000)
     scheduler = BackgroundScheduler()
     scheduler.add_job(
         AstrokidsBot,
@@ -67,4 +68,3 @@ if __name__ == '__main__':
     )
     scheduler.start() 
     print("Scheduler started")
-    serve(app, host='0.0.0.0', port=5000)
