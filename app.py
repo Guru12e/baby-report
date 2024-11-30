@@ -6,6 +6,7 @@ import time
 from pymongo import MongoClient
 from datetime import datetime, timedelta
 import os
+from waitress import serve
 
 client = MongoClient(os.getenv("DATABASE_URL"))
 database = client["AstroKids"]
@@ -58,4 +59,4 @@ def generate_report(dob,location,gender,name):
 if __name__ == '__main__':
     thread = threading.Thread(target=AstrokidsBot, daemon=True)
     thread.start()
-    app.run(debug=True)
+    serve(app, host='0.0.0.0', port=5000)
