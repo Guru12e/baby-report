@@ -481,11 +481,11 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.set_font('Karma-Heavy', '', 26)  
     pdf.set_y(30)
     pdf.cell(0,0,'Birth Chart',align='C')
-    pdf.image(f'{path}/chart/{birthchart['birth_chart']}',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
+    pdf.image(f"{path}/chart/{birthchart['birth_chart']}",(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
     # pdf.image(f'{path}/chart/1.png',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
     pdf.set_y(145)
     pdf.cell(0,0,'Navamsa Chart',align='C')
-    pdf.image(f'{path}/chart/{birthchart['navamsa_chart']}',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
+    pdf.image(f"{path}/chart/{birthchart['navamsa_chart']}",(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
     # pdf.image(f'{path}/chart/1.png',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
     pdf.set_y(pdf.get_y() + 110)
 
