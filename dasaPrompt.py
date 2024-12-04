@@ -90,12 +90,12 @@ def dasaPrompt(date_str,planets,dasa,name,gender):
                     "properties": {
                         "insights": {
                             "type": "string",
-                            "description": f"Provide {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti predictions based on the Lagna sign, Moon sign, planetary placements of  Dasa Planet {d['Dasa']} and  Bukthi Planet Sun. Focus on {name}'s life events insights  such as the impacts of Dasa and Bhukti on {name}'s  life. Use concise and easy-to-understand language, avoiding technical astrology terms. The content should be a single paragraph of approximately 150 words."
+                            "description": f"Provide {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti predictions based on the Lagna sign, Moon sign, planetary placements of  Dasa Planet {d['Dasa']} and  Bukthi Planet {d['Bhukthi']}. Focus on {name}'s life events insights  such as the impacts of Dasa and Bhukti on {name}'s  life. Use concise and easy-to-understand language, avoiding technical astrology terms. The content should be a single paragraph of approximately 150 words."
                         },
                         "challenges": {
                             "type": "array",
                             "description": (
-                                f"Highlight {name}'s 5 potential Life challenges and negative effects the {name} may face during the {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period and Based on {d['Dasa']} Dasa and {d['Bhukthi']} Planets Positions at {name}'s current Age "
+                                f"Highlight {name}'s 3 potential Life challenges and negative effects the {name} may face during the {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period and Based on {d['Dasa']} Dasa and {d['Bhukthi']} Planets Positions at {name}'s current Age "
                             ),
                             "items": {
                                 "type": "object",
@@ -115,7 +115,7 @@ def dasaPrompt(date_str,planets,dasa,name,gender):
                         "precautions": {
                             "type": "array",
                             "description": (
-                                f"Provide 3 practical Parenting steps that parents can take to help the {name} navigate the challenges during this {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period.Explain their names and how to do them with guided execution steps in simple, easy-to-understand English."
+                                f"Provide 2 practical Parenting steps that parents can take to help the {name} navigate the challenges during this {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period Including Life Skills Teachings, Smart Nurturing Parenting Strategies .Explain their names and how to do them with guided execution steps in simple, easy-to-understand English."
                             ),
                             "items": {
                                 "type": "object",
@@ -134,7 +134,7 @@ def dasaPrompt(date_str,planets,dasa,name,gender):
                         },
                         "remedies": {
                             "type": "array",
-                            "description": f"Provide 5 actionable remedies and recommendations for this {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period, focusing on real-life improvements. Include lifestyle changes, Chakra Healing Exercise,  Daily Rituals, and Spiritual Mantras & Sacred Sounds  to Mitigate the {name}'s {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti challenges. Explain Actionable Steps  names and how to do them with guided execution steps in simple, easy-to-understand English",
+                            "description": f"Provide 3 actionable remedies and recommendations for this {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period, focusing on real-life improvements. Include Mindful Habits building , Food & Diets ,  Spiritual Mantras & Sacred Sounds  to Mitigate the {name}'s {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti challenges. Explain Actionable remedies  names and how to do them with guided execution steps in simple, easy-to-understand English",
                             "items": {
                                 "type": "object",
                                 "properties": {

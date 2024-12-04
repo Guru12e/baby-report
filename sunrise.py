@@ -40,3 +40,4 @@ def get_sun_times(location, datestr=None):
 
     return sunrise, sunset
 
+

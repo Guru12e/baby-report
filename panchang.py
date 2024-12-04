@@ -180,7 +180,7 @@ def calculate_yoga(moon_pos, sun_pos):
         "Vaidhriti"
     ]
     
-    return yogas[yoga_index], yoga_index
+    return yogas[yoga_index], yoga_index + 1
 
 def calculate_karana(tithi,sun_pos, moon_pos):
     karanas = [

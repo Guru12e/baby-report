@@ -1,116 +1,32 @@
 context = [
-
-    {
-        "title": "Introduction to Your Child's Astrology",
-        "points": {
-            "Birth Details": "Essential information about your child's date, time, and place of birth.",
-            "Astrological Overview": "Understanding your child's unique astrological makeup.",
-            "Birth Chart & Navamsa Chart": "A snapshot of the celestial positions at birth, and its influence on your childs life path.",
-            "Planetary Positions & Dasa Bhukthi": "Insight into key planets and phases affecting your child's development."
-        }
-    },
-    {
-        "title": "Key Elements of Astrology for Your Child",
-        "points": {
-            "Panchangam Insights": "Exploring the traditional astrological calendar and its influence.",
-            "Pancha Tatvam (Five Elements)": "How the balance of elements shapes personality.",
-            "Birth Nature (Guna, Ganam, Motivator)": "Understanding your child's natural tendencies and motivations."
-        }
-    },
-    {
-        "title": "Important Astrology Checklist for Parenting",
-        "points": {
-            "Chandrashtama Days & Nakshatras": "Key days to be cautious for emotional well-being.",
-            "Prayers & Rituals (Atro Details)": "Astrological recommendations for auspicious rituals to support growth.",
-            "Successful Days": "Unlocking the best days for success based on Genma Karanam, Nakshatra, and favorable planetary alignments."
-        }
-    },
-    {
-        "title": "Physical Attributes, Personality, and Behavior",
-        "points": {
-            "Ascendant & Physical Attributes": "Discovering the key physical traits influenced by the ascendant.",
-            "Sun Sign & Core Identity": "Understanding the childs personality and self-expression.",
-            "Nakshatra Insights": "Behavioral traits and nature driven by Nakshatra (lunar mansion).",
-            "Venus & Rahu Desires": "Desires, attractions, and growth areas shaped by Venus and Rahu."
-        }
-    },
-    {
-        "title": "Emotional & Mental Wellness",
-        "points": {
-            "Emotional Stability": "Tips for nurturing mental and emotional well-being based on astrological indicators."
-        }
-    },
-    {
-        "title": "Health & Wellness",
-        "points": {
-            "Astrological Health Check": "Understanding health trends and preventive measures for overall wellness."
-        }
-    },
-    {
-        "title": "Education & Intellect",
-        "points": {
-            "Astrological Support for Learning": "Insights into the child's academic strengths and areas to focus on."
-        }
-    },
-    {
-        "title": "Natural Talents & Inner Values",
-        "points": {
-            "Unlocking Talents": "Discover natural skills and values that will shape your childs future."
-        }
-    },
-    {
-        "title": "Career & Professional Growth",
-        "points": {
-            "Astrological Career Path": "Guidance on career inclinations and suitable professions."
-        }
-    },
-    {
-        "title": "Relationships & Social Interactions",
-        "points": {
-            "Social Skills & Connections": "Insights into how your child forms relationships and interacts with others."
-        }
-    },
-    {
-        "title": "Karmic Life Lessons",
-        "points": {
-            "Understanding Life Lessons": "The karmic challenges and lessons your child is destined to learn."
-        }
-    },
-    {
-        "title": "Life Purpose & Destiny",
-        "points": {
-            "Destiny and Purpose": "Aligning with the child's larger purpose and spiritual journey."
-        }
-    },
-    {
-        "title": "Good Fortune, Favorable Days & Luck Factors",
-        "points": {
-            "Chakra & Kundalini Analysis": "Harnessing inner energy for personal growth.",
-            "Favorable Gems & Rudraksha": "Recommendations for stones and symbols that promote well-being.",
-            "Ishta Devatha & Planets": "Identifying spiritual guides and favorable planetary influences.",
-            "Lucky Days & Stars": "Important days for success and well-being."
-        }
-    },
-    {
-        "title": "Self-Discovery, Mindfulness, Manifestation, Healing",
-        "points": {
-            "SubConscious Mind Report": "Self-Discovery: How your child can tap into inner wisdom and emotional balance (Manam, Bhukthi, Ahankaram, Siddam).",
-            "Manifestations": "Cultivating positive beliefs, affirmations, visualizations, and meditation for success.",
-            "Mindfulness & Growth": "Harnessing the divine power of Mother Goddess through Itcha, Kriya, and Gnana Shakti for focused growth.",
-            "Healing & Development": "Strategies for energy activation and building a successful, radiant personality."
-        }
-    },
-    {
-        "title": "Positive Parenting Tips",
-        "points": {
-            "Milestones & Growth": "Key developmental stages to watch for in your childs growth.",
-            "Positive Habits & Discipline": "Behavior correction and fostering discipline with planetary guidance.",
-            "Challenges & Confidence Building": "Helping your child overcome challenges and build confidence through astrological insights.",
-            "Parent-Child Bonding": "Strengthening the emotional connection between parents and children.",
-            "Journal Prompts for Parents": "Encouraging reflection and journaling to track your childs growth journey."
-        }
-    }
+    "Child Astrology Details",
+    "Birth Chart Analysis",
+    "Child's Life Path (Favorable and Unfavorable Timings)",
+    "Pancha Bhoota: Fire, Air, Water, Ether, Earth Compositions in the Child's Body",
+    "Child's Ayurvedic Body Type (Vata, Pitta, Kapa)",
+    "Dominant Chakra (Energy Center of the Child)",
+    "Child's True Self (Sun, Moon, Ascendant/Lagna)",
+    "Child's Panchangam Growth Drivers",
+    "Outer World - Physical Attributes, Personality, and Behavior",
+    "Inner World - Emotional Needs and Soul Desire",
+    "Potential Health Challenges and Holistic Wellness Solutions",
+    "Education and Intellect (Educational Preferences and Cognitive Ability)",
+    "Family and Relationships",
+    "Career and Professions (Including Business and Entrepreneurship Potential)",
+    "Subconscious Mind Analysis",
+    "Unique Talents and Natural Skills (Mars, Venus, Mercury Analysis)",
+    "Karmic Life Lessons (Influences of Saturn, Rahu, and Ketu)",
+    "Sade Sati Analysis",
+    "Life Stones and Benefic/Lucky Stones",
+    "Rudraksha Recommendations",
+    "Atma Karga & Ishta Devata (Fortune Lord for the Child)",
+    "Child Development Milestones",
+    "Discipline, Habits, Diet, and Lifestyle Based on Planetary Energy",
+    "Important Checklist for Parents",
+    "Famous Celebrity Comparisons",
+    "Summary Insights for Parents and Child"
 ]
+
 
 chakras = {
     "Aries": ["Solar Plexus Chakra"],  
@@ -248,15 +164,27 @@ ista_devata_desc = {
 }
 
 ista_devatas = {
-    "Sun": ["Lord Shiva", "Lord Vishnu"],
-    "Moon": ["Lord Chandra", "Goddess Parvati"],
-    "Mars": ["Lord Kartikeya", "Lord Hanuman"],
-    "Mercury": ["Lord Budha", "Goddess Saraswati"],
-    "Jupiter": ["Lord Brihaspati", "Lord Vishnu"],
-    "Venus": ["Lord Shukra", "Goddess Lakshmi"],
-    "Saturn": ["Lord Shani", "Lord Yama"],
-    "Rahu": ["Lord Rahu", "Goddess Durga"],
-    "Ketu": ["Lord Hanuman", "Goddess Kali"]
+    "Sun": ["Lord Shiva"],
+    "Moon": ["Goddess Parvati"],
+    "Mars": ["Lord Kartikeya"],
+    "Mercury": ["Goddess Saraswati"],
+    "Jupiter": ["Lord Brihaspati"],
+    "Venus": ["Goddess Lakshmi"],
+    "Saturn": ["Lord Bhairava"],
+    "Rahu": ["Goddess Durga"],
+    "Ketu": ["Lord Hanuman"]
+}
+
+atma_names = {
+    "Sun": "Lord Shiva",
+    "Moon": "Goddess Parvathi",
+    "Mercury": "Goddess Saraswathi",
+    "Mars": "Lord karthikeyan",
+    "Jupiter": "Lord Guru",
+    "Venus": "Goddess Lakshmi",
+    "Saturn":"Lord Bhairava",
+    "Ketu": "Lord Hanuman",
+    "Rahu": "Goddess Durga",
 }
 
 ista_images = {
@@ -1394,3 +1322,554 @@ planet_quality = {
 
     ],
 } 
+
+
+nakshatraColor = {
+  "Ashwini": ["Red", "Orange", "Yellow"],
+  "Bharani": ["White", "Pink", "Blue"],
+  "Krittika": ["Red", "Pink", "White"],
+  "Rohini": ["Red", "Pink", "Green"],
+  "Mrigashira": ["White", "Yellow", "Pink"],
+  "Aridra": ["Blue", "Green", "Silver"],
+  "Punarvasu": ["White", "Green", "Yellow"],
+  "Pushya": ["White", "Yellow", "Gold"],
+  "Ashlesha": ["Silver", "White", "Red"],
+  "Magha": ["Gold", "Yellow", "Red"],
+  "Purva Phalguni": ["Red", "Orange", "Pink"],
+  "Uttara Phalguni": ["Orange", "Yellow", "Red"],
+  "Hasta": ["White", "Yellow", "Pink"],
+  "Chitra": ["Red", "Yellow", "Orange"],
+  "Swati": ["White", "Light Blue", "Green"],
+  "Vishakha": ["Red", "Yellow", "Green"],
+  "Anuradha": ["White", "Red", "Pink"],
+  "Jyeshtha": ["Silver", "Blue", "Green"],
+  "Mula": ["Red", "Black", "Brown"],
+  "Purva Ashadha": ["Yellow", "Red", "Pink"],
+  "Uttara Ashadha": ["Golden", "Red", "Yellow"],
+  "Shravana": ["White", "Green", "Yellow"],
+  "Dhanishta": ["Gold", "White", "Pink"],
+  "Shatabhisha": ["Blue", "Green", "Black"],
+  "Purva Bhadrapada": ["Purple", "Red", "Yellow"],
+  "Uttara Bhadrapada": ["Yellow", "White", "Red"],
+  "Revati": ["White", "Green", "Pink"]
+}
+
+nakshatraNumber = {
+  "Ashwini": [1, 9],
+  "Bharani": [2, 6],
+  "Krittika": [3, 5],
+  "Rohini": [2, 7],
+  "Mrigashira": [1, 3],
+  "Aridra": [5, 8],
+  "Punarvasu": [3, 6],
+  "Pushya": [4, 9],
+  "Ashlesha": [8, 7],
+  "Magha": [1, 4],
+  "Purva Phalguni": [3, 6],
+  "Uttara Phalguni": [2, 9],
+  "Hasta": [5, 8],
+  "Chitra": [3, 6],
+  "Swati": [6, 9],
+  "Vishakha": [1, 3],
+  "Anuradha": [2, 6],
+  "Jyeshtha": [4, 7],
+  "Mula": [9, 5],
+  "Purva Ashadha": [3, 7],
+  "Uttara Ashadha": [4, 8],
+  "Shravana": [2, 5],
+  "Dhanishta": [1, 6],
+  "Shatabhisha": [3, 8],
+  "Purva Bhadrapada": [1, 4],
+  "Uttara Bhadrapada": [2, 7],
+  "Revati": [3, 9]
+}
+
+
+thithiLord = {
+  "Pratipada": "Agni (Fire God)",
+  "Ditiya": "Brahma (Creator God)",
+  "Tritiya": "Gauri (Goddess of Harmony)",
+  "Chaturthi": "Ganapati (Remover of Obstacles)",
+  "Panchami": "Saraswati (Goddess of Knowledge)",
+  "Shashthi": "Kartikeya (God of War and Victory)",
+  "Saptami": "Surya (Sun God)",
+  "Ashtami": "Rudra (Form of Shiva)",
+  "Navami": "Durga (Goddess of Power)",
+  "Dashami": "Yama (God of Discipline)",
+  "Ekadashi": "Vishnu (Preserver of the Universe)",
+  "Dwadashi": "Aditi (Mother of the Gods)",
+  "Trayodashi": "Kamadeva (God of Love and Desire)",
+  "Chaturdashi": "Shiva (Destroyer of Negativity)",
+  "Purnima": "Chandra (Moon God)",
+  "Amavasya": "Pitra (Ancestors)"
+}
+
+thithiContent = {
+    "Pratipada": [ 
+        [
+        "Energetic and enthusiastic",
+        "Strong leadership qualities",
+        "Innovative and creative thinking"
+      ], [
+        "Impulsiveness and restlessness",
+        "Difficulty handling criticism",
+        "Prone to overreaction in stressful situations"
+      ], {
+        "Name": "Fire Focus Exercise",
+        "Description": "Channel their energy through physical activities.",
+        "Execution": "Enroll them in martial arts or dance classes to help them discipline their energy. Introduce daily journaling for emotional reflection."
+      }
+    ],
+    "Ditiya": [[
+        "Curious and eager to learn",
+        "Good at building relationships",
+        "Balanced and thoughtful in decision-making"
+      ],[
+        "Overthinking tendencies",
+        "Can be overly dependent on others",
+        "Hesitant to take risks"
+      ], {
+        "Name": "Daily Curiosity Hour",
+        "Description": "Encourage curiosity with fun educational activities.",
+        "Execution": "Set aside an hour daily for puzzles, storytelling, or experiments to enhance learning and decision-making skills."
+      }
+],
+    "Tritiya": [ [
+        "Charming and sociable",
+        "Naturally peaceful and harmonious",
+        "Strong aesthetic sense"
+      ],
+       [
+        "Avoids conflict at all costs",
+        "Struggles with assertiveness",
+        "Suppresses emotions"
+      ],
+      {
+        "Name": "Conflict Resolution Roleplay",
+        "Description": "Teach healthy communication and assertiveness.",
+        "Execution": "Use role-playing to practice standing up for themselves and expressing emotions constructively."
+      }
+],
+    "Chaturthi": [ [
+        "Strong problem-solving abilities",
+        "Resilient and determined",
+        "Optimistic outlook"
+      ],
+       [
+        "Can be stubborn and inflexible",
+        "Overly focused on details",
+        "Prone to frustration with delays"
+      ],
+      {
+        "Name": "Obstacle Course Game",
+        "Description": "Promote patience and flexibility.",
+        "Execution": "Set up an obstacle course at home that includes unexpected challenges to teach patience and adaptability."
+      }
+],
+    "Panchami": [[
+        "Highly intelligent and creative",
+        "Loves learning and exploring new ideas",
+        "Artistic and musical talents"
+      ],
+       [
+        "Overwhelmed by expectations",
+        "Tendency to withdraw when criticized",
+        "Struggles with perfectionism"
+      ],
+      {
+        "Name": "Creative Expression Hour",
+        "Description": "Provide a space for artistic expression.",
+        "Execution": "Encourage activities like painting, music, or writing, focusing on the process rather than results."
+      }
+],
+    "Shashthi": [ [
+        "Bold and adventurous",
+        "Strong leadership qualities",
+        "Confident in challenges"
+      ],
+       [
+        "Overly competitive",
+        "Impulsive decisions",
+        "May struggle with teamwork"
+      ],
+      {
+        "Name": "Teamwork Building Games",
+        "Description": "Foster cooperation through group activities.",
+        "Execution": "Organize family board games or team sports to emphasize collaboration."
+      }
+],
+    "Saptami": [ [
+        "Radiant and charismatic",
+        "Natural leadership abilities",
+        "Optimistic and inspiring"
+      ],
+       [
+        "Egoistic or overconfident tendencies",
+        "Struggles to accept failure",
+        "Prone to dominating others"
+      ],
+      {
+        "Name": "Leadership Sharing Activities",
+        "Description": "Teach humility and collaborative leadership.",
+        "Execution": "Rotate leadership roles in group activities, stressing teamwork and listening."
+      }
+],
+    "Ashtami": [[
+        "Emotionally resilient",
+        "Strong problem-solving skills",
+        "Determined and fearless"
+      ],
+       [
+        "Prone to anger and intense emotions",
+        "Can be secretive",
+        "May resist authority"
+      ],
+      {
+        "Name": "Emotional Expression Journal",
+        "Description": "Help your child process emotions constructively.",
+        "Execution": "Encourage daily journaling with writing or drawing to manage intense feelings."
+      }
+],
+    "Navami": [ [
+        "Strong-willed and courageous",
+        "Great at handling challenges",
+        "Highly protective of loved ones"
+      ],
+       [
+        "Can be overly defensive",
+        "May struggle with controlling anger",
+        "Prone to burnout due to high expectations"
+      ],
+       {
+        "Name": "Stress Release Techniques",
+        "Description": "Teach healthy ways to handle stress and anger.",
+        "Execution": "Introduce breathing exercises or nature walks to help them decompress and build emotional resilience."
+      }
+],
+    "Dashami": [ [
+        "Disciplined and goal-oriented",
+        "Fair and just in decision-making",
+        "Highly responsible and reliable"
+      ],
+       [
+        "Can be overly rigid",
+        "Struggles to adapt to changes",
+        "Prone to self-imposed pressure"
+      ],
+       {
+        "Name": "Flexible Thinking Challenges",
+        "Description": "Encourage adaptability through creative problem-solving.",
+        "Execution": "Use activities like 'What if' scenarios to help them think flexibly and embrace change."
+      }
+],
+    "Ekadashi": [ [
+        "Spiritually inclined and introspective",
+        "Focused and determined",
+        "Generous and kind-hearted"
+      ],
+       [
+        "May isolate themselves during stress",
+        "Prone to perfectionism",
+        "Can be overly idealistic"
+      ],
+       {
+        "Name": "Mindful Listening Sessions",
+        "Description": "Help your child process emotions and stay grounded.",
+        "Execution": "Spend dedicated time listening to your child's thoughts and guiding them through their concerns without judgment."
+      }
+],
+    "Dwadashi": [ [
+        "Generous and nurturing",
+        "Strong family-oriented values",
+        "Highly optimistic and hopeful"
+      ],
+       [
+        "Prone to over-giving and neglecting self",
+        "Difficulty setting boundaries",
+        "May struggle with dependency on others' approval"
+      ],
+       {
+        "Name": "Self-Care Time",
+        "Description": "Teach your child the importance of self-care.",
+        "Execution": "Encourage activities like reading or hobbies that they can enjoy independently, reinforcing the value of personal space."
+      }
+],
+    "Trayodashi": [ [
+        "Charming and affectionate",
+        "Highly creative and artistic",
+        "Emotionally intelligent and understanding"
+      ],
+       [
+        "Can be overly sensitive to rejection",
+        "Prone to mood swings",
+        "May struggle with focusing on long-term goals"
+      ],
+       {
+        "Name": "Emotion Mapping Game",
+        "Description": "Help your child identify and manage emotions.",
+        "Execution": "Create a fun chart with emotions and teach them to label what they feel during different situations to promote self-awareness."
+      }
+],
+    "Chaturdashi": [[
+        "Highly intuitive and insightful",
+        "Strong inner strength and determination",
+        "Great at finding solutions under pressure"
+      ],
+       [
+        "Prone to emotional intensity",
+        "May have difficulty trusting others",
+        "Can become reclusive during stress"
+      ],
+       {
+        "Name": "Trust-Building Activities",
+        "Description": "Encourage openness and build trust.",
+        "Execution": "Engage in shared activities like gardening or cooking, fostering open conversations and mutual understanding."
+      }
+],
+    "Purnima": [ [
+        "Highly intuitive and empathetic",
+        "Balances logic and emotion well",
+        "Inspires others with emotional intelligence"
+      ],
+       [
+        "Overly sensitive to criticism",
+        "Prone to emotional highs and lows",
+        "Easily distracted by external influences"
+      ],
+       {
+        "Name": "Moon Meditation Ritual",
+        "Description": "Cultivate emotional balance through calming practices.",
+        "Execution": "On full moon nights, guide your child in meditation or breathing exercises to calm their emotions."
+      }
+],
+    "Amavasya": [ [
+        "Deeply introspective and wise",
+        "Strong intuitive abilities",
+        "Empathetic and compassionate"
+      ],
+       [
+        "Prone to overthinking and worry",
+        "May experience emotional lows",
+        "Sensitive to negative energy around them"
+      ],
+       {
+        "Name": "Gratitude Reflection Practice",
+        "Description": "Foster positivity and emotional wellness.",
+        "Execution": "Encourage writing or discussing three daily gratitudes to promote a positive mindset."
+      }
+]
+}
+
+KaranaLord =  {
+  "Bava": "Vishnu",
+  "Balava": "Brahma",
+  "Kaulava": "Shakti (Durga)",
+  "Taitila": "Indra",
+  "Garaja": "Nandi",
+  "Vanija": "Kubera",
+  "Vishti": "Yama",
+  "Shakuni": "Shakuni (Mystic)",
+  "Chatushpada": "Rudra (Shiva)",
+  "Nagava": "Nagava Devata (Serpent God)",
+  "Kinstughna": "Vishnu"
+}
+
+karanamContent =  {
+  "Bava": [[
+        "Quick to start tasks with enthusiasm.",
+        "Creative and innovative approach to problem-solving.",
+        "Can motivate others and lead group activities."
+      ],
+    [
+        "May lack focus and jump from one task to another.",
+        "Tendency to lose interest quickly and abandon tasks.",
+        "Can be impulsive and not think things through before acting."
+      ],
+       {
+        "Tip": "Create a structured schedule with clear goals.",
+        "Execution": "Break down big tasks into smaller, manageable steps with a clear timeline. Praise their progress to encourage them to stay focused and complete tasks."
+      }
+],
+  "Balava": [[
+        "Energetic and enthusiastic in completing tasks.",
+        "Able to multitask and handle several things at once.",
+        "Very adaptable to different situations and changes."
+      ],
+    [
+        "May struggle with focusing on a single task for long.",
+        "Can become easily distracted and forgetful.",
+        "Tends to rush through tasks, impacting quality."
+      ],
+       {
+        "Tip": "Set designated focus times with breaks.",
+        "Execution": "Create a timer-based approach where they work on one task for a set period and then take short breaks. This helps improve focus and productivity."
+      }
+],
+  "Kaulava": [ [
+        "Diligent and consistent in task completion.",
+        "Well-organized and tends to follow routines.",
+        "Takes time to plan and ensure accuracy in work."
+      ],
+    [
+        "May become overly cautious and hesitant to take risks.",
+        "Can be resistant to change and new approaches.",
+        "Might overthink and delay task completion."
+      ],
+       {
+        "Tip": "Introduce gradual change and new activities.",
+        "Execution": "Help them practice flexibility by gently encouraging them to try new methods or activities with reassurance."
+      }
+],
+  "Taitila": [ [
+        "Methodical and practical in approaching tasks.",
+        "Strong attention to detail and precision.",
+        "Reliable and consistent in their work."
+      ],
+    [
+        "May become perfectionist, leading to frustration.",
+        "Tends to avoid tasks if they feel they won’t be perfect.",
+        "Can be slow to adapt to unexpected changes."
+      ],
+       {
+        "Tip": "Encourage a balance between effort and relaxation.",
+        "Execution": "Praise their hard work but reassure them that making mistakes is part of learning. Offer positive reinforcement when they try new things without expecting perfection."
+      }
+],
+  "Garaja": [ [
+        "Independent and self-reliant.",
+        "Able to handle tasks without constant supervision.",
+        "Can focus and remain determined to finish tasks."
+      ],
+    [
+        "May become stubborn and resist help.",
+        "Can struggle with expressing emotions or asking for help.",
+        "Might avoid tasks that they feel are too difficult."
+      ],
+       {
+        "Tip": "Promote open communication and encourage teamwork.",
+        "Execution": "Encourage them to express their needs and feelings. Let them know it’s okay to ask for help, and praise collaborative efforts."
+      }
+],
+  "Vanija": [ [
+        "Creative and resourceful.",
+        "Able to think outside the box to solve problems.",
+        "Strong ability to manage tasks effectively."
+      ],
+    [
+        "Can become distracted by new ideas and abandon projects.",
+        "May find it difficult to stick to routines or fixed plans.",
+        "Can become overly involved in side projects at the cost of main tasks."
+      ],
+       {
+        "Tip": "Help them prioritize their tasks and ideas.",
+        "Execution": "Create a priority list for their tasks and set clear goals for each. Help them focus on one thing at a time while encouraging their creativity."
+      }
+],
+  "Vishti": [ [
+        "Hardworking and diligent in completing tasks.",
+        "Persistent in achieving long-term goals.",
+        "Takes pride in their work and accomplishments."
+      ],
+    [
+        "Can become stubborn and refuse to change their methods.",
+        "May struggle with adapting to sudden changes.",
+        "Can become overwhelmed by taking on too much responsibility."
+      ],
+       {
+        "Tip": "Teach flexibility and the importance of rest.",
+        "Execution": "Encourage them to try new methods and take breaks when necessary. Remind them that flexibility is important for growth and managing stress."
+      }
+],
+  "Shakuni": [[
+        "Strategic thinker and planner.",
+        "Able to foresee potential challenges and plan accordingly.",
+        "Focused on achieving set goals with efficiency."
+      ],
+    [
+        "Can become overly calculative and detached emotionally.",
+        "Might avoid social interactions to focus on tasks.",
+        "Can be prone to manipulation or taking shortcuts."
+      ],
+       {
+        "Tip": "Encourage social interactions and emotional awareness.",
+        "Execution": "Foster their emotional intelligence by encouraging teamwork and group activities. Teach them to value relationships alongside strategic planning."
+      }
+],
+  "Chatushpada": [[
+        "Creative and independent thinker.",
+        "Can easily adapt to changing circumstances.",
+        "Strong ability to handle multiple tasks simultaneously."
+      ],
+      [
+        "Can become erratic and unpredictable in their actions.",
+        "May struggle with commitment to long-term projects.",
+        "Might avoid responsibility and opt for shortcuts."
+      ],
+      {
+        "Tip": "Help them build consistency and commitment.",
+        "Execution": "Encourage them to stay committed to one task at a time and celebrate the completion of small milestones. Use consistency as a reward mechanism."
+      }
+],
+  "Nagava": [ [
+        "Good at handling complex tasks.",
+        "Strong sense of responsibility and commitment.",
+        "Deeply focused on achieving set objectives."
+      ],
+    [
+        "Can be secretive and reluctant to share thoughts.",
+        "May become overly serious and rigid in approach.",
+        "Might neglect their emotional or social needs while pursuing goals."
+      ],
+       {
+        "Tip": "Foster open communication and emotional expression.",
+        "Execution": "Encourage them to open up about their feelings and balance their work with social activities. Help them understand the importance of emotional well-being."
+      }
+],
+  "Kinstughna": [ [
+        "Highly energetic and motivated to complete tasks.",
+        "Quick to act on new ideas and challenges.",
+        "Has a natural ability to inspire others to join efforts."
+      ],
+    [
+        "Can become impulsive and make rash decisions.",
+        "Tends to be restless and may not complete tasks properly.",
+        "May struggle with patience and attention to detail."
+      ],
+       {
+        "Tip": "Encourage calm and thoughtful decision-making.",
+        "Execution": "Teach them to pause and think before acting, especially in important decisions. Implement decision-making steps that involve thinking through pros and cons."
+      }
+]
+}
+
+yogamLord = {
+  "1": "Shiva",
+  "2": "Vishnu",
+  "3": "Chandra (Moon)",
+  "4": "Lakshmi",
+  "5": "Parvati",
+  "6": "Rudra (Shiva)",
+  "7": "Indra",
+  "8": "Yama",
+  "9": "Durga",
+  "10": "Vayu",
+  "11": "Vishwadeva",
+  "12": "Dhruva (Pole Star)",
+  "13": "Kali (Chandi)",
+  "14": "Gauri (Parvati)",
+  "15": "Indra",
+  "16": "Ganesha",
+  "17": "Shiva",
+  "18": "Lakshmi",
+  "19": "Vishnu",
+  "20": "Shiva",
+  "21": "Ganesha",
+  "22": "Brahma",
+  "23": "Lakshmi",
+  "24": "Vishnu",
+  "25": "Brahma",
+  "26": "Indra",
+  "27": "Yama"
+}
+
+

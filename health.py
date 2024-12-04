@@ -208,7 +208,7 @@ def healthPrompt(planets,index,name,gender):
                 },
                 "wellness_routines": {
                     "type": "array",
-                    "description": f"provide 5 Spiritual Practices including Energy Healing, Sacred Sounds, Mudras and its names and how to do them with guided execution steps based on Holistic Wellness Solutions in an array'",
+                    "description": f"provide 5 Spiritual Practices including Energy Healing, Sacred Sounds, Mudras, Building Habit, Food & Diet and explain their names and how to do them with guided execution steps based on Holistic Wellness Solutions in an array",
                     "items": {
                         "type": "object",
                         "properties": {

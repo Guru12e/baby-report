@@ -24,7 +24,7 @@ number_words = {
 }
 
 def PlanetPrompt(planets,name,gender):
-    content = f"""Create a Planet Position detailed report for a {name} whose {planets['Name']} Placed in {planets['pos_from_asc']} House of {planets['sign']} Sign in {planets['nakshatra']} Nakshatra use {name} and {gender} pronouns all over the content"""
+    content = f"""Create a Planet Position detailed report for a {name} whose {planets['Name']} Placed in {planets['pos_from_asc']} House of {planets['sign']} Sign in {planets['nakshatra']} Nakshatra {f"and the {planets['Name']} is retrograted" if planets['isRetro'] else ""} use {name} and {gender} pronouns all over the content"""
     
     function = [
         {
@@ -33,30 +33,9 @@ def PlanetPrompt(planets,name,gender):
             'parameters': {
                 'type': 'object',
                 'properties': {
-                    'strategies': {
-                        'type': 'array',
-                        'description': f"An array of 3 Important {planets['Name']} placement insights and Impacts on {name}'s Life with simple, easy-to-understand English based on the {name}'s {planets['Name']} position and its Significance.",
-                        'items': {
-                            'type': 'object',
-                            'properties': {
-                                'title': {
-                                    'type': 'string',
-                                    'description': 'The title of the strategy.'
-                                },
-                                'content': {
-                                    'type': 'string',
-                                    'description': 'The explanation of the insights.'
-                                }
-                            },
-                            'required': [
-                                'title',
-                                'content'
-                            ]
-                        }
-                    },
                     'remedies': {
                         'type': 'array',
-                        'description': f"An array of 3 Personalized Modern Remedies techniques with Life Skills Teachings, Food & Diet, with their names and how to implement them with guided execution steps in simple, easy-to-understand English based on the {name}'s {planets['Name']} position.",
+                        'description': f"An array of 2 Personalized Modern Remedies techniques with Life Skills Teachings, Food & Diet, with their names and how to implement them with guided execution steps in simple, easy-to-understand English based on the {name}'s {planets['Name']} position",
                         'items': {
                             'type': 'object',
                             'properties': {
@@ -77,7 +56,7 @@ def PlanetPrompt(planets,name,gender):
                     },
                     'routine': {
                         'type': 'array',
-                        'description': f"An array of 3 Daily Mindful Routines & Rituals techniques with their names and how to implement them with guided execution steps in simple, easy-to-understand English based on the {name}'s {planets['Name']} position.",
+                        'description': f"An array of 2 Daily Mindful Habits building techniques with their names and how to implement them with guided execution steps in simple, easy-to-understand English based on the {name}'s {planets['Name']} position.",
                         'items': {
                             'type': 'object',
                             'properties': {
@@ -119,7 +98,6 @@ def PlanetPrompt(planets,name,gender):
                     }
                 },
                 'required': [
-                    'strategies',
                     'remedies',
                     'routine',
                     'practice'
@@ -128,7 +106,7 @@ def PlanetPrompt(planets,name,gender):
         }
     ]
     function_call = {"name": "generate_child_planet_report"}
-    
+        
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[
@@ -145,4 +123,3 @@ def PlanetPrompt(planets,name,gender):
     print(res_json,"\n")
     
     return res_json
-    

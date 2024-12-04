@@ -137,21 +137,24 @@ def chapterPrompt(planets,index,name,gender):
     shifted_signs = zodiac[asc_index:] + zodiac[:asc_index]
     
     if index == 0:
-        content = f"Create a Unique Talents Insights detailed report for a {name}'s Astrology Details : {lagnaPrompt(planets)} {secondHouse(planets,shifted_signs,2)} {secondHouse(planets,shifted_signs,3)} {secondHouse(planets,shifted_signs,4)} {secondHouse(planets,shifted_signs,5)} {secondHouse(planets,shifted_signs,6)} {secondHouse(planets,shifted_signs,7)} {secondHouse(planets,shifted_signs,8)} {secondHouse(planets,shifted_signs,9)} {secondHouse(planets,shifted_signs,10)} {secondHouse(planets,shifted_signs,11)} {secondHouse(planets,shifted_signs,12)} Write {name}'s Unique Talents and Inner Values Based on Planets & House Placements. Use {name} and {gender} pronouns all over the content."
+        mercury = list(filter(lambda x:x['Name'] == "Mercury" , planets))[0]
+        venus = list(filter(lambda x:x['Name'] == "Venus" , planets))[0]
+        mars = list(filter(lambda x:x['Name'] == "Mars" , planets))[0]
+        content = f"Create a Unique Talents Insights detailed report for a {name}'s Astrology Details : {planetPrompt(mercury)} {planetPrompt(venus)} {planetPrompt(mars)}"
         
         function = [{
   'name': 'generate_unique_talents_report',
-  'description': f"Generate a report on the {name}'s unique strengths, highlighting natural inherent talents and abilities. The report is based on astrology, focusing on planetary positions, house placements, and natural gifts. Provide strategies to nurture these talents effectively, including practical suggestions for areas of growth and improvement, tailored to the {name}'s astrological makeup",
+  'description': f"Generate a report on the {name}'s unique strengths, highlighting natural inherent talents and abilities. The report is based on Mars, Venus, Mercury Planet Positions, house placement. Provide strategies to nurture these talents effectively, including practical suggestions for areas of growth and improvement, tailored to the {name}'s Mars, Venus, Mercury Positions. Use {name} and {gender} pronouns throughout the content.",
   'parameters': {
     'type': 'object',
     'properties': {
       'insights': {
         'type': 'string',
-        'description': f"Provide detailed insights about the {name}'s unique talents, strengths, and inner values, based on planetary and house placements. This should be presented in an abstract paragraph that explains the {name}'s inherent qualities and potential."
+        'description': f"Provide detailed insights about the {name}'s unique talents, strengths, and inner values, based on Mars, venus, Mercury  planetary and house placements. This should be presented in an abstract paragraph that explains the {name}'s inherent qualities and potential."
       },
       'education': {
         'type': 'array',
-        'description': f"Identify 5 unique talents related to the {name}'s education and intellectual abilities. These should align with the {name}'s astrological placements, particularly those associated with Mercury, education-related houses, and other relevant planets. Include how these talents manifest in the {name}'s learning style and intellect.",
+        'description': f"Identify 5 unique talents related to the {name}'s  Mercury Positions Potential Talents along with Parenting Tips  to nurture these talents effectively . These should align with the {name}'s Planet mercury placements . Include how these talents manifest in the {name}'s mercury related  Natural Talents.",
         'items': {
           'type': 'object',
           'properties': {
@@ -161,7 +164,7 @@ def chapterPrompt(planets,index,name,gender):
             },
             'content': {
               'type': 'string',
-              'description': f"A description of the {name}'s natural educational talents and intellectual strengths, based on astrology."
+              'description': f"A description of the {name}'s natural educational talents and intellectual strengths, based on Planet Mercury Placements."
             }
           },
           'required': ['title', 'content']
@@ -169,7 +172,7 @@ def chapterPrompt(planets,index,name,gender):
       },
       'arts_creative': {
         'type': 'array',
-        'description': f"Identify 5 unique talents related to creativity and the arts. These should be aligned with the {name}'s astrological placements, particularly those involving Venus and creative house placements. Explain how these talents influence the {name}'s artistic expression and creativity.",
+        'description': f"Identify 5 unique talents related to the {name}'s Venus Placements Unique Talents Natural Skills  Potentials along with Parenting Tips  to nurture these talents effectively . These should be aligned with the {name}'s Venus  placements, particularly those involving Venus and creative house placements. Explain how these talents influence the {name}'s Venus related Natural Talents.",
         'items': {
           'type': 'object',
           'properties': {
@@ -179,7 +182,7 @@ def chapterPrompt(planets,index,name,gender):
             },
             'content': {
               'type': 'string',
-              'description': f'A description of the {name}’s natural artistic talents and creative strengths, based on astrology.'
+              'description': f"A description of the {name}’s natural artistic talents and creative strengths, based on venus PLacements."
             }
           },
           'required': ['title', 'content']
@@ -187,7 +190,7 @@ def chapterPrompt(planets,index,name,gender):
       },
       'physical_activity': {
         'type': 'array',
-        'description': f"Identify 5 unique talents related to sports.These should align with the {name}'s astrological placements, particularly Mars and related physical activity houses. Explain how these talents manifest in the {name}'s Sports and hobbies.",
+        'description': f"Identify 5 unique talents related to Planet Mars Positions .These should align with the {name}'s planet Mars placements Unique Talents & Skills  along with Parenting Tips  to nurture these talents effectively. Explain how these talents manifest in the {name}'s Marse related natural talents.",
         'items': {
           'type': 'object',
           'properties': {
@@ -350,21 +353,21 @@ def chapterPrompt(planets,index,name,gender):
         moon = list(filter(lambda x:x['Name'] == "Moon" , planets))[0]
         nakshatraLord = list(filter(lambda x:x['Name'] == moon['nakshatra_lord'], planets))[0]
         rasiLord = list(filter(lambda x:x['Name'] == moon['zodiac_lord'], planets))[0]
-        content = f"""Create a SubConscious Mind detailed report for a {name} for Child's Astrology Details: Child's Janma Nakshatra is  {moon['nakshatra']} Nakshatra and  Nakshatra Lord {nakshatraLord['Name']} placed in the {nakshatraLord['pos_from_asc']} House of {nakshatraLord['sign']} in {nakshatraLord['nakshatra']} Nakshatra. Child's Janma Rashi is {moon['sign']} Rashi and the Rashi Lord {rasiLord['Name']} placed in the {rasiLord['pos_from_asc']} House of {rasiLord['sign']} in {rasiLord['nakshatra']} Nakshatra. {lagnaPrompt(planets)} {secondHouse(planets,shifted_signs,2)} {secondHouse(planets,shifted_signs,3)} {secondHouse(planets,shifted_signs,4)} {secondHouse(planets,shifted_signs,5)} {secondHouse(planets,shifted_signs,6)} {secondHouse(planets,shifted_signs,7)} {secondHouse(planets,shifted_signs,8)} {secondHouse(planets,shifted_signs,9)} {secondHouse(planets,shifted_signs,10)} {secondHouse(planets,shifted_signs,11)} {secondHouse(planets,shifted_signs,12)}.Use {name} and {gender} pronouns all over the content."""
+        content = f"""Create a SubConscious Mind detailed report for a {name} for Child's Astrology Details: Child's Janma Nakshatra is  {moon['nakshatra']} Nakshatra and  Nakshatra Lord {nakshatraLord['Name']} placed in the {nakshatraLord['pos_from_asc']} House of {nakshatraLord['sign']} in {nakshatraLord['nakshatra']} Nakshatra. Child's Janma Rashi is {moon['sign']} Rashi and the Rashi Lord {rasiLord['Name']} placed in the {rasiLord['pos_from_asc']} House of {rasiLord['sign']} in {rasiLord['nakshatra']} Nakshatra. {lagnaPrompt(planets)} {secondHouse(planets,shifted_signs,8)} {secondHouse(planets,shifted_signs,12)}.Use {name} and {gender} pronouns all over the content."""
                
         function = [{
     "name": "generate_child_subconscious_report",
-    "description": f"Personalized affirmations, visualizations, and meditation techniques for parents to help {name} overcome limiting beliefs, fears, and obstacles in their subconscious mind. This is based on planetary positions, astrological house placements, and the influence of the Moon for cultivating positive beliefs and ensuring success. Provide 5 personalized affirmations, 5 visualization techniques, and 5 meditation techniques, including names and implementation steps, to aid {name}'s growth and help them overcome subconscious mind obstacles.",
+    "description": f"Personalized affirmations, visualizations, and meditation techniques for parents to help {name} overcome limiting beliefs, Self Esteem, hidden fears, Deep Rooted Anxiety in their subconscious mind. This is based on Lagana Lord, 8th House, 12 house  planetary positions,  and the influence of the Moon for cultivating positive beliefs and ensuring success. Provide 5 personalized affirmations, 5 visualization techniques, and 5 meditation techniques, including names and implementation steps, to aid {name}'s growth and help them overcome subconscious mind obstacles.",
     "parameters": {
         "type": "object",
         "properties": {
             "subconscious_mind": {
                 "type": "string",
-                "description": f"Provide insights into {name}'s subconscious mind limiting belief , explaining the {name}'s limiting beliefs that cause obstacles, fears, and anxiety  based on {name}'s subconscious mind  House and Planet Placement and Moon positions."
+                "description": f"Provide insights into {name}'s subconscious mind limiting belief , Self Esteem Issues, Hidden Fears, Deep Rooted Anxiety explaining the {name}'s limiting beliefs, Hidden Fears, Deep Rooted Anxieties  that cause obstacles in  {name}'s Life based  subconscious mind  House Lagna Lord Positions Sign, 8 th House, 12 House Planet Placement and Moon positions."
             },
             "personalized_affirmations": {
                 "type": "array",
-                "description": f"Provide an array of 5 personalized affirmations to help {name} overcome limiting beliefs, with guided execution steps for each affirmation. The affirmations should focus on building positive beliefs for success",
+                "description": f"Provide an array of 5 personalized affirmations to help {name} overcome limiting beliefs, Self Esteem Issues, Provide Affirmations Techniques name and How to do them with guided execution steps for each affirmation, including Affirmation Counts. These affirmation  should focus on building positive beliefs, High Self esteem for {name}'s success.",
                 "items": {
                     "type": "object",
                     "properties": {
@@ -382,7 +385,7 @@ def chapterPrompt(planets,index,name,gender):
             },
             "visualizations": {
                 "type": "array",
-                "description": f"Provide an array of 5 personalized visualization techniques for {name}'s limiting beliefs, with guided execution steps for each visualization. These techniques should focus on building positive beliefs for success.",
+                "description": f"Provide an array of 5 personalized visualization techniques for {name}'s limiting beliefs, Hidden Fears,  Provide  Visualization Techniques name and How to do them with guided execution steps for each visualization, including imaginary techniques. These techniques should focus on building positive beliefs, Removing Hidden Fears  for {name}'s success.",
                 "items": {
                     "type": "object",
                     "properties": {
@@ -400,7 +403,7 @@ def chapterPrompt(planets,index,name,gender):
             },
             "meditations": {
                 "type": "array",
-                "description": f"Provide an array of 5 personalized meditation techniques for {name}'s limiting beliefs, with guided execution steps for each meditation, including counting techniques. These techniques should focus on building positive beliefs for success.",
+                "description": f"Provide an array of 5 personalized mindful meditation techniques for {name}'s limiting beliefs, deep rooted anxiety Provide mediation Techniques name and How to do them with guided execution steps for each mindful meditation, including counting techniques. These techniques should focus on building positive beliefs, Removing Deep Rooted Anxiety  for {name}’s success.",
                 "items": {
                     "type": "object",
                     "properties": {
@@ -508,6 +511,96 @@ def chapterPrompt(planets,index,name,gender):
 
         function_call = {"name": "generate_child_karmic_life_pattern_report"}
         
+        
+    if index == 8:
+        moon = list(filter(lambda x:x['Name'] == "Moon" , planets))[0]
+        content = f"Generate a report that Provide a list of indian successful and Famous Celebrities born under a {name}'s Raasi and nakshatram. Include the following details for each Celebrities. {name} details: {moon['sign']} rasi, {moon['nakshatra']} nakshatra."
+        
+        function = [
+            {
+                "name": "generate_inspirational_celebrities_list",
+                "description": f"Generate a list of indian successful and Famous Celebrities born under a {name}'s Raasi and Nakshatram.",
+                "parameters": {
+                    "type": "object", 
+                    "properties": {
+                        "celebrities": {
+                            "type": "array",  
+                            "items": {
+                                "type": "object",
+                                "description": "Details of a 5 successful and Famous Celebrities.",
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "description": "The name of the Celebritie."
+                                    },
+                                    "field": {
+                                        "type": "string",
+                                        "description": "The field of expertise of the Celebritie."
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "description": "A brief description of the Celebritie's life path, including achievements and how their Raasi and Nakshatram traits influenced their journey."
+                                    }
+                                },
+                                "required": ["name", "field", "description"]
+                            }
+                        }
+                    },
+                    "required": ["celebrities"] 
+                }
+            }
+        ]
+
+
+        
+        function_call = {"name": "generate_inspirational_celebrities_list"}
+        
+    if index == 9:
+        content = f"""{name}'s Planetary positions : {lagnaPrompt(planets)} {secondHouse(planets,shifted_signs,2)} {secondHouse(planets,shifted_signs,3)} {secondHouse(planets,shifted_signs,4)} {secondHouse(planets,shifted_signs,5)} {secondHouse(planets,shifted_signs,6)} {secondHouse(planets,shifted_signs,7)} {secondHouse(planets,shifted_signs,8)} {secondHouse(planets,shifted_signs,9)} {secondHouse(planets,shifted_signs,10)} {secondHouse(planets,shifted_signs,11)} {secondHouse(planets,shifted_signs,12)} Write {name} Based on the above {name}'s planetary Position and Horoscope Detail  Provide {name}'s Overall  detail Life Insights and Parenting Suggestions for Nurturing {name} with their Strength and do not give disclaimer message like i am not an astrologer Consult with professional astrologer provide only astrology Insights Contents for Parenting Suggestions use {name} and {gender} pronouns all over the content."""
+        
+        function = [
+            {
+                "name": "generate_life_insights_report",
+                "description": f"Generate a {name}'s detailed report providing {name}'s overall life insights and parenting suggestions based on their planetary positions and horoscope details.",
+                "parameters": {
+                    "type": "object",
+                    "properties": {
+                        "predictions": {
+                            "type": "string",
+                            "description": f"Provide {name}'s Life Insights predictions based on the above planetary Position and Horoscope Detail."
+                        },
+                        "assessment": {
+                            "type": "string",
+                            "description": f"Provide {name}'s Personality Assessment based on the above planetary Position and Horoscope Detail."
+                        },
+                        "strength": {
+                            "type": "string",
+                            "description": f"Provide {name}'s Strength based on the above planetary Position and Horoscope Detail."
+                        },
+                        "weakness": {
+                            "type": "string",
+                            "description": f"Provide {name}'s Weakness based on the above planetary Position and Horoscope Detail."
+                        },
+                        "action" : {
+                            "type": "string",
+                            "description": f"Provide Parenting Action Plan for {name} based on the above planetary Position and Horoscope Detail."
+                        },
+                        "overall" : {
+                            "type": "string",
+                            "description": f"Provide {name}'s Life Insights Parenting Suggestions based on the above planetary Position and Horoscope Detail."
+                        },
+                        "recommendations": {
+                            "type": "string",
+                            "description": f"Provide Nurturing Child Parenting recommendations for {name} based on the above planetary Position and Horoscope Detail."
+                        }
+                    },
+                    "required": ["predictions", "assessment", "strength", "weakness", "action", "overall", "recommendations"]
+                }
+            }
+        ]
+        
+        function_call = {"name": "generate_life_insights_report"}
+
     response = client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[

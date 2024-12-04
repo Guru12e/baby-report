@@ -161,7 +161,7 @@ def physical(planets,index,name,gender):
         function = function = [
   {
     'name': 'generate_child_outer_personality_report',
-    'description': f"Generate a detailed report on the {name}'s character, behavior, and qualities based on astrological insights. This includes insights into the {name}'s Lagna (Ascendant), Lagna Lord placements, and other key planetary and house positions.The report will include 3 character insights, 3 behavior insights, 3  negative personality impacts, and 3 actionable ",
+    'description': f"Generate a detailed report on the {name}'s character, behavior, and qualities based on astrological insights. This includes insights into the {name}'s Lagna (Ascendant), Lagna Lord placements, and other key planetary and house positions.The report will include 3 character insights, 3 behavior insights, 3  negative personality impacts ",
     'parameters': {
       'type': 'object',
       'properties': {
@@ -223,26 +223,8 @@ def physical(planets,index,name,gender):
             'required': ['title', 'content']
           }
         },
-        'parenting_tips': {
-          'type': 'array',
-          'description': f"Provide 3 practical and actionable parenting tips or remedies aligned with the {name}'s astrological placements Including Life Skills teaching, Meditations Techniques, Life Style Changes Remedies with {name}'s names and How to do them with Guided Executions Steps to support the {name}'s personality, behavior, and character development. Avoid generic suggestions and focus on personalized, astrological-based remedies.",
-          'items': {
-            'type': 'object',
-            'properties': {
-              'title': {
-                'type': 'string',
-                'description': 'The title of the parenting tip or remedy.'
-              },
-              'content': {
-                'type': 'string',
-                'description': 'A detailed explanation of the remedy and how to execute it effectively.'
-              }
-            },
-            'required': ['title', 'content']
-          }
-        }
       },
-      'required': ['outer_personality', 'character', 'behaviour', 'negative_impact', 'parenting_tips']
+      'required': ['outer_personality', 'character', 'behaviour', 'negative_impact']
     }
   }
 ]
@@ -260,7 +242,7 @@ def physical(planets,index,name,gender):
         function = [
   {
     'name': 'generate_child_inner_personality_report',
-    'description': f"Generate a detailed report on the {name}'s inner personality, emotional needs, thoughts, beliefs, feelings, reactions, and emotional stability based on the {name}'s Moon Sign and other relevant astrological placements. The report will include 3  insights each for emotional needs, thoughts & beliefs, feelings & reactions, and emotional stability, as well as actionable remedies for emotional growth.",
+    'description': f"Generate a detailed report on the {name}'s inner personality, emotional needs, thoughts, beliefs, feelings, reactions, and emotional stability based on the {name}'s Moon Sign and other relevant astrological placements. The report will include 3  insights each for emotional needs, thoughts & beliefs, feelings & reactions, and emotional stability",
     'parameters': {
       'type': 'object',
       'properties': {
@@ -304,26 +286,8 @@ def physical(planets,index,name,gender):
             'required': ['title', 'content']
           }
         },
-        'remedies': {
-          'type': 'array',
-          'description': f"Provide 3 practical, actionable, and modern parenting remedies aligned with the {name}'s astrological placements.with Remedies names and How to do them with Guided Executions Steps to improve the {name}'s emotional stability. Focus on specific remedies that align with planetary energies and avoid generic advice.",
-          'items': {
-            'type': 'object',
-            'properties': {
-              'title': {
-                'type': 'string',
-                'description': 'The title of the remedy.'
-              },
-              'content': {
-                'type': 'string',
-                'description': f"A detailed explanation of the remedy and how to execute it effectively to support the {name}’s emotional and psychological growth."
-              }
-            },
-            'required': ['title', 'content']
-          }
-        }
       },
-      'required': ['inner_worlds', 'emotional_needs', 'impact', 'remedies']
+      'required': ['inner_worlds', 'emotional_needs', 'impact']
     }
   }
 ]
@@ -399,13 +363,13 @@ def physical(planets,index,name,gender):
         function = [
             {
                 'name': 'generate_family_and_social_report',
-                'description': f"Write insights about the {name}'s social development, friendship dynamics, peer interaction, and family dynamics (relationships with parents and siblings) based on the {name}'s 11th House, 7th House, Sun (for Father), Moon (for Mother), and Venus planetary positions. Write the contents in an abstract paragraph format",
+                'description': f"Write insights about the {name}'s social development, friendship dynamics, peer interaction, and family dynamics (relationships with parents and siblings) based on the {name}'s 11th House, 7th House, Sun (for Father), Moon (for Mother), and Venus planetary positions. Write the contents in an abstract paragraph format.",
                 'parameters': {
                 'type': 'object',
                 'properties': {
                     'family_relationship': {
                     'type': 'string',
-                    'description': f"Write {name}'s social development, friendship, relationship, peer interaction, and family dynamics like relationships with father, mother, siblings. based on the {name}'s 11th House, 7th House, Sun Positions for father , Moon Position for mother , Venus for social development ). Write the content in an abstract paragraph format."
+                    'description': f"Write {name}'s approaches for social development, friendship, relationship, peer interaction, and family dynamics like relationships with father, mother, siblings. based on the {name}'s 11th House, 7th House, Sun Positions for father , Moon Position for mother , Venus for social development ). Write the content in an abstract paragraph format."
                     },
                     'approaches': {
                     'type': 'array',
@@ -430,7 +394,7 @@ def physical(planets,index,name,gender):
                     },
                     'challenges': {
                     'type': 'array',
-                    'description': f"Write personalized challenges that the {name} faces in social and family relationship. This includes challenges in family, friendship, and social settings, based on planetary influences. Write a minimum of 5 challenges in the array.",
+                    'description': f"Write personalized challenges that the {name} faces in social and family relationship. This includes challenges in family, friendship, and social settings, based on planetary influences. Write a minimum of 3 challenges in the array.",
                     'items': {
                         'type': 'object',
                         'properties': {
@@ -451,7 +415,7 @@ def physical(planets,index,name,gender):
                     },
                     'parenting_support': {
                     'type': 'array',
-                    'description': f"Write 3 personalized parenting support and teaching life skills techniques that address the {name}'s social and family relationship development challenges. Include the name of each technique, how to perform it, and the guided execution steps. Write the content related to parenting support.",
+                    'description': f"Write 3  personalized  parenting support Techniques  Including  life skills Teachings , Nurturing Parenting Strategies, Mindful habit building  that address the {name}'s social and family relationship development challenges. Write  Parenting support Technique name and How to Implement them with guided execution steps. Write the content related to parenting support.",
                     'items': {
                         'type': 'object',
                         'properties': {

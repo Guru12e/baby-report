@@ -2,6 +2,7 @@ import swisseph as swe
 import datetime
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
+from pytz import timezone
 
 signs = [
     ("Aries", 0, 30),
@@ -31,14 +32,45 @@ def get_lat_lon(location_name):
     except Exception as e:
         raise RuntimeError(f"An error occurred while geocoding: {e}")
     
+def convert_to_utc(date_str):
+    ist = timezone('Asia/Kolkata')
+    naive_datetime = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
+    local_datetime = ist.localize(naive_datetime)
+    return local_datetime.astimezone(timezone('UTC'))
+    
+def calculate_lagna(datetime_str, latitude, longitude):
+    datetime_obj = datetime.datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
+
+    year, month, day = datetime_obj.year, datetime_obj.month, datetime_obj.day
+    hour, minute = datetime_obj.hour, datetime_obj.minute
+
+    hour_decimal = hour + (minute / 60.0)
+
+    jd = swe.julday(year, month, day, hour_decimal)
+
+    jd_utc = jd - (5.30 / 24.0)
+
+    swe.set_sid_mode(swe.SIDM_LAHIRI)
+
+    houses = swe.houses_ex(jd_utc, latitude, longitude, b'P', flags=swe.FLG_SIDEREAL)
+
+    ascendant_sidereal = houses[1][0]
+        
+    if ascendant_sidereal < 360:
+        ascendant_sidereal += 360
+    
+    if ascendant_sidereal > 360:
+        ascendant_sidereal -= 360
+
+    return ascendant_sidereal
  
 def get_planetary_positions(date_str, lat, lon):
     date_time_ist = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
 
-    date_time_utc = date_time_ist - datetime.timedelta(hours=5, minutes=30)
+    date_time_utc = convert_to_utc(date_str)
 
     jd = swe.julday(date_time_utc.year, date_time_utc.month, date_time_utc.day, date_time_utc.hour + date_time_utc.minute / 60.0 + date_time_ist.second / 3600.0, swe.GREG_CAL)
-
+    
     planets = {
         'Sun': swe.SUN,
         'Moon': swe.MOON,
@@ -49,51 +81,45 @@ def get_planetary_positions(date_str, lat, lon):
         'Saturn': swe.SATURN,
     }
 
-    swe.set_sid_mode(swe.SIDM_LAHIRI)
+    positions = {}
+    positions['Ascendant'] = calculate_lagna(date_str, lat, lon)
     
+    swe.set_sid_mode(swe.SIDM_LAHIRI)
     swe.set_topo(lon, lat, 0)
 
-    calc_flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL  
+    calc_flag = swe.FLG_SWIEPH | swe.FLG_SIDEREAL
 
-    positions = {}
+    retrograde_status = []
+
     for planet, id in planets.items():
-        result, _ = swe.calc_ut(jd, id, calc_flag) 
+        result, _ = swe.calc_ut(jd, id, calc_flag)
         if result:
-            lon = result[0]  
-            positions[planet] = lon
-        else:
-            print(f"Warning: Unable to calculate position for {planet}")
+            lon_now = result[0]
+            positions[planet] = lon_now
+
+            jd_previous = jd - 1/24.0
+            result_previous, _ = swe.calc_ut(jd_previous, id, calc_flag)
+            if result_previous:
+                lon_previous = result_previous[0]
+                if lon_now < lon_previous:
+                    retrograde_status.append(planet)
             
-    house_system = b'P'
-    asc_result = swe.houses(jd, lat, lon, house_system)
+    rahu = swe.calc_ut(jd, swe.MEAN_NODE, swe.FLG_SIDEREAL)[0][0]
+    ketu = (rahu + 180) % 360
 
-    ascendant_degrees = asc_result[0][0] % 360   
-        
-    ascendant_degrees = ascendant_degrees - 21.13829813984028
+    if rahu < 0:
+        rahu += 360
+    if ketu < 0:
+        ketu += 360
+
+    positions['Rahu'] = rahu
+    positions['Ketu'] = ketu
     
-    if ascendant_degrees < 0 :
-        ascendant_degrees += 360 
-        
-    positions['Ascendant'] = ascendant_degrees
-    
-    TRUE_NODE = swe.TRUE_NODE
+    retrograde_status.append("Rahu")
+    retrograde_status.append("Ketu")
 
-    rahu_result = swe.calc_ut(jd, TRUE_NODE)
-    rahu_longitude = rahu_result[0][0] 
+    return positions, retrograde_status
 
-    ketu_longitude = ((rahu_longitude + 180) % 360) - 23.415156475773582
-
-    rahu_longitude = rahu_longitude - 23.415156475773568
-
-    if rahu_longitude < 0:
-        rahu_longitude += 360
-    if ketu_longitude < 0:
-        ketu_longitude += 360
-        
-    positions['Rahu'] = rahu_longitude
-    positions['Ketu'] = ketu_longitude
-        
-    return positions
 
 def degree_to_sign(degree):
     zodiac_lord = {
@@ -319,7 +345,7 @@ def find_planets(date_str, location):
         return
 
     try:
-        positions = get_planetary_positions(date_str, latitude, longitude)
+        positions, isRetro = get_planetary_positions(date_str, latitude, longitude)
     except Exception as e:
         return
     
@@ -331,7 +357,7 @@ def find_planets(date_str, location):
             position -= 360
 
         sign,lord,norm = degree_to_sign(position)
-        planets_adjusted.append({"Name": planet, "full_degree": position,"norm_degree":norm, "sign": sign,"zodiac_lord": lord})
+        planets_adjusted.append({"Name": planet, "full_degree": position,"norm_degree":norm, "sign": sign,"zodiac_lord": lord, "isRetro": planet in isRetro})
             
     orderPlanet = sorted(planets_adjusted,key=lambda k: k["norm_degree"],reverse=True)
     startRasi = list(filter(lambda x: x["Name"] == "Ascendant",planets_adjusted))[0]["sign"]

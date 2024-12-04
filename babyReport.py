@@ -1,13 +1,14 @@
 import math
 import random
+import datetime
 from math import atan2, cos, radians, sin
-from fpdf import FPDF,YPos
+from fpdf import FPDF,YPos,XPos
 from index import find_planets
 from panchang import calculate_panchang
 from chart import generate_birth_navamsa_chart
 from datetime import datetime
 from index import get_lat_lon
-from babyContent import context,chakras,characteristics,dasa_status_table,table,karagan,exaltation,athmakaraka,ista_devata_desc,ista_devatas,ista_images,saturn_pos,Sade_Sati_Analysis,constitutionRatio,Constitution,elements_data,elements_content,gemstone_content,Gemstone_about,Planet_Gemstone_Desc,career_rudra,health_rudra,wealth_rudra,sign_mukhi,planet_quality
+from babyContent import context,chakras,characteristics,dasa_status_table,table,karagan,exaltation,athmakaraka,ista_devata_desc,ista_devatas,saturn_pos,constitutionRatio,Constitution,elements_data,elements_content,gemstone_content,Gemstone_about,Planet_Gemstone_Desc,wealth_rudra,sign_mukhi,planet_quality,KaranaLord,thithiLord,yogamLord,nakshatraColor,nakshatraNumber,atma_names,thithiContent,karanamContent
 from dasa import calculate_dasa
 from dasaPrompt import dasaPrompt
 from panchangPrompt import panchangPrompt
@@ -21,6 +22,36 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import os
+
+nakshatras = [
+    "Ashwini",
+    "Bharani",
+    "Krittika", 
+    "Rohini", 
+    "Mrigashira", 
+    "Ardra",
+    "Punarvasu", 
+    "Pushya",
+    "Ashlesha",
+    "Magha", 
+    "Purva Phalguni", 
+    "Uttara Phalguni",
+    "Hasta", 
+    "Chitra", 
+    "Swati", 
+    "Vishakha", 
+    "Anuradha", 
+    "Jyeshtha", 
+    "Mula",
+    "Purva Ashadha", 
+    "Uttara Ashadha",
+    "Shravana",
+    "Dhanishta",
+    "Shatabhisha", 
+    "Purva Bhadrapada", 
+    "Uttara Bhadrapada",
+    "Revati", 
+]
 
 number = {
     1: "First",
@@ -36,6 +67,8 @@ number = {
     11: "Eleventh",
     12: "Twelfth"
 }
+
+favourableDasa = ""
 
 zodiac =  ["Aries","Taurus" ,"Gemini","Cancer","Leo","Virgo","Libra" ,"Scorpio" ,"Sagittarius" ,"Capricorn","Aquarius","Pisces"]
 
@@ -149,22 +182,35 @@ class PDF(FPDF):
         self.image(f"{path}/babyImages/border.png",0,0,self.w,self.h) 
         if title: 
             self.set_text_color(hex_to_rgb("#966A2F"))
-            self.set_font('Karma-Heavy', '', 32)
-            self.set_y(25)
-            self.cell(0, 0, f"{title}", align='C') 
+            self.set_font('Karma-Heavy', '', 26)
+            self.set_xy(20,25)
+            self.multi_cell(self.w - 40, 13, f"{title}", align='C') 
             
     def ContentDesign(self,color,title,content,path):
         self.set_text_color(0,0,0)
         self.set_y(self.get_y() + 5)
         self.set_font('Karma-Semi', '', 16)
-        self.set_xy(22.5,self.get_y() + 5)
         if title != "":
+            self.set_xy(22.5,self.get_y() + 5)
             roundedBox(self, color, 20 , self.get_y()  - 2.5, self.w - 40, (self.no_of_lines(title,self.w - 45) * 7) + 10, 4)
             self.multi_cell(self.w - 45, 7,title, align='C')
         if isinstance(content, str):
             self.set_font('Karma-Regular', '', 14)
             self.set_xy(22.5,self.get_y() + 2.5)
             self.lineBreak(f"        {content}",path,color)
+        elif isinstance(content,dict):
+            for k,v in content.items():
+                self.set_font('Karma-Semi', '', 16)
+                if k == "name" or k == "field":
+                    self.set_y(self.get_y() + 10)
+                    self.cell(0,0,f"{k.capitalize()} : {v}",align='C')
+                else:
+                    self.set_xy(22.5,self.get_y() + 10)
+                    roundedBox(self, color, 20 , self.get_y()  - 2.5, self.w - 40, (self.no_of_lines(k,self.w - 45) * 7) + 10, 4)
+                    self.multi_cell(self.w - 45, 7,k.capitalize(), align='C')
+                    self.set_font('Karma-Regular', '', 14)
+                    self.set_xy(22.5,self.get_y() + 2.5)
+                    self.lineBreak(f"        {v}",path,color)
         else:
             for v1 in content:
                 if isinstance(v1,str):
@@ -190,7 +236,7 @@ class PDF(FPDF):
                     self.set_font('Karma-Regular', '', 14)
                     contentWidth = (self.no_of_lines(f"      {v1['content']}",self.w - 45) * 7)
                     if content.index(v1) != len(content) - 1:
-                        roundedBox(self, color, 20 , self.get_y(), self.w - 40,titleWidth + contentWidth + 10, 0,status=False)
+                        roundedBox(self, color, 20 , self.get_y(), self.w - 40,titleWidth + contentWidth + 13, 0,status=False)
                     else:
                         roundedBox(self, color, 20 , self.get_y(), self.w - 40,titleWidth + contentWidth + 5, 4)
                         roundedBox(self, color, 20 , self.get_y(), self.w - 40, 10, 0,status=False)
@@ -258,8 +304,13 @@ class PDF(FPDF):
         for i, b in enumerate(bhukthi):
             self.set_xy(x,self.get_y() + 8)
             
+            time = datetime.now().year
+            
             if b['bhukthi'] in dasa_status_table[dasa][0]:
                 self.set_fill_color(*hex_to_rgb("#DAFFDC"))
+                global favourableDasa
+                if favourableDasa == "" and b['start_year'] > time:
+                    favourableDasa = f"{b['start_year']} to {b['end_year']}"
             elif b['bhukthi'] in dasa_status_table[dasa][1]:
                 self.set_fill_color(*hex_to_rgb("#FFDADA"))
             else:
@@ -277,7 +328,7 @@ class PDF(FPDF):
         max_y = self.h - 30  
         current_y = self.get_y()
         if (current_y + (self.get_string_width(content) / cell_width) * line_height) < 250:
-            roundedBox(self, color, 20 , self.get_y() , self.w - 40, self.no_of_lines(f"        {content}",self.w - 45) * 7 + 5, 4)
+            roundedBox(self, color, 20 , self.get_y() , self.w - 40, self.no_of_lines(f"        {content}",self.w - 45) * 7 + 7.5, 4)
             self.set_xy(22.5,self.get_y() + 2.5)
             self.multi_cell(cell_width,line_height,f"       {content}",align='L')
         else:
@@ -307,41 +358,32 @@ class PDF(FPDF):
                 self.multi_cell(cell_width , line_height, line, align='L')
                 current_y = self.get_y()
                         
-    def draw_pie_slice(self, x_center, y_center, outer_radius, start_angle, end_angle, color, gap_angle = 1):
-        self.set_fill_color(hex_to_rgb(color))
-        adjusted_start_angle = start_angle + gap_angle / 2
-        adjusted_end_angle = end_angle - gap_angle / 2
-
-        x_start = x_center + outer_radius * math.cos(math.radians(adjusted_start_angle))
-        y_start = y_center + outer_radius * math.sin(math.radians(adjusted_start_angle))
-        points = [(x_center, y_center), (x_start, y_start)]
-
-        steps = 100  
-        for step in range(steps + 1):
-            angle = adjusted_start_angle + (adjusted_end_angle - adjusted_start_angle) * step / steps
-            x = x_center + outer_radius * math.cos(math.radians(angle))
-            y = y_center + outer_radius * math.sin(math.radians(angle))
-            points.append((x, y))
-
-        self.polygon(points, style="F")
-
-    
-    def draw_pie_chart(self, x_center, y_center, outer_radius, data, colors,gap_angle = 1):
-        total = sum(data.values())  
-        start_angle = 0  
-
-        for i, (label, value) in enumerate(data.items()):
-            end_angle = start_angle + (value / total) * 360
-            color = colors[i % len(colors)] 
-
-            self.draw_pie_slice(x_center, y_center, outer_radius, start_angle, end_angle, color,gap_angle)
-            start_angle = end_angle
-
-
-    def draw_inner_circle(self, x_center, y_center, inner_radius, color):
+    def draw_bar(self, x, y, width, height, color):
         self.set_fill_color(*color)
-        self.ellipse(x_center - inner_radius, y_center - inner_radius, 2 * inner_radius, 2 * inner_radius, style="F")
-        
+        self.rect(x, y - height, width, height, style="F")
+
+    def draw_bar_chart(self, x_start, y_base, bar_width, bar_spacing, data, colors, max_height, path):
+        max_value = max(data.values())  
+
+        x = x_start
+        for i, (label, value) in enumerate(data.items()):
+            bar_height = (value / max_value) * max_height  
+            color = colors[i % len(colors)]
+            self.set_xy(x, y_base)
+            self.set_font('Karma-Heavy', '', 12)
+            self.cell(bar_width, 10, label, align='C')
+            self.draw_bar(x, y_base, bar_width, bar_height, hex_to_rgb(color))
+            self.draw_labels(x, y_base - bar_height - 20, label, path)
+            x += bar_width + bar_spacing  
+
+    def draw_labels(self, x, y, label,path): 
+        if label == "Vadha" or label == "Kapha" or label == "Pitta":
+            self.image(f"{path}/babyImages/{label}.png",x - 10 / 2 , y,0,10)
+        else:
+            self.set_fill_color(hex_to_rgb("#FFE6CC"))
+            self.circle(x + 20 / 2, y + 10 / 2, 8, style='F')
+            self.image(f"{path}/babyImages/{label}.png",x + 10 / 2 , y,0,10)
+                
     def no_of_lines(self,text, cell_width):
         words = text.split()
         current_line = ''
@@ -359,19 +401,6 @@ class PDF(FPDF):
             lines += 1
 
         return lines
-    
-    def IndexPage(self,path,title,no):
-        self.AddPage(path)
-        self.set_font('Karma-Heavy', '', 28)
-        self.set_text_color(hex_to_rgb("#966A2F"))
-        self.set_y(self.get_y() + 30)
-        self.multi_cell(0,10,title,align='C')
-        self.image(f'{path}/babyImages/chapter{no}.png',(self.w / 2) - 50,(self.h / 2) - 50,100,0)
-        self.set_xy(self.w - 85,self.h - 50)
-        self.cell(0,10,"CHAPTER")
-        self.set_font_size(64)
-        self.set_xy(self.w - 35,self.get_y() - 3.5)
-        self.cell(0,10,f"{no}")
             
 def hex_to_rgb(hex_color):
     hex_color = hex_color.lstrip('#')
@@ -384,7 +413,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     
     pdf.add_font('Karma-Heavy', '', f'{path}/fonts/Merienda-Bold.ttf')
     pdf.add_font('Karma-Semi', '', f'{path}/fonts/Merienda-Regular.ttf') 
-    pdf.add_font('Karma-Regular', '', f'{path}/fonts/Karma-Regular.ttf')
+    pdf.add_font('Karma-Regular', '', f'{path}/fonts/Linotte-Regular.otf')
     
     pdf.add_page()
     pdf.set_font('Karma-Semi', '', 36)
@@ -406,14 +435,13 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.cell(0,10,"Contents",align='C') 
     pdf.set_y(45)
     for c in context:
-        if pdf.get_y() + (pdf.get_string_width(c['title']) / (pdf.w - 30))  >= 240:
+        if pdf.get_y() + (pdf.get_string_width(c) / (pdf.w - 30))  >= 260:
             pdf.AddPage(path)
             pdf.set_y(30)
             
-        pdf.set_font('Karma-Semi', '', 18)
+        pdf.set_font('Karma-Semi', '', 16)
         pdf.set_xy(30,pdf.get_y() + 5)
-        pdf.multi_cell(pdf.w - 60,10,f"{context.index(c) + 1}. {c['title']}",align='L') 
-        pdf.set_font('Karma-Regular', '', 14) 
+        pdf.multi_cell(pdf.w - 60,10,f"{context.index(c) + 1}. {c}",align='L') 
     
     pdf.AddPage(path)
     pdf.set_xy(50,(pdf.h / 2) - 15)
@@ -430,50 +458,76 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     
     pdf.set_xy(20,60)
     pdf.set_font_size(16)
+    asc = list(filter(lambda x: x['Name'] == 'Ascendant', planets))[0]
+    ninthHouseLord = zodiac_lord[((zodiac.index(asc['sign']) + 9) % 12) - 1]
+    signLord = list(filter(lambda x: x['Name'] == ninthHouseLord,planets))[0]
+
+    isthadevathaLord = list(filter(lambda x: x['Name'] == signLord['Name'],planets))[0]['nakshatra_lord']
     
-    left_column_text = (
-        'Name :\n'
-        'Date Of Birth :\n'
-        'Time Of Birth :\n'
-        'Time Zone :\n'
-        'Place Of Birth :\n'
-        'Longitude & Latitude :\n'
-        'Birth Star - Star Pada :\n'
-        'Birth Rasi - Rasi Lord :\n'
-        'Lagna (Ascentant) - Lagna Lord :\n'
-        'Thidhi (Lunar Day) :\n'
-        'week day :\n'
-        'Sunrise :\n'
-        'Sunset : \n'
-        'Nakshatra Lord :\n'
-        'Karanam :\n'
-        'Yogam :\n'
-    )
+    isthaDeva = ista_devatas[isthadevathaLord]
+    
+    atma = list(filter(lambda x: x['order'] == 1,planets))[0]
+    if atma['Name'] == "Ascendant":
+        atma = list(filter(lambda x: x['order'] == 2,planets))[0]
+        
+    moon = list(filter(lambda x : x['Name'] == "Moon",planets))[0]
+        
+    nakshatrasOrder = nakshatras[nakshatras.index(moon['nakshatra']):] + zodiac[:nakshatras.index(moon['nakshatra'])]
+    favourableNakshatra = ""
+    for index,nakshatra in enumerate(nakshatrasOrder):
+        if index % 9 == 1:
+            favourableNakshatra += f"{nakshatra}, "
+            
+    luckyNumber = nakshatraNumber[panchang['nakshatra']]
+    
+    left_column_text = [
+        'Name :',
+        'Date Of Birth :',
+        'Time Of Birth :',
+        'Place Of Birth :',
+        'Birth Nakshatra, Lord :',
+        'Birth Rasi, Lord :',
+        'Birth Lagnam, Lord :',
+        'Tithi :',
+        'Nithya Yogam :',
+        'Karanam :',
+        'Birth Week Day :',
+        'Atma Karagam, Lord : ',
+        'Ishta Devata :',
+        'Benefic Stars :',
+        'Benefic Number :'
+    ]
 
-    right_column_text = (
-        f"{name}\n"
-        f"{formatted_date}\n"
-        f"{formatted_time}\n"
-        '05:30\n'
-        f"{location}\n"
-        f"{lat:.3f} {lon:.3f}\n"
-        f"{panchang['nakshatra']} - {planets[1]['pada']}\n"
-        f"{planets[1]['sign']} - {planets[1]['zodiac_lord']}\n"
-        f"{planets[-1]['sign']} - {planets[-1]['zodiac_lord']}\n"
-        f"{panchang['thithi']}\n"
-        f"{panchang['week_day']}\n"
-        f"{panchang['sunrise']}\n"
-        f"{panchang['sunset']}\n"
-        f"{planets[1]['nakshatra_lord']}\n"
-        f"{panchang['karanam']}\n"
-        f"{panchang['yoga']}\n"
-    )
+    right_column_text = [
+        f"{name}",
+        f"{formatted_date}",
+        f"{formatted_time}",
+        f"{location}",
+        f"{panchang['nakshatra']}, {planets[2]['nakshatra_lord']}",
+        f"{planets[2]['sign']}, {planets[2]['zodiac_lord']}",
+        f"{planets[0]['sign']}, {planets[0]['zodiac_lord']}",
+        f"{panchang['thithi']}",
+        f"{panchang['yoga']}",
+        f"{panchang['karanam']}",
+        f"{panchang['week_day']}",
+        f"{atma['Name']},{atma_names[atma['Name']]}",
+        f"{isthaDeva[0]}",
+        f"{favourableNakshatra}",
+        f"{luckyNumber[0]},{luckyNumber[1]}"
+    ]
 
-    pdf.multi_cell(90, 10, left_column_text, align='R')
+    x_start = 30
+    y_start = pdf.get_y() + 10
+    pdf.set_xy(x_start, y_start)
 
-    pdf.set_xy(110,60)
-    pdf.set_font('Karma-Regular', '', 16)
-    pdf.multi_cell(90, 10, right_column_text, align='L')
+    for index,row in enumerate(left_column_text):
+        pdf.set_font('Karma-Semi', '', 14)
+        pdf.cell(65, 10, row, new_x=XPos.RIGHT, new_y=YPos.TOP,align='R')
+        y_start = pdf.get_y()
+        pdf.set_font('Karma-Regular', '', 14)
+        pdf.multi_cell(100, 10, right_column_text[index],align='L')
+        y_start = pdf.get_y()
+        pdf.set_xy(x_start, y_start)
     
     name = name.split(" ")[0]
     
@@ -481,19 +535,19 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.set_font('Karma-Heavy', '', 26)  
     pdf.set_y(30)
     pdf.cell(0,0,'Birth Chart',align='C')
-    pdf.image(f"{path}/chart/{birthchart['birth_chart']}",(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
-    # pdf.image(f'{path}/chart/1.png',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
+    # pdf.image(f"{path}/chart/{birthchart['birth_chart']}",(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
+    pdf.image(f'{path}/chart/1.png',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
     pdf.set_y(145)
     pdf.cell(0,0,'Navamsa Chart',align='C')
-    pdf.image(f"{path}/chart/{birthchart['navamsa_chart']}",(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
-    # pdf.image(f'{path}/chart/1.png',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
+    # pdf.image(f"{path}/chart/{birthchart['navamsa_chart']}",(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
+    pdf.image(f'{path}/chart/1.png',(pdf.w / 2) - 45,pdf.get_y() + 10,90,90)
     pdf.set_y(pdf.get_y() + 110)
 
     pdf.set_font('Karma-Regular', '', 18) 
     for b in dasa[planets[1]['nakshatra_lord']]:
         if (b['start_year'] <= year <= b['end_year']):
             if not (year == b['end_year'] and b['end_month'] >= month):
-                pdf.cell(0,0,f"Dasa : {planets[1]['nakshatra_lord']} Bhukthi : {b['bhukthi']}",align='C')
+                pdf.cell(0,0,f"Dasa : {planets[2]['nakshatra_lord']} Bhukthi : {b['bhukthi']}",align='C')
                 break
         
     pdf.AddPage(path)
@@ -594,14 +648,17 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         "#B1DC36",
         "#4399FF"
     ]
-    
-    pdf.draw_pie_chart(75,110, 35, elements, colors,gap_angle=0)
-    pdf.draw_inner_circle(75, 110, 20, (255, 255, 255))
+
+    x_start = 20
+    y_base = 150
+    bar_width = 20
+    bar_spacing = 10
+    max_height = 50
+
+    pdf.draw_bar_chart(x_start, y_base, bar_width, bar_spacing, elements, colors, max_height, path)
     
     y = 82.5
     for i,(label,value) in enumerate(elements.items()):
-        pdf.set_fill_color(*hex_to_rgb(colors[i]))
-        pdf.rect(130,y - 6,8,8,round_corners=True,corner_radius=5,style='F')
         pdf.set_font('Karma-Semi', '', 18)
         pdf.set_text_color(*hex_to_rgb(colors[i]))
         pdf.text(150,y,f'{label}: {value:.2f}%')
@@ -629,14 +686,13 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.set_xy(22.5,182.5)
     pdf.multi_cell(pdf.w - 45,7,f"      {content}")
     
-    pdf.AddPage(path,f"{name}'s Constitution")
+    pdf.AddPage(path,f"{name}'s  Ayurvedic Body Type")
     roundedBox(pdf,"#D7ECFF",20,pdf.get_y() + 9,pdf.w - 40,65)
     pdf.set_xy(22.5,pdf.get_y() + 10)
     pdf.set_font('Karma-Regular', '', 16) 
     pdf.set_text_color(0,0,0)
     pdf.multi_cell(pdf.w - 45,8,"       Acccording to ayurveda, On the basis of Vata,Pitta and Kapha, each child's body is of Vata Dominant and some of Pitta dominant. This is on the basis of the excess of dosha inside the body , its nature is determined.Here,We have tried to determine the ayurvedic nature on astrological basis. However this is no substitute for professional medical or ayurvedic advice. Please go only to an authorized doctor for any health-related treatment or Consultation.",align='L')
     
-    moon = list(filter(lambda x : x['Name'] == "Moon",planets))[0]
     lagna = list(filter(lambda x : x['Name'] == "Ascendant",planets))[0]
 
     data = {
@@ -644,25 +700,28 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     "Kapha": (int(constitutionRatio[moon['zodiac_lord']]['Kapha']) + int(constitutionRatio[lagna['zodiac_lord']]['Kapha'])) / 200 * 100,
     "Vadha": (int(constitutionRatio[moon['zodiac_lord']]['Vata']) + int(constitutionRatio[lagna['zodiac_lord']]['Vata'])) / 200 * 100,
     }
-
+    
     colors = [
         "#E34B4B",   
         "#43C316",   
         "#4BDAE3"    
     ]
 
-    pdf.draw_pie_chart(75, 140, 35, data, colors)
-    pdf.draw_inner_circle(75, 140, 20, (255, 255, 255))
-    pdf.set_y(120)
+    x_start = 30
+    y_base = 190
+    bar_width = 20
+    bar_spacing = 20
+    max_height = 50
+
+    pdf.draw_bar_chart(x_start, y_base, bar_width, bar_spacing, data, colors, max_height,path)
+    pdf.set_y(140)
     for i,(label,value) in enumerate(data.items()):
-        pdf.set_fill_color(*hex_to_rgb(colors[i]))
-        pdf.rect(135,pdf.get_y() - 6,8,8,round_corners=True,corner_radius=5,style='F')
         pdf.set_font('Karma-Semi', '', 18)
         pdf.set_text_color(*hex_to_rgb(colors[i]))
         pdf.text(150,pdf.get_y(),f'{label}: {value:.2f}%')
         pdf.set_y(pdf.get_y() + 20)
         
-    pdf.set_xy(25,182.5)
+    pdf.set_xy(25,202.5)
     pdf.set_text_color(0,0,0)
     pdf.set_font('Karma-Regular', '', 14) 
     pdf.multi_cell(pdf.w - 50,7,f"   {Constitution[max(data, key=data.get)]}")
@@ -682,8 +741,8 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.multi_cell(pdf.w - 40,8,"       Chakras are energy centers in the body that influence a child’s personality, emotions, and growth. Each chakra connects to specific qualities like confidence, creativity, communication, and intuition. When balanced, these energy centers help children thrive, express themselves, and adapt to challenges. They guide emotional development, learning abilities, and the sense of connection to the world. Understanding chakras can provide insights into nurturing a child's holistic well-being and potential.",align='L')
     
     for chakra in childChakras:
-        pdf.image(f"{path}/babyImages/chakra_{chakrasOrder.index(chakra) + 1}.png",pdf.w / 2 - 35,pdf.get_y() + 5,70,70)
-        pdf.set_y(pdf.get_y() + 80)
+        pdf.image(f"{path}/babyImages/chakra_{chakrasOrder.index(chakra) + 1}.png",pdf.w / 2 - 25,pdf.get_y() + 5,50,50)
+        pdf.set_y(pdf.get_y() + 60)
         pdf.set_font('Karma-Heavy', '', 22)
         pdf.cell(0,0,f"{chakra}",align='C')
         pdf.set_xy(22.5,pdf.get_y() + 5)
@@ -709,13 +768,13 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.set_xy(30,pdf.get_y() + 10)
     pdf.cell(0,0,f"As per {name}'s kundli,")
     y = pdf.get_y() + 10
-    roundedBoxBorder(pdf,"#FFE769","#C5A200",20,y,planets[0]['Name'],planets[0]['sign'],path)
-    roundedBoxBorder(pdf,"#D1C4E9","#A394C6",80,y,planets[-1]['Name'],planets[-1]['sign'],path)
-    roundedBoxBorder(pdf,"#B3E5FC","#82B3C9",140,y,planets[1]['Name'],planets[1]['sign'],path)
+    roundedBoxBorder(pdf,"#FFE769","#C5A200",20,y,planets[1]['Name'],planets[1]['sign'],path)
+    roundedBoxBorder(pdf,"#D1C4E9","#A394C6",80,y,planets[0]['Name'],planets[0]['sign'],path)
+    roundedBoxBorder(pdf,"#B3E5FC","#82B3C9",140,y,planets[2]['Name'],planets[2]['sign'],path)
     pdf.set_y(pdf.get_y() + 10)
     
     # content = chapterPrompt(planets,6,name,gender)
-    content = {'child_personality': "Grishma's outward persona is grounded, analytical, and detail-oriented, reflecting their Virgo Lagnam. They possess a practical approach to life, with a keen eye for efficiency and organization. Grishma's physical attributes may exude a sense of modesty and a sliver of reserve, yet they communicate a sense of competence and reliability. In interactions, Grishma tends to be helpful and attentive, always seeking to improve and serve others with their diligent and meticulous nature.", 'emotional_needs': "Grishma's emotional needs, influenced by their Moon in the Fifth house of Capricorn, revolve around a desire for stability, structure, and recognition. They seek validation for their efforts and accomplishments, craving respect and appreciation. Grishma finds comfort in setting goals, pursuing ambitions, and establishing a secure foundation for their emotional well-being. The need for disciplined expression of creativity and a sense of purpose drives their inner emotional world.", 'core_identity': "At the core, Grishma's sense of self is shaped by the Sun in the Eighth house of Aries, infusing them with passion, intensity, and a profound urge for transformation. They aspire to embrace challenges, conquer obstacles, and delve deep into the mysteries of life. Grishma's motivations stem from a hunger for self-discovery, a desire for empowerment, and a relentless drive to uncover hidden truths. Their inner self radiates with courage, strength, and a transformative spirit that is not afraid to confront the darkness within and emerge stronger."}
+    content = {'child_personality': 'Magizh, with Libra as the Lagnam sign, embodies a harmonious and charming outward persona. He exudes grace, fairness, and a desire for balance in all aspects of his life. Socially adept and diplomatic, Magizh naturally navigates relationships with ease, presenting himself as a peacemaker and mediator in conflicts. His physical attributes may reflect a sense of refinement and elegance, drawing others to his charismatic presence.', 'emotional_needs': "Magizh's Moon in Aries in the Seventh house indicates a child with fiery emotions, a strong sense of independence, and a competitive spirit. He craves excitement, challenges, and the freedom to express his emotions boldly. Magizh requires validation for his unique identity, seeking acknowledgment and admiration for his courage and individuality. He thrives on adventure and thrives in environments where he can assert himself and take bold initiatives.", 'core_identity': "Magizh's Sun in the Third house of Sagittarius shapes his core identity, portraying him as a curious and adventurous soul with a thirst for knowledge and exploration. His aspirations revolve around expanding his horizons through learning, travel, and intellectual pursuits. Motivated by a desire for freedom and growth, Magizh finds his sense of self through broadening his perspectives, sharing his wisdom with others, and embracing diversity. He embodies optimism, enthusiasm, and a love for discovery, forming the foundation of his inner self."}
     
     for index , (k, v) in enumerate(content.items()):
         if pdf.get_y() + 30 >= 260:  
@@ -725,101 +784,116 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         pdf.ContentDesign(random.choice(DesignColors),setTitle(k),v,path)
     
         
-    pdf.AddPage(path)
-    pdf.set_font('Karma-Heavy', '', 26) 
-    
-    pdf.set_xy(30,20)
-    pdf.set_text_color(hex_to_rgb("#966A2F"))
-    pdf.multi_cell(pdf.w - 60,10,"Panchangam : Your Child’s Path to Growth and Success",align='C')
-    pdf.set_font("Karma-Regular", '', 14)
-    pdf.set_text_color(0,0,0)
-    pdf.set_xy(22.5, pdf.get_y() + 5)
-    pdf.multi_cell(pdf.w - 45, 7 ,"         Panchangam is an ancient Indian guide that helps understand a child's favorable and unfavorable times, aligning their actions with cosmic energies. Using Panchangam helps make better choices for growth, success, and well-being in areas like career, relationships, and spirituality. It serves as a roadmap for life's opportunities and challenges,namely:", align='L')
-    pdf.set_font('Karma-Semi', '', 14)
-    pdf.set_xy(60, pdf.get_y() + 5)
-    pdf.multi_cell(pdf.w - 120, 8 , "• Tithi (Lunar Day)\n• Vara (Day of the Week)\n• Nakshatra (Lunar Constellation)\n• Yoga (Lunar-Solar Combination)\n• Karana (Half of a Tithi)", align='L')
-    pdf.set_font('Karma-Regular', '', 14)
-    
-    colors = ["#E5FFB5","#94FFD2","#B2E4FF","#D6C8FF","#FFDECA"]    
-    titles = ["Tithi - Your Child's Emotions, Mental Well-being","Varam - Your Child's Career, Energy, and Key Life Decisions","Nakshatra - Your Child's Personality and Life Path","Yogam - Your Child's Path to Prosperity ","Karanam  - Your Child's Actions & Work "]
-    
-    titleImage = ['waningMoon.png' if panchang['thithi_number'] <= 15 else 'waxingMoon.png','week.png','nakshatra.png','yogam.png','karanam.png']
-        
-    panchangTitle = [
-        {
-            "child_thithi_insights" : f"{name}'s Thithi is {panchang['paksha']} Paksha {panchang['thithi']}",
-            "life_challenges" : "Life Challenges", 
-            "actionable_remedies" : "Effective Remedies",
-        },
-        {
-            "child_week_insights" : f"{name}'s week is {panchang['week_day']}", 
-            "life_challenges" : "Life Challenges", 
-            "actionable_remedies" : "Effective Remedies"
-        },
-        {
-            "child_nakshatra_insights" : f"{name}'s Nakshatra is {panchang['nakshatra']}",
-            "life_challenges" : "Life Challenges",
-            "actionable_remedies" : "Effective Remedies"
-        },
-        {
-            "child_yogam_insights" : f"{name}'s Yogam is {panchang['yoga']}", 
-            "life_challenges" : "Life Challenges", 
-            "actionable_remedies" : "Effective Remedies"
-        },
-        {
-            "child_karanam_insights" : f"{name}'s Karanam is {panchang['karanam']}",
-            "life_challenges" : "Life Challenges", 
-            "actionable_remedies" : "Effective Remedies"
-        }
-    ]
+    pdf.AddPage(path,f"{name}'s Panchangam Growth Drivers")
     
     content = [
-        {'child_thithi_insights': 'Grishma was born on Krishna Paksha Ashtami, indicating that they possess a sharp intellect, creative thinking, and a strong sense of independence. They are likely to be practical, goal-oriented, and have a natural leadership quality. Emotionally, they may experience inner conflicts between their desire for personal freedom and the need for emotional connection in relationships. However, they have the ability to overcome challenges with their determination and focus.', 'life_challenges': 'Grishma may face challenges in maintaining a balance between their personal goals and emotional relationships. They may struggle with impatience and a tendency to be overly critical of themselves and others. It is important for them to work on managing their emotions effectively and nurturing supportive relationships to avoid feeling isolated or detached.', 'actionable_remedies': [{'title': 'Mindfulness Meditation Physical Activity Physical Activity Physical Activity', 'content': 'Encourage Grishma to practice mindfulness meditation for 10-15 minutes daily to quiet their mind, reduce stress, and improve emotional regulation.'}, {'title': 'Journaling', 'content': 'Suggest Grishma keep a journal to write down their thoughts and emotions, helping them gain clarity, identify patterns, and release pent-up feelings.'}, {'title': 'Physical Activity', 'content': 'Encourage Grishma to engage in regular physical activity like yoga, dancing, or walking to release emotional tension, improve mood, and boost overall well-being.'}, {'title': 'Healthy Communication Skills', 'content': 'Guide Grishma to work on developing healthy communication skills to express their emotions effectively, set boundaries, and build harmonious relationships.'}, {'title': 'Self-compassion Practice', 'content': 'Urge Grishma to practice self-compassion by being kind and forgiving towards themselves, acknowledging their worth, and embracing their strengths and flaws with love and acceptance.'}]},
-        {'child_week_insights': 'Grishma was born on Tuesday, which is ruled by the planet Mars. Children born on Tuesday are often known for their courage, leadership qualities, and determination. They tend to be energetic, assertive, and driven individuals who excel in competitive environments. Grishma may possess a strong sense of independence and a natural ability to take charge of situations. This Vaaram can instill a sense of passion and motivation in the child to pursue their goals with vigor.', 'life_challenges': "However, being born on Tuesday, Grishma may also face challenges related to impulsiveness, aggression, and a tendency to be quick-tempered. It's important to channel this energetic and assertive nature positively to avoid conflicts and misunderstandings. Additionally, the influence of Mars can sometimes lead to a lack of patience and a tendency to act impulsively, which may hinder long-term decision-making and relationships.", 'actionable_remedies': [{'title': 'Mindful Meditation', 'content': 'Encourage Grishma to practice mindful meditation daily to calm the mind, reduce impulsiveness, and improve focus. This practice will help the child channel their energy positively and cultivate patience and clarity in decision-making.'}, {'title': 'Physical Exercise and Sports', 'content': 'Engage Grishma in physical activities and sports to channel their energy constructively. Regular exercise not only improves physical health but also helps in releasing pent-up emotions and reducing aggressive tendencies. Sports can teach the child teamwork, discipline, and sportsmanship.'}, {'title': 'Anger Management Techniques', 'content': 'Teach Grishma anger management techniques and coping strategies to deal with moments of frustration and anger. Encourage deep breathing exercises, counting to 10 before reacting, and expressing emotions through writing or art. These techniques will help the child regulate emotions and respond thoughtfully in challenging situations.'}, {'title': 'Yoga Practice', 'content': 'Introduce Grishma to yoga practice, which combines physical postures, breathing techniques, and meditation. Yoga can help in balancing energy, promoting relaxation, and enhancing emotional well-being. The child will learn to connect mind and body, leading to inner peace and emotional stability.'}, {'title': 'Stress-Relief Activities', 'content': "Incorporate stress-relief activities like painting, listening to music, or spending time in nature in Grishma's routine. These activities can help the child unwind, release tension, and recharge. Creating a peaceful environment and encouraging self-care practices will promote emotional balance and resilience."}]},
-        {'child_nakshatra_insights': 'Grishma, born under the Dhanishta Nakshatra, is likely to be ambitious, determined, and creative. They possess leadership qualities and have a strong sense of responsibility. Grishma may excel in artistic or creative endeavors and have a knack for innovation. However, they may also be prone to impulsiveness and may need to balance their desire for success with patience and practicality.', 'life_challenges': 'One of the potential life challenges for Grishma born under Dhanishta Nakshatra could be struggles with authority figures or dealing with power dynamics. They may find it challenging to navigate hierarchical structures and may face resistance from those in positions of power. It is important for Grishma to learn how to assert themselves confidently while respecting authority.', 'actionable_remedies': [{'title': 'Meditation and Mindfulness Practices', 'content': 'Encourage Grishma to practice daily meditation and mindfulness exercises to cultivate inner peace and clarity. This can help reduce impulsiveness and enhance focus and self-awareness.'}, {'title': 'Yoga and Physical Exercise', 'content': "Regular yoga practice and physical exercise can help channel Grishma's energy positively, reduce stress, and improve overall well-being. It can also enhance discipline and control over emotions."}, {'title': 'Journaling and Self-Reflection', 'content': 'Encourage Grishma to maintain a journal for self-reflection. By writing down thoughts and feelings, they can gain insight into their emotions and behaviors, leading to personal growth and self-awareness.'}, {'title': 'Seek Mentorship and Guidance', 'content': 'Grishma may benefit from seeking mentorship or guidance from experienced individuals in their field of interest. This can provide valuable insights, advice, and support in navigating challenges and achieving their goals.'}, {'title': 'Connect with Nature', 'content': 'Spending time in nature can help Grishma ground themselves, find peace, and gain perspective. Encourage regular outdoor activities, such as hiking or gardening, to foster a deeper connection with the natural world.'}]},
-        {'child_yogam_insights': "Grishma, born under the Brahma Yogam, is destined for creativity, wisdom, and leadership. They possess a strong sense of spirituality and a natural inclination towards intellectual pursuits. Their Yogam signifies a deep connection to the divine and a desire to seek knowledge and understanding. Grishma's journey will be filled with opportunities for growth and self-realization, leading them towards a path of enlightenment and fulfillment.", 'life_challenges': 'However, Grishma may face challenges in maintaining balance between their spiritual pursuits and the practical aspects of life. They might struggle with doubt and indecisiveness at times, and the pressure to fulfill their spiritual duties while navigating the material world could cause inner conflict and confusion.', 'actionable_remedies': [{'title': 'Meditation and Mindfulness Practices', 'content': 'Encourage Grishma to incorporate daily meditation and mindfulness practices into their routine. This will help them stay grounded, calm their mind, and connect with their inner wisdom and spirituality.'}, {'title': 'Creative Expression', 'content': 'Encourage Grishma to express their creativity through art, writing, or music. This will help them channel their spiritual energy and emotions, foster self-expression, and enhance their sense of fulfillment and purpose.'}, {'title': 'Yoga and Physical Exercise', 'content': 'Encourage Grishma to practice yoga or engage in regular physical exercise to maintain a healthy mind-body connection. Physical activity will help them release stress, improve focus, and boost their overall well-being, aligning with their spiritual journey.'}, {'title': 'Journaling and Reflection', 'content': 'Encourage Grishma to keep a journal for self-reflection and introspection. This practice will help them gain clarity, understand their thoughts and emotions, and track their spiritual growth and insights over time.'}, {'title': 'Volunteer and Service Work', 'content': 'Encourage Grishma to engage in volunteer or service work to connect with others on a spiritual level. Giving back to the community and helping those in need will deepen their sense of compassion, gratitude, and purpose, aligning with their Yogam.'}]},
-        {'child_karanam_insights': 'Grishma, born under the Kaulava Karanam, is likely to be energetic, ambitious, and perseverant in her pursuits. She is skilled at problem-solving, possesses a strong work ethic, and approaches tasks with precision and focus. Grishma thrives in environments that require innovation and creativity, often excelling in leadership roles due to her decisive nature and ability to inspire others.', 'life_challenges': 'However, Grishma may face challenges related to impatience, stubbornness, and a tendency to be overly critical of herself and others. These traits can lead to conflicts in relationships and hinder her personal growth and success.', 'actionable_remedies': [{'title': 'Practice Patience and Mindfulness', 'content': 'Encourage Grishma to practice mindfulness and cultivate patience in her daily life. This can be achieved through activities like meditation, deep breathing exercises, or yoga, which help her stay calm and focused in challenging situations.'}, {'title': 'Develop Empathy and Understanding', 'content': 'Guide Grishma to work on developing empathy and understanding towards others. Encourage her to actively listen, consider different perspectives, and practice compassion to improve her relationships and communication skills.'}, {'title': 'Seek Feedback and Self-Reflection', 'content': 'Encourage Grishma to seek feedback from trusted sources and engage in self-reflection. This will help her gain valuable insights into her strengths and areas for improvement, leading to personal growth and enhanced self-awareness.'}, {'title': 'Set Realistic Goals and Prioritize Tasks', 'content': 'Help Grishma set realistic goals and prioritize tasks to avoid feeling overwhelmed. Break down larger tasks into smaller manageable steps, create a schedule, and focus on one task at a time to enhance productivity and reduce stress.'}, {'title': 'Practice Gratitude and Positivity', 'content': 'Encourage Grishma to practice gratitude and focus on the positive aspects of her life. Keeping a gratitude journal, expressing appreciation towards others, and shifting her mindset towards positivity can enhance her overall well-being and resilience.'}]}
+        "",
+        "Magizh, born on a Saturday, possesses a charismatic and energetic personality that draws others towards him. With a natural flair for leadership and a confident demeanor, he is often the life of the party and the center of attention. Magizh's determination and drive allow him to excel in any endeavor he pursues, making him a force to be reckoned with in both his personal and professional life. His adventurous spirit and daring nature inspire those around him to push beyond their limits and strive for greatness.",
+        "Magizh, born under the Bharani Nakshatra, is known for his intense and determined nature. He possesses a strong sense of purpose and tends to be ambitious in achieving his goals. Magizh is also known for his leadership qualities and assertiveness, often taking charge in difficult situations. His life path is marked by challenges that push him to grow and evolve, ultimately leading him towards success and fulfillment in his endeavors.",
+        "Magizh, born under the Shiva Yogam, possesses a strong sense of determination and focus in achieving his goals. He is guided by a deep spiritual connection to Shiva, constantly seeking ways to improve and grow on a spiritual level. Magizh's Yogam characteristics empower him to overcome challenges and obstacles, leading to a profound impact on his overall well-being and personal development.",
+        "Magizh, born under the Vishti Karanam, has a tendency to be impatient and quick-tempered, leading to a sense of urgency and drive in approaching tasks. Their work habits are characterized by a constant need to stay busy and productive, often taking on multiple projects at once. To achieve success, Magizh focuses on efficient time management and prioritizing tasks based on importance. Despite the challenges posed by their Karanam, Magizh has achieved notable success through their determination and ability to adapt to changing situations."
     ]
-
+    
+    colors = ["#E5FFB5","#94FFD2","#B2E4FF","#D6C8FF","#FFDECA"]    
+    titles = [f"Tithi Represents {name}'s Emotions, Mental Well-being","Varam - Your Child's Career, Energy, and Key Life Decisions","Nakshatra - Your Child's Personality and Life Path","Yogam - Your Child's Path to Prosperity ","Karanam  - Your Child's Actions & Work "]
+    
+    titleImage = ['waningMoon.png' if panchang['thithi_number'] <= 15 else 'waxingMoon.png','week.png','nakshatra.png','yogam.png','karanam.png']
     
     pdf.set_text_color(0,0,0)
     pdf.set_y(pdf.get_y() + 5)
     for i in range(0,5):
-        if i != 0:
-            pdf.AddPage(path)
-            pdf.set_y(20)
-        con = content[i]
         # con = panchangPrompt(panchang,i,name,gender)
-        pdf.image(f"{path}/babyImages/{titleImage[i]}",pdf.w / 2 - 10,pdf.get_y(),20,20) 
-        pdf.set_xy(45,pdf.get_y() + 30)
-        pdf.set_font('Karma-Semi', '', 18)
-        roundedBox(pdf, "#62DAFF", 40 , pdf.get_y() - 2.5 , pdf.w - 80, (pdf.no_of_lines(titles[i],pdf.w - 85) * 8) + 5, 5)
-        pdf.multi_cell(pdf.w - 90,8,f"{titles[i]}",align='C')
-        pdf.set_font('Karma-Regular', '', 14)
-        pdf.set_text_color(0, 0, 0)
-        
-        for index , (k, v) in enumerate(con.items()):
-            if pdf.get_y() + 30 >= 260:  
-                pdf.AddPage(path)
-                pdf.set_y(20)
-                
-            pdf.ContentDesign(colors[i],f"{panchangTitle[i][k]}",v,path)    
-            
-    pdf.IndexPage(path,"Physical Attributes, Personality,\n and Behavior",1)
+        if pdf.get_y() + 50 >= 260:
+            pdf.AddPage(path)
+            pdf.set_y(30)
+        con = content[i]
+        pdf.image(f"{path}/babyImages/{titleImage[i]}",pdf.w / 2 - 10,pdf.get_y() + 5,20,20) 
+        pdf.set_y(pdf.get_y() + 25)
+        if i == 0:
+            positive = thithiContent[panchang['thithi']][0]
+            negative = thithiContent[panchang['thithi']][1]
+            tips = thithiContent[panchang['thithi']][2]
     
+            pdf.set_xy(22.5,pdf.get_y() + 5)
+            pdf.set_font('Karma-Semi', '', 18)
+            pdf.multi_cell(pdf.w - 45, 8,titles[i], align='C')
+            pdf.set_xy(22.5,pdf.get_y() + 5)
+            pdf.set_font('Karma-Regular', '', 14)
+            pdf.multi_cell(pdf.w - 45,7,f"{name} was born on {panchang['paksha']} {panchang['thithi']},",align='C')
+            y = pdf.get_y() + 5
+            pdf.set_xy(20,y)
+            pdf.set_fill_color(hex_to_rgb("#DAFFDC"))
+            pdf.set_font('Karma-Semi', '', 16)
+            pdf.cell((pdf.w - 40) / 2, 10, f"{name}'s Strength", align='C',new_x=XPos.LEFT,new_y=YPos.NEXT,fill=True)
+            pdf.set_font("Karma-Regular", '', 14)
+            for pos in positive:
+                pdf.multi_cell((pdf.w - 40) / 2,10,f"       {pos}",align='C',new_x=XPos.LEFT,new_y=YPos.NEXT,fill=True) 
+                
+            pdf.set_fill_color(hex_to_rgb("#FFDADA"))
+            pdf.set_xy(pdf.w / 2, y)
+            pdf.set_font('Karma-Semi', '', 16)
+            pdf.cell((pdf.w -40) / 2, 10, f"{name}'s Challenges", align='C',fill=True,new_x=XPos.LEFT,new_y=YPos.NEXT)
+            pdf.set_font("Karma-Regular", '', 14)
+            for neg in negative:
+                pdf.multi_cell((pdf.w - 40) / 2,10,f"       {neg}",align='C',new_x=XPos.LEFT,new_y=YPos.NEXT,fill=True)
+                
+            pdf.set_xy(30,pdf.get_y() + 5)
+            pdf.set_fill_color(hex_to_rgb(random.choice(DesignColors)))
+            pdf.set_font("Times", '', 14)
+            pdf.cell(pdf.w - 60,10,f"Thithi Lord: **{thithiLord[panchang['thithi']]}**",align='C',fill=True,new_y=YPos.NEXT,markdown=True)
+                
+            pdf.set_font("Times", '', 14)
+            pdf.set_xy(22.5,pdf.get_y() + 5)
+            pdf.multi_cell(pdf.w - 45,7,f"**Parenting Tips** : {tips['Name']} {tips['Description']} {tips['Execution']}",align='L',markdown=True)
+            pdf.set_y(pdf.get_y() + 10)
+            
+        elif i == 4:
+            positive = karanamContent[panchang['karanam']][0]
+            negative = karanamContent[panchang['karanam']][1]
+            tips = karanamContent[panchang['karanam']][2]
+            
+            pdf.set_xy(22.5,pdf.get_y() + 5)
+            pdf.set_font('Karma-Semi', '', 18)
+            pdf.multi_cell(pdf.w - 45, 8,titles[i], align='C')
+            pdf.set_xy(22.5,pdf.get_y() + 5)
+            pdf.set_font('Karma-Regular', '', 14)
+            pdf.multi_cell(pdf.w - 45,7,f"{name} was born on {panchang['karanam']},",align='C')
+            y = pdf.get_y() + 5
+            pdf.set_xy(20,y)
+            pdf.set_fill_color(hex_to_rgb("#DAFFDC"))
+            pdf.set_font('Karma-Semi', '', 16)
+            pdf.cell((pdf.w - 40) / 2, 10, f"{name}'s Strength", align='C',new_x=XPos.LEFT,new_y=YPos.NEXT,fill=True)
+            pdf.set_font("Karma-Regular", '', 14)
+            for pos in positive:
+                pdf.multi_cell((pdf.w - 40) / 2,10,f"       {pos}",align='C',new_x=XPos.LEFT,new_y=YPos.NEXT,fill=True) 
+                
+            pdf.set_fill_color(hex_to_rgb("#FFDADA"))
+            pdf.set_xy(pdf.w / 2, y)
+            pdf.set_font('Karma-Semi', '', 16)
+            pdf.cell((pdf.w -40) / 2, 10, f"{name}'s Challenges", align='C',fill=True,new_x=XPos.LEFT,new_y=YPos.NEXT)
+            pdf.set_font("Karma-Regular", '', 14)
+            for neg in negative:
+                pdf.multi_cell((pdf.w - 40) / 2,10,f"       {neg}",align='C',new_x=XPos.LEFT,new_y=YPos.NEXT,fill=True)
+                
+            pdf.set_font("Times", '', 14)
+            pdf.set_xy(22.5,pdf.get_y() + 5)
+            pdf.multi_cell(pdf.w - 45,7,f"**Parenting Tips** : {tips['Tip']} {tips['Execution']}",align='L',markdown=True)
+            pdf.set_y(pdf.get_y() + 10)
+        else:
+            pdf.ContentDesign(random.choice(DesignColors),titles[i],con,path)   
+
+                
     # content1 = physical(planets,1,name,gender)
     # content2 = physical(planets,2,name,gender)
     # content3 = physical(planets,3,name,gender)
     # content4 = physical(planets,4,name,gender)
     
-    content1 = "The child with Virgo lagna and Mercury in Pisces in Revati Nakshatra might have a slim and delicate body built. They could have a graceful and gentle appearance with a soft oval or round face. Their eyes may be large, expressive, and watery, giving them a dreamy and sensitive look. The child may exude a calm and serene aura, adding to their compassionate and imaginative nature. Overall, they may have a charming and ethereal physical presence that captures attention effortlessly."
-        
-    content2 = {'outer_personality': 'Grishma is a child with a solid and structured outer personality. They may exhibit qualities of determination, discipline, and responsibility. Their physical appearance may be characterized by a mature and serious demeanor, with a focus on achieving their goals.', 'character': [{'title': 'Determined and Goal-Oriented', 'content': 'Grishma is likely to be highly determined and focused on their goals, with a strong sense of ambition and perseverance.'}, {'title': 'Responsible and Disciplined', 'content': 'Grishma shows traits of responsibility and discipline in their actions, taking their duties seriously and striving for excellence.'}, {'title': 'Mature and Serious', 'content': "Grishma's outer persona may exude a sense of maturity and seriousness, displaying wisdom beyond their years."}, {'title': 'Structured and Organized', 'content': 'Grishma is inclined towards a structured and organized approach in their activities, preferring order and methodical planning.'}, {'title': 'Independent and Self-Reliant', 'content': 'Grishma tends to exhibit independence and self-reliance in their behavior, seeking to handle challenges on their own.'}], 'behaviour': [{'title': 'Reserved and Observant', 'content': 'Grishma may display a reserved nature, observing their surroundings keenly before actively engaging with others.'}, {'title': 'Methodical Decision-Making', 'content': 'Grishma approaches decision-making in a methodical manner, weighing the pros and cons before reaching a conclusion.'}, {'title': 'Patient and Persistent', 'content': 'Grishma exhibits patience and persistence in their endeavors, persevering through challenges with a calm and determined attitude.'}, {'title': 'Focused and Detail-Oriented', 'content': "Grishma's behavior reflects a focused and detail-oriented approach, paying attention to the intricacies of tasks and projects."}, {'title': 'Pragmatic and Realistic', 'content': 'Grishma tends to be pragmatic and realistic in their outlook, preferring practical solutions over idealistic notions.'}], 'negative_impact': [{'title': 'Rigid and Inflexible', 'content': 'Grishma may struggle with rigidity and inflexibility, finding it challenging to adapt to changing circumstances or alternative perspectives.'}, {'title': 'Overly Serious', 'content': "Grishma's seriousness may sometimes lead to a lack of lightheartedness and playfulness, impacting their ability to relax and enjoy leisure activities."}, {'title': 'Overly Critical', 'content': 'Grishma could exhibit a tendency towards being overly critical, both of themselves and others, which may strain interpersonal relationships.'}, {'title': 'Stubbornness', 'content': "Grishma's stubborn nature may hinder their ability to collaborate and compromise, leading to conflicts in social interactions."}, {'title': 'Conventional Thinking', 'content': "Grishma's adherence to conventional thinking may limit their creativity and innovative problem-solving skills, hindering out-of-the-box solutions."}], 'parenting_tips': [{'title': 'Encourage Flexibility and Adaptability', 'content': 'To help Grishma overcome rigidity, encourage activities that promote flexibility and adaptability, such as engaging in diverse hobbies or trying new experiences regularly.'}, {'title': 'Cultivate a Sense of Humor', 'content': "Introduce humor and light-heartedness into Grishma's environment to balance out their seriousness and promote a more relaxed attitude towards life."}, {'title': 'Foster Open Communication', 'content': 'Promote open communication with Grishma to address their tendency towards criticism, encouraging constructive feedback and mutual understanding in interactions.'}, {'title': 'Encourage Teamwork and Collaboration', 'content': 'Provide opportunities for Grishma to engage in group activities that emphasize teamwork and collaboration, fostering skills in cooperation and compromise.'}, {'title': 'Support Creative Exploration', 'content': 'Encourage Grishma to explore creative outlets and unconventional thinking to broaden their perspectives and enhance their problem-solving abilities.'}]}
-    
-    content3 = {'inner_worlds': "Grishma's inner emotional world is deeply influenced by their astrological placements, including their Moon Sign in Dhanishta Nakshatra, Mars in the 5th House of Capricorn, Saturn in the 4th House of Sagittarius, and Mercury in the 7th House of Pisces.", 'emotional_needs': [{'title': 'Structured Stability', 'content': 'Grishma thrives in environments that provide structure, routine, and stability. Predictability and clear boundaries help them feel secure and grounded.'}, {'title': 'Intellectual Stimulation', 'content': 'Grishma craves mental stimulation, engaging activities, and opportunities to learn and grow intellectually. Introducing new concepts and encouraging exploration can fulfill this need.'}, {'title': 'Emotional Expression', 'content': 'Grishma benefits from spaces where they can freely express their emotions without judgment. Encouraging open communication and validating their feelings nurtures their emotional well-being.'}, {'title': 'Independence and Autonomy', 'content': 'Grishma values autonomy and independence. Allowing them to make choices, take responsibility, and assert their individuality fosters their confidence and self-esteem.'}, {'title': 'Creative Outlets', 'content': "Grishma's inner world is enriched by creative outlets such as art, music, or imaginative play. Providing opportunities for self-expression through creativity is essential for their emotional fulfillment."}], 'impact': [{'title': 'Overthinking and Anxiety', 'content': 'Grishma may struggle with overthinking and anxiety due to their analytical nature. It is essential to help them manage stress, practice mindfulness, and develop coping mechanisms.'}, {'title': 'Control Issues', 'content': "Grishma's need for structure and stability can sometimes lead to control issues. Encouraging flexibility, adaptability, and teaching them to let go of the need for control can support their emotional growth."}, {'title': 'Emotional Bottling', 'content': 'Grishma may suppress emotions at times, leading to emotional bottling. Creating a safe space for them to express their feelings and teaching healthy emotional release strategies is crucial.'}, {'title': 'Seeking Perfection', 'content': "Grishma's quest for perfection can create inner pressure and self-criticism. Encouraging self-compassion, embracing mistakes as learning opportunities, and nurturing self-acceptance is vital."}, {'title': 'Difficulty in Trusting Others', 'content': "Grishma's independence may make it challenging for them to trust others deeply. Building trust through consistent support, honest communication, and demonstrating reliability is key."}], 'remedies': [{'title': 'Establishing a Routine', 'content': 'Create a consistent daily routine that provides structure and stability for Grishma. Include designated times for learning, play, emotional expression, and relaxation.'}, {'title': 'Mindfulness Practices', 'content': 'Introduce Grishma to mindfulness practices such as deep breathing, meditation, or yoga to help them manage anxiety, improve focus, and cultivate inner calm.'}, {'title': 'Encouraging Creative Exploration', 'content': "Support Grishma's creative pursuits by providing art supplies, musical instruments, or other outlets for self-expression. Encourage them to explore different forms of creativity."}, {'title': 'Promoting Emotional Intelligence', 'content': "Teach Grishma about emotions, empathy, and effective communication. Encourage them to identify and express their feelings, understand others' perspectives, and resolve conflicts peacefully."}, {'title': 'Building Trust through Reliability', 'content': 'Demonstrate consistency and reliability in your interactions with Grishma. Keep your promises, listen attentively, and show genuine care and support to foster trust and emotional connection.'}]}
-    
-    content4 ={'core_identity': "Grishma's core identity is influenced by their Virgo Lagna, Pisces Moon in Dhanishta nakshatra, and Aries Sun in Bharani nakshatra. This combination creates a blend of analytical, imaginative, and assertive traits in their personality. Grishma may have a practical approach to life, a deep emotional nature, and a strong will to pursue their desires.", 'recognitions': [{'title': 'Need for Acknowledgment', 'content': 'Grishma seeks acknowledgment through their analytical abilities and attention to detail. They strive for recognition by showcasing their practical problem-solving skills and efficient work ethic, earning appreciation for their precision and dedication.'}, {'title': 'Desire for Validation', 'content': 'Grishma craves validation for their creativity and assertiveness. They yearn for approval of their innovative ideas and assertive actions, seeking validation for their leadership qualities and independent spirit.'}, {'title': 'Yearning for Respect', 'content': 'Grishma desires respect for their emotional depth and intuition. They seek recognition for their intuitive insights and emotional intelligence, aiming to be valued for their sensitivity and compassion towards others.'}, {'title': 'Recognition for Courage', 'content': 'Grishma yearns for acknowledgment of their boldness and determination. They seek recognition for their courage to take risks and face challenges head-on, striving to be appreciated for their fearless and pioneering spirit.'}, {'title': 'Appreciation for Communication Skills', 'content': 'Grishma values acknowledgment for their communication prowess. They seek recognition for their ability to express ideas effectively and engage others in meaningful conversations, aiming to be appreciated for their clarity and eloquence in speech.'}],  'remedies': [{'title': 'Mindfulness Practices', 'content': 'Grishma can benefit from mindfulness practices such as meditation and yoga to enhance self-awareness and emotional balance. These practices can help them cultivate inner peace, reduce stress, and develop a deeper connection with their inner self, promoting a sense of emotional well-being and clarity of thought.'}, {'title': 'Journaling for Self-reflection', 'content': 'Grishma can engage in journaling as a tool for self-reflection and introspection. Writing down thoughts, emotions, and experiences can help them understand their inner world better, gain insights into their emotions and behaviors, and foster self-awareness and personal growth.'}, {'title': 'Setting Boundaries', 'content': 'Grishma may benefit from setting clear boundaries in relationships and work settings to maintain a healthy balance between giving and receiving. Establishing boundaries can help them protect their emotional well-being, assert their needs and values, and cultivate self-respect and healthy relationships.'}, {'title': 'Seeking Professional Guidance', 'content': 'Grishma can seek professional guidance from a therapist or counselor to explore and address their emotional needs and inner conflicts. Therapy sessions can provide a safe space for self-exploration, emotional healing, and developing coping strategies to manage stress and enhance emotional well-being.'}, {'title': 'Engaging in Creative Outlets', 'content': 'Grishma can explore creative outlets such as art, music, or dance to channel their emotions and express their inner creativity. Engaging in creative activities can serve as a therapeutic outlet, allowing them to express their emotions, enhance self-expression, and tap into their imaginative potential for personal growth and fulfillment.'}]}
+    content1 = "The child with Libra lagna and Venus placed in the first house in Vishakha Nakshatra may have a balanced and harmonious physical appearance. They are likely to have a slim and well-proportioned body built, with a graceful and charming demeanor. Their face may be symmetrical and pleasing to look at, with soft features and a gentle expression. Their eyes are likely to be charming and expressive, possibly with a twinkle in them, reflecting their sweet and affectionate nature. Their overall physical appearance exudes an aura of beauty and elegance, drawing others towards them effortlessly. This child may possess a magnetic presence that makes them stand out in a crowd, with a natural sense of style and grace that sets them apart from others."
+    content2 = {'outer_personality': 'Magizh is a charismatic and charming individual with a magnetic aura. He exudes grace and elegance in his appearance and behavior, making a lasting impression on those around him. With Venus as his Nakshatra Lord in the 1st House of Libra, Magizh possesses a harmonious blend of beauty, creativity, and diplomacy.', 'character': [{'title': 'Creative and Artistic', 'content': "Magizh has a natural talent for creativity and artistry. His love for beauty and aesthetics is reflected in his passion for artistic pursuits like painting, music, or design. Venus's influence in the 1st House enhances his creative abilities and makes him attuned to harmonious expressions of beauty."}, {'title': 'Diplomatic and Charming', 'content': "Magizh's diplomatic nature and charm are his key strengths. With Venus in the 1st House, he has a way with words and a pleasant demeanor that enables him to navigate social interactions with ease. He can win people over with his affable personality and tactful communication style."}, {'title': 'Balanced and Fair-minded', 'content': 'Magizh possesses a sense of balance and fairness in his approach to life. The influence of Venus in the 1st House of Libra instills in him a desire for harmony and justice. He values fairness in his interactions and strives to maintain a sense of equilibrium in all aspects of his life.'}], 'behaviour': [{'title': 'Social and Sociable', 'content': 'Magizh is inherently social and enjoys connecting with others. His pleasant disposition and sociable nature make him a popular figure in his social circles. He thrives in group settings and finds fulfillment in building meaningful relationships with diverse individuals.'}, {'title': 'Adaptable and Flexible', 'content': 'Magizh demonstrates remarkable adaptability and flexibility in various situations. With Venus in the 1st House, he can easily adjust to different circumstances and environments. His ability to adapt quickly to change enhances his resilience and problem-solving skills.'}, {'title': 'Harmonious and Peaceful', 'content': "Magizh's quest for harmony and peace influences his behavior positively. He strives to create peaceful environments and promote understanding among people. His innate ability to diffuse conflicts and maintain harmony makes him a valuable peacemaker in challenging situations."}], 'negative_impact': [{'title': 'Tendency towards Indecisiveness', 'content': 'Magizh may struggle with indecisiveness at times due to the influence of Venus in the 1st House. His desire to maintain harmony and avoid conflicts can lead to hesitancy in making firm decisions. Developing assertiveness and clarity in decision-making can help him overcome this challenge.'}, {'title': 'Overly Concerned with External Appearance', 'content': "Magizh's emphasis on beauty and aesthetics may sometimes overshadow other important aspects of his life. He may place too much importance on external appearances and material possessions, leading to a superficial approach to his self-worth. Cultivating inner values and self-acceptance can help him find a balance between outer appearance and inner growth."}, {'title': 'Struggle with Confrontation', 'content': 'Due to his diplomatic nature, Magizh may find it challenging to confront difficult situations or address conflicts directly. He may avoid confrontation to maintain harmony, which can hinder his personal growth and lead to unresolved issues. Building assertiveness skills and communication techniques can empower him to navigate conflicts effectively.'}]}
 
+    content3 = {'inner_worlds': "Magizh's emotional world is deeply influenced by his Janma Nakshatra (Bharani Nakshatra) and the placement of Venus in the 1st House of Libra in Vishakha Nakshatra. His emotional needs, thoughts, beliefs, feelings, reactions, and emotional stability are all affected by these astrological placements.", 'emotional_needs': [{'title': 'Desire for Harmony', 'content': "Magizh has a strong emotional need for harmony and balance in all aspects of his life. He craves peace and seeks to avoid conflicts and discord. This need for harmony is influenced by the placement of Venus in the 1st House of Libra, emphasizing the importance of relationships and cooperation in Magizh's emotional fulfillment."}, {'title': 'Need for Independence', 'content': "Despite his desire for harmony, Magizh also has a strong need for independence and freedom. He values his autonomy and seeks opportunities to assert his individuality. The placement of Mars in the 2nd House of Scorpio highlights Magizh's drive for self-expression and self-reliance, adding a layer of determination and intensity to his emotional needs."}, {'title': 'Seeking Emotional Depth', 'content': "Magizh has a deep emotional need for meaningful connections and experiences. He is drawn to profound emotions and seeks authenticity in his interactions. The influence of Jyeshtha Nakshatra on Mars in the 2nd House of Scorpio amplifies Magizh's desire for emotional depth and transformative experiences."}], 'impact': [{'title': 'Tendency towards Stubbornness', 'content': 'Magizh may struggle with stubbornness and rigidity in his emotional responses. This could lead to difficulties in adapting to changing circumstances and a resistance to considering alternative perspectives. To foster emotional growth, Magizh may need to work on cultivating flexibility and openness to new ideas.'}, {'title': 'Emotional Intensity', 'content': "Due to the placement of Mars in the 2nd House of Scorpio, Magizh may experience heightened emotional intensity and a tendency towards passionate reactions. This intensity can be both a strength and a challenge, impacting his relationships and emotional stability. Learning to channel this intensity constructively is key for Magizh's emotional well-being."}, {'title': 'Struggle with Trust Issues', 'content': 'Magizh may harbor deep-seated trust issues that stem from past experiences or subconscious fears. The combination of Venus in the 1st House of Libra and Mars in the 2nd House of Scorpio can create inner tensions related to trust and vulnerability. Cultivating self-awareness and exploring the roots of these trust issues can support Magizh in developing healthier and more fulfilling relationships.'}]}
+
+    content4 = {'core_identity': "Magizh's core identity is characterized by a balanced blend of social charm, creativity, and spiritual depth. Magizh's Lagna in Libra indicates a strong sense of harmony, diplomacy, and a natural inclination towards relationships. With Venus placed in the 1st house of Libra in Vishakha Nakshatra, Magizh exudes a charming and charismatic aura, attracting others with ease. The Sun in the 3rd house of Sagittarius in Mula Nakshatra adds a touch of philosophical depth, curiosity, and a quest for knowledge to Magizh's identity. The Moon in the 7th house of Aries in Bharani Nakshatra suggests emotional intensity, independence, and a need for personal freedom.", 'recognitions': [{'title': 'Charm and Diplomacy', 'content': 'Magizh seeks recognition for their charm, diplomacy, and ability to create harmonious relationships. Others acknowledge Magizh for their social grace and ability to navigate diverse social circles with ease.'}, {'title': 'Intellectual Curiosity', 'content': 'Magizh desires acknowledgment for their intellectual curiosity, philosophical insights, and quest for knowledge. Others recognize Magizh for their ability to engage in meaningful conversations and explore new ideas.'}, {'title': 'Emotional Intensity', 'content': 'Magizh craves recognition for their emotional intensity, independence, and strong sense of self. Others admire Magizh for their courage to express their emotions authentically and stand up for their beliefs.'}], 'remedies': [{'title': 'Venus Remedies', 'content': "To enhance self-confidence and balance the ego, Magizh can wear a diamond or opal, chant the Venus mantra, 'Om Shukraya Namaha', and perform acts of kindness and generosity towards others to strengthen Venus's positive influence on their identity."}, {'title': 'Sun Remedies', 'content': "To strengthen the sense of self and overcome ego challenges, Magizh can wear a ruby or red coral, recite the Sun mantra, 'Om Suryaya Namaha', practice self-expression through creative pursuits, and engage in activities that boost self-esteem and leadership qualities."}, {'title': 'Moon Remedies', 'content': "To nurture emotional well-being and enhance self-awareness, Magizh can wear a pearl or moonstone, chant the Moon mantra, 'Om Somaya Namaha', practice mindfulness and meditation, and connect with their inner emotions through journaling or creative outlets."}]}
     
     content = [content1,content2,content3,content4]
 
@@ -840,18 +914,20 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             'remedies': f"Build {name}'s Confidence & Leadership Quality"
         }]
     
-    pdf.AddPage(path)
-    pdf.set_y(30)
+    pdf.AddPage(path,"Outer World - Physical Attributes, Personality, and Behavior")
     pdf.set_text_color(0,0,0)
         
     for index,c in enumerate(content):
+        if index == 2:
+            pdf.AddPage(path,"Inner World - Emotional Needs and Soul Desire ")
+            
         if pdf.get_y() + 40 >= 260:
             pdf.AddPage(path)
             pdf.set_y(30)
         pdf.set_text_color(0, 0, 0)
         if isinstance(c, str):
             pdf.set_font('Karma-Semi', '', 18)
-            pdf.set_xy(45,pdf.get_y() + 20)
+            pdf.set_xy(45,pdf.get_y() + 10)
             pdf.multi_cell(pdf.w - 90, 8, f"{titles[index]}", align='C')
             pdf.set_font('Karma-Regular', '', 14)
             pdf.set_xy(22.5,pdf.get_y() + 5)
@@ -864,16 +940,9 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
                 
                 pdf.ContentDesign(random.choice(DesignColors),titles[index][k],v,path)
                     
-    pdf.IndexPage(path,"Health & Wellness",2)
-    pdf.AddPage(path)
-    pdf.set_y(30)
-    pdf.set_font('Karma-Heavy', '', 28)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_y(30)
-    pdf.cell(0,0,"Health & Wellness",align='C')
-    # con = healthPrompt(planets,0,name,gender)        
-    con = {'health_insights': "Based on the child's astrology details, we can see a complex interplay of planets and houses influencing the child's health. The placement of Mars in the 5th house of Capricorn, Saturn in the 4th house of Sagittarius, and Mercury in the 7th house of Pisces indicates a mix of energy and communication-related health challenges. The presence of Moon, Mars, and Ketu in the 5th and 8th houses may also bring emotional and digestive health concerns. Overall, the child may need to focus on balancing these energies to maintain good health and well-being.", 'challenges': [{'title': 'Digestive Disorders', 'content': 'The presence of Ketu in the 6th house of Aquarius and Moon in the 5th house of Capricorn indicates potential digestive issues that the child may face.'}, {'title': 'Emotional Instability', 'content': "The placement of Moon, Mars, and Ketu in the 5th and 8th houses suggests emotional challenges that may impact the child's mental well-being."}, {'title': 'Communication Issues', 'content': 'With Mercury in the 7th house of Pisces, the child may experience communication difficulties or speech-related disorders.'}, {'title': 'Skin Problems', 'content': 'The influence of Mars in the 5th house of Capricorn could lead to skin-related issues like acne or rashes.'}, {'title': 'Joint Pains', 'content': 'The presence of Saturn in the 4th house of Sagittarius may indicate potential joint-related problems that the child may encounter.'}], 'natural_remedies': [{'title': 'Aloe Vera Gel', 'content': 'Aloe vera gel can help soothe digestive issues and promote healthy digestion.'}, {'title': 'Tulsi Leaves', 'content': 'Tulsi leaves have antibacterial properties that can aid in managing skin problems and promoting overall well-being.'}, {'title': 'Ginger Tea', 'content': 'Ginger tea can be beneficial for improving digestion and alleviating joint pains.'}, {'title': 'Neem Oil', 'content': 'Neem oil is known for its anti-inflammatory properties and can help with skin issues.'}, {'title': 'Triphala Powder', 'content': 'Triphala powder can support digestive health and detoxification of the body.'}], 'nutrition_tips': [{'title': 'Probiotic-Rich Foods', 'content': "Include probiotic-rich foods like yogurt and kefir in the child's diet to support gut health."}, {'title': 'Omega-3 Fatty Acids', 'content': 'Ensure the child consumes sources of omega-3 fatty acids like fish, flaxseeds, or chia seeds for overall wellness.'}, {'title': 'Leafy Greens', 'content': 'Incorporate leafy greens like spinach and kale to provide essential nutrients for skin health and overall vitality.'}, {'title': 'Turmeric', 'content': 'Add turmeric to meals for its anti-inflammatory properties, beneficial for joint health.'}, {'title': 'Healthy Fats', 'content': 'Include sources of healthy fats like avocados and nuts to support brain function and overall well-being.'}], 'wellness_routines': [{'title': 'Yoga and Meditation', 'content': 'Encourage the child to practice yoga and meditation to reduce stress, improve mental clarity, and promote emotional balance.'}, {'title': 'Daily Exercise', 'content': 'Engage in daily physical activities to strengthen the body, improve digestion, and boost overall immunity.'}, {'title': 'Ayurvedic Massage', 'content': 'Regular ayurvedic massages using herbal oils can help relax the body, improve circulation, and support skin health.'}, {'title': 'Breathing Exercises', 'content': 'Teach the child simple breathing exercises to enhance lung capacity, reduce anxiety, and promote overall well-being.'}, {'title': 'Sound Therapy', 'content': 'Introduce sound therapy techniques like listening to calming music or sounds to promote relaxation and emotional well-being.'}], 'lifestyle_suggestions': [{'title': 'Balanced Diet', 'content': 'Ensure the child follows a balanced diet rich in nutrients to support overall health and address specific health challenges.'}, {'title': 'Adequate Hydration', 'content': 'Encourage the child to stay hydrated by drinking enough water throughout the day for optimal digestion and skin health.'}, {'title': 'Regular Sleep Patterns', 'content': 'Establish consistent sleep routines to promote restful sleep, mental clarity, and emotional stability.'}, {'title': 'Limit Screen Time', 'content': 'Set boundaries on screen time to reduce eye strain, improve sleep quality, and support overall well-being.'}, {'title': 'Outdoor Activities', 'content': 'Encourage outdoor activities to boost physical health, mental well-being, and overall vitality.'}], 'preventive_tips': [{'title': 'Regular Check-ups', 'content': "Schedule regular health check-ups to monitor the child's well-being and address any health concerns proactively."}, {'title': 'Stress Management', 'content': 'Teach stress management techniques to help the child cope with emotional challenges and maintain mental well-being.'}, {'title': 'Good Hygiene Practices', 'content': 'Promote good hygiene practices like frequent handwashing to prevent infections and maintain overall health.'}]}
-
+    pdf.AddPage(path,"Potential Health Challenges and Holistic Wellness Solutions")
+    # con = healthPrompt(planets,0,name,gender) 
+    con = {'health_insights': 'Magizh is a unique individual with a balanced constitution of Vata, Pitta, and Kapha doshas. The composition of the five elements in his body is in harmony, ensuring overall well-being and vitality. His lagna sign Libra signifies a focus on balance and harmony in health matters, while the placement of Venus in the lagna enhances his beauty and vitality. Additionally, the influence of Mars in the 2nd house of Scorpio may indicate strong metabolic functions and a need for emotional balance in maintaining health. Overall, Magizh has the potential for good health with a tendency towards maintaining equilibrium and addressing any imbalances promptly.', 'challenges': [{'title': 'Digestive Issues', 'content': 'Magizh may experience digestive challenges due to the influence of Mars in Scorpio, indicating potential imbalances in metabolism and gut health. It is essential for him to focus on a balanced diet and lifestyle to alleviate these issues.'}, {'title': 'Emotional Wellness', 'content': 'The placement of Moon and Jupiter in the 7th house of Aries may suggest emotional sensitivity and fluctuation in mood. Magizh needs to practice mindfulness techniques and emotional regulation to support his mental well-being.'}, {'title': 'Skin Disorders', 'content': 'The presence of Rahu in the 6th house of Pisces can indicate skin-related issues such as allergies or sensitivities. Magizh should pay attention to his skincare routine and seek natural remedies to maintain healthy skin.'}, {'title': 'Respiratory Problems', 'content': 'With Ketu in the 12th house of Virgo and Mercury in the 3rd house of Sagittarius, Magizh may be prone to respiratory ailments. Practicing breathing exercises and maintaining a clean environment can help prevent such problems.'}, {'title': 'Bone Health', 'content': "Saturn's influence in the 5th and 11th houses of Aquarius and Capricorn may highlight the importance of bone health for Magizh. Incorporating calcium-rich foods and regular physical activity can support his skeletal system."}], 'natural_remedies': [{'title': 'Aloe Vera for Digestion', 'content': 'Drink a glass of fresh aloe vera juice in the morning to improve digestion and reduce inflammation in the gut.'}, {'title': 'Turmeric Paste for Skin', 'content': 'Create a turmeric paste using turmeric powder and honey, apply it to the affected skin area to reduce inflammation and promote healing.'}, {'title': 'Tulsi Tea for Respiration', 'content': 'Boil fresh tulsi leaves in water, strain the tea, and drink it warm to alleviate respiratory issues and boost immunity.'}, {'title': 'Ginger for Nausea', 'content': 'Chew on a small piece of fresh ginger or drink ginger tea to relieve nausea and improve digestion.'}, {'title': 'Fenugreek Seeds for Bone Health', 'content': 'Soak fenugreek seeds overnight, consume them in the morning to support bone strength and mineral absorption.'}], 'nutrition_tips': [{'title': 'Omega-3 Fatty Acids', 'content': "Include sources of omega-3 fatty acids such as flaxseeds, walnuts, and fatty fish in Magizh's diet to support brain health and reduce inflammation."}, {'title': 'Probiotic-rich Foods', 'content': 'Integrate probiotic-rich foods like yogurt, kefir, and sauerkraut to maintain a healthy gut microbiome and improve digestion.'}, {'title': 'Leafy Greens', 'content': 'Ensure a daily intake of leafy greens like spinach, kale, and arugula to boost nutrient intake and support overall well-being.'}, {'title': 'Vitamin D Supplements', 'content': 'Consider taking vitamin D supplements or spending time in sunlight to prevent deficiencies and strengthen bone health.'}, {'title': 'Hydration', 'content': 'Encourage Magizh to stay hydrated by drinking sufficient water throughout the day to support metabolism and organ function.'}], 'wellness_routines': [{'title': 'Morning Meditation', 'content': 'Start the day with a short meditation practice to center the mind, reduce stress, and enhance mental clarity.'}, {'title': 'Sound Therapy', 'content': 'Listen to calming sounds like nature sounds or chanting to promote relaxation and balance the mind-body connection.'}, {'title': 'Pranayama', 'content': 'Practice deep breathing exercises like alternate nostril breathing to improve respiratory function and calm the nervous system.'}, {'title': 'Yoga Asanas', 'content': "Incorporate yoga poses like child's pose, cat-cow stretch, and downward-facing dog to improve flexibility and relieve tension."}, {'title': 'Gratitude Journaling', 'content': 'Maintain a gratitude journal to cultivate a positive mindset, enhance self-awareness, and promote emotional well-being.'}], 'lifestyle_suggestions': [{'title': 'Stress Management', 'content': 'Teach Magizh stress management techniques like deep breathing, progressive muscle relaxation, and mindfulness to cope with daily stressors.'}, {'title': 'Time Management', 'content': 'Guide Magizh in setting realistic goals, prioritizing tasks, and creating a daily schedule to improve productivity and reduce anxiety.'}, {'title': 'Assertiveness Training', 'content': 'Empower Magizh to express his needs and boundaries effectively, practice assertive communication, and build self-confidence in interpersonal interactions.'}], 'preventive_tips': [{'title': 'Balanced Diet', 'content': 'Ensure Magizh follows a balanced diet rich in fruits, vegetables, whole grains, and lean proteins to support overall health and prevent nutritional deficiencies.'}, {'title': 'Regular Exercise', 'content': 'Encourage Magizh to engage in regular physical activity such as walking, yoga, or swimming to maintain fitness levels and support metabolic function.'}, {'title': 'Healthy Lifestyle Habits', 'content': "Promote healthy lifestyle habits like adequate sleep, hydration, and stress management techniques to enhance Magizh's well-being and prevent health challenges."}]}     
 
     pdf.set_text_color(0, 0, 0)
     for k, v in con.items():
@@ -882,14 +951,8 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             pdf.set_y(30)
         
         pdf.ContentDesign(random.choice(DesignColors),setTitle(k),v,path)
-        
-    pdf.IndexPage(path,"Education And Intelligence",3)
-                        
-    pdf.AddPage(path)
-    pdf.set_font('Karma-Heavy', '', 28)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_y(30)
-    pdf.cell(0,0,f"{name}'s Education &  Academics",align='C')
+                                
+    pdf.AddPage(path,f"{name}'s Education and Intellect")
     pdf.set_font('Karma-Semi','', 16)
     pdf.set_y(pdf.get_y() + 10)
     pdf.cell(0,0,"Insights about your Child's education and intelligence",align='C')
@@ -902,7 +965,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         "recommendations" : "Personalized Learning Techniques & Recommendations"
     }
     # con = chapterPrompt(planets,3,name,gender)
-    con = {'insights': "Based on Grishma's astrology chart, she has a strong foundation for education and intellectual pursuits. Her planets and house placements indicate a natural inclination towards learning and cognitive development. Grishma is likely to excel in academic endeavors and possess unique cognitive abilities that align with her natural talents and interests.", 'suitable_educational': [{'title': 'Psychology', 'content': 'Grishma could excel in psychology due to her deep understanding of human behavior and emotions.'}, {'title': 'Engineering', 'content': 'Engineering could be a suitable field for Grishma, given her analytical skills and practical approach to problem-solving.'}, {'title': 'Creative Writing', 'content': 'Grishma may have a talent for creative writing, expressing her thoughts and ideas eloquently.'}, {'title': 'Fine Arts', 'content': 'Fine arts could be a fulfilling pursuit for Grishma, allowing her to explore her creativity and artistic talents.'}, {'title': 'Astrology', 'content': 'With her strong planetary influences, Grishma could have a natural affinity for astrology and a deep understanding of cosmic energies.'}, {'title': 'Medical Science', 'content': 'Grishma may have a knack for medical science, with a keen interest in healing and wellness.'}, {'title': 'Computer Science', 'content': 'Computer science could be a rewarding field for Grishma, leveraging her logical thinking and problem-solving abilities.'}], 'cognitive_abilities': [{'title': 'Analytical Thinking', 'content': 'Grishma possesses strong analytical thinking skills, enabling her to dissect complex problems and find effective solutions.'}, {'title': 'Emotional Intelligence', 'content': 'Grishma has a high level of emotional intelligence, allowing her to empathize with others and navigate social interactions with ease.'}, {'title': 'Creativity', 'content': 'Grishma exhibits creativity in her approach to tasks and problem-solving, thinking outside the box to generate innovative ideas.'}, {'title': 'Attention to Detail', 'content': 'Grishma pays attention to detail, ensuring accuracy and precision in her work and academic pursuits.'}, {'title': 'Logical Reasoning', 'content': 'Grishma demonstrates logical reasoning abilities, making sound judgments and decisions based on rational thinking.'}], 'recommendations': [{'title': 'Utilize Mind Mapping Techniques', 'content': 'Grishma can benefit from mind mapping techniques to visualize complex concepts and enhance her understanding of subjects.'}, {'title': 'Practice Active Recall', 'content': 'Engaging in active recall techniques can help Grishma retain information better and improve her long-term memory.'}, {'title': 'Develop a Study Routine', 'content': 'Creating a consistent study routine will assist Grishma in staying organized and dedicated to her academic goals.'}, {'title': 'Participate in Group Discussions', 'content': "Joining group discussions and study sessions can enhance Grishma's communication skills and broaden her knowledge through collaborative learning."}, {'title': 'Seek Mentorship', 'content': 'Grishma should seek mentorship from professionals in her field of interest to gain insights and guidance for her academic and career pursuits.'}]}
+    con = {'insights': 'Magizh has a diverse range of intellectual insights based on the placement of planets in his astrology chart. His educational journey is influenced by the positions of Venus, Mars, Sun, Mercury, Jupiter, Moon, Saturn, Rahu, and Ketu in various houses and nakshatras. These planetary placements indicate a blend of creativity, determination, logical thinking, and intuitive abilities in his learning potentials and intellectual pursuits.', 'suitable_educational': [{'title': 'Creative Arts', 'content': 'Magizh has a natural talent for creative expression and may excel in fields such as painting, music, or design.'}, {'title': 'Psychology', 'content': 'His cognitive abilities make him well-suited for understanding human behavior and emotions, making psychology a suitable field for him.'}, {'title': 'Engineering', 'content': 'With a strong influence of Mars and Saturn, engineering can be a rewarding path for Magizh to apply his analytical and problem-solving skills.'}, {'title': 'Communication Studies', 'content': 'The placement of Mercury and Sun suggests a proficiency in communication, making fields like journalism or media studies a good fit for him.'}, {'title': 'Astrology', 'content': 'Given the positioning of planets in his chart, Magizh may have a natural inclination towards astrology and esoteric studies.'}, {'title': 'Business Management', 'content': 'The presence of Venus and Jupiter hints at leadership qualities and strategic thinking, making business management a promising field for him.'}, {'title': 'Computer Science', 'content': 'The influence of Rahu in the sixth house indicates an interest in technology, making computer science an area where Magizh can thrive.'}], 'cognitive_abilities': [{'title': 'Critical Thinking', 'content': 'Magizh possesses strong critical thinking skills that allow him to analyze complex situations and come up with innovative solutions.'}, {'title': 'Emotional Intelligence', 'content': 'His understanding of emotions and interpersonal dynamics enables him to connect with others on a deeper level, enhancing his social skills.'}, {'title': 'Intuitive Decision Making', 'content': 'Magizh has a natural gift for intuitive decision-making, which can guide him in uncertain situations and lead to favorable outcomes.'}, {'title': 'Detail-Oriented', 'content': 'He pays close attention to detail, ensuring precision in his work and a thorough understanding of the subjects he engages with.'}, {'title': 'Adaptability', 'content': 'Magizh demonstrates adaptability in learning new concepts and approaches, making him versatile in different academic and professional environments.'}], 'recommendations': [{'title': 'Visual Learning Techniques', 'content': 'Encourage Magizh to utilize visual aids such as diagrams, charts, and videos to enhance his understanding of complex concepts.'}, {'title': 'Mind Mapping', 'content': 'Introduce him to mind mapping techniques to organize information and connect ideas effectively for better retention and recall.'}, {'title': 'Collaborative Learning', 'content': 'Promote group projects and discussions to foster his communication skills and collaborative abilities in academic settings.'}, {'title': 'Practice Meditation', 'content': 'Suggest regular meditation practices to help Magizh harness his intuitive abilities and maintain mental clarity for improved focus.'}, {'title': 'Utilize Technology', 'content': 'Incorporate educational apps and online platforms to supplement his learning experience and explore interactive ways to engage with course materials.'}]}
     
     pdf.set_text_color(0, 0, 0)
     
@@ -912,18 +975,16 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             pdf.set_y(30)
         
         pdf.ContentDesign(random.choice(DesignColors),educationTitle[k],v,path)
-        
-    pdf.IndexPage(path,"Family And Relationship",4)
-    
-    pdf.AddPage(path)
+            
+    pdf.AddPage(path,"Family and Relationships")
     # con = physical(planets,5,name,gender)
-    con = {'family_relationship': "Based on Grishma's astrological placements, her social development, friendship dynamics, and family relationships are influenced by the positions of the 11th House, 7th House, Sun, Moon, and Venus. Grishma's approach to relationships with her parents, siblings, and peers is shaped by these planetary influences, leading to specific challenges and opportunities in her social and family interactions.", 'approaches': [{'title': 'Nurturing Friendships', 'content': 'Grishma may naturally excel in forming and maintaining friendships due to the supportive influences of the 11th House, enhancing her social circle and bringing joy through peer interactions.'}, {'title': 'Strong Family Bonds', 'content': 'With a harmonious placement of Venus in the 9th House, Grishma is likely to have close relationships with family members, especially siblings, fostering a sense of unity and mutual support within the family.'}, {'title': 'Effective Communication', 'content': 'Mercury in the 7th House empowers Grishma with effective communication skills, aiding in building meaningful connections with others, including her parents and peers.'}, {'title': 'Emotional Connections', 'content': 'The presence of Moon in the 5th House suggests that Grishma values emotional connections in her relationships, seeking nurturing and supportive interactions with loved ones.'}], 'challenges': [{'title': 'Overcoming Shyness', 'content': 'Grishma may struggle with shyness or hesitancy in forming new relationships, necessitating encouragement and support in social settings to overcome barriers to connection.'}, {'title': 'Balancing Independence and Dependence', 'content': 'The influence of Saturn in the 4th House may pose challenges in balancing independence and dependence within family dynamics, requiring conscious effort to maintain healthy boundaries.'}, {'title': 'Navigating Emotional Sensitivity', 'content': "Grishma's emotional sensitivity, indicated by Moon in the 5th House, can lead to challenges in managing emotions in relationships, requiring tools for emotional regulation and communication."}, {'title': 'Conflict Resolution Skills', 'content': 'The presence of Mars in the 5th and 8th Houses suggests the need for developing conflict resolution skills, particularly in family dynamics, to navigate disagreements effectively and maintain harmony.'}, {'title': 'Peer Pressure and Influence', 'content': 'Rahu in the 11th House may expose Grishma to peer pressure and influence, posing challenges in decision-making and maintaining individuality within friendships and social circles.'}], 'parenting_support': [{'title': 'Encouraging Social Activities', 'content': "Parents can support Grishma's social development by encouraging participation in group activities, clubs, or team sports to enhance her interpersonal skills and broaden her social network."}, {'title': 'Open Communication Channels', 'content': 'Creating open communication channels within the family can help Grishma express her thoughts and emotions freely, fostering deeper connections and understanding with parents and siblings.'}, {'title': 'Emotional Regulation Techniques', 'content': 'Teaching Grishma emotional regulation techniques, such as mindfulness exercises or journaling, can aid in managing her emotional sensitivity and navigating challenging situations with peers and family members.'}, {'title': 'Building Conflict Resolution Skills', 'content': 'Parents can role model and teach Grishma healthy conflict resolution strategies, such as active listening and compromise, to empower her in resolving conflicts constructively and maintaining positive relationships.'}, {'title': 'Empowering Individuality', 'content': 'Encouraging Grishma to embrace her individuality and unique perspectives can help her navigate peer pressure and influence, fostering confidence in her own identity and decisions within social interactions.'}]}
+    con = {'family_relationship': "Magizh's family dynamics are influenced by strong connections with his parents and siblings. His relationship with his father (represented by the Sun) is nurturing and supportive, while his relationship with his mother (represented by the Moon) is emotionally fulfilling. In terms of social development, Magizh thrives in building friendships and engaging with peers, seeking harmony and balance in his interactions, influenced by Venus in the 1st House of Libra.", 'approaches': [{'title': 'Building Social Bonds', 'content': 'Magizh approaches social development by prioritizing harmonious relationships and seeking beauty and balance in interactions, influenced by Venus in the 1st House of Libra.'}, {'title': 'Nurturing Relationship with Father', 'content': "Magizh bonds with his father by seeking guidance and support, appreciating his father's warmth and leadership qualities, influenced by the Sun in the 3rd House of Sagittarius."}, {'title': 'Emotional Connection with Mother', 'content': 'Magizh forms a deep emotional bond with his mother, seeking comfort and security in her nurturing presence, influenced by the Moon in the 7th House of Aries.'}], 'challenges': [{'title': 'Overcoming Shyness', 'content': 'Magizh may struggle with shyness and hesitation in forming new friendships and social connections, impacting his social interactions and peer relationships.'}, {'title': 'Balancing Independence and Interdependence', 'content': 'Magizh faces the challenge of balancing his independent nature with the need for partnership and cooperation in relationships, especially with siblings and friends.'}, {'title': 'Navigating Family Expectations', 'content': 'Magizh may experience pressure from family expectations, especially in balancing personal aspirations with familial responsibilities, leading to internal conflicts.'}], 'parenting_support': [{'title': 'Encouraging Communication Skills', 'content': "Parents can support Magizh's social development by encouraging open communication, active listening, and expressive sharing of thoughts and emotions, fostering healthy relationships."}, {'title': 'Promoting Independence', 'content': "Parents can nurture Magizh's independence by allowing him space for self-expression, decision-making, and exploring personal interests, promoting self-confidence and autonomy."}, {'title': 'Cultivating Emotional Intelligence', 'content': 'Parents can help Magizh develop emotional intelligence by teaching him to identify and manage emotions, empathize with others, and navigate interpersonal relationships with empathy and understanding.'}]}
     
     familyTitle = {
-        'family_relationship' : "Family Relationships and Social Development",
-        'approaches': "Child’s Approaches for Forming Relationships",
+        'family_relationship' : "",
+        'approaches': f"{name}'s Approaches for Forming Relationships",
         'challenges' : "Challenges in the child's  relationship & social development",
-        'parenting_support' : "Parenting Support for Improve Child’s Social Developments"
+        'parenting_support' : f"Parenting Support for Improve {name}'s Social Developments"
     }
     
     for k, v in con.items():
@@ -932,20 +993,14 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             pdf.set_y(30)
         
         pdf.ContentDesign(random.choice(DesignColors),familyTitle[k],v,path)
-        
-    pdf.IndexPage(path,"Career And Professions",5)
-        
-    pdf.AddPage(path)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_font('Karma-Heavy', '', 28)
-    pdf.set_text_color(0, 0, 0)
-    pdf.set_y(30)
-    pdf.cell(0,0,"Career & Professions",align='C')
+                
+    pdf.AddPage(path,f"{name}'s Career and Professions")
     pdf.set_font('Karma-Semi','', 16)
     pdf.set_xy(20,pdf.get_y() + 10)
     pdf.multi_cell(pdf.w - 40,8,"Wondering what the future holds for your child's career journey?",align='L')
     # con = chapterPrompt(planets,4,name,gender)
-    con = {'career_path': 'Based on the astrological positions of planets and houses for Grishma, it is predicted that their career path will be strongly influenced by their natural talents, abilities, and interests. The positions of Mars, Saturn, Mercury, Jupiter, and other planets indicate a potential for success in specific fields. Their Janma Nakshatra, Rashi, and Lagna Lords provide insights into suitable career paths and business potentials.', 'suitable_professions': [{'title': 'Marketing Manager in Technology Sector', 'content': 'Grishma has strong leadership qualities indicated by the placement of Mars in the 5th house. This suits roles like Marketing Manager where strategic planning and execution are crucial.'}, {'title': 'Financial Analyst in Banking Sector', 'content': 'With the influence of Saturn in the 4th house, Grishma may excel in analytical roles like Financial Analyst in the Banking sector, utilizing their attention to detail.'}, {'title': 'Software Developer in IT Industry', 'content': 'Mercury in the 7th house suggests proficiency in communication and technology, making Software Development a suitable career choice for Grishma.'}, {'title': 'Entrepreneur in Creative Industry', 'content': 'The placement of Jupiter in the 2nd house and Venus in the 9th house indicates entrepreneurial skills, especially in the Creative industry.'}, {'title': 'Psychologist in Healthcare Sector', 'content': 'The influence of Moon, Mars, and Ketu in the 5th and 8th houses suggests a potential interest in Psychology, particularly in the Healthcare sector.'}, {'title': 'Human Resources Manager in Corporate Sector', 'content': 'With Rahu in the 11th house and Moon in the 5th house, Grishma may thrive in people-oriented roles like Human Resources Manager in the Corporate sector.'}, {'title': 'Consultant in Social Services Sector', 'content': 'The placement of Sun in the 8th house and Saturn in the 4th house indicates a strong sense of responsibility, ideal for a Consultant role in the Social Services sector.'}], 'business': [{'title': 'Digital Marketing Agency', 'content': "Grishma's prowess in strategic planning and leadership, as indicated by Mars in the 5th house, could lead to success in establishing a Digital Marketing Agency."}, {'title': 'Financial Consultancy Firm', 'content': 'Utilizing the analytical skills suggested by Saturn in the 4th house, Grishma could excel in starting a Financial Consultancy Firm.'}, {'title': 'Tech Startup', 'content': 'With a strong inclination towards technology and communication skills highlighted by Mercury in the 7th house, Grishma may thrive in starting a Tech Startup.'}, {'title': 'Creative Design Studio', 'content': 'The entrepreneurial skills indicated by Jupiter in the 2nd house and Venus in the 9th house make Grishma suitable for starting a Creative Design Studio.'}, {'title': 'Wellness Center', 'content': 'Given the interest in Psychology, Healthcare, and people-oriented roles, a Wellness Center focusing on mental health could be a successful business venture for Grishma.'}]}
+    
+    con = {'career_path': "Based on Magizh's astrology details, it is evident that Magizh possesses a strong potential for a successful career path. With the placement of the 10th house lord Moon in the 7th house of Aries along with Jupiter, Magizh is likely to excel in professions that require creativity, intuition, and emotional intelligence. Additionally, the placement of planets in the 2nd house of Scorpio indicates a potential for financial success and determination in achieving goals. Magizh's career path is aligned with his natural talents and strengths, leading him towards a fulfilling and prosperous professional journey.", 'suitable_professions': [{'title': 'Creative Writer', 'content': 'As a Creative Writer, Magizh can leverage his emotional intelligence and creative abilities to excel in crafting compelling narratives and storytelling in various mediums such as books, articles, or screenplays.'}, {'title': 'Psychologist', 'content': 'With a deep understanding of human emotions and the ability to empathize with others, Magizh can thrive as a Psychologist, helping individuals navigate through their psychological challenges and achieve mental well-being.'}, {'title': 'Artist', 'content': "Magizh's artistic talents can shine in the field of Art, where he can express his creativity through various forms such as painting, sculpture, or graphic design, resonating with a wide audience."}, {'title': 'Entrepreneur', 'content': 'As an Entrepreneur, Magizh can channel his determination and leadership skills to establish his ventures, leveraging his innovative ideas to create successful business ventures in various industries.'}, {'title': 'Musician', 'content': 'With a knack for music and an intuitive understanding of rhythms and melodies, Magizh can pursue a career as a Musician, expressing his emotions and connecting with audiences through his musical talents.'}, {'title': 'Therapist', 'content': "Magizh's compassionate nature and ability to listen actively make him an ideal candidate for a Therapist, guiding individuals towards emotional healing and personal growth through therapeutic interventions."}, {'title': 'Photographer', 'content': 'Utilizing his creative eye and visual storytelling skills, Magizh can excel as a Photographer, capturing moments and emotions through his lens, creating impactful visual narratives in various genres.'}], 'business': [{'title': 'Art Gallery', 'content': 'Magizh can explore the business potential in owning an Art Gallery, showcasing his artistic creations or curating works of other artists, providing a platform for art enthusiasts to appreciate and purchase art pieces.'}, {'title': 'Psychological Counseling Center', 'content': 'Establishing a Psychological Counseling Center can be a fulfilling business venture for Magizh, offering counseling services to individuals seeking mental health support and guidance, creating a positive impact on the community.'}, {'title': 'Creative Writing Agency', 'content': 'By founding a Creative Writing Agency, Magizh can collaborate with talented writers and offer professional writing services for clients across diverse industries, showcasing his creative expertise and storytelling skills.'}, {'title': 'Music Production Studio', 'content': "Venturing into a Music Production Studio business can leverage Magizh's musical talents, offering a platform for aspiring musicians to record and produce their music, contributing to the music industry with innovative sounds."}, {'title': 'Online Art Store', 'content': 'Launching an Online Art Store can be a lucrative business opportunity for Magizh, curating and selling artistic creations online, reaching a global audience and expanding his reach in the art market.'}]}
 
     CarrerTitle = {
         "suitable_professions" : "Child’s Successful Career Path & Suitable Professions", 
@@ -961,15 +1016,13 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             pdf.ContentDesign(random.choice(DesignColors),"",v,path)
         else:
             pdf.ContentDesign(random.choice(DesignColors),CarrerTitle[k],v,path)
-            
-    pdf.IndexPage(path,"Subconscious Mind",6)
-                        
-    pdf.AddPage(path)
+                                    
+    pdf.AddPage(path,"Subconscious Mind Analysis")
     # con = chapterPrompt(planets,5,name,gender)
-    con = {'subconscious_mind': "Based on Grishma's astrology details, their subconscious mind may have limiting beliefs related to self-worth, communication, relationships, and emotions due to the placements of planets in different houses. There may be fears surrounding authority figures, responsibilities, and expressing emotions openly. It's essential to address these subconscious beliefs to overcome obstacles and achieve success.", 'personalized_affirmations': [{'title': 'Self-Worth Affirmation', 'content': 'I am worthy of love, success, and abundance. I embrace my unique qualities and value.'}, {'title': 'Communication Affirmation', 'content': 'I express myself clearly and confidently. My voice is powerful and valuable.'}, {'title': 'Relationship Affirmation', 'content': 'I attract positive and loving relationships into my life. I deserve healthy connections.'}, {'title': 'Emotional Healing Affirmation', 'content': 'I allow myself to feel and release emotions. I am worthy of inner peace and emotional balance.'}, {'title': 'Success Affirmation', 'content': 'I am capable of achieving my goals and dreams. Success follows me in everything I do.'}], 'visualizations': [{'title': 'Self-Love Visualization', 'content': 'Visualize a bright light surrounding you, filling you with love and acceptance. See yourself radiating confidence and self-worth.'}, {'title': 'Clear Communication Visualization', 'content': 'Imagine a stream of clear water flowing through your throat chakra, helping you communicate with clarity and honesty.'}, {'title': 'Healthy Relationship Visualization', 'content': 'Visualize yourself surrounded by a circle of light, attracting positive and supportive relationships that align with your highest good.'}, {'title': 'Emotional Release Visualization', 'content': 'Picture a release of colorful balloons symbolizing your emotions lifting away, leaving you feeling light and free.'}, {'title': 'Success Manifestation Visualization', 'content': 'Visualize yourself achieving your greatest success, feeling the emotions of accomplishment and fulfillment.'}], 'meditations': [{'title': 'Self-Worth Meditation', 'content': "Sit in a comfortable position, close your eyes, and repeat the affirmation 'I am worthy' with each breath. Feel a sense of worthiness filling your being."}, {'title': 'Communication Meditation', 'content': 'Focus on your throat chakra during meditation, visualizing it glowing with blue light. Imagine speaking your truth with ease and confidence.'}, {'title': 'Relationship Healing Meditation', 'content': 'Imagine a pink light of love surrounding your heart chakra during meditation. Send love to yourself and others, healing past relationship wounds.'}, {'title': 'Emotional Balance Meditation', 'content': 'Sit in meditation and observe your emotions without judgment. Allow them to flow and release, bringing inner peace and balance.'}, {'title': 'Success Visualization Meditation', 'content': 'Visualize yourself achieving your goals during meditation. Feel the emotions of success and abundance filling your being.'}]}
+    con = {'subconscious_mind': "Based on Magizh's astrology details, the subconscious mind may hold limiting beliefs related to self-worth, relationships, and transformation. There could be hidden fears regarding personal identity, financial stability, and deep-rooted anxiety about the unknown and spiritual growth.", 'personalized_affirmations': [{'title': 'I am worthy of love and success', 'content': "Repeat this affirmation 21 times every morning and evening: 'I am worthy of love and success, and I embrace my uniqueness.'"}, {'title': 'I attract positive relationships into my life', 'content': "Recite this affirmation 15 times before bedtime: 'I attract positive relationships into my life, and I surround myself with love and support.'"}, {'title': 'I trust in the process of transformation', 'content': "Say this affirmation 18 times during meditation: 'I trust in the process of transformation, and I release fear of the unknown.'"}, {'title': 'I am financially secure and abundant', 'content': "Repeat this affirmation 20 times while visualizing abundance: 'I am financially secure and abundant, and I welcome prosperity into my life.'"}, {'title': 'I embrace spiritual growth and enlightenment', 'content': "Recite this affirmation 17 times while connecting with nature: 'I embrace spiritual growth and enlightenment, and I am guided by inner wisdom.'"}], 'visualizations': [{'title': 'Golden Light of Self-Worth', 'content': 'Visualize a golden light surrounding you, affirming your self-worth and radiating love. Imagine this light expanding with each breath, filling you with confidence and positivity.'}, {'title': 'Fear Release Bonfire', 'content': 'Visualize writing down your fears on paper, then burning the paper in a bonfire. As the flames consume your fears, feel a sense of liberation and freedom washing over you.'}, {'title': 'Transformational Butterfly', 'content': 'Visualize yourself as a butterfly emerging from a cocoon, symbolizing transformation and growth. Feel the lightness and freedom of the butterfly as you soar towards new possibilities.'}, {'title': 'Abundance Fountain', 'content': 'Imagine a fountain overflowing with abundance and prosperity. Visualize yourself bathing in the waters of abundance, feeling financial security and wealth flowing into your life.'}, {'title': 'Mystical Forest of Enlightenment', 'content': 'Visualize walking through a mystical forest filled with wisdom and enlightenment. Connect with the energy of the forest, absorbing the knowledge and guidance it offers for your spiritual journey.'}], 'meditations': [{'title': 'Self-Worth Affirmation Meditation', 'content': "Sit in a comfortable position, close your eyes, and repeat the affirmation 'I am worthy of love and success' for 10 minutes. Focus on feeling the truth of the affirmation in your heart and soul."}, {'title': 'Fear Release Breathing Meditation', 'content': 'Take deep breaths in and out, visualizing inhaling calmness and exhaling fear. Spend 15 minutes releasing any fears or anxieties with each breath, opening yourself to peace and serenity.'}, {'title': 'Transformation Visualization Meditation', 'content': 'Visualize your body and mind undergoing a transformation process, shedding old beliefs and embracing new possibilities. Meditate on this transformation for 20 minutes, feeling the energy shift within you.'}, {'title': 'Abundance Manifestation Meditation', 'content': 'Imagine a stream of golden light entering the crown of your head, filling you with abundance and prosperity. Meditate on this flow of abundance for 25 minutes, allowing yourself to attract financial security and wealth.'}, {'title': 'Enlightenment Connection Meditation', 'content': 'Sit in silence and focus on connecting with your inner wisdom and higher self. Spend 30 minutes in meditation, deepening your spiritual connection and opening yourself to enlightenment and guidance.'}]}
 
     subTitle = {
-        "subconscious_mind" : "Child’s SubConscious Mind Insights",
+        "subconscious_mind" : "",
         "personalized_affirmations" : "Personalized Affirmations", 
         "visualizations" : "Visualization Techniques", 
         "meditations": "Meditation Practices"
@@ -988,17 +1041,18 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         
         pdf.ContentDesign(random.choice(DesignColors),subTitle[k],v,path)
         
-    pdf.AddPage(path)
+    pdf.AddPage(path,"Unique Talents and Natural Skills")
     
     uniqueTitle = {
-        'insights': "Childs Unique Talents & Natural Values ", 
+        'insights': "", 
         'education' : "Unique Talents in Academics ", 
         'arts_creative' :"Unique Talents in Arts & creativity ",
         'physical_activity': "Unique Talents in Physical Activity"
     }
     # con = chapterPrompt(planets,0,name,gender)
-    con = {'insights': 'Grishma, with a Virgo ascendant and Mercury placed in the 7th House of Pisces, possesses a blend of analytical and intuitive abilities. Their intellectual prowess is heightened by a strong connection to imaginative realms, enhancing their communication skills and creative problem-solving. The positioning of Jupiter in the 2nd House of Libra further amplifies their sense of harmony and beauty, leading to a balanced approach in various aspects of life. Mars in the 5th House of Capricorn, alongside Moon and Ketu, ignites a passion for ambitious pursuits and emotional depth. Saturn in the 4th House of Sagittarius instills a sense of responsibility and discipline in family matters and foundations.', 'education': [{'title': 'Analytical Mind', 'content': 'Grishma displays a natural talent for analytical thinking and logical reasoning, excelling in subjects that require systematic approaches and critical analysis.'}, {'title': 'Creative Communication', 'content': 'Their ability to express ideas creatively and intuitively makes them proficient in language arts, writing, and public speaking, captivating audiences with their unique style.'}, {'title': 'Adaptive Learning', 'content': "Grishma's flexible learning style allows them to adapt quickly to new environments and concepts, facilitating continuous growth and knowledge acquisition."}, {'title': 'Research Aptitude', 'content': 'With a keen interest in delving deep into subjects, Grishma demonstrates excellent research skills and a thirst for uncovering hidden truths and unconventional perspectives.'}, {'title': 'Versatile Education', 'content': 'Their diverse interests and versatile nature enable Grishma to excel in a wide range of subjects, showcasing adaptability and a holistic approach to learning.'}], 'arts_creative': [{'title': 'Harmonious Expressions', 'content': "Grishma's artistic talents shine through in their ability to create harmonious compositions, be it in music, art, or design, reflecting their innate sense of balance and aesthetics."}, {'title': 'Emotional Artistry', 'content': 'Their creative expressions are deeply rooted in emotional resonance, allowing them to convey complex feelings and experiences through various artistic mediums with profound impact.'}, {'title': 'Innovative Imagination', 'content': "Grishma's imaginative prowess fuels their innovative spirit, leading to unique and original creations that push boundaries and inspire others in the artistic realm."}, {'title': 'Aesthetic Appreciation', 'content': 'With a natural eye for beauty and aesthetics, Grishma possesses a keen sense of visual harmony and design, influencing their creative endeavors with elegance and style.'}, {'title': 'Expressive Storytelling', 'content': 'Their storytelling abilities are marked by vivid imagery, evocative narratives, and a gift for weaving compelling tales that captivate and enchant their audience.'}], 'physical_activity': [{'title': 'Energetic Pursuits', 'content': "Grishma's physical activities are characterized by high energy levels and a zest for movement, excelling in dynamic sports and outdoor adventures that challenge their physical abilities."}, {'title': 'Mindful Movement', 'content': 'Their approach to physical hobbies involves a mindful connection between body and mind, emphasizing balance, flexibility, and coordination in activities like yoga, dance, or martial arts.'}, {'title': 'Competitive Spirit', 'content': 'Grishma thrives in competitive environments, showcasing determination, resilience, and a drive to excel in sports and games that test their endurance and strategic thinking.'}, {'title': 'Adventure Seeker', 'content': 'Their passion for exploration and excitement leads Grishma to engage in adrenaline-pumping activities, seeking new thrills and experiences that push their boundaries and ignite their adventurous spirit.'}, {'title': 'Team Player', 'content': 'In group sports and collaborative activities, Grishma demonstrates strong teamwork skills, social awareness, and a natural ability to synchronize with others, fostering a sense of unity and camaraderie in shared physical pursuits.'}]}
-
+    
+    con = {'education': [{'title': 'Analytical Thinking', 'content': 'Magizh has a natural talent for analytical thinking and problem-solving, especially in educational pursuits. His Mercury in the 3rd house of Sagittarius enhances his ability to communicate ideas effectively and explore diverse subjects with depth and curiosity.'}, {'title': 'Philosophical Insight', 'content': 'With Mercury in Sagittarius in the 3rd house, Magizh possesses a deep interest in philosophical concepts and higher learning. He may excel in subjects that require abstract thinking and philosophical insights, making him a natural philosopher.'}, {'title': 'Adventurous Learning', 'content': 'Magizh is inclined towards adventurous learning experiences due to his Mercury in the 3rd house of Sagittarius. He thrives in environments that challenge his intellect and broaden his horizons, making him an enthusiastic learner.'}, {'title': 'Multilingual Skills', 'content': "Given Mercury's placement in Sagittarius, Magizh may have a flair for languages and possess multilingual skills. His ability to adapt to different linguistic structures and communicate effectively in various languages sets him apart in intellectual pursuits."}, {'title': 'Research Abilities', 'content': "Magizh's Mercury in Sagittarius in the 3rd house indicates strong research abilities. He has a natural inclination towards exploring new ideas, conducting in-depth investigations, and uncovering hidden knowledge, making him a skilled researcher."}], 'arts_creative': [{'title': 'Harmonious Artistic Expression', 'content': 'Magizh demonstrates a harmonious and balanced artistic expression with Venus in the 1st house of Libra. His creative endeavors are characterized by beauty, grace, and elegance, reflecting his Venusian influences in artistic pursuits.'}, {'title': 'Aesthetic Sensibility', 'content': 'With Venus in Libra in the 1st house, Magizh possesses a refined aesthetic sensibility. He has a keen eye for beauty, symmetry, and design, allowing him to create visually appealing artworks and appreciate artistic endeavors with discernment.'}, {'title': 'Diplomatic Communication', 'content': "Magizh's Venus placement in Libra enhances his diplomatic communication skills. He excels in expressing himself tactfully, fostering harmony in relationships, and using his artistic talents to convey messages effectively and persuasively."}, {'title': 'Creative Problem-Solving', 'content': "Magizh's Venus in Libra in the 1st house empowers him with creative problem-solving abilities. He approaches challenges with creativity, innovation, and a sense of balance, finding unique solutions through his artistic flair and ingenuity."}, {'title': 'Musical Talent', 'content': "Given Venus's influence, Magizh may possess musical talent and a deep appreciation for melodic vibrations. His artistic expressions through music are likely to be emotive, soulful, and resonant, showcasing his Venusian creativity."}], 'physical_activity': [{'title': 'Intense Physical Energy', 'content': "Magizh exhibits intense physical energy and drive with Mars in the 2nd house of Scorpio. His passion for physical activities is fueled by Mars's influence, making him determined, competitive, and resilient in pursuing his fitness goals."}, {'title': 'Strength and Endurance', 'content': 'With Mars in Scorpio in the 2nd house, Magizh possesses remarkable strength and endurance. He excels in activities that require stamina, power, and perseverance, showcasing his ability to overcome challenges and push his physical limits.'}, {'title': 'Strategic Sportsmanship', 'content': "Magizh's Mars placement in Scorpio enhances his strategic approach to sportsmanship and physical activities. He excels in competitive sports that demand strategic thinking, assertiveness, and calculated moves, showcasing his Mars-driven determination."}, {'title': 'Martial Arts Proficiency', 'content': "Given Mars's influence, Magizh may excel in martial arts and combat sports. His aggressive yet disciplined approach to training and combat situations highlights his Mars-related skills in self-defense, agility, and precision."}, {'title': 'Active Lifestyle Advocate', 'content': "Magizh's Mars in Scorpio in the 2nd house indicates his advocacy for an active lifestyle. He encourages others to embrace physical fitness, engage in vigorous activities, and prioritize their health and well-being, reflecting his Mars-driven passion for active living."}], 'insights': 'Magizh possesses a unique blend of intellectual curiosity, artistic sensibility, and physical vigor, as reflected in his Mercury, Venus, and Mars placements. His strong analytical thinking, philosophical insights, and adventurous learning spirit make him a versatile learner and a natural researcher. In the creative realm, his harmonious artistic expression, diplomatic communication, and musical talents set him apart in creative endeavors. Additionally, his intense physical energy, strategic sportsmanship, and advocacy for an active lifestyle showcase his leadership qualities and determination in physical pursuits. By nurturing these talents effectively and providing opportunities for growth and expression, Magizh can enhance his innate abilities and reach his full potential across intellectual, artistic, and physical domains.'}
+    
     for index,(k, v) in enumerate(con.items()):
         if pdf.get_y() + 40 >= 260:  
             pdf.AddPage(path)
@@ -1007,14 +1061,11 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         pdf.ContentDesign(random.choice(DesignColors),uniqueTitle[k],v,path)
         
         
-    pdf.AddPage(path)
-    pdf.set_font('Karma-Heavy', '', 28)
-    pdf.set_y(30)
-    pdf.cell(0,0,"Karmic Life Lessons ",align='C')
-    pdf.set_y(pdf.get_y() + 5)
-        
+    pdf.AddPage(path,"Karmic Life Lessons")        
     # con = chapterPrompt(planets,7,name,gender)
-    con = {'child_responsibility_discipline': "Grishma's karmic life lessons related to Saturn are influenced by Saturn's placement in the 4th house of Sagittarius. This placement indicates that Grishma's life lessons revolve around establishing a sense of emotional security and stability within the family. Saturn here emphasizes the importance of responsibility, discipline, and hard work in building a strong foundation for emotional fulfillment. Grishma is likely to face challenges that test their patience and perseverance in creating a harmonious home environment. It is crucial for Grishma to embrace responsibilities with maturity and dedication, fostering a sense of stability and security for themselves and their loved ones. Avoiding escapism or neglecting family duties will be key to navigating Saturn's karmic influence in a positive light.", 'child_desire_ambition': "Grishma's karmic life lessons related to Rahu stem from Rahu's placement in the 11th house of Cancer. This positioning signifies a strong desire for social recognition, material wealth, and fulfillment of ambitious aspirations. Grishma may possess a natural drive for success and achievement, seeking to establish themselves in social circles and pursue their goals with determination. However, Rahu's influence can lead to obsessions with status and material possessions, creating a tendency towards self-centeredness and manipulation in pursuit of desires. Grishma should be cautious of becoming overly fixated on external validation and material gains, prioritizing genuine connections and ethical pursuits over superficial achievements to balance Rahu's karmic lessons.", 'child_spiritual_wisdom': "Grishma's karmic life lessons related to Ketu are shaped by Ketu's placement in the 5th house of Capricorn. This placement indicates a strong emphasis on spiritual growth, inner wisdom, and detachment from material pursuits. Grishma is likely to possess an innate wisdom and a deep introspective nature, prioritizing introspection and self-discovery over external gratifications. Ketu's influence in the 5th house encourages Grishma to seek spiritual fulfillment through creative expression, education, and cultivating a sense of inner purpose. It is essential for Grishma to embrace detachment from ego-driven desires and societal expectations, focusing on inner spiritual wisdom and self-realization. Avoiding attachment to external validations and worldly pleasures will be crucial in navigating Ketu's karmic influence positively."}
+    
+    con = {'child_responsibility_discipline': "Magizh, with Saturn placed in the Fifth house of Aquarius, your karmic life lesson revolves around responsibility and discipline. You are meant to learn the importance of taking on responsibilities seriously and maintaining discipline in all aspects of life. Avoid being careless or impulsive in decision-making, as Saturn's influence urges you to be accountable and focused to achieve your goals.", 'child_desire_ambition': "Magizh, with Rahu placed in the Sixth house of Pisces, your karmic life lesson is linked to desire and ambition. It is crucial for you to be aware of your desires and ambitions, as Rahu's placement suggests a strong drive for material success. However, be cautious of overindulgence and extreme ambitions that may lead you astray. Your purpose in life may involve overcoming illusions and achieving spiritual growth.", 'child_spiritual_wisdom': 'Magizh, with Ketu placed in the 12th house of Virgo, your karmic life lesson is centered around spiritual wisdom. You are encouraged to detach from material desires and seek spiritual truths. Avoid getting lost in worldly matters and focus on deepening your spiritual understanding. Your destiny may involve seeking enlightenment and spiritual liberation, transcending worldly attachments and illusions.'}
+
     
     karmicTitle = {
         "child_responsibility_discipline": "Saturn's Life Lesson",
@@ -1028,10 +1079,10 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         
         pdf.ContentDesign(random.choice(DesignColors),karmicTitle[k],v,path)
                             
-    pdf.AddPage(path,"Sadhesati Analysis")
-    roundedBox(pdf,"#D2CEFF",20,35,pdf.w-40,40,5)
+    pdf.AddPage(path,"Sadhe Sati Analysis")
+    roundedBox(pdf,"#D2CEFF",20,pdf.get_y() + 5,pdf.w-40,40,5)
     pdf.set_font('Karma-Regular', '', 14)
-    pdf.set_xy(22.5,36.5)
+    pdf.set_xy(22.5,pdf.get_y() + 6.5)
     pdf.set_text_color(0,0,0)
     pdf.multi_cell(pdf.w - 45,7,"Sadhe Sati refers to the seven-and-a-half-year period in which Saturn moves through three signs, the moon sign, one before the moon and the one after it. Sadhe Sati starts when Saturn (Shani) enters the 12th sign from the birth Moon sign and ends when Saturn leaves the 2nd sign from the birth Moon sign.",align='L')
         
@@ -1048,117 +1099,134 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     end_time = ""
     
     if current_saturn['Sign'] == moon['sign']:
-        sadhesati_status = ""
+        sadhesati_status = "yes"
         start_time = current_saturn['Start Date']
         end_time = current_saturn['End Date']
     elif previous_sign == current_saturn['Sign']:
-        sadhesati_status = ""
+        sadhesati_status = "yes"
         prev = saturn_pos[saturn_pos.index(current_saturn) + 1]
         start_time = prev['Start Date']
         end_time = prev['End Date']
         end_date = datetime.strptime(end_time, "%B %d, %Y")
         if end_date < datetime.now():
-            sadhesati_status = "not " 
+            sadhesati_status = "not" 
             saturn_pos.remove(saturn_pos[saturn_pos.index(current_saturn) + 1])
             next_saturn = get_next_sade_sati(saturn_pos,moon['sign'])
             start_time = next_saturn['Start Date']
             end_time = next_saturn['End Date']
     elif next_sign == current_saturn['Sign']:
-        sadhesati_status = ""
+        sadhesati_status = "yes"
         next = saturn_pos[saturn_pos.index(current_saturn) - 1]
         start_time = next['Start Date']
         end_time = next['End Date']
         end_date = datetime.strptime(end_time, "%B %d, %Y")
         if end_date < datetime.now():
-            sadhesati_status = "not " 
+            sadhesati_status = "not" 
             saturn_pos.remove(saturn_pos[saturn_pos.index(current_saturn) - 1])
             next_saturn = get_next_sade_sati(saturn_pos,moon['sign'])
             start_time = next_saturn['Start Date']
             end_time = next_saturn['End Date']
     else:
-        sadhesati_status = "not " 
+        sadhesati_status = "not" 
         next_saturn = get_next_sade_sati(saturn_pos,moon['sign'])
         start_time = next_saturn['Start Date']
         end_time = next_saturn['End Date']
+        
+    pdf.set_y(pdf.get_y() + 12.5)
+    pdf.set_font('Karma-Heavy', '', 24)
+    pdf.cell(0, 0, f"Presence of Sadhesati in {name}", align='C')
+    pdf.set_y(pdf.get_y() + 10)
+    pdf.set_font('Karma-Regular', '', 14)
 
-    pdf.set_text_color(hex_to_rgb("#B26F0B"))
     pdf.set_fill_color(hex_to_rgb("#F5E7D2"))
     pdf.set_draw_color(hex_to_rgb("#B26F0B"))
-    pdf.rect(20,80,pdf.w - 40,15,corner_radius=40.0,round_corners=True,style='DF')
-    pdf.set_y(88)
-    pdf.cell(0,0,f"Your Child currently {sadhesati_status}undergoing Sadhesati.",align='C')
-    pdf.set_text_color(hex_to_rgb("#B26F0B"))
-    pdf.set_fill_color(hex_to_rgb("#FFD4D4"))
-    pdf.set_draw_color(hex_to_rgb("#B32727"))
-    pdf.rect(35,100,pdf.w - 70,15,corner_radius=40.0,round_corners=True,style='DF')
-    pdf.set_y(100)
-    pdf.cell(0,15,f"Start Date: {start_time}, End Date : {end_time}",align='C')
-    pdf.set_text_color(0,0,0)
-    roundedBox(pdf,"#FFCEE0",20,120,pdf.w-40,80)
-    pdf.set_xy(22.5,122.5)
+    pdf.rect(20, pdf.get_y(), pdf.w - 40, 70, corner_radius=10.0, round_corners=True, style='DF')
+    
+    pdf.image(f"{path}/babyImages/{sadhesati_status}.png", 25, pdf.get_y() + 20, 30, 30)
+
+    x_start = 60 
+    y_start = pdf.get_y() + 15
+    pdf.set_xy(x_start, y_start)
+    
+    statusDetails = {
+        "not" : f"{name} is not undergoing",
+        "yes" : f"{name} is currently undergoing",
+    }
+
+    table_data = [
+        ("Sadhesati Status:", f"{statusDetails[sadhesati_status]}"),
+        ("Current Sign:", f"{current_saturn['Sign']}"),
+        ("Child Moon Sign:", f"{moon['sign']}"),
+        ("Except Date:", f"{start_time} - {end_time}")
+    ]
+
+    for row in table_data:
+        pdf.cell(40, 10, row[0],new_x=XPos.RIGHT, new_y=YPos.TOP)
+        pdf.multi_cell(75, 10, row[1], new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+        y_start += 10
+        pdf.set_xy(x_start, y_start)
+        
+    roundedBox(pdf,"#FFCEE0",20,pdf.get_y() + 25,pdf.w-40,80)
+    pdf.set_xy(22.5,pdf.get_y() + 27.5)
     pdf.set_font('Karma-Semi', '', 18) 
     pdf.multi_cell(pdf.w - 45,8,"Sadhesati Overview and Effects",align='L')
-    pdf.set_xy(22.5,132.5)
+    pdf.set_xy(22.5,pdf.get_y() + 2.5)
     pdf.set_font('Karma-Regular', '', 12) 
     pdf.multi_cell(pdf.w - 45,8,"       Sade Sati is a significant astrological period lasting seven and a half years, during which Saturn transits over the Moon's position and the two adjacent houses in a birth chart. This phase often brings challenges, including emotional stress, financial instability, and personal setbacks. The impact of Sade Sati can vary based on Saturn's placement and other planetary influences in the birth chart. Remedies such as performing Saturn-related pujas, wearing specific gemstones, and engaging in charitable activities can help alleviate the negative effects and provide support during this period.",align='L')
+
     
-    roundedBox(pdf,"#FFCEE0",20,205,pdf.w-40,60)
-    pdf.set_xy(22.5,210)
-    pdf.set_font('Karma-Semi', '', 18) 
-    pdf.cell(0,0,"Effects on Sade Sati dosha on individual 's life")
-    pdf.set_font('Karma-Regular', '', 14)
-    for k in Sade_Sati_Analysis:
-        if pdf.get_y() + 40 >= 270:
+    pdf.AddPage(path,f"Life Stones and Benefic/Lucky Stones")
+
+    fiveHouseLord = zodiac_lord[((zodiac.index(asc['sign']) + 5) % 12) - 1]
+    
+    
+    stones = [Planet_Gemstone_Desc[asc['zodiac_lord']],Planet_Gemstone_Desc[ninthHouseLord],Planet_Gemstone_Desc[fiveHouseLord]]
+    stoneName = [f'Life Stone','Benefictical Stone', 'Lucky Stone']
+
+    content = [
+        {
+            "Why Life Stone" : "The Ascendant, or LAGNA, represents the self and all aspects tied to it, such as health, vitality, status, identity, and life direction. It embodies the core essence of existence. The gemstone associated with the LAGNESH, the ruling planet of the Ascendant, is known as the LIFE STONE. Wearing this stone throughout one’s life ensures access to its profound benefits and transformative energies.",
+            "Description" : stones[0]['Description']
+        },
+        {
+            "Why Benefictical Stone" : "The Fifth House in the birth chart is a highly favorable domain. It governs intellect, advanced learning, children, unexpected fortunes, and more. This house also represents the STHANA of PURVA PUNYA KARMAS, signifying rewards from past virtuous actions. Thus, it is regarded as a house of blessings. The gemstone linked to the lord of the Fifth House is known as the BENEFIC STONE.",
+            "Description" : stones[1]['Description']
+        },
+         {
+            "Why Lucky Stone" : "The Ninth House in a birth chart, known as the BHAGYA STHAANA or the House of Luck, symbolizes destiny and fortune. It governs success, achievements, wisdom, and the blessings earned through good deeds in past lives. This house reveals the rewards one is destined to enjoy. The gemstone associated with the lord of the Ninth House is aptly called the LUCKY STONE.",
+            "Description" : stones[2]['Description']    
+        }
+    ]
+    pdf.set_y(pdf.get_y() + 5)
+    for index,stone in enumerate(content):
+        if index != 0:  
             pdf.AddPage(path)
-            pdf.set_y(30)
-            roundedBox(pdf,"#FFCEE0",20,30,pdf.w-40,167.5)
-        pdf.set_xy(22.5,pdf.get_y() + 5)
-        pdf.multi_cell(pdf.w - 45,8,f"      {k}",align='L')
-    pdf.image(f'{path}/babyImages/end.png',(pdf.w / 2) - 15,210,30,0)
+            pdf.set_y(20)
+            
+        if stones[index]['Gemstone'] == "Ruby" or stones[index]['Gemstone'] == "Red Coral" or stones[index]['Gemstone'] == "Emerald":
+            pdf.image(f"{path}/babyImages/stone_bg.png",pdf.w / 2 - 22.5, pdf.get_y() + 40,45,0)   
+        else:
+            pdf.image(f"{path}/babyImages/stone_bg.png",pdf.w / 2 - 22.5, pdf.get_y() + 30,45,0)           
+        pdf.image(f"{path}/babyImages/{stones[index]['Gemstone']}.png",pdf.w / 2 - 22.5, pdf.get_y() + 5,45,0)
+        if stones[index]['Gemstone'] == "Ruby" or stones[index]['Gemstone'] == "Red Coral" or stones[index]['Gemstone'] == "Emerald":
+            pdf.set_y(pdf.get_y() + 10)
+        pdf.set_font('Karma-Heavy', '', 26)
+        pdf.set_text_color(0,0,0)
+        pdf.set_y(pdf.get_y() + 55)
+        pdf.cell(0,0,f"{stoneName[index]} : {stones[index]['Gemstone']}",align='C')
+        for k,v in stone.items():
+            pdf.ContentDesign(random.choice(DesignColors),k,v,path)
     
-    asc = list(filter(lambda x: x['Name'] == 'Ascendant', planets))[0]
-    
-    pdf.AddPage(path,"Lucky Stone")
-    roundedBox(pdf,"#D2CEFF",25,40,pdf.w-50,35)
-    pdf.set_xy(30,42)
-    pdf.set_text_color(hex_to_rgb("#2F2B5E"))
-    pdf.set_font('Karma-Regular', '', 13)
-    pdf.multi_cell(pdf.w - 60,8,f"Based on the analysis of your child's Aura, we have selected several gemstones for you. These stones are chosen to complement your child astrological profile, with the potential to enhance your child fortune and overall well-being.",align='L')
-    
-    stone = Planet_Gemstone_Desc[asc['zodiac_lord']]
-    
-    pdf.set_text_color(0,0,0)
-    pdf.set_font('Karma-Heavy', '', 26)
-    pdf.set_y(85)
-    pdf.cell(0,0,f"{stone['Gemstone']}",align='C')
-    if stone['Gemstone'] == "Ruby" or stone['Gemstone'] == "Red Coral" or stone['Gemstone'] == "Emerald":
-            pdf.image(f"{path}/babyImages/stone_bg.png",pdf.w / 2 - 22.5, 135,45,0)           
-    else:
-        pdf.image(f"{path}/babyImages/stone_bg.png",pdf.w / 2 - 22.5, 130,45,0)           
-    pdf.image(f"{path}/babyImages/{stone['Gemstone']}.png",pdf.w / 2 - 22.5, 100,45,0)
-    pdf.set_xy(15,150)
-    pdf.set_font('Karma-Regular', '', 14)
-    pdf.multi_cell(pdf.w - 30,8,f"      {gemstone_content[asc['sign']]} \n\n        {stone['Description']}",align='L')
-    pdf.AddPage(path)
-    pdf.set_font('Karma-Heavy', '', 22)
-    pdf.set_xy(20,30)
-    pdf.cell(0,0,f"About {stone['Gemstone']}:",align='L')
-    for v in Gemstone_about[stone['Gemstone']]:
-        pdf.set_font('Karma-Regular', '', 16) 
-        pdf.set_xy(22.5,pdf.get_y() + 5)
-        pdf.multi_cell(pdf.w - 45,8,f'» {v}',align='L')
     pdf.image(f'{path}/babyImages/end.png',(pdf.w / 2) - 15,pdf.get_y() + 20,30,0)
     
-    pdf.AddPage(path,"Rudraksha Suggestions")
+    pdf.AddPage(path,"Rudraksha Recommendations")
     pdf.image(f"{path}/babyImages/rudra.png",pdf.w / 2 - 32.5, 40,65,0)
     roundedBox(pdf,"#FDF0D5",25,110,pdf.w-50,37.5)
     pdf.set_xy(30,112)
     pdf.set_text_color(0,0,0)
     pdf.set_font('Karma-Regular', '', 13)
     pdf.multi_cell(pdf.w - 60,8,f"Learn about your child's Rudraksha to improve various aspects of your life. Rudraksha beads have unique properties that, when worn near the heart, can affect your child brain in different ways depending on their type. This can help change your child's mood and mindset.",align='L')
-    pdf.set_xy(22.5,160)
-    pdf.set_font('Karma-Semi', '', 18)
-    pdf.cell(pdf.w - 45,0,"Why Rudraksha for wealth and prosperity?",align='L')
+    pdf.set_xy(22.5,pdf.get_y() + 5)
     pdf.set_font('Karma-Regular', '', 13)
     roundedBox(pdf,"#CCEAFF",25,167.5,pdf.w - 50,(pdf.no_of_lines(f"      {wealth_rudra[asc['sign']]}", pdf.w - 55) * 8) + 40)
     pdf.image(f"{path}/babyImages/{sign_mukhi[asc['sign']][0]}.png",pdf.w / 2 - 22.5 - 10, 175,20,0)
@@ -1171,54 +1239,17 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.set_xy(27.5,205)
     pdf.multi_cell(pdf.w - 55,8,f"      {wealth_rudra[asc['sign']]}")
     
-    pdf.AddPage(path)
-    pdf.set_xy(22.5,30)
-    pdf.set_font('Karma-Semi', '', 18)
-    pdf.cell(pdf.w - 45,0,"Why Rudraksha for health and vitality?",align='L')
-    pdf.set_font('Karma-Regular', '', 13)
-    roundedBox(pdf,"#CCFFF0",25,37.5,pdf.w - 50,pdf.no_of_lines(f"      {health_rudra[asc['sign']]}", pdf.w - 55) * 8 + 40)
-    pdf.image(f"{path}/babyImages/{sign_mukhi[asc['sign']][0]}.png",pdf.w / 2 - 22.5 - 10, 45,20,0)
-    pdf.image(f"{path}/babyImages/rudraPlus.png",pdf.w / 2 - 22.5 + 15, 50,10,0)
-    pdf.image(f"{path}/babyImages/{sign_mukhi[asc['sign']][1]}.png",pdf.w / 2 - 22.5 + 30, 45,20,0)
-    pdf.set_xy(pdf.w / 2 - 22.5 - 10,70)
-    pdf.cell(20,0,f"{sign_mukhi[asc['sign']][0]}",align='C')
-    pdf.set_xy(pdf.w / 2 - 22.5 + 25,70)
-    pdf.cell(20,0,f"{sign_mukhi[asc['sign']][1]}",align='C')
-    pdf.set_xy(27.5,75)
-    pdf.multi_cell(pdf.w - 55,8,f"      {health_rudra[asc['sign']]}")
-    
-    pdf.set_xy(22.5,165)
-    pdf.set_font('Karma-Semi', '', 18)
-    pdf.cell(pdf.w - 45,0,"Why Rudraksha for career and education?",align='L')
-    pdf.set_font('Karma-Regular', '', 13)
-    roundedBox(pdf,"#F2FFCC",25,172.5,pdf.w - 50,pdf.no_of_lines(f"      {career_rudra[asc['sign']]}", pdf.w - 55) * 8 + 40)
-    pdf.image(f"{path}/babyImages/{sign_mukhi[asc['sign']][0]}.png",pdf.w / 2 - 22.5 - 10, 180,20,0)
-    pdf.image(f"{path}/babyImages/rudraPlus.png",pdf.w / 2 - 22.5 + 15, 185,10,0)
-    pdf.image(f"{path}/babyImages/{sign_mukhi[asc['sign']][1]}.png",pdf.w / 2 - 22.5 + 30, 180,20,0)
-    pdf.set_xy(pdf.w / 2 - 22.5 - 10,205)
-    pdf.cell(20,0,f"{sign_mukhi[asc['sign']][0]}",align='C')
-    pdf.set_xy(pdf.w / 2 - 22.5 + 25,205)
-    pdf.cell(20,0,f"{sign_mukhi[asc['sign']][1]}",align='C')
-    pdf.set_xy(27.5,210)
-    pdf.multi_cell(pdf.w - 55,8,f"      {career_rudra[asc['sign']]}")
-    
-    pdf.AddPage(path)
-    pdf.set_xy(20,20)
-    pdf.set_font('Karma-Heavy', '', 24)
-    pdf.set_text_color(hex_to_rgb("#966A2F"))
-    pdf.multi_cell(pdf.w - 40,10,f"{name}'s Soul Desire and Soul Planet",align='C')
-    roundedBox(pdf,"#FFD7D7",20,35,pdf.w - 40,50)
+    pdf.AddPage(path,"Atma Karga & Ishta Devata ")
+    roundedBox(pdf,"#FFD7D7",20,pdf.get_y() + 4,pdf.w - 40,50)
     pdf.set_font('Karma-Semi', '', 20)
     pdf.set_text_color(0,0,0)
-    pdf.set_y(42)
+    pdf.set_y(pdf.get_y() + 10)
     pdf.cell(0,0,'AtmaKaraka',align='C')
     pdf.set_text_color(hex_to_rgb("#940000"))
     pdf.set_font_size(12)
-    pdf.set_xy(30,48)
-    pdf.multi_cell(pdf.w - 60,8,"Atmakaraka, a Sanskrit term for 'soul indicator' is the planet with the highest degree in your birth chart. It reveals your deepest desires and key strengths and weaknesses. Understanding your Atmakaraka can guide you toward your true purpose and inspire meaningful changes in your life.",align='L')
-    atma = list(filter(lambda x: x['order'] == 1,planets))[0]
-    if atma['Name'] == "Ascendant":
-        atma = list(filter(lambda x: x['order'] == 2,planets))[0]
+    pdf.set_xy(22.5,pdf.get_y() + 4)
+    pdf.multi_cell(pdf.w - 45,8,"Atmakaraka, a Sanskrit term for 'soul indicator' is the planet with the highest degree in your birth chart. It reveals your deepest desires and key strengths and weaknesses. Understanding your Atmakaraka can guide you toward your true purpose and inspire meaningful changes in your life.",align='L')
+    
     pdf.image(f"{path}/babyImages/atma_{atma['Name']}.jpeg",pdf.w / 2 - 22.5, 95,45,0)
     roundedBox(pdf,"#FFE7E7",45,182,pdf.w - 90,12)
     pdf.set_y(182)
@@ -1230,38 +1261,21 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.multi_cell(pdf.w - 45,8,f"      {athmakaraka[atma['Name']]}",align='L')
     
     pdf.AddPage(path,f"{name}'s Favourable God")
-    roundedBox(pdf,"#D7FFEA",20,35,pdf.w-40,40)
+    roundedBox(pdf,"#D7FFEA",20,pdf.get_y() + 5,pdf.w-40,40)
     pdf.set_font('Karma-Regular', '', 14) 
     pdf.set_text_color(hex_to_rgb("#365600"))
-    pdf.set_xy(22.5,37.5)
+    pdf.set_xy(22.5,pdf.get_y() + 7.5)
     pdf.multi_cell(pdf.w - 45,8,"       According to the scriptures, worshiping your Ishta Dev gives desired results. Determination of the Ishta Dev or Devi is determined by our past life karmas. There are many methods of determining the deity in astrology. Here, We have used the Jaimini Atmakaraka for Isht Dev decision.",align='L')
 
-    pdf.set_fill_color(*hex_to_rgb("#D2FFC3"))
-    pdf.rect(60,85,pdf.w - 120,15,corner_radius=100.0,round_corners=True,style='F')
-    pdf.set_text_color(hex_to_rgb("#0C7D11"))
-    pdf.set_font('Karma-Semi', '', 20) 
-    pdf.set_y(85)
-    pdf.cell(0,15,f"{name}'s Ishta Devatas",align='C')
-    asc = list(filter(lambda x: x['Name'] == "Ascendant",planets))[0]
-    ninthHouseLord = zodiac_lord[((zodiac.index(asc['sign']) + 9) % 12) - 1]
-
-    signLord = list(filter(lambda x: x['Name'] == ninthHouseLord,planets))[0]
-
-    isthadevathaLord = list(filter(lambda x: x['Name'] == signLord['Name'],planets))[0]['nakshatra_lord']
-    
-    isthaDeva = ista_devatas[isthadevathaLord]
     pdf.set_text_color(0,0,0)
-    pdf.image(f"{path}/{ista_images[isthadevathaLord][0]}",45, 110,45,0)
-    pdf.set_xy(67.5 - (pdf.get_string_width(f"{isthaDeva[0]}") / 2), 195)
-    pdf.cell(pdf.get_string_width(f"{isthaDeva[0]}"),0,f"{isthaDeva[0]}",align='L')
-    pdf.image(f"{path}/{ista_images[isthadevathaLord][1]}",120, 110,45,0)
-    pdf.set_xy(120, 195)
-    pdf.cell(0,0,f"{isthaDeva[1]}",align='L')
+    pdf.image(f"{path}/images/{isthaDeva[0]}.jpeg",pdf.w / 2 - 22.5, pdf.get_y() + 15,45,0)
+    pdf.set_y(pdf.get_y() + 100)
+    pdf.set_font('Karma-Semi', '', 22)
+    pdf.cell(0,0,f"{isthaDeva[0]}",align='C')
     pdf.set_draw_color(hex_to_rgb("#8A5A19"))
-    pdf.rect(20,202.5,pdf.w - 40,72.5,corner_radius=100.0,round_corners=True,style='D')
-    pdf.set_xy(22.5,203.5)
-    pdf.set_font('Karma-Regular', '', 11) 
-    pdf.multi_cell(pdf.w - 45,8,f"{ista_devata_desc[isthadevathaLord].capitalize()}",align='L')
+    pdf.set_xy(22.5,pdf.get_y() + 10)
+    pdf.set_font('Karma-Regular', '', 12) 
+    pdf.multi_cell(pdf.w - 45,8,f"      {ista_devata_desc[isthadevathaLord]}",align='L')
     
     pdf.add_page()
     pdf.image(f'{path}/babyImages/bg1.png',0,0,pdf.w,pdf.h)
@@ -1278,8 +1292,8 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.image(f"{path}/babyImages/dasa.png",110,25,90,0)
     
     # dasaOut = dasaPrompt(year,planets,dasa,name,gender)
-    dasaOut = [{'dasa': 'Rahu', 'bhukthi': 'Rahu', 'age': "At Grishma's age, Between 4 to 7", 'prediction': {'insights': "During the Rahu Dasa and Rahu Bhukti period, there will be intense transformative energies at play. This period is likely to bring sudden and unexpected changes in the Guru's life, particularly in areas related to friendships, social circles, and desires. It can be a time of intense self-discovery and a shift in perspectives, leading to new opportunities for growth and expansion.", 'challenges': [{'title': 'Emotional Turmoil', 'content': 'The Guru may experience emotional upheavals and inner conflicts during this period, leading to uncertainty and anxiety.'}, {'title': 'Power Struggles', 'content': 'There might be power struggles or conflicts with authority figures, leading to challenges in asserting independence.'}, {'title': 'Unpredictable Events', 'content': 'The Guru may face unexpected events or disruptions that can derail plans and cause stress and instability.'}, {'title': 'Risk of Deception', 'content': 'There is a risk of being deceived or misled by others, leading to trust issues and potential conflicts.'}, {'title': 'Health Concerns', 'content': 'The Guru may experience health-related challenges or unexpected issues that require attention and care.'}], 'precautions': [{'title': 'Self-Reflection and Meditation', 'content': 'Encourage the Guru to introspect and meditate regularly to maintain inner balance and clarity amidst the chaos.'}, {'title': 'Healthy Boundaries', 'content': 'Advise the Guru to establish healthy boundaries in relationships and interactions to avoid being taken advantage of.'}, {'title': 'Financial Planning', 'content': 'Focus on financial stability and long-term planning to mitigate the impact of financial uncertainties during this period.'}, {'title': 'Regular Exercise and Wellness Routine', 'content': 'Promote a regular exercise and wellness routine to manage stress and maintain physical health during this intense phase.'}, {'title': 'Seeking Counsel', 'content': 'Suggest seeking counsel from trusted mentors or guides to navigate through challenges and make informed decisions.'}], 'remedies': [{'title': 'Yoga and Mindfulness Practices', 'content': 'Encourage the Guru to practice yoga, mindfulness, or other calming activities to ease emotional stress and foster inner peace.'}, {'title': 'Engagement in Creative Outlets', 'content': 'Support the Guru in engaging in creative outlets or hobbies to channel the intense energies constructively and find emotional release.'}, {'title': 'Gratitude Journaling', 'content': 'Recommend maintaining a gratitude journal to focus on positive aspects of life and cultivate a mindset of gratitude amidst difficulties.'}, {'title': 'Community Support', 'content': 'Encourage participation in community activities or seeking support from friends and loved ones to build a strong support system during challenging times.'}, {'title': 'Charity and Service', 'content': 'Suggest engaging in charitable activities or service to others as a way to redirect energies positively and find fulfillment in giving back to the community.'}]}}, {'dasa': 'Rahu', 'bhukthi': 'Jupiter', 'age': "At Grishma's age, Between 7 to 9", 'prediction': {'insights': 'During the Rahu Dasa and Jupiter Bhukti period, the Guru may experience significant transformation and growth in relationships, spirituality, and career pursuits. This period could bring unexpected opportunities and expansion in various areas of life, leading to a deeper understanding of self and others. The influence of Rahu and Jupiter may enhance creativity, intuition, and wisdom, guiding the Guru towards new endeavours and spiritual insights.', 'challenges': [{'title': 'Overwhelm and Confusion', 'content': 'The Guru may feel overwhelmed by the multitude of opportunities and experiences, leading to confusion and indecision. Balancing various aspects of life may pose a challenge during this period.'}, {'title': 'Risk of Impulsivity', 'content': 'There is a risk of acting impulsively or taking unnecessary risks, especially in financial matters. The Guru should exercise caution and prudence to avoid hasty decisions.'}, {'title': 'Strained Relationships', 'content': 'Relationships, especially with family members and partners, may face challenges due to conflicting priorities and misunderstandings. Communication and patience are essential to navigate these issues.'}, {'title': 'Health Concerns', 'content': 'Health issues related to stress and anxiety may arise during this period. The Guru should prioritize self-care, proper nutrition, and regular exercise to maintain physical and mental well-being.'}, {'title': 'Career Instability', 'content': 'Career changes or instability in professional life could be a concern. The Guru may need to adapt to new roles or responsibilities, requiring flexibility and resilience.'}], 'precautions': [{'title': 'Maintain Balance and Focus', 'content': 'Encourage the Guru to maintain a balance between work, relationships, and personal growth. Setting priorities and focusing on important goals can help manage overwhelming situations.'}, {'title': 'Exercise Caution in Decisions', 'content': 'Advise the Guru to think carefully before making major decisions, especially financial ones. Seeking advice from trusted sources and considering long-term consequences can prevent impulsive actions.'}, {'title': 'Enhance Communication Skills', 'content': 'Support the Guru in improving communication with loved ones and colleagues. Encourage open dialogue, active listening, and clarity in expressing thoughts and emotions to avoid misunderstandings.'}, {'title': 'Prioritize Health and Well-being', 'content': 'Emphasize the importance of self-care practices such as meditation, yoga, and mindfulness to reduce stress and maintain physical health. A balanced diet and regular exercise routine can boost overall well-being.'}, {'title': 'Adapt to Changes in Career', 'content': 'Prepare the Guru to embrace changes in the professional sphere with a positive mindset. Developing new skills, networking, and staying adaptable to evolving opportunities can help navigate career challenges effectively.'}], 'remedies': [{'title': 'Meditation and Mindfulness Practices', 'content': 'Encourage the Guru to incorporate daily meditation and mindfulness practices to enhance clarity of thought, emotional stability, and spiritual growth. These practices can help reduce stress and enhance focus.'}, {'title': 'Seek Mentorship and Guidance', 'content': 'Recommend seeking guidance from mentors, spiritual leaders, or experts in relevant fields to gain insights and support in decision-making processes. Learning from experienced individuals can provide valuable perspectives.'}, {'title': 'Connect with Nature', 'content': 'Suggest spending time in nature regularly to rejuvenate and reconnect with natural rhythms. Nature walks, gardening, or outdoor activities can improve mental well-being and foster a sense of grounding and peace.'}, {'title': 'Express Gratitude Daily', 'content': 'Encourage the Guru to practice gratitude by reflecting on things they are thankful for each day. Gratitude journaling or expressing appreciation to others can cultivate a positive outlook and attract more blessings into their life.'}, {'title': 'Creative Outlets for Expression', 'content': 'Promote engaging in creative outlets such as art, music, writing, or dance to channel emotions and thoughts constructively. Creative expression can serve as a therapeutic tool and enhance self-discovery during this transformative period.'}]}}, {'dasa': 'Rahu', 'bhukthi': 'Saturn', 'age': "At Grishma's age, Between 9 to 12", 'prediction': {'insights': 'During the Rahu Dasa and Saturn Bhukti period, Guru may experience intense transformation and unexpected events that can impact relationships and career decisions. This period may bring significant changes and challenges, urging the Guru to adapt and grow in new directions.', 'challenges': [{'title': 'Emotional Turmoil', 'content': 'Guru may face emotional upheavals and inner conflicts during this period, leading to mood swings and uncertainty in decision-making.'}, {'title': 'Career Instability', 'content': "The Guru's career may face disruptions or obstacles during this phase, requiring patience and strategic planning to navigate through challenges."}, {'title': 'Health Concerns', 'content': 'There might be health issues or stress-related problems that the Guru needs to address with caution and proper care.'}, {'title': 'Financial Struggles', 'content': 'Financial setbacks or unexpected expenses may arise, necessitating prudent financial management and budgeting during this period.'}, {'title': 'Relationship Strain', 'content': 'Relationships, especially with family and colleagues, may face strain or misunderstandings, requiring open communication and patience to resolve conflicts.'}], 'precautions': [{'title': 'Maintain Emotional Balance', 'content': 'Encourage the Guru to practice mindfulness, meditation, or seek counseling to manage emotions and maintain mental well-being during challenging times.'}, {'title': 'Career Planning', 'content': 'Support the Guru in setting realistic goals, updating skills, and exploring new career opportunities to overcome obstacles and ensure professional growth.'}, {'title': 'Prioritize Health', 'content': 'Emphasize the importance of regular exercise, balanced diet, and stress-reducing activities to maintain physical health and well-being throughout the period.'}, {'title': 'Financial Planning', 'content': 'Assist the Guru in creating a budget, saving for emergencies, and avoiding impulsive financial decisions to mitigate financial challenges and improve stability.'}, {'title': 'Open Communication', 'content': 'Encourage open and honest communication in relationships, foster understanding, and resolve conflicts through patience, empathy, and active listening.'}], 'remedies': [{'title': 'Daily Meditation', 'content': 'Recommend daily meditation practice to calm the mind, reduce stress, and enhance clarity and focus in decision-making during challenging times.'}, {'title': 'Career Guidance', 'content': 'Seek career counseling or mentorship to identify strengths, weaknesses, and potential opportunities for professional development and success.'}, {'title': 'Healthy Lifestyle Changes', 'content': 'Promote healthy lifestyle habits such as regular exercise, balanced meals, and sufficient rest to boost immunity, energy levels, and overall well-being.'}, {'title': 'Financial Consultation', 'content': 'Consult a financial advisor to create a strategic financial plan, invest wisely, and build savings for long-term security and stability.'}, {'title': 'Relationship Counseling', 'content': 'Consider couples therapy or communication workshops to improve relationships, strengthen emotional bonds, and resolve conflicts effectively for harmonious interactions.'}]}}]
-
+    dasaOut = [{'dasa': 'Venus', 'bhukthi': 'Mars', 'age': "At Magizh's age, Between 1 to 2", 'prediction': {'insights': "During the Venus Dasa and Mars Bhukti period, Magizh may experience a mix of creativity and assertiveness in pursuing goals. The influence of Venus may bring harmony in relationships and a focus on aesthetics, while Mars' energy can drive ambition and determination. This period may enhance Magizh's social skills and leadership qualities, leading to opportunities for personal growth and achievement.", 'challenges': [{'title': 'Challenges in Communication', 'content': 'Magizh may face challenges in effectively expressing thoughts and emotions. There could be misunderstandings or conflicts in communication, leading to disruptions in relationships and professional interactions.'}, {'title': 'Struggles with Self-Confidence', 'content': 'Magizh might struggle with self-confidence and assertiveness during this period. Inner doubts and indecisiveness could hinder taking bold actions and seizing opportunities, impacting personal and professional growth.'}, {'title': 'Tendency towards Impulsiveness', 'content': 'Magizh may exhibit impulsive behavior and quick temperaments under the influence of Mars. This could lead to hasty decisions, conflicts, and strained relationships if not managed effectively.'}], 'precautions': [{'title': 'Develop Active Listening Skills', 'content': "Parents can encourage Magizh to practice active listening, where he focuses on understanding others' perspectives before responding. This can enhance communication and empathy, fostering healthier relationships and reducing conflicts."}, {'title': 'Encourage Mindfulness Practices', 'content': 'Parents can introduce mindfulness practices to help Magizh manage impulsiveness and enhance self-awareness. Guided meditation, deep breathing exercises, and mindfulness techniques can support Magizh in staying calm and making thoughtful decisions.'}], 'remedies': [{'title': 'Maintain a Balanced Diet', 'content': 'Encourage Magizh to follow a balanced diet rich in fresh fruits, vegetables, and whole grains to nurture physical and mental well-being. Adequate hydration and nutritious meals can support overall health and vitality during this period.'}, {'title': 'Chanting Venus and Mars Mantras', 'content': "Introduce Magizh to chanting Venus and Mars mantras like 'Om Shukraya Namaha' and 'Om Mangalaya Namaha' regularly. These sacred sounds can invoke the positive energies of the respective planets, balancing emotions and promoting harmony in relationships."}, {'title': 'Practice Creative Outlets', 'content': "Encourage Magizh to engage in creative outlets like painting, writing, or music to channel Venusian creativity and Mars' drive constructively. These activities can serve as outlets for expression, reduce stress, and boost confidence and self-expression."}]}}, {'dasa': 'Venus', 'bhukthi': 'Rahu', 'age': "At Magizh's age, Between 2 to 5", 'prediction': {'insights': "During the Venus Dasa and Rahu Bhukti period, Magizh is likely to experience a significant focus on relationships and spiritual growth. This period may bring unexpected changes and opportunities for personal transformation. Magizh's creativity and charm will be highlighted, leading to potential success in artistic pursuits or social endeavors. However, there may be some challenges related to confusion or deception in relationships and a tendency towards escapism. It is essential for Magizh to stay grounded and maintain clarity in decision-making during this time.", 'challenges': [{'title': 'Emotional Turmoil', 'content': 'Magizh may face emotional turbulence and inner conflicts, leading to uncertainty and mood swings during this period.'}, {'title': 'Relationship Struggles', 'content': 'There could be challenges in relationships, including issues of trust and misunderstandings that may create tension.'}, {'title': 'Spiritual Crisis', 'content': 'Magizh may experience a spiritual crisis, feeling disconnected or lost in the search for higher meaning and purpose.'}], 'precautions': [{'title': 'Mindful Communication', 'content': 'Encourage open and honest communication to prevent misunderstandings and conflicts in relationships. Practice active listening and empathy to foster deeper connections.'}, {'title': 'Emotional Stability Practices', 'content': 'Help Magizh develop emotional resilience through mindfulness practices, such as meditation and journaling, to navigate turbulent emotions and maintain inner balance.'}], 'remedies': [{'title': 'Meditation and Mindfulness', 'content': 'Encourage daily meditation practices to center the mind and cultivate inner peace. Mindfulness exercises can help Magizh stay present and grounded during challenging times.'}, {'title': 'Spiritual Healing Mantras', 'content': 'Introduce Magizh to sacred sounds and mantras for spiritual healing and protection. Reciting mantras like the Gayatri mantra or chanting Om can bring peace and clarity to the mind.'}, {'title': 'Healthy Boundaries', 'content': 'Teach Magizh the importance of setting healthy boundaries in relationships to maintain emotional well-being. Encourage self-care practices and assertiveness to protect against emotional overwhelm.'}]}}, {'dasa': 'Venus', 'bhukthi': 'Jupiter', 'age': "At Magizh's age, Between 5 to 8", 'prediction': {'insights': 'During the Venus Dasa and Jupiter Bhukti period, Magizh will experience a period of transformation and growth in various aspects of life. With Venus in the 1st house and Jupiter in the 7th house, there will be a focus on relationships and personal growth. Magizh may find opportunities for creative expression and spiritual development during this time. It is a period to cultivate harmony and balance in both personal and professional relationships, leading to overall well-being and fulfillment in life.', 'challenges': [{'title': 'Career Challenges', 'content': 'Magizh may face challenges related to career stability and opportunities for growth. There may be obstacles in career advancement and achieving professional goals during this period.'}, {'title': 'Emotional Challenges', 'content': 'Magizh may experience emotional ups and downs, leading to mood swings and inner turmoil. It is important to maintain emotional balance and seek support from loved ones during challenging times.'}, {'title': 'Health Challenges', 'content': 'There may be health challenges that Magizh needs to address during this period. It is essential to prioritize health and well-being through diet, exercise, and regular health check-ups.'}], 'precautions': [{'title': 'Communication Skills Development', 'content': 'Encourage Magizh to focus on improving communication skills to navigate challenges in relationships and career. Engage in activities that enhance verbal and written communication abilities.'}, {'title': 'Stress Management Techniques', 'content': 'Teach Magizh stress management techniques such as mindfulness, meditation, and relaxation exercises. Encourage taking breaks and practicing self-care to reduce stress levels.'}], 'remedies': [{'title': 'Regular Exercise Routine', 'content': 'Encourage Magizh to establish a regular exercise routine to maintain physical health and mental well-being. Engage in activities like yoga, walking, or dancing to stay active and reduce stress.'}, {'title': 'Meditation and Mindfulness Practices', 'content': 'Recommend incorporating meditation and mindfulness practices into daily routine to promote mental clarity and emotional stability. Encourage Magizh to spend time in quiet reflection and self-awareness.'}, {'title': 'Chanting Mantras for Peace', 'content': "Introduce Magizh to chanting mantras for peace and harmony. Encourage the repetition of sacred sounds like 'Om' or specific peace mantras to create a calming effect and enhance spiritual growth."}]}}]
+    
     for i,dasaNow in enumerate(dasaOut):
         pdf.set_text_color(hex_to_rgb("#966A2F"))
         if i != 0:
@@ -1322,6 +1336,26 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
                 pdf.set_y(20)
             
             pdf.ContentDesign("#FFEED7",k.capitalize(),v,path)
+            
+    planetContent = [
+        {'remedies': [{'title': 'Engage in Physical Exercise', 'content': "Engage in physical activities like yoga, running, or any form of exercise to channelize the Sun's energy positively."}, {'title': 'Spend Time in Nature', 'content': 'Spend time outdoors in natural surroundings to connect with the healing energy of the Sun.'}], 'routine': [{'title': 'Morning Meditation', 'content': "Start your day with a morning meditation practice to align your mind and body with the Sun's energy."}, {'title': 'Journaling', 'content': "Maintain a journal to reflect on your thoughts and emotions, allowing the Sun's energy to guide your inner self."}], 'practice': [{'title': 'Surya Mantra Chanting', 'content': "Chant the Surya Mantra 'Om Hram Hreem Hroum Sah Suryaya Namaha' to invoke the energy of the Sun and bring positivity into your life."}, {'title': 'Surya Mudra', 'content': "Practice the Surya Mudra by touching the ring finger to the base of the thumb, enhancing your concentration and vitality with the Sun's energy."}, {'title': 'Chanting Gayatri Mantra', 'content': "Daily chanting of the powerful Gayatri Mantra 'Om Bhur Bhuvah Swaha, Tat Savitur Varenyam, Bhargo Devasya Dheemahi, Dhiyo Yo Nah Prachodayat' to attain spiritual enlightenment and strengthen your connection with the Sun."}]}
+,
+{'remedies': [{'title': 'Mindful Breathing', 'content': 'Practice deep and mindful breathing exercises to calm the mind and connect with inner emotions. Set aside 10 minutes every day to focus on your breath and bring awareness to the present moment.'}, {'title': 'Journaling', 'content': 'Start a journaling practice to express and release emotions. Write down your thoughts, feelings, and experiences regularly to gain clarity and insight into your emotional state.'}], 'routine': [{'title': 'Morning Meditation', 'content': 'Begin your day with a short meditation session to set a positive tone for the day. Sit in a quiet place, focus on your breath, and visualize a peaceful and harmonious day ahead.'}, {'title': 'Nature Walk', 'content': 'Spend time in nature every day to recharge and ground yourself. Take a walk in the park or garden, breathe in the fresh air, and appreciate the beauty of the natural surroundings.'}], 'practice': [{'title': 'Chandra Mantra', 'content': "Repeat the Chandra Mantra 'Om Chandraya Namaha' 108 times daily to invoke the blessings of the Moon and enhance emotional balance and intuition."}, {'title': 'Chandra Mudra', 'content': 'Perform the Chandra Mudra by placing the tip of the little finger on the base of the thumb and applying gentle pressure. Hold this mudra for 10 minutes to calm the mind and promote emotional stability.'}, {'title': 'Sacred Sounds Meditation', 'content': "Listen to sacred sounds such as Tibetan singing bowls or chants of the Moon mantra 'Shreem' to create a peaceful and harmonious atmosphere. Spend 15 minutes daily in sacred sounds meditation to align with the Moon's energy."}]} ,
+
+{'remedies': [{'title': 'Embrace Nature Therapy', 'content': 'Spend time in nature regularly, such as going for walks in the park or gardening. Connect with the natural world to ground yourself and enhance your mental clarity.'}, {'title': 'Mindful Communication Practice', 'content': 'Practice active listening and thoughtful communication techniques in your interactions. Pay attention to your words and how they impact others to improve your relationships and express yourself effectively.'}], 'routine': [{'title': 'Morning Meditation', 'content': 'Start your day with a short meditation to calm your mind and set a positive tone for the day. Focus on your breath and be present in the moment to enhance mental clarity.'}, {'title': 'Journaling Reflection', 'content': 'Set aside time each day to write down your thoughts, feelings, and experiences. Reflect on your day and gain insights into your inner world for personal growth.'}], 'practice': [{'title': 'Mercury Mantra Chanting', 'content': "Chant the mantra 'Om Budhaya Namaha' to invoke the positive energy of Mercury. Sit in a comfortable position, focus on the sound vibrations, and let the mantra guide your thoughts and emotions."}, {'title': 'Mercury Mudra Practice', 'content': 'Perform the Mercury Mudra by joining the tips of your little finger, ring finger, and thumb while keeping the other fingers straight. Hold this mudra for a few minutes to enhance your communication skills and mental agility.'}, {'title': 'Sacred Sound Meditation', 'content': 'Listen to sacred sounds like the sound of bells or chimes to elevate your consciousness and connect with the divine energy of Mercury. Find a quiet space, close your eyes, and immerse yourself in the soothing vibrations.'}]} 
+,
+{'remedies': [{'title': 'Balanced Diet', 'content': "Maintain a diet rich in fruits, vegetables, and whole grains to nourish Venus's energy."}, {'title': 'Yoga and Meditation', 'content': 'Practice yoga and meditation daily to calm the mind and enhance artistic abilities.'}], 'routine': [{'title': 'Gratitude Journaling', 'content': 'Start a daily gratitude journal to cultivate a positive outlook and attract love and beauty into your life.'}, {'title': 'Creative Expression', 'content': "Engage in creative activities like painting, dancing, or singing to channel Venus's creativity."}], 'practice': [{'title': 'Venus Mantra', 'content': "Chant the mantra 'Om Shukraya Namaha' to invoke Venus's blessings and enhance relationships and artistic talents."}, {'title': 'Venus Mudra', 'content': 'Practice the Venus Mudra by joining the tips of the thumb, index, and middle fingers to balance emotions and enhance creativity.'}, {'title': 'Sacred Sound Bath', 'content': "Immerse yourself in the healing vibrations of sacred sounds like Tibetan singing bowls or crystal bowls to elevate Venus's energy and promote harmony."}]} 
+,
+{'remedies': [{'title': 'Transmute Energy through Physical Exercise', 'content': 'Engage in intense physical activities like weightlifting, martial arts, or high-intensity interval training to channel the aggressive Mars energy positively.'}, {'title': 'Practice Mindful Breathing Techniques', 'content': 'Incorporate deep breathing exercises like pranayama to calm the mind and balance the fiery Mars energy.'}], 'routine': [{'title': 'Journaling for Emotional Release', 'content': 'Start a daily journaling practice to express and release any pent-up emotions and thoughts, helping to maintain emotional balance.'}, {'title': 'Morning Meditation for Clarity', 'content': 'Begin each day with a short meditation session to center the mind and set positive intentions for the day ahead.'}], 'practice': [{'title': 'Mantra Chanting: Om Mangalaya Namaha', 'content': "Chant the mantra 'Om Mangalaya Namaha' to invoke the blessings of Mars and enhance courage, strength, and vitality."}, {'title': 'Mudra: Prana Mudra', 'content': 'Perform the Prana Mudra by joining the tips of the ring finger and little finger with the thumb to increase energy levels and improve concentration.'}, {'title': 'Sacred Sounds: Mars Yantra Meditation', 'content': "Visualize and meditate on the Mars Yantra while focusing on the sound 'Ram' to harness the powerful energy of Mars and balance aggression with harmony."}]}
+,
+{'remedies': [{'title': 'Meditation and Mindfulness', 'content': 'Practice daily meditation and mindfulness techniques to calm the mind and enhance focus. Set aside time each day for quiet reflection and deep breathing exercises.'}, {'title': 'Healthy Diet and Exercise', 'content': 'Maintain a healthy diet rich in fruits, vegetables, and whole grains. Regular exercise, such as yoga or brisk walking, will help in boosting energy levels and overall well-being.'}], 'routine': [{'title': 'Gratitude Journaling', 'content': 'Start a gratitude journal and jot down three things you are thankful for each day. This practice will cultivate a positive mindset and attract more abundance into your life.'}, {'title': 'Morning Affirmations', 'content': 'Begin your day with positive affirmations and intentions. Repeat empowering statements out loud to set the tone for a successful and fulfilling day.'}], 'practice': [{'title': 'Jupiter Mantra Chanting', 'content': "Chant the Jupiter mantra 'Om Brim Brihaspataye Namaha' 108 times daily to invoke the blessings and positive energy of Jupiter. Focus on the sound vibrations and feel the energy flowing within you."}, {'title': 'Jupiter Mudra', 'content': 'Practice the Jupiter mudra by touching the index finger to the thumb while keeping the other fingers straight. Hold this mudra for a few minutes daily to enhance intuition and wisdom.'}, {'title': 'Sacred Sounds Meditation', 'content': "Listen to sacred sounds such as Vedic chants or peaceful music that resonate with Jupiter's energy. Close your eyes, relax, and let the healing vibrations of these sounds elevate your spirit."}]}
+,
+{'remedies': [{'title': 'Mindfulness Meditation', 'content': 'Practice mindfulness meditation for 10-15 minutes daily to cultivate awareness and reduce stress. Focus on your breath and observe your thoughts without judgment.'}, {'title': 'Healthy Diet', 'content': 'Maintain a balanced diet with whole foods, plenty of fruits and vegetables, and stay hydrated. Limit processed and sugary foods for better physical and mental health.'}], 'routine': [{'title': 'Gratitude Journaling', 'content': "Start a gratitude journal and write down three things you're grateful for each day. This practice can help shift your focus to the positive aspects of your life."}, {'title': 'Physical Exercise', 'content': 'Incorporate regular physical exercise into your routine, such as yoga, walking, or dancing. Physical activity is essential for overall well-being and can boost your mood.'}], 'practice': [{'title': 'Saturn Mantra Chanting', 'content': "Chant the Saturn mantra 'Om Sham Shaneeshwaraya Namaha' 108 times daily to invoke Saturn's disciplined energy and bring stability and focus into your life."}, {'title': 'Shanmukhi Mudra', 'content': 'Practice the Shanmukhi Mudra by using your fingers to close the openings of your ears, eyes, nostrils, and mouth. This mudra helps in calming the mind and enhancing concentration.'}, {'title': 'Sacred Sounds Meditation', 'content': 'Listen to sacred sounds like Tibetan singing bowls or Gregorian chants for relaxation and spiritual connection. Allow the vibrations to resonate with your being and promote inner peace.'}]}
+,
+{'remedies': [{'title': 'Meditation and Mindfulness', 'content': 'Practice daily meditation and mindfulness exercises to calm the mind and reduce anxiety. Focus on the present moment and observe your thoughts without judgment.'}, {'title': 'Yoga and Pranayama', 'content': 'Engage in regular yoga and pranayama practices to balance the energy of Rahu. Incorporate deep breathing exercises to enhance mental clarity and inner peace.'}], 'routine': [{'title': 'Gratitude Journaling', 'content': 'Start a gratitude journal and write down three things you are grateful for each day. This practice will help shift your focus to positive aspects of life and increase overall happiness.'}, {'title': 'Creative Expression', 'content': "Explore a creative outlet such as painting, writing, or music to channel Rahu's energy positively. Expressing yourself creatively can provide a sense of fulfillment and release pent-up emotions."}], 'practice': [{'title': 'Rahu Mantra Chanting', 'content': "Chant the Rahu Mantra 'Om Rahave Namah' 108 times daily to invoke the positive energy of Rahu. This mantra can help enhance focus, ambition, and success in endeavors."}, {'title': 'Mudra Practice', 'content': 'Perform the Gyan Mudra by touching the tip of the index finger to the tip of the thumb while keeping the other three fingers straight. This mudra enhances concentration and balances the energy flow in the body.'}, {'title': 'Sacred Sounds Meditation', 'content': "Listen to sacred sounds like mantras, chanting, or spiritual music to create a peaceful and harmonious environment. This practice can elevate your mood and spiritual connection with Rahu's energy."}]},
+{'remedies': [{'title': 'Cleansing Ritual', 'content': 'Perform a cleansing ritual using water and essential oils to purify the energy around you. This can help release any negative energy associated with Ketu in the 12th house of Virgo.'}, {'title': 'Journaling Practice', 'content': "Start a journaling practice to reflect on your thoughts and emotions. Writing down your feelings can help you understand and process them better, especially with Ketu's influence in the 12th house of Virgo."}], 'routine': [{'title': 'Mindfulness Meditation', 'content': "Practice mindfulness meditation for at least 10 minutes daily. This can help you stay grounded and present, especially with Ketu's energy in the 12th house of Virgo."}, {'title': 'Yoga Routine', 'content': "Incorporate a daily yoga routine focusing on grounding poses. This can help you connect with your body and inner self, aligning with Ketu's energy in the 12th house of Virgo."}], 'practice': [{'title': 'Chanting Mantra', 'content': "Chant the Ketu mantra 'Om Ketave Namaha' 108 times daily. This mantra can help activate Ketu's positive energy and bring clarity, especially with Ketu in the 12th house of Virgo."}, {'title': 'Mudra Practice', 'content': "Practice the Ketu mudra by touching the thumb to the ring finger while keeping the other fingers extended. This mudra can help balance Ketu's energy and promote spiritual growth, beneficial with Ketu in the 12th house of Virgo."}, {'title': 'Sound Healing', 'content': "Listen to sacred sounds like Tibetan singing bowls or chanting Om to cleanse and purify your energy field. This practice can help harmonize your energy with Ketu's influence in the 12th house of Virgo."}]}
+
+]
     
     planetMain = {
         "Sun" : "Soul, Vitality, & Leadership Qualities",
@@ -1335,54 +1369,54 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         "Ketu" : "Spirituality, Detachment, Past Life Influence." 
     }
     
-    contents = [
-        {'strategies': [{'title': 'Embrace Leadership Qualities', 'content': 'Encourage your child to take on leadership roles and responsibilities to boost their confidence and assertiveness.'}, {'title': 'Develop Self-Identity', 'content': 'Help your child explore their individuality and develop a strong sense of self-identity through self-expression activities.'}, {'title': 'Emphasize Self-Improvement', 'content': 'Encourage your child to focus on self-improvement and personal growth to enhance their inner strength and resilience.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Teach your child essential life skills such as time management, communication, and problem-solving to empower them in various aspects of life.'}, {'title': 'Food & Diet', 'content': "Include foods rich in vitamin D and Omega-3 fatty acids in your child's diet to support their overall well-being and mental clarity."}, {'title': 'Manifestations', 'content': 'Encourage your child to set clear goals and manifest their desires through visualization and positive affirmations for success.'}, {'title': 'Affirmations', 'content': 'Guide your child to practice daily affirmations that reinforce self-confidence, courage, and positivity in their thoughts and actions.'}, {'title': 'Visualizations', 'content': 'Support your child in visualizing themselves achieving their aspirations and dreams, fostering a positive mindset and motivation towards their goals.'}], 'routine': [{'title': 'Morning Routine', 'content': 'Start the day with a gratitude journaling practice to cultivate a positive mindset and set intentions for the day ahead.'}, {'title': 'Midday Routine', 'content': 'Encourage regular breaks for mindful breathing exercises to reduce stress and enhance focus and productivity.'}, {'title': 'Evening Routine', 'content': 'Incorporate a relaxing bedtime routine with calming activities like reading or gentle yoga to promote restful sleep and recharge for the next day.'}], 'practice': [{'title': 'Mantra Chanting', 'content': "Guide your child to chant the Sun mantra 'Om Suryaya Namaha' to invoke the energy of the Sun and enhance vitality and strength."}, {'title': 'Mudra Practice', 'content': 'Teach your child the Surya Mudra by joining the ring finger with the thumb to balance the fire element and boost confidence and self-esteem.'}, {'title': 'Sacred Sounds Meditation', 'content': 'Introduce your child to sacred sounds meditation with the Gayatri Mantra to elevate consciousness, promote inner wisdom, and connect with divine light.'}]},
-        {'strategies': [{'title': 'Embrace Confidence', 'content': 'Encourage your child to embrace their confidence and believe in their abilities. Positive affirmations and self-assurance will help them shine in all areas of life.'}, {'title': 'Seek Balance', 'content': 'Teach your child the importance of balance in their emotions and actions. Encourage them to find harmony in their relationships and responsibilities.'}, {'title': 'Self-Expression is Key', 'content': 'Support your child in expressing their emotions and thoughts openly. Encourage creative outlets and communication to enhance self-expression.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Teach your child problem-solving skills and decision-making abilities to navigate challenges with confidence and clarity.'}, {'title': 'Food & Diet', 'content': 'Include foods rich in Omega-3 fatty acids, such as salmon and walnuts, to support mood stability and emotional balance.'}, {'title': 'Manifestations', 'content': 'Encourage your child to set clear goals and manifest their dreams through visualization techniques and positive affirmations.'}, {'title': 'Affirmations', 'content': 'Practice daily affirmations with your child to boost their self-esteem and cultivate a positive mindset.'}, {'title': 'Visualizations', 'content': 'Guide your child in visualization exercises to imagine their desired outcomes and manifest success in all aspects of life.'}], 'routine': [{'title': 'Mindful Breathing', 'content': 'Encourage your child to practice mindful breathing exercises to reduce stress, increase focus, and promote emotional stability. Inhale positivity and exhale negativity.'}, {'title': 'Creative Expression', 'content': 'Allocate time for your child to engage in creative activities such as art, music, or writing. Creative expression is a powerful outlet for emotions and thoughts.'}, {'title': 'Physical Activity', 'content': "Promote regular physical activity to boost your child's energy levels, mood, and overall well-being. Encourage outdoor play, yoga, or sports for a healthy lifestyle."}], 'practice': [{'title': 'Mantra Chanting', 'content': "Introduce your child to chanting the Sun mantra 'Om Suryaya Namaha' to invoke the energy of the Sun and enhance vitality and positivity. Repeat the mantra with focus and devotion."}, {'title': 'Mudra Practice', 'content': 'Teach your child the Surya Mudra by joining the ring finger and thumb to activate the solar energy within. Encourage them to practice this mudra daily for increased self-confidence and self-expression.'}, {'title': 'Sacred Sounds Meditation', 'content': "Guide your child in a sacred sounds meditation with the sound 'Ram'. This sound resonates with the Solar Plexus Chakra, promoting self-confidence, courage, and inner strength. Encourage them to meditate on this sound for inner peace and empowerment."}]},
-        {'strategies': [{'title': 'Communication Skills Development', 'content': 'Focus on developing strong communication skills through activities like writing, speech, and storytelling to enhance the positive effects of Mercury in the 7th house.'}, {'title': 'Logical Thinking Enhancement', 'content': "Engage in puzzles, games, and activities that boost logical thinking to harness Mercury's analytical abilities in the 7th house."}, {'title': 'Networking Opportunities', 'content': 'Encourage participation in group activities, clubs, or social events to improve networking abilities and create positive connections with others.'}], 'remedies': [{'title': 'Mindful Listening Technique', 'content': 'Practice active listening by maintaining eye contact, asking questions, and summarizing to improve communication skills and connect deeply with others.'}, {'title': 'Creative Writing Exercises', 'content': "Engage in creative writing prompts to enhance Mercury's expressive abilities and tap into imaginative thinking for personal growth."}, {'title': 'Visualization Techniques', 'content': "Use visualization exercises to stimulate Mercury's creativity and problem-solving skills, aiding in decision-making and innovation."}], 'routine': [{'title': 'Journaling Practice', 'content': 'Encourage daily journaling to organize thoughts, express feelings, and improve self-reflection for emotional clarity and mental development.'}, {'title': 'Mindfulness Meditation', 'content': 'Incorporate mindfulness meditation to reduce stress, enhance focus, and promote mental clarity, allowing Mercury in the 7th house to function optimally.'}, {'title': 'Brain Teasers Challenge', 'content': "Include brain teasers and puzzles in the daily routine to sharpen cognitive abilities, boost memory, and foster Mercury's intellect."}], 'practice': [{'title': 'Mercury Mantra Chanting', 'content': "Recite the 'Om Budhaya Namaha' mantra to invoke Mercury's positive attributes for improved communication skills, intelligence, and learning abilities."}, {'title': 'Buddhi Mudra Practice', 'content': 'Perform the Buddhi Mudra by touching the tip of the little finger to the tip of the thumb on both hands to enhance mental clarity, focus, and decision-making skills.'}, {'title': 'Sacred Sounds Meditation', 'content': "Listen to sacred sounds like the sound of flowing water or ringing bells to calm the mind, improve concentration, and activate Mercury's energy for positive effects."}]},
-        {'strategies': [{'title': 'Creative Expression', 'content': 'Encourage your child to express their creativity through art, music, or dance to enhance their Venus energy in the 9th house of Taurus. This will help them tap into their artistic talents and boost their self-expression.'}, {'title': 'Cultivate Relationships', 'content': 'Teach your child the importance of building strong and meaningful relationships with family and friends. Encouraging social interactions and fostering connections will support their Venus placement in the 9th house.'}, {'title': 'Explore Cultural Diversity', 'content': 'Expose your child to different cultures, traditions, and belief systems to broaden their perspective and enhance their Venus energy in the 9th house. This will help them appreciate diversity and expand their knowledge.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Teach your child valuable life skills such as communication, empathy, and conflict resolution to strengthen their Venus placement in the 9th house of Taurus. These skills will help them navigate relationships effectively.'}, {'title': 'Food & Diet', 'content': "Include foods that are known to boost Venus energy such as fruits, nuts, and dairy products in your child's diet. This will support their Venus placement in the 9th house and promote harmony and love."}, {'title': 'Manifestations', 'content': 'Encourage your child to visualize and manifest their desires through positive affirmations and creative visualization techniques. This practice will align with their Venus energy in the 9th house and help them attract abundance.'}, {'title': 'Affirmations', 'content': 'Guide your child to practice affirmations that focus on self-love, beauty, and harmony to strengthen their Venus placement in the 9th house. Repeat affirmations daily to reinforce positive beliefs about themselves.'}, {'title': 'Visualizations', 'content': 'Engage your child in visualizations that evoke feelings of love, joy, and gratitude to enhance their Venus energy in the 9th house. This practice will stimulate their creativity and bring a sense of fulfillment.'}], 'routine': [{'title': 'Daily Creative Outlet', 'content': 'Encourage your child to engage in a daily creative outlet such as drawing, painting, or playing music to nurture their Venus energy in the 9th house. This routine will provide a channel for self-expression and emotional release.'}, {'title': 'Gratitude Practice', 'content': 'Guide your child to practice gratitude daily by reflecting on the things they are thankful for. This routine will enhance their Venus placement in the 9th house and cultivate a positive mindset.'}, {'title': 'Mindful Relationships', 'content': 'Teach your child the importance of mindful relationships by encouraging active listening, empathy, and kindness. This routine will support their Venus energy in the 9th house and promote harmonious connections.'}], 'practice': [{'title': 'Mantra Chanting', 'content': "Introduce your child to the Venus mantra 'Om Shukraya Namaha' and guide them in chanting it regularly to activate their Venus energy in the 9th house. This practice will promote love, beauty, and harmony in their life."}, {'title': 'Mudra Practice', 'content': 'Teach your child the Venus mudra by bringing the tips of the thumb and the index finger together to create a circle. Encourage them to hold this mudra while meditating to enhance their Venus placement in the 9th house.'}, {'title': 'Sacred Sounds Meditation', 'content': 'Guide your child in a sacred sounds meditation practice by listening to soothing music or chants that resonate with Venus energy. This practice will help them connect with their inner beauty and creativity.'}]},
-        {'strategies': [{'title': 'Embrace Leadership Qualities', 'content': 'Grishma, you possess natural leadership qualities that can be enhanced by taking charge of situations and guiding others towards success.'}, {'title': 'Express Creativity Through Action', 'content': 'Grishma, channel your creative energy into action by initiating new projects and ventures that reflect your unique talents and ideas.'}, {'title': 'Embrace Independence and Self-Expression', 'content': 'Grishma, embrace your independence and express yourself authentically without fear of judgment or approval from others.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Grishma, focus on developing communication and interpersonal skills to navigate social interactions with ease and confidence.'}, {'title': 'Food & Diet', 'content': 'Grishma, incorporate vitamin-rich foods like oranges, carrots, and bell peppers into your diet to boost energy levels and vitality.'}, {'title': 'Manifestations', 'content': 'Grishma, practice visualization techniques to manifest your goals and desires with clarity and intention.'}, {'title': 'Affirmations', 'content': 'Grishma, create personalized affirmations that reinforce your self-worth, confidence, and abilities to achieve success in all aspects of life.'}, {'title': 'Visualizations', 'content': 'Grishma, visualize yourself surrounded by a radiant golden light that fills you with strength, courage, and positivity each day.'}], 'routine': [{'title': 'Morning Affirmations', 'content': 'Grishma, start your day with positive affirmations to set the tone for a successful and fulfilling day ahead.'}, {'title': 'Mindful Breathing Exercises', 'content': 'Grishma, practice deep breathing exercises throughout the day to calm the mind, reduce stress, and increase focus and clarity.'}, {'title': 'Reflective Journaling', 'content': 'Grishma, end your day by journaling your thoughts, emotions, and achievements to reflect on your growth and progress.'}], 'practice': [{'title': 'Sun Mantra Chanting', 'content': "Grishma, chant the 'Om Suryaya Namaha' mantra to invoke the energy of the Sun for vitality, courage, and positive transformation."}, {'title': 'Sun Mudra Practice', 'content': 'Grishma, practice the Surya Mudra by joining the ring finger with the thumb to activate the Solar Plexus Chakra and boost confidence and self-esteem.'}, {'title': 'Sun Sacred Sounds Meditation', 'content': 'Grishma, listen to the sacred sounds of the Sun like the Gayatri Mantra to connect with the divine energy of the Sun for mental clarity, focus, and inner strength.'}]},
-        {'strategies': [{'title': 'Embrace Your Inner Strength', 'content': 'Grishma, your Moon in the 5th house of Capricorn in Dhanishta Nakshatra shows that you have a strong sense of self and inner power. Embrace this strength and use it to overcome challenges in your life.'}, {'title': 'Cultivate Creativity and Expression', 'content': 'Your Moon placement suggests that you have a creative and expressive nature. Explore different forms of art, music, or writing to enhance your creative abilities and express your emotions effectively.'}, {'title': 'Nurture Your Emotional Health', 'content': 'It is important for you to prioritize your emotional well-being. Practice self-care routines such as meditation, journaling, or seeking therapy to nurture your emotional health.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Learn new skills or hobbies that ignite your passion and creativity. This could be anything from painting to dancing to cooking. Engaging in activities that bring you joy will uplift your spirits.'}, {'title': 'Food & Diet', 'content': 'Include foods rich in omega-3 fatty acids, such as salmon, walnuts, and chia seeds, in your diet to support your emotional stability and mental clarity. Stay hydrated and mindful of your eating habits to maintain a healthy relationship with food.'}, {'title': 'Manifestations', 'content': 'Practice visualization techniques to manifest your desires and goals. Create a vision board or write down your intentions to attract positive energy and opportunities into your life.'}, {'title': 'Affirmations', 'content': "Repeat positive affirmations daily to boost your self-confidence and inner strength. Affirmations such as 'I am powerful and capable of achieving my dreams' can help you stay motivated and focused on your path."}, {'title': 'Visualizations', 'content': 'Immerse yourself in guided visualizations to relax your mind and tap into your subconscious. Visualize yourself surrounded by a bright, protective light that shields you from negativity and empowers you with positivity.'}], 'routine': [{'title': 'Morning Meditation', 'content': 'Start your day with a 10-minute meditation practice to center yourself and set positive intentions for the day ahead. Focus on your breath and visualize a calm, peaceful energy surrounding you.'}, {'title': 'Creative Expression Time', 'content': "Allocate time each day for creative expression, whether it's through drawing, writing, or playing music. Allow yourself to freely express your emotions and thoughts through your chosen creative outlet."}, {'title': 'Evening Reflection Journal', 'content': 'Before bed, spend a few minutes journaling about your day. Reflect on your experiences, emotions, and accomplishments. This practice will help you unwind and process your thoughts before sleep.'}], 'practice': [{'title': 'Mantra Chanting', 'content': "Chant the 'Om Suryaya Namaha' mantra to invoke the energy of the Sun and enhance your inner power. Sit in a comfortable position, close your eyes, and chant the mantra with sincerity and devotion."}, {'title': 'Mudra Practice', 'content': 'Perform the Surya Mudra by touching the ring finger to the base of the thumb and applying gentle pressure. This mudra activates the solar plexus chakra and boosts confidence and self-esteem.'}, {'title': 'Sacred Sounds Meditation', 'content': 'Listen to the sacred sounds of the Sun, such as solar plexus chakra tuning forks or sun gong vibrations, to align with the energy of the Sun and enhance your personal power. Allow the sound waves to resonate within you and uplift your spirit.'}]},
-        {'strategies': [{'title': 'Embrace Creativity', 'content': 'Grishma, with Mercury placed in the 7th House of Pisces in Revati Nakshatra, can enhance her creativity by exploring art, music, or writing as outlets for self-expression.'}, {'title': 'Focus on Communication', 'content': 'Grishma should focus on improving her communication skills to express her thoughts and ideas effectively in both personal and professional relationships.'}, {'title': 'Embrace Intuition', 'content': 'Grishma is encouraged to trust her intuition and inner wisdom, as Mercury in Pisces enhances intuitive abilities.'}], 'remedies': [{'title': 'Life Skill Teachings', 'content': 'Grishma can enhance her Mercury energy by learning new skills related to communication, such as public speaking or writing workshops.'}, {'title': 'Food & Diet', 'content': "Including brain-boosting foods like nuts, seeds, and fish in her diet can support Grishma's cognitive abilities and mental clarity."}, {'title': 'Manifestations', 'content': 'Encouraging positive self-talk and affirmations can help Grishma manifest her goals and aspirations related to communication and intellectual pursuits.'}, {'title': 'Affirmations', 'content': "Grishma can affirm statements like 'I communicate confidently and clearly' to reinforce positive communication habits and beliefs."}, {'title': 'Visualizations', 'content': 'Visualizing herself confidently expressing her ideas and thoughts can help Grishma overcome any communication challenges and enhance her Mercury energy.'}], 'routine': [{'title': 'Morning Journaling', 'content': 'Grishma can start her day by journaling her thoughts and ideas, allowing her to organize her mind and clarify her communication goals for the day.'}, {'title': 'Mid-day Meditation Break', 'content': 'Taking a short meditation break in the middle of the day can help Grishma reset and recharge her mental energy for improved communication throughout the day.'}, {'title': 'Evening Reflection', 'content': 'Reflecting on her communication experiences during the day can help Grishma identify areas for improvement and set intentions for better communication in the future.'}], 'practice': [{'title': 'Mercury Mantra', 'content': "Grishma can chant the 'Om Budhaya Namaha' mantra to invoke the positive energies of Mercury and enhance her communication skills."}, {'title': 'Mercury Mudra', 'content': 'Practicing the Mercury mudra, where the tips of the little finger, ring finger, and thumb touch, can help Grishma balance her Mercury energy and improve communication abilities.'}, {'title': 'Sacred Sounds', 'content': 'Listening to calming sacred sounds like the sound of flowing water or bells ringing can help Grishma relax and enhance her mental clarity and communication skills.'}]},
-        {'strategies': [{'title': 'Embrace Creativity and Beauty', 'content': 'Grishma, with Venus placed in the 9th house of Taurus sign in Rohini Nakshatra, you are naturally inclined towards creativity and beauty. Embrace this aspect of yourself by exploring different art forms and surrounding yourself with aesthetically pleasing surroundings.'}, {'title': 'Cultivate Harmonious Relationships', 'content': 'Your Venus placement in the 9th house signifies a desire for harmonious relationships. Focus on cultivating strong and balanced connections with others, both in personal and professional settings, to enhance your overall well-being.'}, {'title': 'Value Self-worth and Self-expression', 'content': 'With Venus in the 9th house, it is important for you to value your self-worth and embrace self-expression. Allow yourself to shine authentically and confidently in all aspects of your life.'}], 'remedies': [{'title': 'Self-love Manifestation', 'content': 'Practice daily affirmations of self-love and worthiness. Visualize yourself surrounded by love and abundance, and believe in your own beauty and uniqueness.'}, {'title': 'Beauty Food Diet', 'content': 'Incorporate beauty-boosting foods such as berries, avocados, and leafy greens into your diet. These foods will nourish your Venus energy and enhance your natural beauty from within.'}, {'title': 'Artistic Visualization', 'content': 'Engage in artistic visualization exercises to enhance your creativity and artistic skills. Imagine yourself creating beautiful art pieces or expressing yourself through various artistic mediums.'}, {'title': 'Gratitude Affirmations', 'content': "Practice daily gratitude affirmations to enhance your appreciation for life's beauty and abundance. Express gratitude for the beauty around you and within yourself."}, {'title': 'Harmony Life Skills', 'content': 'Develop life skills that promote harmony in your relationships and environments. Practice active listening, empathy, and conflict resolution to maintain balanced and harmonious connections.'}], 'routine': [{'title': 'Morning Beauty Ritual', 'content': 'Start your day with a morning beauty ritual that includes skincare, grooming, and self-care practices. This will boost your confidence and enhance your natural beauty from the inside out.'}, {'title': 'Creative Expression Time', 'content': "Set aside dedicated time each day for creative expression, whether it's through art, music, writing, or any other form of artistic outlet. Allow yourself to freely express your creativity and inner beauty."}, {'title': 'Evening Self-care Routine', 'content': 'Wind down in the evening with a self-care routine that includes relaxation techniques, beauty treatments, and time for reflection. This will help you unwind and rejuvenate for the next day.'}], 'practice': [{'title': 'Venus Mantra Chanting', 'content': "Chant the Venus mantra 'Om Shukraya Namaha' daily to invoke the blessings of Venus and enhance your sense of beauty, love, and harmony."}, {'title': 'Venus Mudra Practice', 'content': 'Practice the Venus mudra by touching the tips of your thumb and ring finger together while keeping the other fingers extended. This mudra activates Venus energy and promotes love, creativity, and beauty.'}, {'title': 'Sacred Beauty Sound Meditation', 'content': 'Engage in a sacred beauty sound meditation by listening to soothing music or sounds that uplift your spirit and connect you to your inner beauty. Allow the sound vibrations to harmonize your Venus energy and enhance your sense of beauty and grace.'}]},
-        {'strategies': [{'title': 'Utilize Determination and Discipline', 'content': 'Grishma, your Mars placement in the 5th House of Capricorn Sign in Uttara Ashadha Nakshatra indicates that you have a strong sense of determination and discipline. Use this energy to set clear goals and work towards them with perseverance.'}, {'title': 'Embrace Responsibility and Leadership', 'content': 'Grishma, with Mars in your 5th House, you are naturally inclined towards taking on responsibilities and leadership roles. Embrace this quality and use it to inspire and motivate others around you.'}, {'title': 'Channel Creativity and Passion', 'content': 'Grishma, your Mars placement suggests that you have a lot of creative energy and passion. Channel this energy into creative projects or hobbies that ignite your passion and bring you joy.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Grishma, to enhance your Mars energy, focus on developing skills related to leadership, organization, and decision-making. These skills will help you harness the power of Mars in your life.'}, {'title': 'Food & Diet', 'content': 'Grishma, include foods that are rich in iron and protein in your diet to fuel your Mars energy. Foods like spinach, lentils, and lean meats can help boost your vitality and strength.'}, {'title': 'Manifestations', 'content': 'Grishma, practice visualization techniques to manifest your goals and desires. Imagine yourself achieving success and abundance in all areas of your life to align with the energy of Mars.'}, {'title': 'Affirmations', 'content': "Grishma, use affirmations like 'I am strong and determined' and 'I take on challenges with courage and confidence' to reinforce the positive qualities of Mars within you."}, {'title': 'Visualizations', 'content': 'Grishma, visualize a fiery red light surrounding you, symbolizing the energy and passion of Mars. Imagine this light empowering you to take action and overcome obstacles in your path.'}], 'routine': [{'title': 'Powerful Morning Routine', 'content': 'Grishma, start your day with a morning meditation to center yourself and connect with your inner strength. Set intentions for the day ahead and visualize yourself accomplishing your goals with ease.'}, {'title': 'Creative Expression Break', 'content': "Grishma, take a break during your day to engage in a creative activity that sparks your passion. Whether it's painting, writing, or dancing, allow yourself to express your creative energy freely."}, {'title': 'Reflective Evening Routine', 'content': 'Grishma, before bed, reflect on your day and acknowledge your achievements and challenges. Practice gratitude for the opportunities that came your way and set intentions for a successful tomorrow.'}], 'practice': [{'title': 'Mars Mantra Chanting', 'content': "Grishma, chant the Mars mantra 'Om Mangalaya Namaha' to invoke the energy of Mars within you. Repeat this mantra daily to align with the fierce and dynamic qualities of Mars."}, {'title': 'Mars Mudra Practice', 'content': 'Grishma, practice the Mars mudra by touching your thumb to your ring finger and extending the other fingers straight. This mudra helps activate Mars energy and increase vitality.'}, {'title': 'Sacred Sounds Meditation', 'content': 'Grishma, listen to sacred sounds like drumming or chanting that resonate with Mars energy. Allow these sounds to uplift your spirit and energize your being with the power of Mars.'}]},
-        {'strategies': [{'title': 'Embrace Your Leadership Qualities', 'content': 'Grishma, your Jupiter in the 2nd House of Libra Sign in Vishakha Nakshatra indicates strong leadership qualities. Embrace your natural ability to inspire and guide others towards success.'}, {'title': 'Cultivate Financial Wisdom', 'content': 'Grishma, with Jupiter in the 2nd House, focus on cultivating financial wisdom and stability. Make sound investments and prioritize saving for the future.'}, {'title': 'Expand Your Communication Skills', 'content': 'Grishma, your Jupiter placement encourages you to expand your communication skills. Stay open to learning new languages or improving your public speaking abilities.'}], 'remedies': [{'title': 'Practice Gratitude Daily', 'content': 'Grishma, start each day by expressing gratitude for the blessings in your life. This practice will attract abundance and positivity towards you.'}, {'title': 'Mindful Financial Planning', 'content': 'Grishma, create a detailed financial plan that aligns with your long-term goals. Monitor your expenses and savings diligently to achieve financial stability.'}, {'title': 'Self-Reflection and Growth', 'content': 'Grishma, engage in regular self-reflection to identify areas for personal growth. Set realistic goals and work towards fulfilling your aspirations.'}, {'title': 'Positive Affirmations for Success', 'content': 'Grishma, recite positive affirmations daily to boost your confidence and attract success. Believe in your abilities and trust in the Universe to manifest your desires.'}, {'title': 'Visualization for Abundance', 'content': 'Grishma, practice visualization techniques to manifest abundance in your life. Visualize yourself achieving your financial goals and living a fulfilling life.'}], 'routine': [{'title': 'Gratitude Journaling', 'content': 'Grishma, start a gratitude journal to jot down things you are thankful for each day. This practice will cultivate a positive mindset and enhance your overall well-being.'}, {'title': 'Financial Check-In', 'content': 'Grishma, set aside time each week to review your finances. Track your expenses, savings, and investments to stay on top of your financial goals.'}, {'title': 'Language Learning Sessions', 'content': 'Grishma, dedicate time to learning a new language or refining your communication skills. Join language classes or practice with online resources to expand your linguistic abilities.'}], 'practice': [{'title': 'Sun Mantra Chanting', 'content': "Grishma, chant the Sun mantra 'Om Suryaya Namaha' to invoke the energy of the Sun for vitality and leadership. Sit in a comfortable position, focus on the mantra, and chant it with devotion."}, {'title': 'Hasta Mudra Practice', 'content': 'Grishma, perform the Hasta Mudra by pressing the thumb and the ring finger together. This mudra enhances communication skills and promotes mental clarity. Practice it daily for positive effects.'}, {'title': 'Sacred Sound Healing with Crystal Singing Bowls', 'content': 'Grishma, experience the healing vibrations of crystal singing bowls to harmonize your energy with the Sun. Find a quiet space, listen to the soothing sounds, and let go of any stress or tension.'}]},      
-        {'strategies': [{'title': 'Embrace Self-Discipline', 'content': 'Grishma, your Saturn in the 4th House of Sagittarius signifies a need for structure and order in your emotional life. Embrace self-discipline to create a stable and secure inner foundation.'}, {'title': 'Cultivate Patience', 'content': 'With Saturn in Purva Ashadha Nakshatra, cultivate patience in your actions and decisions. Trust in the timing of the universe and practice perseverance in all your endeavors.'}, {'title': 'Seek Inner Wisdom', 'content': 'Grishma, with Saturn in Sagittarius, seek inner wisdom and spiritual growth. Connect with your intuition and explore deep philosophical teachings to expand your understanding.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Grishma, incorporate time management and organizational skills into your daily routine. Prioritize tasks and set realistic goals to enhance productivity and efficiency.'}, {'title': 'Food & Diet', 'content': 'Focus on a balanced diet rich in whole foods and nutrients to nourish your body and mind. Incorporate foods that promote grounding and stability, such as root vegetables and grains.'}, {'title': 'Manifestations', 'content': 'Practice visualization techniques to manifest your desires and goals into reality. Create a vision board or journal to document your aspirations and stay focused on your intentions.'}, {'title': 'Affirmations', 'content': 'Repeat positive affirmations daily to reprogram your subconscious mind. Affirm your worth, strength, and resilience to overcome obstacles and manifest abundance in all areas of your life.'}, {'title': 'Visualizations', 'content': 'Engage in guided visualizations to connect with your inner wisdom and intuition. Visualize yourself in a state of balance and harmony, surrounded by a radiant light that guides you towards your highest potential.'}], 'routine': [{'title': 'Morning Meditation', 'content': 'Grishma, start your day with a morning meditation practice to center yourself and cultivate inner peace. Set aside 10-15 minutes for mindful breathing and reflection to set a positive tone for the day.'}, {'title': 'Journaling', 'content': 'Allocate time for journaling in the evening to reflect on your thoughts and emotions. Write down your experiences, insights, and gratitude to enhance self-awareness and promote emotional healing.'}, {'title': 'Nature Walks', 'content': "Spend time in nature regularly to recharge and connect with the earth's grounding energy. Take leisurely walks in parks or gardens to stimulate your senses and foster a sense of tranquility."}], 'practice': [{'title': 'Mantra Chanting', 'content': "Grishma, practice chanting the mantra 'Om Sham Shanaischaraya Namaha' to invoke Saturn's blessings and guidance. Sit in a comfortable position, focus on the mantra, and chant with sincerity and devotion."}, {'title': 'Mudra Activation', 'content': "Engage in the Shuni Mudra by placing the tip of your middle finger to the base of your thumb and pressing gently. This mudra enhances focus, discipline, and inner strength, aligning with Saturn's energy."}, {'title': 'Sacred Sounds Meditation', 'content': 'Immerse yourself in sacred sounds meditation by listening to Tibetan singing bowls or Vedic chants. Allow the vibrations to resonate within you, harmonizing your energy and promoting spiritual upliftment.'}]},
-        {'strategies': [{'title': 'Reflecting on Emotional Well-being', 'content': "Grishma, it's essential to prioritize your emotional well-being and understand the impact of your Rahu placement in the 11th House. Dive deep into your emotions and seek ways to nurture and heal your inner self."}, {'title': 'Building Authentic Connections', 'content': 'Grishma, focus on building authentic connections with others to help balance the influence of Rahu in the 11th House. Engage in meaningful conversations, show vulnerability, and create genuine relationships to support your emotional growth.'}, {'title': 'Setting Boundaries in Relationships', 'content': 'Grishma, establish healthy boundaries in your relationships to prevent emotional overwhelm due to your Rahu placement in the 11th House. Respect your needs and communicate openly to maintain harmonious interactions.'}], 'remedies': [{'title': 'Mindful Expression Through Creativity', 'content': 'Grishma, engage in creative outlets like painting, writing, or dancing to express your emotions and thoughts. Let your creativity flow freely as a form of emotional release and self-expression.'}, {'title': 'Nourishing Foods for Emotional Balance', 'content': 'Grishma, incorporate nourishing foods like leafy greens, fruits, and herbal teas into your diet to support emotional balance. Pay attention to what you eat and how it makes you feel to enhance your emotional well-being.'}, {'title': 'Daily Affirmations for Self-Love', 'content': "Grishma, practice daily affirmations that promote self-love and acceptance. Repeat positive statements like 'I am worthy,' 'I am enough,' and 'I deserve love' to cultivate a compassionate relationship with yourself."}, {'title': 'Visualization for Emotional Healing', 'content': 'Grishma, engage in visualization exercises where you imagine yourself surrounded by healing light and love. Visualize emotional wounds being healed and replaced with peace, strength, and positivity to support your inner growth.'}, {'title': 'Setting Intentions for Emotional Clarity', 'content': 'Grishma, set intentions each day to cultivate emotional clarity and awareness. Reflect on your feelings, acknowledge them without judgment, and set intentions to navigate your emotions with mindfulness and compassion.'}], 'routine': [{'title': 'Gratitude Journaling', 'content': "Grishma, start a gratitude journal where you write down three things you're thankful for each day. Cultivate a mindset of gratitude to uplift your spirits and focus on the positive aspects of your life."}, {'title': 'Mindful Breathing Exercises', 'content': 'Grishma, practice mindful breathing exercises to calm your mind and connect with your emotions. Take slow, deep breaths and focus on the sensations of breathing to center yourself and promote emotional balance.'}, {'title': 'Morning Affirmations and Intentions', 'content': 'Grishma, begin your day with positive affirmations and set intentions for how you want to feel and act. Start your morning with empowering statements and visualize a harmonious day ahead to cultivate emotional well-being.'}], 'practice': [{'title': 'Surya Mantra for Confidence', 'content': "Grishma, chant the Surya Mantra 'Om hram hreem hroum sah suryaya namah' to boost your confidence and inner strength. Repeat this mantra daily to invoke the energy of the Sun and enhance your self-assurance."}, {'title': 'Anjali Mudra for Gratitude', 'content': 'Grishma, practice Anjali Mudra by bringing your palms together in front of your heart in a gesture of gratitude. Close your eyes, take a deep breath, and express gratitude for the blessings in your life to cultivate a sense of appreciation and peace.'}, {'title': 'Sacred Sounds Meditation with Aum', 'content': "Grishma, engage in a Sacred Sounds Meditation by chanting the sacred sound 'Aum' to align with the universal energy and awaken your inner light. Sit in a comfortable position, chant 'Aum' slowly, and feel the vibrations resonating within you for spiritual upliftment."}]},
-        {'strategies': [{'title': 'Embrace Inner Wisdom', 'content': 'Grishma, with Ketu placed in the 5th house of Capricorn sign in Shravana Nakshatra, you have a strong connection to your inner wisdom. Embrace this wisdom and trust your instincts in decision-making.'}, {'title': 'Cultivate Creativity and Expression', 'content': 'Grishma, explore your creative side and express yourself freely. Use your unique perspective to bring innovative ideas to the forefront and enhance your communication skills.'}, {'title': 'Embrace Change and Transformation', 'content': 'Grishma, embrace change as a means for growth and transformation. Allow yourself to let go of old patterns and beliefs that no longer serve you, and welcome new opportunities with open arms.'}], 'remedies': [{'title': 'Life Skills Teachings', 'content': 'Grishma, focus on developing your organizational skills and time management to enhance productivity and efficiency in your daily tasks.'}, {'title': 'Food & Diet', 'content': 'Grishma, incorporate foods rich in vitamin D and antioxidants into your diet to boost your energy levels and promote overall well-being.'}, {'title': 'Manifestations', 'content': 'Grishma, practice positive affirmations and visualization techniques to manifest your goals and desires with clarity and intention.'}, {'title': 'Affirmations', 'content': 'Grishma, start your day with empowering affirmations to cultivate a positive mindset and attract abundance and success into your life.'}, {'title': 'Visualizations', 'content': 'Grishma, visualize yourself surrounded by a bright, radiant light to enhance your creativity, intuition, and inner wisdom.'}], 'routine': [{'title': 'Morning Meditation', 'content': 'Grishma, start your day with a morning meditation to center yourself, connect with your inner guidance, and set positive intentions for the day ahead.'}, {'title': 'Daily Journaling', 'content': 'Grishma, take time each day to journal your thoughts, emotions, and experiences. Reflect on your day and set goals for personal growth and self-improvement.'}, {'title': 'Evening Reflection', 'content': 'Grishma, end your day with an evening reflection practice. Review your achievements, challenges, and lessons learned to cultivate gratitude and mindfulness.'}], 'practice': [{'title': 'Mantra Chanting', 'content': 'Grishma, practice chanting the Om mantra to align with the universal energy and enhance your spiritual connection with the divine.'}, {'title': 'Mudra Meditation', 'content': 'Grishma, incorporate the Surya Mudra (Sun Mudra) into your meditation practice to activate the solar plexus chakra and boost your confidence and vitality.'}, {'title': 'Sacred Sounds Healing', 'content': 'Grishma, listen to sacred sounds such as Tibetan singing bowls or mantras to promote relaxation, inner peace, and balance in your mind, body, and spirit.'}]}
-    ]
-    
-        
-    for planet in planets:
+    for index,planet in enumerate(planets):
         if planet['Name'] == "Ascendant":
             continue
-        planet_status = []
-        for pl in table[planet["Name"]]:
-            if planet["zodiac_lord"] in pl:
-                planet_status = status[table[planet["Name"]].index(pl)]
-                planet['status'] = planet_status[0]
-        if len(planet_status) == 0:
-            planet_status = status[0] 
-            planet['status'] = planet_status[0]  
+        planets_table = table[planet['Name']]
+        
+        if planet['zodiac_lord'] in planets_table[0]:
+            planet['status'] = "Favorable"
+        elif planet['zodiac_lord'] in planets_table[1]:
+            planet['status'] = "Unfavorable"
+        else:
+            planet['status'] = "Neutral"
             
-        pdf.AddPage(path)
-        if planets.index(planet)  == 0:
-            pdf.set_xy(30,20)
-            pdf.set_font('Karma-Heavy', '', 26)
-            pdf.multi_cell(pdf.w - 60,10,f"Energize {name}'s Planets for Favorable Outcomes", align='C')
-            pdf.set_y(pdf.get_y() + 5)
+        if index == 0:
+            pdf.AddPage(path,f"Discipline, Habits, Diet, and Lifestyle Based on Planetary Energy")
+        else:
+            pdf.AddPage(path)
             
         pdf.set_text_color(hex_to_rgb("#966A2F"))
         pdf.set_font('Karma-Heavy', '', 20)
         pdf.set_xy(20,pdf.get_y() + 5)
         pdf.multi_cell(pdf.w - 40,10,f"{planet['Name']} - {planetMain[planet['Name']]}",align='C')
-        pdf.image(f"{path}/babyImages/{planet['Name']}.png",20,pdf.get_y() + 5,50,50)
+        pdf.set_draw_color(0,0,0)
+        pdf.set_fill_color(hex_to_rgb(random.choice(DesignColors)))
+        pdf.rect(20, pdf.get_y() + 5, pdf.w - 40, 60, corner_radius=10.0, round_corners=True, style='DF')
+        pdf.image(f"{path}/babyImages/{planet['Name']}.png",30,pdf.get_y() + 10,50,50)
         pdf.set_font('Karma-Regular', '', 12) 
         pdf.set_text_color(0,0,0)
-        pdf.set_xy(87.5,pdf.get_y() + 5)
-        pdf.multi_cell(107.5,6,f"       The {planet['Name']} is positioned at approximately {planet['full_degree']:.2f} degrees in the zodiac sign of {planet['sign']}, symbolizing {planet_quality[planet['Name']][1][planet['sign']]}. Residing in the {planet['nakshatra']} nakshatra, which is ruled by {planet['nakshatra_lord']} , this placement enhances its {planet_quality[planet['Name']][2][planet['nakshatra']]} in the {planet['pada']}, the {planet['Name']}'s energy is particularly influential for those with {planet['sign']} as their ascendant, occupying the {number[planet['pos_from_asc']]} house from their ascendant. This alignment is generally {planet['status']},promoting {planet_quality[planet['Name']][0][planet['pos_from_asc']]}",align='L')
-        pdf.set_font('Karma-Semi', '', 22)
-        pdf.set_xy(22.5 ,pdf.get_y() + 20)
-        pdf.multi_cell(pdf.w - 45,7,f"{planet['Name']} is in {number[planet['pos_from_asc']]} House in {name}'s Horoscope",align='C')
+        
+        x_start = 85
+        y_start = pdf.get_y() + 15
+        pdf.set_xy(x_start, y_start)
+
+        table_data = [
+            ("Sign:", f"{planet['sign']}"),
+            ("House:", f"{number[planet['pos_from_asc']]} House"),
+            ("Status:", f"{planet['status']}"),
+            ("Significance:", f"{planet_quality[planet['Name']][0][planet['pos_from_asc']]}"),
+        ]
+
+        for row in table_data:
+            pdf.set_font('Karma-Semi', '', 12)
+            pdf.cell(30, 10, row[0],new_x=XPos.RIGHT, new_y=YPos.TOP)
+            pdf.set_font('Karma-Regular', '', 12)
+            pdf.multi_cell(0, 10, row[1], new_x=XPos.LMARGIN, new_y=YPos.NEXT)
+            y_start += 10
+            pdf.set_xy(x_start, y_start)
+            
+        pdf.set_y(pdf.get_y() + 20)
         
         planetTitle = {
             'strategies' : f"{planet['Name']} Insights",
@@ -1390,9 +1424,9 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             'routine': "Holistic Routine",
             'practice': "Spiritual Practices",
         }
-  
+          
         # con = PlanetPrompt(planet,name,gender)
-        con = contents[planets.index(planet)]
+        con = planetContent[index - 1]
         for k, v in con.items():
             if pdf.get_y() + 40 >= 260:  
                 pdf.AddPage(path)
@@ -1400,7 +1434,83 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
                 pdf.set_text_color(0,0,0)
             
             pdf.ContentDesign(random.choice(DesignColors),planetTitle[k],v,path)
+            
+    pdf.AddPage(path,"Important Checklist for Parents")
+    
+    pdf.set_y(pdf.get_y() + 12.5)
+
+    pdf.set_y(pdf.get_y() + 10)
+    pdf.set_font('Karma-Regular', '', 14)
+    pdf.set_text_color(hex_to_rgb("#B26F0B"))
+
+    pdf.set_fill_color(hex_to_rgb(random.choice(DesignColors)))
+    pdf.set_draw_color(0,0,0)
+    pdf.rect(20, pdf.get_y(), pdf.w - 40, 180, corner_radius=5.0, round_corners=True, style='DF')
+
+    x_start = 30
+    y_start = pdf.get_y() + 5
+    pdf.set_xy(x_start, y_start)
+    
+    nakshatrasOrder = nakshatras[nakshatras.index(moon['nakshatra']):] + zodiac[:nakshatras.index(moon['nakshatra'])]
+    favourableNakshatra = ""
+    for index,nakshatra in enumerate(nakshatrasOrder):
+        if index % 9 in [1,3,7]:
+            favourableNakshatra += f"{nakshatra}, "
+            
+    pdf.set_text_color(0,0,0)
+
+    luckyColor = nakshatraColor[moon['nakshatra']]
+    
+    table_data = [
+        (f"Nakshatra:", f"{moon['nakshatra']}"),
+        (f"Rasi:", f"{moon['sign']}"),
+        (f"Lagnam:", f"{asc['sign']}"),
+        ("Favorable Stars:", f"{favourableNakshatra}"),
+        (f"Fortune Planets & Lord:", f"{ninthHouseLord}, {isthaDeva[0]}"),
+        (f"Dopamine:", f"{panchang['karanam']} - {KaranaLord[panchang['karanam']]} for Achieve Goal"),
+        (f"Serotonin:", f"{panchang['thithi']} - {thithiLord[panchang['thithi']]} for Emotional Intelligence"),
+        (f"Oxytocin:", f"{panchang['yoga']} - {yogamLord[str(panchang['yoga_index'])]} for Body, Mind, Soul  Transformations "),
+        (f"Favourable Times:", f"{favourableDasa}"),
+        (f"Favourable Gem Stone:", f"{stones[0]['Gemstone']}, {stones[1]['Gemstone']}, {stones[2]['Gemstone']}"),
+        (f"Lucky Color:",f"{luckyColor[0]}, {luckyColor[1]}, {luckyColor[2]}"),
+        (f"Lucky Number:",f"{luckyNumber[0]}, {luckyNumber[1]}"),
+    ]
+
+    for row in table_data:
+        pdf.set_font('Karma-Semi', '', 14)
+        pdf.cell(65, 10, row[0], new_x=XPos.RIGHT, new_y=YPos.TOP)
+        y_start = pdf.get_y()
+        pdf.set_font('Karma-Regular', '', 14)
+        pdf.multi_cell(90, 10, row[1],align='L')
+        y_start = pdf.get_y()
+        pdf.set_xy(x_start, y_start)
+
+    pdf.AddPage(path,"Famous Celebrity Comparisons")
+    
+    # content = chapterPrompt(planets,8,name,gender)
+    content = {'celebrities': [{'name': 'A. R. Rahman', 'field': 'Music', 'description': 'A. R. Rahman, born under Aries Rasi and Bharani Nakshatra, is an Oscar-winning music composer known for his soul-stirring compositions. His creativity and determination have made him a global icon in the music industry.'}, {'name': 'Anushka Sharma', 'field': 'Acting', 'description': 'Anushka Sharma, born under Aries Rasi and Bharani Nakshatra, is a successful Bollywood actress who has redefined the standards of acting in Indian cinema. Her strong willpower and passion for her craft have led her to great heights in the entertainment industry.'}, {'name': 'P. V. Sindhu', 'field': 'Badminton', 'description': 'P. V. Sindhu, born under Aries Rasi and Bharani Nakshatra, is an Olympic silver medalist and one of the top Indian badminton players. Her fierce determination and hard work have brought her numerous accolades in the world of sports.'}, {'name': 'Virat Kohli', 'field': 'Cricket', 'description': 'Virat Kohli, born under Aries Rasi and Bharani Nakshatra, is the captain of the Indian cricket team and one of the greatest cricketers of all time. His aggressive playing style and leadership skills have established him as a cricketing legend.'}, {'name': 'Deepika Padukone', 'field': 'Acting', 'description': 'Deepika Padukone, born under Aries Rasi and Bharani Nakshatra, is a versatile actress who has garnered acclaim for her performances in Bollywood. Her charisma and dedication to her craft have earned her a prominent place in the film industry.'}]}
+    
+    for celeb in content['celebrities']:
+        if pdf.get_y() + 20 >= 260:
+            pdf.AddPage(path)
+            pdf.set_y(30)
+            
+        pdf.ContentDesign(random.choice(DesignColors),"",celeb,path)
         
+    
+    # content = chapterPrompt(planets,9,name,gender)
+    content = {'predictions': "Magizh is born with a Libra lagna, which indicates a balanced and harmonious personality. The placement of Venus in the lagna enhances Magizh's charm and charisma. The presence of Venus as the lagna lord in the 1st house of Libra in Vishakha Nakshatra suggests a strong sense of beauty and artistic appreciation in Magizh's life. This placement also indicates a love for balance and harmony in relationships and surroundings.", 'assessment': "Magizh has a pleasant and diplomatic personality with a strong sense of aesthetics and a keen eye for beauty. The influence of Venus in the lagna and 1st house enhances Magizh's social skills and creativity.", 'strength': "Magizh's strength lies in their ability to maintain harmony in relationships, appreciate beauty in all forms, and express themselves artistically. They have a diplomatic approach towards handling conflicts and a natural charm that attracts others towards them.", 'weakness': 'However, Magizh may struggle with indecisiveness and a tendency to prioritize harmony over assertiveness. They may also face challenges in asserting their individuality in certain situations due to a strong desire for peace and balance.', 'action': 'To nurture Magizh, it is essential to encourage their creative pursuits, provide opportunities for self-expression, and help them develop assertiveness in communication and decision-making.', 'overall': "Overall, Magizh is a charming and diplomatic individual with a strong sense of aesthetics and a love for harmony in relationships. They thrive in environments that appreciate beauty and value peace and balance. Nurturing Magizh's creativity and supporting them in developing assertiveness will help them flourish in all aspects of life.", 'recommendations': 'Parenting suggestions for nurturing Magizh include encouraging artistic endeavors, providing opportunities for social interactions to enhance their diplomatic skills, and teaching them to assert their individuality when needed. It is important to support Magizh in finding a balance between harmony and self-expression, and to guide them in making confident decisions while maintaining their sense of beauty and diplomacy.'} 
+
+    
+    pdf.AddPage(path,f"Summary Insights for Parents and Child")
+    
+    for k, v in content.items():
+        if pdf.get_y() + 40 >= 260:  
+            pdf.AddPage(path)
+            pdf.set_y(30)
+            pdf.set_text_color(0,0,0)
+        
+        pdf.ContentDesign(random.choice(DesignColors),setTitle(k),v,path)
     
     pdf.output(f'{path}/pdf/{name} - babyReport.pdf')
     
@@ -1408,56 +1518,72 @@ def babyReport(dob,location,path,gender,name):
     print("Generating Baby Report")
     planets = find_planets(dob,location)
     print("Planets Found")
-    panchang = calculate_panchang(dob,planets[1]['full_degree'],planets[0]['full_degree'],location)
+    panchang = calculate_panchang(dob,planets[2]['full_degree'],planets[1]['full_degree'],location)
     print("Panchang Calculated")
-    dasa = calculate_dasa(dob,planets[1])
-    print("Dasa Calculated")    
-    birthchart = generate_birth_navamsa_chart(planets,f'{path}/chart/',dob,location,name)
-    print("Birth Chart Generated")
-    lat,lon = get_lat_lon(location)
-    print("Lat Lon Found")
-    dt = datetime.strptime(dob, "%Y-%m-%d %H:%M:%S")
-    formatted_date = dt.strftime("%d %B %Y")
-    formatted_time = dt.strftime("%I:%M:%S %p")
+    for pl in planets:
+        print(pl['Name'],pl['sign'],pl['nakshatra'],pl['full_degree'])
+        
+    for key in panchang.keys():
+        print(key,panchang[key])
+        
+    value = str(input("Do you want to continue? (y/n)"))
+    # value = "y"
     
-    year = int(dob[:4])
-    month = int(dob.split("-")[1])
+    if value.lower() == 'y':
+        dasa = calculate_dasa(dob,planets[2])
+        print("Dasa Calculated")    
+        # birthchart = generate_birth_navamsa_chart(planets,f'{path}/chart/',dob,location,name)
+        birthchart = ""
+        print("Birth Chart Generated")
+        lat,lon = get_lat_lon(location)
+        print("Lat Lon Found")
+        dt = datetime.strptime(dob, "%Y-%m-%d %H:%M:%S")
+        formatted_date = dt.strftime("%d %B %Y")
+        formatted_time = dt.strftime("%I:%M:%S %p")
+        
+        year = int(dob[:4])
+        month = int(dob.split("-")[1])
+        
+        generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,panchang,dasa,birthchart,gender,path,year,month,name)
     
-    generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,panchang,dasa,birthchart,gender,path,year,month,name)
+    else:
+        return "Report Generation Cancelled"
     
-    sender_email = "thepibitech@gmail.com"
-    receiver_email = "guruvijay1925@gmail.com"
-    password = "hprt rnur fesz diud" 
-    message = MIMEMultipart()
-    message["From"] = sender_email
-    message["To"] = receiver_email
-    message["Subject"] = "Life Prediction Report"
+    # sender_email = "thepibitech@gmail.com"
+    # receiver_email = "guruvijay1925@gmail.com"
+    # password = "hprt rnur fesz diud" 
+    # message = MIMEMultipart()
+    # message["From"] = sender_email
+    # message["To"] = receiver_email
+    # message["Subject"] = "Life Prediction Report"
 
-    body = "Your Life Report"
-    message.attach(MIMEText(body, "plain"))
+    # body = "Your Life Report"
+    # message.attach(MIMEText(body, "plain"))
     
-    name = name.split(" ")[0]
+    # name = name.split(" ")[0]
 
-    pdf_filename = f"{path}/pdf/{name} - babyReport.pdf" 
-    with open(pdf_filename, "rb") as attachment:
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(attachment.read()) 
-        encoders.encode_base64(part)  
-        part.add_header(
-            "Content-Disposition",
-            f"attachment; filename= {os.path.basename(pdf_filename)}",
-        )
-        message.attach(part)  
+    # pdf_filename = f"{path}/pdf/{name} - babyReport.pdf" 
+    # with open(pdf_filename, "rb") as attachment:
+    #     part = MIMEBase("application", "octet-stream")
+    #     part.set_payload(attachment.read()) 
+    #     encoders.encode_base64(part)  
+    #     part.add_header(
+    #         "Content-Disposition",
+    #         f"attachment; filename= {os.path.basename(pdf_filename)}",
+    #     )
+    #     message.attach(part)  
 
-    try:
-        server = smtplib.SMTP("smtp.gmail.com", 587)
-        server.starttls() 
-        server.login(sender_email, password)  
-        server.sendmail(sender_email, receiver_email, message.as_string())  
-        print("Email with PDF attachment sent successfully")
-    except Exception as e:
-        print(f"Error sending email: {e}")
-    finally:
-        server.quit()  
+    # try:
+    #     server = smtplib.SMTP("smtp.gmail.com", 587)
+    #     server.starttls() 
+    #     server.login(sender_email, password)  
+    #     server.sendmail(sender_email, receiver_email, message.as_string())  
+    #     print("Email with PDF attachment sent successfully")
+    # except Exception as e:
+    #     print(f"Error sending email: {e}")
+    # finally:
+    #     server.quit()  
     
-    return "Sucess"
+    # return "Sucess"
+
+babyReport("1993-11-03 17:35:00","Madurai, Tamil Nadu , India",os.getcwd(),"male","Magizh Siranjeevi")
