@@ -1709,7 +1709,10 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         if planet['Name'] == "Ketu":
             y = y + 10
         
-        pdf.set_y(y + 40)
+        pdf.set_y(y + 50)
+        color = random.choice(DesignColors)
+        roundedBox(pdf, color ,20,pdf.get_y(),pdf.w-40, 30)
+        pdf.set_y(pdf.get_y() + 5)
         pdf.set_font('Karma-Semi', '' , 16) 
         pdf.cell(0,0,f"Discipline : {content[1][0]}",align='C')
         pdf.set_xy(22.5,pdf.get_y() + 5)
