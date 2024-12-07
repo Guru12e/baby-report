@@ -2024,17 +2024,17 @@ moonIdentity = {
 }
 
 lagnaIdentity = {
-  "Aries": "child's Born Lagna is Mesha Lagna. child is always energetic, confident, and independent. Child has a natural ability to lead and take initiative. Strong drive helps child face challenges with courage. Child’s enthusiasm and vitality inspire others to act. Adventurous spirit pushes child to explore new experiences and overcome obstacles.",
-  "Taurus": "child's Born Lagna is Vrishabha Lagna. child is always calm, reliable, and practical. Child has a strong connection to stability and enjoys comfort. Persistent nature helps child achieve goals with patience and consistency. Child’s love for beauty and harmony creates peace and balance in surroundings.",
+  "Aries": "child's Born Lagna is Mesha Lagna. child is always energetic, confident, and independent. Child has a natural ability to lead and take initiative. Strong drive helps child face challenges with courage. Child's enthusiasm and vitality inspire others to act. Adventurous spirit pushes child to explore new experiences and overcome obstacles.",
+  "Taurus": "child's Born Lagna is Vrishabha Lagna. child is always calm, reliable, and practical. Child has a strong connection to stability and enjoys comfort. Persistent nature helps child achieve goals with patience and consistency. Child's love for beauty and harmony creates peace and balance in surroundings.",
   "Gemini": "child's Born Lagna is Mithuna Lagna. child is always curious, communicative, and adaptable. Child enjoys learning new things and has a natural ability to express ideas. Social and quick-thinking nature helps child connect easily with others. Versatility allows child to thrive in various situations.",
   "Cancer": "child's Born Lagna is Karka Lagna. child is always nurturing, sensitive, and protective. Child forms strong emotional bonds with family and friends. Intuitive nature helps child understand the feelings of others. Caring personality motivates child to protect and care for loved ones.",
-  "Leo": "child's Born Lagna is Simha Lagna. child is always confident, creative, and charismatic. Child has natural leadership qualities and loves being in the spotlight. Courageous nature drives child to pursue big dreams and achieve greatness. Child’s strong sense of self-worth and loyalty inspires others.",
-  "Virgo": "child's Born Lagna is Kanya Lagna. child is always intelligent, detail-oriented, and organized. Child has a sharp mind and enjoys tasks that require critical thinking. Analytical nature helps child excel in planning and problem-solving. Child’s practical approach makes them reliable and efficient.",
-  "Libra": "child's Born Lagna is Tula Lagna. child is always charming, diplomatic, and fair-minded. Child values balance and seeks harmony in relationships. Ability to see all perspectives helps child mediate conflicts. Child’s love for beauty and art brings creativity and aesthetics to life.",
+  "Leo": "child's Born Lagna is Simha Lagna. child is always confident, creative, and charismatic. Child has natural leadership qualities and loves being in the spotlight. Courageous nature drives child to pursue big dreams and achieve greatness. Child's strong sense of self-worth and loyalty inspires others.",
+  "Virgo": "child's Born Lagna is Kanya Lagna. child is always intelligent, detail-oriented, and organized. Child has a sharp mind and enjoys tasks that require critical thinking. Analytical nature helps child excel in planning and problem-solving. Child's practical approach makes them reliable and efficient.",
+  "Libra": "child's Born Lagna is Tula Lagna. child is always charming, diplomatic, and fair-minded. Child values balance and seeks harmony in relationships. Ability to see all perspectives helps child mediate conflicts. Child's love for beauty and art brings creativity and aesthetics to life.",
   "Scorpio": "child's Born Lagna is Vrischika Lagna. child is always intense, passionate, and determined. Child has a deep curiosity about life and seeks to uncover hidden truths. Resilient nature helps child overcome obstacles and stay focused on goals. Powerful will enables child to achieve great success.",
   "Sagittarius": "child's Born Lagna is Dhanu Lagna. child is always optimistic, adventurous, and philosophical. Child has a strong desire for freedom and exploration. Enthusiastic nature drives child to seek new knowledge and experiences. Positive outlook and thirst for growth inspire those around them.",
   "Capricorn": "child's Born Lagna is Makara Lagna. child is always disciplined, responsible, and ambitious. Child has a strong sense of duty and works hard to achieve long-term goals. Persistent nature helps child overcome challenges. Practical approach and determination drive child toward success.",
-  "Aquarius": "child's Born Lagna is Kumbha Lagna. child is always innovative, independent, and humanitarian. Child values individuality and enjoys exploring new ideas. Intellectual and open-minded nature drives child to bring about change. Child’s desire to improve the world motivates them to act in unique ways.",
+  "Aquarius": "child's Born Lagna is Kumbha Lagna. child is always innovative, independent, and humanitarian. Child values individuality and enjoys exploring new ideas. Intellectual and open-minded nature drives child to bring about change. Child's desire to improve the world motivates them to act in unique ways.",
   "Pisces": "child's Born Lagna is Meena Lagna. child is always compassionate, imaginative, and intuitive. Child has a strong connection to emotions and a deep sense of empathy. Creative nature drives child to explore artistic or spiritual pursuits. Sensitive personality makes child understanding and caring toward others."
 }
 
@@ -2081,7 +2081,7 @@ healthContent =  {
               "Reiki (Root and Solar Plexus Chakras)",
               [
                   "Sit or lie down in a relaxed position.",
-                  "Focus on your child’s root chakra (base of spine) and solar plexus (above the navel).",
+                  "Focus on your child's root chakra (base of spine) and solar plexus (above the navel).",
                   "Place your hands over the areas and channel calming energy for 10-15 minutes."
               ],
               "Promotes grounding, relieves digestive discomfort, calms the body's fiery tendencies."
@@ -2969,7 +2969,7 @@ carrer = {
         {
             "Healthcare and Nursing": "Careers in nursing, therapy, or healthcare provide an opportunity to care for others, aligning with Cancer's nurturing instincts.",
             "Teaching and Counseling": "Cancer's empathetic nature makes them great counselors, teachers, or social workers.",
-            "Hospitality and Event Planning": "Organizing events, managing hotels, or working in hospitality appeals to Cancer’s desire to create safe, welcoming environments.",
+            "Hospitality and Event Planning": "Organizing events, managing hotels, or working in hospitality appeals to Cancer's desire to create safe, welcoming environments.",
             "Psychology": "Counseling, therapy, or psychological research offer emotional depth and connection for Cancer.",
             "Home Management or Interior Design": "Careers that involve creating comfort, such as interior design or home organization, align with Cancer's emotional and family-centered approach."
         }
@@ -2979,8 +2979,8 @@ carrer = {
         {
             "Entertainment and Performing Arts": "Leo's love for the spotlight makes them ideal for careers in acting, music, dance, or other performance-based fields.",
             "Leadership Roles": "Whether in business or politics, Leo thrives in positions of power and influence where they can lead and inspire others.",
-            "Public Speaking or Media": "Leo’s confidence and charisma make them well-suited for roles in media, journalism, or motivational speaking.",
-            "Creative Director or Artist": "Careers in fashion, design, or visual arts provide an outlet for Leo’s creativity and desire for recognition.",
+            "Public Speaking or Media": "Leo's confidence and charisma make them well-suited for roles in media, journalism, or motivational speaking.",
+            "Creative Director or Artist": "Careers in fashion, design, or visual arts provide an outlet for Leo's creativity and desire for recognition.",
             "Event Management": "Organizing and leading large-scale events or public functions offers Leo the chance to be in charge and receive recognition."
         }
     ],
@@ -2988,8 +2988,8 @@ carrer = {
         "With Virgo in the 10th house, career success is linked to precision, practicality, and a strong work ethic. Virgo is ruled by Mercury, the planet of communication and organization. Individuals with Virgo in the 10th house are often drawn to careers that require attention to detail, problem-solving, and a methodical approach. They excel in roles that demand efficiency, organization, and service to others.",
         {
             "Healthcare and Medicine": "Careers in medicine, nursing, or allied health fields where attention to detail and care are critical are ideal for Virgo.",
-            "Accounting or Finance": "Virgo’s analytical skills and ability to manage finances make them well-suited for careers in accounting, auditing, or financial planning.",
-            "Research or Science": "Virgo’s methodical and detail-oriented nature thrives in research, laboratory work, or scientific inquiry.",
+            "Accounting or Finance": "Virgo's analytical skills and ability to manage finances make them well-suited for careers in accounting, auditing, or financial planning.",
+            "Research or Science": "Virgo's methodical and detail-oriented nature thrives in research, laboratory work, or scientific inquiry.",
             "Education": "Teaching, tutoring, or educational administration allows Virgo to use their organizational skills while helping others.",
             "Project Management or Consulting": "Virgo excels in roles that require structure, organization, and efficiency, making them great project managers or consultants."
         }
@@ -2998,8 +2998,8 @@ carrer = {
         "With Libra in the 10th house, career success is linked to balance, harmony, and relationships. Libra is ruled by Venus, the planet of beauty, love, and diplomacy. Individuals with Libra in the 10th house are often drawn to careers that involve collaboration, fairness, and aesthetic appeal. They seek work environments that promote peace and harmony, and they are well-suited for roles where their diplomatic skills can shine.",
         {
             "Law and Mediation": "Libra's strong sense of justice and fairness makes them well-suited for careers in law, mediation, or arbitration.",
-            "Diplomacy and Foreign Affairs": "Diplomatic roles or positions in international relations appeal to Libra’s desire for balance and peace.",
-            "Fashion and Design": "Careers in fashion, interior design, or styling tap into Libra’s love for beauty and aesthetics.",
+            "Diplomacy and Foreign Affairs": "Diplomatic roles or positions in international relations appeal to Libra's desire for balance and peace.",
+            "Fashion and Design": "Careers in fashion, interior design, or styling tap into Libra's love for beauty and aesthetics.",
             "Public Relations": "Working in PR, marketing, or communications allows Libra to use their diplomatic and relationship-building skills.",
             "Counseling and Therapy": "Libra's desire to help others and create harmony makes them excellent counselors, therapists, or psychologists."
         }
@@ -3007,20 +3007,20 @@ carrer = {
     "Scorpio": [
         "With Scorpio in the 10th house, career success is driven by intensity, transformation, and deep passion. Scorpio is ruled by Pluto, the planet of transformation and power. Individuals with Scorpio in the 10th house are drawn to careers that involve investigation, power, and emotional depth. They excel in roles that require strategic thinking and the ability to manage crises or transformation.",
         {
-            "Psychology and Counseling": "Scorpio’s ability to delve into deep emotional layers makes them well-suited for careers in psychology, counseling, or therapy.",
-            "Investigation and Forensics": "Roles in criminal investigation, forensic science, or detective work match Scorpio’s desire to uncover hidden truths.",
-            "Finance and Investment": "Careers in investment banking, stock trading, or financial management appeal to Scorpio’s strategic mindset and desire for power.",
-            "Medicine or Surgery": "The medical field, especially in areas requiring precision and care, like surgery, resonates with Scorpio’s intense focus.",
-            "Research and Science": "Careers in research, especially those involving deep analysis and uncovering new knowledge, fit Scorpio’s investigative nature."
+            "Psychology and Counseling": "Scorpio's ability to delve into deep emotional layers makes them well-suited for careers in psychology, counseling, or therapy.",
+            "Investigation and Forensics": "Roles in criminal investigation, forensic science, or detective work match Scorpio's desire to uncover hidden truths.",
+            "Finance and Investment": "Careers in investment banking, stock trading, or financial management appeal to Scorpio's strategic mindset and desire for power.",
+            "Medicine or Surgery": "The medical field, especially in areas requiring precision and care, like surgery, resonates with Scorpio's intense focus.",
+            "Research and Science": "Careers in research, especially those involving deep analysis and uncovering new knowledge, fit Scorpio's investigative nature."
         }
     ],
     "Sagittarius": [
         "With Sagittarius in the 10th house, career success is focused on exploration, knowledge, and freedom. Sagittarius is ruled by Jupiter, the planet of expansion, optimism, and philosophy. Individuals with Sagittarius in the 10th house are drawn to careers that allow them to explore new horizons, travel, or share their knowledge and experiences with others. They are motivated by personal growth and the pursuit of truth.",
         {
-            "Education and Teaching": "Sagittarius’ love for knowledge and philosophy makes them great teachers, professors, or educational administrators.",
+            "Education and Teaching": "Sagittarius' love for knowledge and philosophy makes them great teachers, professors, or educational administrators.",
             "Travel and Tourism": "Careers in travel, tourism, or international business allow Sagittarius to explore new cultures and expand their horizons.",
             "Writing and Journalism": "Sagittarius excels in writing, especially travel journalism, or any field that involves sharing ideas and experiences.",
-            "Philosophy and Religious Studies": "A career in philosophy, theology, or cultural studies appeals to Sagittarius’ love for exploration of big ideas.",
+            "Philosophy and Religious Studies": "A career in philosophy, theology, or cultural studies appeals to Sagittarius' love for exploration of big ideas.",
             "Entrepreneurship": "With their adventurous spirit, Sagittarius is often successful in starting businesses that cater to their passions, especially those related to travel or culture."
         }
     ],
@@ -3037,10 +3037,10 @@ carrer = {
     "Aquarius": [
         "With Aquarius in the 10th house, career success is focused on innovation, individuality, and social progress. Aquarius is ruled by Uranus, the planet of revolution and unconventionality. Individuals with Aquarius in the 10th house are drawn to careers that challenge the status quo, innovate, and contribute to society in unique ways. They excel in roles that involve technology, social change, and forward-thinking ideas.",
         {
-            "Technology and Innovation": "Careers in tech, such as software development, engineering, or IT, are ideal for Aquarius’ inventive nature.",
-            "Social Reform and Activism": "Aquarius’ desire for social justice and equality makes them excellent candidates for roles in activism, politics, or humanitarian work.",
-            "Science and Research": "Careers in scientific research, particularly in cutting-edge or experimental fields, resonate with Aquarius’ love for knowledge and progress.",
-            "Inventor or Entrepreneur": "Aquarius’ forward-thinking mindset makes them well-suited for entrepreneurship, especially in fields related to innovation and technology.",
+            "Technology and Innovation": "Careers in tech, such as software development, engineering, or IT, are ideal for Aquarius' inventive nature.",
+            "Social Reform and Activism": "Aquarius' desire for social justice and equality makes them excellent candidates for roles in activism, politics, or humanitarian work.",
+            "Science and Research": "Careers in scientific research, particularly in cutting-edge or experimental fields, resonate with Aquarius' love for knowledge and progress.",
+            "Inventor or Entrepreneur": "Aquarius' forward-thinking mindset makes them well-suited for entrepreneurship, especially in fields related to innovation and technology.",
             "Aerospace or Engineering": "Roles in the aerospace industry or other engineering fields allow Aquarius to push boundaries and work on groundbreaking projects."
         }
     ],
@@ -3050,8 +3050,8 @@ carrer = {
             "Arts and Entertainment": "Pisces is naturally creative and artistic, making them well-suited for careers in music, art, or film.",
             "Psychology and Counseling": "Pisces' deep empathy and intuitive nature make them excellent counselors, therapists, or social workers.",
             "Healing Professions": "Careers in alternative healing, such as acupuncture, massage therapy, or holistic health, resonate with Pisces' desire to help others.",
-            "Nonprofit Work and Social Services": "Pisces’ compassion makes them ideal for roles in nonprofit organizations, social work, or charity-based careers.",
-            "Writing and Creative Arts": "Writing, poetry, or other forms of creative expression are ideal for Pisces’ imaginative and emotionally driven nature."
+            "Nonprofit Work and Social Services": "Pisces' compassion makes them ideal for roles in nonprofit organizations, social work, or charity-based careers.",
+            "Writing and Creative Arts": "Writing, poetry, or other forms of creative expression are ideal for Pisces' imaginative and emotionally driven nature."
         }
     ]
 }
@@ -3183,7 +3183,7 @@ education = {
     [
         {
             "title": "Set Up Regular Learning Sessions",
-            "content": "Dedicate time for discussions on different topics related to child’s interests. This can be done after school or on weekends."
+            "content": "Dedicate time for discussions on different topics related to child's interests. This can be done after school or on weekends."
         },
         {
             "title": "Encourage Problem-Solving",
@@ -3279,7 +3279,7 @@ education = {
         },
         {
             "title": "Praise Efforts and Achievements",
-            "content": "Recognize and celebrate child’s academic and creative accomplishments to boost self-esteem."
+            "content": "Recognize and celebrate child's academic and creative accomplishments to boost self-esteem."
         },
         {
             "title": "Incorporate Creativity",
@@ -3459,7 +3459,7 @@ education = {
     [
         {
             "title": "Provide Opportunities for Travel",
-            "content": "Encourage experiences that expand child’s worldview, such as cultural trips or exchange programs."
+            "content": "Encourage experiences that expand child's worldview, such as cultural trips or exchange programs."
         },
         {
             "title": "Introduce Diverse Topics",
@@ -3510,7 +3510,7 @@ education = {
         },
         {
             "title": "Provide Practical Opportunities",
-            "content": "Offer real-world learning experiences, such as internships, work experiences, or projects related to child’s academic interests."
+            "content": "Offer real-world learning experiences, such as internships, work experiences, or projects related to child's academic interests."
         },
         {
             "title": "Instill a Strong Work Ethic",
@@ -3617,20 +3617,20 @@ planetDesc = {
     "The Sun represents strength, vitality, leadership, and self-confidence. Strengthening the Sun brings clarity, health, and a strong sense of self-worth.",
     [
       "Wake Up Early",
-      "Encourage Magizh to wake up with the Sun. Early rising fosters discipline and energy.",
-      'Set an alarm for 6:00 AM. Teach Magizh to say, "Thank you, Sun, for a new day," as they wake up.',
+      "Encourage child to wake up with the Sun. Early rising fosters discipline and energy.",
+      'Set an alarm for 6:00 AM. Teach child to say, "Thank you, Sun, for a new day," as they wake up.',
       "Starting the day early brings energy and helps you accomplish more."
     ],
     [
       "Take Responsibility",
-      "Give Magizh small daily tasks, like watering plants or organizing their toys, to build responsibility.",
+      "Give child small daily tasks, like watering plants or organizing their toys, to build responsibility.",
       'Say, "You take care of your plants, just like the Sun cares for the world."',
       '"Responsibility makes you strong and dependable, like the Sun."'
     ],
     [
       'Sun Salutations (Surya Namaskar)',
-      "Practice 5 rounds of Sun Salutations with Magizh each morning. This energizes the body and connects to the Sun's power.",
-      "Teach Magizh how to do each posture, slowly and with gratitude.",
+      "Practice 5 rounds of Sun Salutations with child each morning. This energizes the body and connects to the Sun's power.",
+      "Teach child how to do each posture, slowly and with gratitude.",
       "When you move your body and express gratitude, you invite strength and energy."
     ],
     [
@@ -3650,20 +3650,20 @@ planetDesc = {
     "The Moon represents emotions, peace, intuition, and nurturing. Strengthening the Moon brings emotional balance and calmness.",
     [
       "Nighttime Calmness",
-      "Establish a calm bedtime routine to help Magizh relax and sleep well.",
+      "Establish a calm bedtime routine to help child relax and sleep well.",
       'Read a peaceful story or play soft music before bed.',
       "A calm mind at night leads to peaceful sleep, just like the Moon calms the night sky."
     ],
     [
       "Emotional Awareness",
-      "Teach Magizh to express their feelings, whether happy or sad, in a calm and gentle way.",
+      "Teach child to express their feelings, whether happy or sad, in a calm and gentle way.",
       'Encourage saying, "I feel happy because of the sunny day," or, "I feel sad but will talk about it."',
       "Understanding your emotions helps you feel peaceful and balanced like the Moon."
     ],
     [
       "Relaxing Night Walks",
-      "Take a short walk under the moonlight to connect with the Moon’s peaceful energy.",
-      "Say, 'Let’s walk and feel the peace the Moon gives us.'",
+      "Take a short walk under the moonlight to connect with the Moon's peaceful energy.",
+      "Say, 'Let's walk and feel the peace the Moon gives us.'",
       "Taking time for peaceful moments brings calmness and clarity."
     ],
     [
@@ -3683,19 +3683,19 @@ planetDesc = {
     "Mars represents courage, energy, and determination. Strengthening Mars encourages action, assertiveness, and bravery.",
     [
       "Exercise and Challenges",
-      "Encourage Magizh to take on physical challenges like running or climbing.",
-      'Let’s race to the tree or climb the slide!',
+      "Encourage child to take on physical challenges like running or climbing.",
+      "Let's race to the tree or climb the slide!",
       "Physical challenges teach you to be brave and strong, like Mars."
     ],
     [
       "Bravery and Determination",
-      "Teach Magizh to face difficulties without giving up.",
+      "Teach child to face difficulties without giving up.",
       'If you fall, get up and try again. Bravery helps you grow.',
       "Facing challenges builds strength, just like Mars gives courage."
     ],
     [
       "Martial Arts or Active Games",
-      "Enroll Magizh in martial arts, yoga, or sports to channel energy positively.",
+      "Enroll child in martial arts, yoga, or sports to channel energy positively.",
       "Every movement strengthens your body and mind, just like Mars.",
       "Physical discipline teaches you focus, strength, and perseverance."
     ],
@@ -3717,19 +3717,19 @@ planetDesc = {
     [
       "Daily Learning",
       "Set aside time for daily learning through puzzles, reading, or exploring new topics.",
-      'Let’s read a story or solve a puzzle together.',
+      "Let's read a story or solve a puzzle together.",
       "Learning helps you grow smarter and quicker, just like Mercury sharpens the mind."
     ],
     [
       "Curiosity and Communication",
-      "Encourage Magizh to ask questions and explore the world around them.",
-      'What would you like to learn today? Let’s find out together.',
+      "Encourage child to ask questions and explore the world around them.",
+      "What would you like to learn today? Let's find out together.",
       "Asking questions leads to learning, just like Mercury helps us understand the world."
     ],
     [
       "Mind Games and Puzzles",
       "Play memory or word games to boost cognitive abilities.",
-      "Let’s play a game to remember words or numbers.",
+      "Let's play a game to remember words or numbers.",
       "Training your mind makes you sharper and clever, just like Mercury."
     ],
     [
@@ -3741,7 +3741,7 @@ planetDesc = {
     [
       "Donate Books",
       "On Wednesdays, donate books or educational materials.",
-      "Let’s donate books to spread knowledge and wisdom.",
+      "Let's donate books to spread knowledge and wisdom.",
       "Sharing knowledge brings wisdom to everyone, just like Mercury teaches us."
     ]
   ],
@@ -3749,53 +3749,53 @@ planetDesc = {
     "Jupiter represents wisdom, spirituality, knowledge, and good fortune. Strengthening Jupiter brings higher learning, faith, and a sense of purpose.",
     [
       "Practice Gratitude",
-      "Teach Magizh to start the day by saying 'thank you' for the blessings received.",
-      'Every morning, Magizh, express one thing you are grateful for.',
+      "Teach child to start the day by saying 'thank you' for the blessings received.",
+      'Every morning, child, express one thing you are grateful for.',
       "Gratitude brings abundance and positivity, just like Jupiter blesses with wisdom."
     ],
     [
       "Seek Knowledge",
-      "Encourage Magizh to read or learn something new every day.",
-      'Let’s read a book about a subject you like or try a new activity together.',
+      "Encourage child to read or learn something new every day.",
+      "Let's read a book about a subject you like or try a new activity together.",
       "Continuous learning brings wisdom and joy, just like Jupiter helps us grow mentally."
     ],
     [
       "Offer Water to Lord Vishnu",
-      "Teach Magizh to offer water to Lord Vishnu or chant the 'Om Namo Bhagavate Vasudevaya' mantra.",
-      "Let’s chant the mantra together to invite wisdom and spirituality into our lives.",
-      "Chanting brings wisdom and purifies the mind, like Jupiter’s blessings."
+      "Teach child to offer water to Lord Vishnu or chant the 'Om Namo Bhagavate Vasudevaya' mantra.",
+      "Let's chant the mantra together to invite wisdom and spirituality into our lives.",
+      "Chanting brings wisdom and purifies the mind, like Jupiter's blessings."
     ],
     [
       "Saffron and Yellow Foods",
-      "Include saffron, yellow lentils, and pumpkin in the diet to connect with Jupiter’s energy.",
+      "Include saffron, yellow lentils, and pumpkin in the diet to connect with Jupiter's energy.",
       "Serve yellow foods like pumpkin curry or lentil soup.",
       "Food can nourish the body and mind, just like Jupiter nourishes our wisdom."
     ],
     [
       "Donate Yellow Items",
       "On Thursdays, donate yellow items such as bananas, saffron, or clothes.",
-      "Let’s donate yellow items to spread joy and wisdom.",
-      "Charity brings blessings of wisdom and prosperity, like Jupiter’s influence."
+      "Let's donate yellow items to spread joy and wisdom.",
+      "Charity brings blessings of wisdom and prosperity, like Jupiter's influence."
     ]
   ],
   "Venus" : [
     "Venus represents love, beauty, creativity, and prosperity. Strengthening Venus brings harmony, creativity, and material comforts.",
     [
       "Practice Kindness and Love",
-      "Encourage Magizh to express kindness to everyone, whether through words or actions.",
+      "Encourage child to express kindness to everyone, whether through words or actions.",
       'Say something kind to others today, like “I appreciate you!”',
       "Being kind brings harmony and joy, just like Venus spreads love and beauty."
     ],
     [
       "Appreciate Beauty in Everything",
-      "Teach Magizh to notice and appreciate beauty in nature, art, and relationships.",
-      'Let’s look at the flowers or clouds today and see how beautiful they are!',
+      "Teach child to notice and appreciate beauty in nature, art, and relationships.",
+      "Let's look at the flowers or clouds today and see how beautiful they are!",
       "Appreciating beauty makes life joyful and harmonious, like Venus."
     ],
     [
       "Creative Time",
-      "Dedicate time each day for Magizh to explore creative activities like painting or music.",
-      "Let’s paint a picture or sing a song today.",
+      "Dedicate time each day for child to explore creative activities like painting or music.",
+      "Let's paint a picture or sing a song today.",
       "Creativity brings peace and joy, just like Venus nurtures creativity."
     ],
     [
@@ -3807,7 +3807,7 @@ planetDesc = {
     [
       "Donate White Items",
       "On Fridays, donate white items such as clothes, sweets, or flowers.",
-      "Let’s donate white items to spread love and positivity.",
+      "Let's donate white items to spread love and positivity.",
       "Giving brings peace and prosperity, just like Venus."
     ]
   ],
@@ -3815,21 +3815,21 @@ planetDesc = {
     "Saturn represents discipline, hard work, patience, and responsibility. Strengthening Saturn brings perseverance, wisdom, and a sense of duty.",
     [
       "Daily Routine",
-      "Establish a fixed routine for Magizh, including time for work, rest, and play.",
-      'Let’s follow a schedule each day to be responsible.',
+      "Establish a fixed routine for child, including time for work, rest, and play.",
+      "Let's follow a schedule each day to be responsible.",
       "A disciplined routine helps you succeed, just like Saturn teaches us responsibility."
     ],
     [
       "Patience and Hard Work",
-      "Teach Magizh that success comes with consistent effort and patience.",
+      "Teach child that success comes with consistent effort and patience.",
       'If you want to achieve something, keep trying every day.',
       "Hard work and patience lead to success, just like Saturn teaches us."
     ],
     [
       "Service and Duty",
-      "Encourage Magizh to take on responsibilities at home, like organizing or helping with chores.",
-      "Let’s clean up the room together as part of our routine.",
-      "Doing your duty brings strength and wisdom, like Saturn’s influence."
+      "Encourage child to take on responsibilities at home, like organizing or helping with chores.",
+      "Let's clean up the room together as part of our routine.",
+      "Doing your duty brings strength and wisdom, like Saturn's influence."
     ],
     [
       "Nourishing Foods for the Body",
@@ -3840,7 +3840,7 @@ planetDesc = {
     [
       "Donate Black Items",
       "On Saturdays, donate items like black clothes, sesame seeds, or oil.",
-      "Let’s donate black items to help others and earn Saturn’s blessings.",
+      "Let's donate black items to help others and earn Saturn's blessings.",
       "Giving brings strength and stability, just like Saturn."
     ]
   ],
@@ -3848,20 +3848,20 @@ planetDesc = {
     "Rahu represents illusion, desire, and ambition. It can bring rapid growth but also challenges. Strengthening Rahu brings clarity, focus, and breaking free from illusions.",
     [
       "Focus on Goals",
-      "Encourage Magizh to set one clear goal and work towards it daily.",
-      'Let’s set a goal for the day and take small steps towards it.',
+      "Encourage child to set one clear goal and work towards it daily.",
+      "Let's set a goal for the day and take small steps towards it.",
       "Focused effort helps you achieve your dreams, just like Rahu pushes us towards growth."
     ],
     [
       "Overcome Illusions",
-      "Teach Magizh to see things clearly and not get distracted by false promises.",
+      "Teach child to see things clearly and not get distracted by false promises.",
       'If something sounds too good to be true, it might be an illusion.',
       "Understanding what is real and what is not brings true success."
     ],
     [
       "Meditation and Mindfulness",
-      "Introduce Magizh to basic meditation techniques to calm the mind and increase focus.",
-      "Let’s sit quietly and focus on your breath for 5 minutes every day.",
+      "Introduce child to basic meditation techniques to calm the mind and increase focus.",
+      "Let's sit quietly and focus on your breath for 5 minutes every day.",
       "Meditation helps clear the mind and focus on true desires."
     ],
     [
@@ -3873,60 +3873,60 @@ planetDesc = {
     [
       "Donate Items for Growth",
       "On Saturdays, donate items related to ambition, like books or educational materials.",
-      "Let’s donate books or useful items to help others grow.",
-      "Helping others grow brings growth to yourself, just like Rahu’s influence."
+      "Let's donate books or useful items to help others grow.",
+      "Helping others grow brings growth to yourself, just like Rahu's influence."
     ]
   ],
   "Ketu" : [
     "Ketu represents spiritual growth, liberation, and detachment. It helps in breaking free from material attachments and focusing on higher consciousness. Strengthening Ketu brings peace, spiritual enlightenment, and the ability to let go of attachments.",
     [
       "Simplify Life",
-      "Teach Magizh to focus on essentials and detach from unnecessary distractions.",
-      'Let’s organize your space and only keep the things you truly need.',
+      "Teach child to focus on essentials and detach from unnecessary distractions.",
+      "Let's organize your space and only keep the things you truly need.",
       "Simplicity in life brings peace and clarity, just like Ketu teaches detachment."
     ],
     [
       "Let Go of Attachments",
-      "Teach Magizh that true happiness comes from within and not from material possessions.",
-      'Sometimes, giving away things we don’t need makes space for new opportunities.',
+      "Teach child that true happiness comes from within and not from material possessions.",
+      "Sometimes, giving away things we don't need makes space for new opportunities.",
       "Detaching from unnecessary things helps us grow spiritually, just like Ketu shows the way to liberation."
     ],
     [
       "Spiritual Practices",
-      "Introduce Magizh to daily prayer or reflection as a way to connect with higher consciousness.",
-      "Let’s sit together for 5 minutes every morning and reflect on the day ahead.",
+      "Introduce child to daily prayer or reflection as a way to connect with higher consciousness.",
+      "Let's sit together for 5 minutes every morning and reflect on the day ahead.",
       "Spiritual practices bring peace and liberation, just like Ketu helps us connect to our higher self."
     ],
     [
       "Simple and Light Foods",
       "Encourage a diet focused on simplicity, like fruits, vegetables, and light meals that nourish the body without overloading it.",
-      "Let’s eat simple meals today, like fruits or vegetable soup, to feel light and clear.",
-      "Simple foods support clarity and peace, just like Ketu’s energy helps us let go of distractions."
+      "Let's eat simple meals today, like fruits or vegetable soup, to feel light and clear.",
+      "Simple foods support clarity and peace, just like Ketu's energy helps us let go of distractions."
     ],
     [
       "Donate Spiritual Materials",
       "On Sundays, donate spiritual books or items related to meditation and learning.",
-      "Let’s donate books, clothes, or spiritual items to help others grow.",
-      "Sharing spiritual knowledge helps you grow, just like Ketu’s influence brings enlightenment."
+      "Let's donate books, clothes, or spiritual items to help others grow.",
+      "Sharing spiritual knowledge helps you grow, just like Ketu's influence brings enlightenment."
     ]
   ]
 }
 
 subContent = {
     "Aries" : [
-        "Magizh's subconscious mind may be driven by strong desires to act decisively and independently. With an 8th house in Aries, there may be an instinct to face challenges head-on, but this impulsiveness can also bring about subconscious fears or resistance, particularly around being in control of situations. When feeling threatened or challenged, Magizh might struggle with the urge to react too quickly or resist vulnerability. These subconscious patterns can sometimes hinder Magizh’s growth by creating internal conflict, especially when it comes to trusting others or handling emotional situations with patience.",
+        "child's subconscious mind may be driven by strong desires to act decisively and independently. With an 8th house in Aries, there may be an instinct to face challenges head-on, but this impulsiveness can also bring about subconscious fears or resistance, particularly around being in control of situations. When feeling threatened or challenged, child might struggle with the urge to react too quickly or resist vulnerability. These subconscious patterns can sometimes hinder child's growth by creating internal conflict, especially when it comes to trusting others or handling emotional situations with patience.",
         [ 
             {"title" : "Impulsiveness",
             "content" : "A tendency to act quickly without fully considering the consequences, which can sometimes lead to regret or missed opportunities."},
             {"title": "Fear of Losing Control", "content": "A deep-seated need to maintain control over situations, leading to difficulty in trusting others or letting go."},
             {"title":"Emotional Reactivity","content": "Strong emotional reactions (anger, frustration) can arise quickly, affecting relationships and inner peace."},
             {"title" : "Resistance to Vulnerability","content" : "A subconscious fear of showing weakness or being hurt, which may prevent emotional growth."},
-            {"title" : "Difficulty Embracing Change", "content" : "Fearing the unknown, Magizh may resist transformation or growth due to a subconscious attachment to the status quo."}
+            {"title" : "Difficulty Embracing Change", "content" : "Fearing the unknown, child may resist transformation or growth due to a subconscious attachment to the status quo."}
         ],
         {
             "manifestation" : [
                 "Affirmations for Patience and Trust",
-                "Repeating positive affirmations to help Magizh embrace patience, self-control, and trust.",
+                "Repeating positive affirmations to help child embrace patience, self-control, and trust.",
                 [
                     "I trust myself and others to navigate change with patience.",
                     "I release fear and allow myself to grow through challenges."
@@ -3938,7 +3938,7 @@ subContent = {
                 "Shifting Energy for Emotional Balance",
                 "Visualizing emotional energy as vibrations that can be altered to promote calmness and positivity.",
                 [
-                    "Magizh should sit quietly and focus on breathing.",
+                    "child should sit quietly and focus on breathing.",
                     "Imagine emotions as waves or energy, with negative emotions represented as dark, heavy energy.",
                     "Visualize this energy shifting into light, peaceful vibrations."   
                 ],
@@ -3949,7 +3949,7 @@ subContent = {
                 "Breathing for Emotional Release",
                 "Use deep breathing to release intense emotions like anger or frustration.",
                 [
-                    "Magizh should sit comfortably and focus on their breath.",
+                    "child should sit comfortably and focus on their breath.",
                     "Inhale deeply for 4 counts, imagining calm energy filling the body.",
                     "Hold the breath for 4 counts and exhale slowly for 6 counts."
                 ],
@@ -3960,7 +3960,7 @@ subContent = {
                 "The Surya Mudra for Empowerment",
                 "This mudra enhances personal power, calmness, and emotional control.",
                 [
-                    "Magizh should sit straight, palms facing upwards.",
+                    "child should sit straight, palms facing upwards.",
                     "Place the ring finger at the base of the thumb, keeping the other fingers extended.",
                     "Hold this position while focusing on deep breathing."
                 ],
@@ -3970,7 +3970,7 @@ subContent = {
         }
     ],
     "Taurus": [
-    "Magizh's subconscious mind with an 8th house in Taurus may be deeply connected to emotional security and the need for stability. However, this can also create subconscious blocks when it comes to change or unexpected events. Magizh may have a strong desire for material or emotional stability and could feel threatened by any shifts that challenge this sense of security. These deep-rooted fears may create resistance to change or cause stubbornness in adapting to new situations, potentially hindering emotional growth and personal transformation.",
+    "child's subconscious mind with an 8th house in Taurus may be deeply connected to emotional security and the need for stability. However, this can also create subconscious blocks when it comes to change or unexpected events. child may have a strong desire for material or emotional stability and could feel threatened by any shifts that challenge this sense of security. These deep-rooted fears may create resistance to change or cause stubbornness in adapting to new situations, potentially hindering emotional growth and personal transformation.",
     [
         {
             "title": "Fear of Change",
@@ -3996,7 +3996,7 @@ subContent = {
     {
         "manifestation": [
             "Affirmations for Growth and Adaptability",
-            "Repeating affirmations to help Magizh embrace change and let go of past attachments.",
+            "Repeating affirmations to help child embrace change and let go of past attachments.",
             [
                 "I am open to change and trust that it brings growth.",
                 "I release my attachment to comfort and embrace new opportunities."
@@ -4008,7 +4008,7 @@ subContent = {
             "Transforming Fearful Energy",
             "Use the concept of energy transformation to release fear and anxiety related to change.",
             [
-                "Magizh should sit comfortably and focus on breathing.",
+                "child should sit comfortably and focus on breathing.",
                 "Imagine fear or resistance as a dark, heavy cloud surrounding the body.",
                 "Visualize this cloud dissipating and being replaced by a warm, bright light of peace and trust."
             ],
@@ -4019,7 +4019,7 @@ subContent = {
             "Grounding Breathwork for Stability",
             "Focus on grounding and calming breathwork to help let go of fear and find inner peace.",
             [
-                "Magizh should sit comfortably with feet flat on the floor.",
+                "child should sit comfortably with feet flat on the floor.",
                 "Inhale deeply through the nose for 4 counts.",
                 "Hold for 4 counts, then slowly exhale through the mouth for 6 counts."
             ],
@@ -4030,7 +4030,7 @@ subContent = {
             "The Prithvi Mudra for Grounding",
             "This mudra promotes stability, grounding, and emotional balance.",
             [
-                "Magizh should sit with a straight back, palms facing upwards.",
+                "child should sit with a straight back, palms facing upwards.",
                 "Touch the tip of the ring finger to the tip of the thumb, keeping other fingers extended.",
                 "Focus on deep breathing and grounding energy into the body."
             ],
@@ -4040,7 +4040,7 @@ subContent = {
     }
 ],
     "Gemini": [
-    "Magizh's subconscious mind with an 8th house in Gemini may be constantly seeking knowledge and understanding. There may be a subconscious need for communication, mental stimulation, and new ideas. However, this mental restlessness can sometimes lead to difficulty focusing or forming deep emotional connections. Magizh might subconsciously avoid emotional depth, preferring intellectual pursuits, which can block personal growth in emotional or transformative areas of life.",
+    "child's subconscious mind with an 8th house in Gemini may be constantly seeking knowledge and understanding. There may be a subconscious need for communication, mental stimulation, and new ideas. However, this mental restlessness can sometimes lead to difficulty focusing or forming deep emotional connections. child might subconsciously avoid emotional depth, preferring intellectual pursuits, which can block personal growth in emotional or transformative areas of life.",
     [
         {
             "title": "Mental Restlessness",
@@ -4078,18 +4078,18 @@ subContent = {
             "Focusing Energy for Emotional Clarity",
             "Use visualization to focus and direct energy towards emotional clarity.",
             [
-                "Magizh should sit comfortably and breathe deeply.",
+                "child should sit comfortably and breathe deeply.",
                 "Visualize energy flowing to the heart, clearing away any confusion or distractions.",
                 "See this energy expanding, bringing emotional clarity and deep connections."
             ],
             "Practice for 5 minutes twice a day.",
-            "This technique uses the mind’s power to direct energy for emotional clarity and deeper connections."
+            "This technique uses the mind's power to direct energy for emotional clarity and deeper connections."
         ],
         "healing": [
             "Deep Breathing for Grounding",
             "Use deep breathing to ground the mind and bring emotional focus.",
             [
-                "Magizh should sit comfortably with feet on the ground.",
+                "child should sit comfortably with feet on the ground.",
                 "Inhale slowly for 4 counts, hold for 4, and exhale slowly for 6 counts."
             ],
             "Repeat for 5-10 minutes to calm the mind.",
@@ -4099,7 +4099,7 @@ subContent = {
             "The Gyan Mudra for Clarity",
             "This mudra enhances mental clarity and emotional connection.",
             [
-                "Magizh should sit with a straight back.",
+                "child should sit with a straight back.",
                 "Touch the tips of the index fingers and thumbs together, keeping other fingers extended.",
                 "Focus on calming the mind and deepening emotional awareness."
             ],
@@ -4109,7 +4109,7 @@ subContent = {
     }
 ],
     "Cancer": [
-    "Magizh’s subconscious mind, with the 8th house in Cancer, may be deeply connected to emotional security, family, and the need to protect loved ones. However, this can create subconscious fears and attachments related to vulnerability, emotional loss, and abandonment. Magizh may subconsciously suppress their emotions or avoid confronting deeper feelings to maintain a sense of safety. There may be an intense desire to shield oneself and others from emotional pain, which could hinder growth and emotional freedom. This emotional armor can also make it challenging for Magizh to fully trust and open up in relationships.",
+    "child's subconscious mind, with the 8th house in Cancer, may be deeply connected to emotional security, family, and the need to protect loved ones. However, this can create subconscious fears and attachments related to vulnerability, emotional loss, and abandonment. child may subconsciously suppress their emotions or avoid confronting deeper feelings to maintain a sense of safety. There may be an intense desire to shield oneself and others from emotional pain, which could hinder growth and emotional freedom. This emotional armor can also make it challenging for child to fully trust and open up in relationships.",
     [
         {
             "title": "Fear of Abandonment",
@@ -4147,7 +4147,7 @@ subContent = {
             "Energy Transformation for Emotional Healing",
             "Visualize emotional energy shifting from fear to calm and peace.",
             [
-                "Magizh should sit quietly and focus on breathing.",
+                "child should sit quietly and focus on breathing.",
                 "Visualize fear or emotional pain as dark energy around the chest area.",
                 "See this dark energy transforming into warm, golden light, filling the body with peace and emotional freedom."
             ],
@@ -4158,7 +4158,7 @@ subContent = {
             "Healing Through Heart-Centered Breathing",
             "Use deep heart-centered breathing to calm emotional reactions and release stress.",
             [
-                "Magizh should sit comfortably, place hands on the heart, and focus on deep breathing.",
+                "child should sit comfortably, place hands on the heart, and focus on deep breathing.",
                 "Inhale deeply through the nose for 4 counts, imagining light entering the heart.",
                 "Hold for 4 counts and exhale slowly for 6 counts, releasing tension."
             ],
@@ -4169,7 +4169,7 @@ subContent = {
             "The Apan Vayu Mudra for Emotional Balance",
             "This mudra helps release emotional tension and encourages inner peace.",
             [
-                "Magizh should sit comfortably with their hands resting on the knees, palms facing upward.",
+                "child should sit comfortably with their hands resting on the knees, palms facing upward.",
                 "Touch the tips of the index and middle fingers to the tips of the thumb, while keeping the other fingers extended.",
                 "Focus on deep, calm breathing and visualize emotional healing."
             ],
@@ -4179,7 +4179,7 @@ subContent = {
     }
 ],
   "Leo": [
-    "Magizh’s subconscious mind with the 8th house in Leo may carry a deep need for recognition, attention, and validation. There could be subconscious fears about not being appreciated or seen, leading to emotional blocks around expressing their true selves. Magizh may subconsciously seek to control how they are perceived by others, which can create resistance to vulnerability. Fear of being judged or criticized might also prevent Magizh from fully embracing emotional depth or change, causing them to hide their true feelings behind a façade of confidence.",
+    "child's subconscious mind with the 8th house in Leo may carry a deep need for recognition, attention, and validation. There could be subconscious fears about not being appreciated or seen, leading to emotional blocks around expressing their true selves. child may subconsciously seek to control how they are perceived by others, which can create resistance to vulnerability. Fear of being judged or criticized might also prevent child from fully embracing emotional depth or change, causing them to hide their true feelings behind a façade of confidence.",
     [
         {
             "title": "Fear of Rejection",
@@ -4191,7 +4191,7 @@ subContent = {
         },
         {
             "title": "Emotional Pride",
-            "content": "A subconscious need to protect pride, which may prevent Magizh from admitting vulnerability or emotional pain."
+            "content": "A subconscious need to protect pride, which may prevent child from admitting vulnerability or emotional pain."
         },
         {
             "title": "Need for Control",
@@ -4217,7 +4217,7 @@ subContent = {
             "Transforming Emotional Energy for Authenticity",
             "Use energy visualization to shift from fear of rejection to personal authenticity.",
             [
-                "Magizh should sit in a quiet space and breathe deeply.",
+                "child should sit in a quiet space and breathe deeply.",
                 "Visualize a dark cloud of self-doubt or fear of rejection surrounding the body.",
                 "See this cloud dissolving, and replace it with golden, radiant energy that represents authenticity and confidence."
             ],
@@ -4228,7 +4228,7 @@ subContent = {
             "Breathwork for Emotional Release",
             "Deep breathing to release emotional blockages and restore inner calm.",
             [
-                "Magizh should sit comfortably, focusing on their breath.",
+                "child should sit comfortably, focusing on their breath.",
                 "Inhale deeply for 4 counts, imagining positive energy entering the body.",
                 "Hold the breath for 4 counts, then slowly exhale for 6 counts, releasing tension."
             ],
@@ -4239,7 +4239,7 @@ subContent = {
             "The Surya Mudra for Confidence",
             "This mudra enhances self-confidence and emotional balance.",
             [
-                "Magizh should sit with their back straight, palms facing upward.",
+                "child should sit with their back straight, palms facing upward.",
                 "Touch the ring finger to the base of the thumb while keeping the other fingers extended.",
                 "Focus on deep breathing and visualize feelings of self-assurance and inner strength."
             ],
@@ -4249,7 +4249,7 @@ subContent = {
     }
 ],
   "Virgo": [
-    "Magizh’s subconscious mind with the 8th house in Virgo may be highly analytical and detail-oriented, but this can sometimes lead to subconscious worry and overthinking. There might be a tendency to focus on perfectionism, which can create emotional barriers or resistance to change. Magizh may subconsciously feel the need to control every detail of life to feel safe, leading to anxiety when things are out of order or when they are unable to meet high standards. These deep-seated concerns can cause them to resist transformation or emotional depth, as they focus too much on fixing external situations rather than allowing internal growth.",
+    "child's subconscious mind with the 8th house in Virgo may be highly analytical and detail-oriented, but this can sometimes lead to subconscious worry and overthinking. There might be a tendency to focus on perfectionism, which can create emotional barriers or resistance to change. child may subconsciously feel the need to control every detail of life to feel safe, leading to anxiety when things are out of order or when they are unable to meet high standards. These deep-seated concerns can cause them to resist transformation or emotional depth, as they focus too much on fixing external situations rather than allowing internal growth.",
     [
         {
             "title": "Perfectionism",
@@ -4269,7 +4269,7 @@ subContent = {
         },
         {
             "title": "Resistance to Vulnerability",
-            "content": "Fear of being imperfect or judged may lead Magizh to avoid emotional depth or change."
+            "content": "Fear of being imperfect or judged may lead child to avoid emotional depth or change."
         }
     ],
     {
@@ -4281,13 +4281,13 @@ subContent = {
                 "I release worry and trust the process of growth."
             ],
             "Repeat these affirmations 5 times in the morning and evening.",
-            "Affirmations can help Magizh shift from perfectionism to self-acceptance and emotional openness."
+            "Affirmations can help child shift from perfectionism to self-acceptance and emotional openness."
         ],
         "quantum": [
             "Energy Release for Emotional Freedom",
             "Visualize releasing control over minor details and shifting to emotional freedom.",
             [
-                "Magizh should sit quietly and focus on deep breathing.",
+                "child should sit quietly and focus on deep breathing.",
                 "Visualize holding tightly to mental clutter or perfectionist tendencies.",
                 "See these tensions dissolving and being replaced with a feeling of peace and calm."
             ],
@@ -4298,7 +4298,7 @@ subContent = {
             "Guided Breathing for Letting Go",
             "Focused breathing to release emotional tension and let go of control.",
             [
-                "Magizh should sit comfortably with hands on the belly.",
+                "child should sit comfortably with hands on the belly.",
                 "Inhale deeply through the nose for 4 counts, expanding the belly.",
                 "Exhale through the mouth for 6 counts, releasing tension in the body."
             ],
@@ -4309,7 +4309,7 @@ subContent = {
             "The Apana Mudra for Emotional Release",
             "This mudra helps let go of control and release emotional tension.",
             [
-                "Magizh should sit with their back straight and palms facing upward.",
+                "child should sit with their back straight and palms facing upward.",
                 "Touch the tips of the middle and ring fingers to the tips of the thumb.",
                 "Focus on breathing and releasing any emotional tension."
             ],
@@ -4319,7 +4319,7 @@ subContent = {
     }
 ],
   "Libra": [
-    "Magizh's subconscious mind with the 8th house in Libra may have a deep-seated need for balance, harmony, and justice, which could cause them to avoid confronting difficult emotions. Magizh might fear conflict and might subconsciously suppress their own needs or emotions in favor of keeping peace or seeking approval from others. This can create challenges in standing up for themselves and expressing personal boundaries, as they might fear alienating others or being seen as confrontational. The desire for balanced relationships may sometimes create unconscious emotional imbalances, where Magizh struggles to deal with personal conflicts.",
+    "child's subconscious mind with the 8th house in Libra may have a deep-seated need for balance, harmony, and justice, which could cause them to avoid confronting difficult emotions. child might fear conflict and might subconsciously suppress their own needs or emotions in favor of keeping peace or seeking approval from others. This can create challenges in standing up for themselves and expressing personal boundaries, as they might fear alienating others or being seen as confrontational. The desire for balanced relationships may sometimes create unconscious emotional imbalances, where child struggles to deal with personal conflicts.",
     [
         {
             "title": "Fear of Conflict",
@@ -4331,7 +4331,7 @@ subContent = {
         },
         {
             "title": "People-Pleasing",
-            "content": "A tendency to prioritize others’ needs over their own, creating internal resentment."
+            "content": "A tendency to prioritize others' needs over their own, creating internal resentment."
         },
         {
             "title": "Over-Reliance on Relationships",
@@ -4355,20 +4355,20 @@ subContent = {
         ],
         "quantum": [
             "Energy Release for Emotional Independence",
-            "Visualize emotional energy being released to create independence from others’ expectations.",
+            "Visualize emotional energy being released to create independence from others' expectations.",
             [
-                "Magizh should sit comfortably and close their eyes.",
+                "child should sit comfortably and close their eyes.",
                 "Visualize energetic cords connecting them to others, draining their emotional energy.",
                 "See these cords dissolving, and feel the energy returning to them as an aura of confidence and independence."
             ],
             "Practice this visualization for 5 minutes daily.",
-            "Visualization helps Magizh disconnect from emotional reliance on others and strengthens their personal energy."
+            "Visualization helps child disconnect from emotional reliance on others and strengthens their personal energy."
         ],
         "healing": [
             "Heart-Centered Breathing for Inner Balance",
             "Use deep breathing to calm emotions and restore balance within the heart.",
             [
-                "Magizh should sit comfortably and place hands on the heart.",
+                "child should sit comfortably and place hands on the heart.",
                 "Inhale deeply for 4 counts, imagining love and balance flowing into the heart.",
                 "Exhale slowly for 6 counts, releasing any emotional tension or conflict."
             ],
@@ -4379,7 +4379,7 @@ subContent = {
             "The Apan Vayu Mudra for Emotional Clarity",
             "This mudra helps release emotional tension and encourages clarity in relationships.",
             [
-                "Magizh should sit comfortably with palms facing upward.",
+                "child should sit comfortably with palms facing upward.",
                 "Touch the tips of the index and middle fingers to the tips of the thumb, keeping the other fingers extended.",
                 "Focus on breathing deeply, allowing clarity and emotional healing."
             ],
@@ -4388,5 +4388,843 @@ subContent = {
         ]
     }
 ],
-    
+  "Sagittarius": [
+    "child's subconscious mind with the 8th house in Sagittarius could have a deep desire for freedom, expansion, and exploration. However, this can lead to subconscious resistance to emotional depth or change, as child may be more focused on seeking external adventure rather than confronting internal emotions. The fear of being confined or restricted may cause them to suppress deeper feelings or avoid situations that require emotional intimacy. This desire for freedom and exploration can sometimes manifest as emotional detachment or avoidance of personal transformation.",
+    [
+        {
+            "title": "Fear of Emotional Confinement",
+            "content": "Subconscious fear of being restricted emotionally or mentally."
+        },
+        {
+            "title": "Avoidance of Deep Connections",
+            "content": "A tendency to avoid emotional depth or commitment in relationships."
+        },
+        {
+            "title": "Restlessness and Escapism",
+            "content": "A tendency to escape difficult emotions by seeking constant change or adventure."
+        },
+        {
+            "title": "Difficulty Confronting the Past",
+            "content": "Subconscious avoidance of unresolved issues or emotional wounds."
+        },
+        {
+            "title": "Fear of Limitation",
+            "content": "Fear that emotional depth might limit their freedom or personal growth."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Emotional Freedom and Deep Connection",
+            "Use affirmations to encourage emotional depth and openness.",
+            [
+                "I embrace emotional depth and trust in the process of personal transformation.",
+                "I am free to explore both my inner world and the world around me."
+            ],
+            "Repeat these affirmations 5 times each morning.",
+            "Affirmations promote the integration of emotional depth with the need for freedom and exploration."
+        ],
+        "quantum": [
+            "Energy Transformation for Emotional Liberation",
+            "Visualize the release of emotional confinement and the expansion of inner freedom.",
+            [
+                "child should sit comfortably and breathe deeply.",
+                "Visualize a ball of restrictive energy surrounding their heart area.",
+                "See this energy dissolving into light, allowing freedom and emotional openness to fill the space."
+            ],
+            "Practice for 3-5 minutes daily.",
+            "Visualization helps child release emotional blockages and integrate the need for freedom with emotional depth."
+        ],
+        "healing": [
+            "Breathwork for Grounding and Emotional Release",
+            "Focused breathing to ground and release any restlessness or emotional avoidance.",
+            [
+                "child should sit with feet firmly planted on the ground.",
+                "Inhale deeply for 4 counts, imagining stability and grounding energy flowing into the body.",
+                "Exhale slowly for 6 counts, releasing any emotional restlessness or escapism."
+            ],
+            "Repeat for 5-10 minutes to calm the mind and restore emotional balance.",
+            "Breathwork helps anchor the mind, fostering emotional release and stability."
+        ],
+        "mudra": [
+            "The Apan Mudra for Emotional Release and Balance",
+            "This mudra helps release emotional blocks and brings balance to the mind.",
+            [
+                "child should sit with their back straight and palms facing upward.",
+                "Touch the tips of the middle and ring fingers to the tips of the thumb.",
+                "Focus on deep breathing, releasing emotional tension and seeking balance."
+            ],
+            "Hold for 5-10 minutes daily.",
+            "The Apan Mudra encourages emotional release and brings balance to both the body and mind."
+        ]
+    }
+],
+  "Capricorn": [
+    "child's subconscious mind with the 8th house in Capricorn might be heavily focused on responsibility, discipline, and achievement. There could be a subconscious fear of failure, which might make them overly cautious or resistant to emotional vulnerability. The need for control and structure may cause them to suppress their deeper feelings, as they fear that emotional instability will interfere with their sense of control. This can create emotional barriers, as child may subconsciously believe that feelings of vulnerability or emotional expression will hinder their goals or success.",
+    [
+        {
+            "title": "Fear of Failure",
+            "content": "Subconscious fear of not meeting their own or others' expectations, leading to emotional avoidance."
+        },
+        {
+            "title": "Emotional Suppression",
+            "content": "A tendency to suppress emotions in favor of maintaining control or achieving goals."
+        },
+        {
+            "title": "Over-Responsibility",
+            "content": "Taking on too much responsibility subconsciously, leading to emotional exhaustion."
+        },
+        {
+            "title": "Fear of Vulnerability",
+            "content": "A subconscious belief that showing vulnerability will weaken their emotional strength."
+        },
+        {
+            "title": "Difficulty Trusting Others",
+            "content": "Fear that relying on others emotionally might hinder their personal growth or success."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Emotional Release and Trust",
+            "Use affirmations to promote emotional vulnerability and self-acceptance.",
+            [
+                "I trust myself and allow emotions to flow freely without fear.",
+                "I embrace vulnerability as a source of strength."
+            ],
+            "Repeat these affirmations 5 times each morning.",
+            "Affirmations help shift the subconscious mind from fear to emotional trust and openness."
+        ],
+        "quantum": [
+            "Energy Clearing for Emotional Freedom",
+            "Visualize clearing emotional blocks that hinder vulnerability and trust.",
+            [
+                "child should sit with eyes closed and take a deep breath.",
+                "Visualize a cloud of emotional tension surrounding their heart, holding them back.",
+                "See the cloud dissolving, replaced with light and emotional freedom."
+            ],
+            "Practice for 3-5 minutes daily.",
+            "Visualization helps child release emotional blockages and embrace emotional freedom."
+        ],
+        "healing": [
+            "Heart-Centered Breathing for Emotional Vulnerability",
+            "Focused breathing to open the heart and release emotional barriers.",
+            [
+                "child should sit with hands on their heart, eyes closed.",
+                "Inhale deeply for 4 counts, imagining warmth and openness filling the heart.",
+                "Exhale slowly for 6 counts, releasing any fear or tension around vulnerability."
+            ],
+            "Repeat for 5-10 minutes daily.",
+            "This practice helps dissolve fears around emotional vulnerability and fosters trust."
+        ],
+        "mudra": [
+            "The Prithvi Mudra for Emotional Grounding",
+            "This mudra encourages emotional grounding and stability.",
+            [
+                "child should sit comfortably with palms facing upward.",
+                "Touch the tips of the ring finger and thumb together.",
+                "Focus on deep, calming breaths, allowing the earth's energy to ground and stabilize emotions."
+            ],
+            "Hold for 5-10 minutes daily.",
+            "The Prithvi Mudra promotes grounding and stability, helping child manage emotional suppression."
+        ]
+    }
+],
+    "Aquarius": [
+    "child's subconscious mind with the 8th house in Aquarius could be influenced by a need for freedom and independence in both thoughts and emotions. However, this desire for detachment and non-conformity might make them unconsciously avoid emotional connection or vulnerability. They might fear being too emotionally invested or dependent on others, and this could create barriers to true intimacy. child may also have an unconscious belief that deep emotions are irrational or disruptive to their sense of independence.",
+    [
+        {
+            "title": "Fear of Emotional Dependency",
+            "content": "Subconscious fear of being too emotionally attached to others."
+        },
+        {
+            "title": "Emotional Detachment",
+            "content": "Tendency to detach from emotional experiences in favor of intellectual reasoning."
+        },
+        {
+            "title": "Avoidance of Intimacy",
+            "content": "Difficulty forming deep emotional connections due to fear of loss of independence."
+        },
+        {
+            "title": "Fear of Being Misunderstood",
+            "content": "Feeling that others cannot understand or accept their unique emotional world."
+        },
+        {
+            "title": "Over-Intellectualization",
+            "content": "Tendency to intellectualize emotions rather than experiencing them."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Emotional Openness and Connection",
+            "Use affirmations to foster emotional connection and openness.",
+            [
+                "I am open to forming deep emotional connections with others.",
+                "I trust in the value of emotional intimacy and sharing my feelings."
+            ],
+            "Repeat these affirmations 5 times in the morning.",
+            "Affirmations help shift child's mindset towards emotional openness and trust."
+        ],
+        "quantum": [
+            "Energy Release for Emotional Freedom",
+            "Visualize releasing emotional barriers and fostering openness.",
+            [
+                "child should sit with eyes closed and take a few deep breaths.",
+                "Visualize an emotional barrier around the heart area dissolving into light.",
+                "See themselves opening up emotionally and feeling free to connect with others."
+            ],
+            "Practice for 5 minutes daily.",
+            "Visualization helps child let go of emotional detachment and open up to connection."
+        ],
+        "healing": [
+            "Breathwork for Emotional Release and Openness",
+            "Use deep breathing to release emotional blockages and encourage openness.",
+            [
+                "child should sit with hands on their chest, focusing on the breath.",
+                "Inhale deeply for 4 counts, filling the chest with air.",
+                "Exhale for 6 counts, imagining emotional blockages dissolving."
+            ],
+            "Repeat for 5-10 minutes.",
+            "Deep breathing can help dissolve emotional detachment and foster openness."
+        ],
+        "mudra": [
+            "The Shunya Mudra for Emotional Awareness",
+            "This mudra helps enhance emotional awareness and openness.",
+            [
+                "child should sit comfortably with palms facing upwards.",
+                "Touch the tips of the middle finger and thumb together.",
+                "Focus on emotional awareness, breathing deeply and calmly."
+            ],
+            "Hold for 5-10 minutes daily.",
+            "The Shunya Mudra helps increase emotional awareness and encourages emotional connection."
+        ]
+    }
+],
+    "Pisces": [
+    "child's subconscious mind with the 8th house in Pisces may experience deep emotional sensitivity and a tendency to merge with others. However, this intense emotional nature can sometimes lead to subconscious confusion or lack of boundaries. child might struggle with distinguishing their own feelings from those of others, leading to emotional overwhelm or escapism. This can manifest as difficulty processing emotions in a healthy way, as well as a tendency to avoid confronting painful truths.",
+    [
+        {
+            "title": "Emotional Overwhelm",
+            "content": "Difficulty distinguishing personal emotions from those of others."
+        },
+        {
+            "title": "Escapism",
+            "content": "Subconscious avoidance of painful emotions through daydreaming or fantasy."
+        },
+        {
+            "title": "Lack of Boundaries",
+            "content": "Difficulty maintaining healthy emotional boundaries with others."
+        },
+        {
+            "title": "Fear of Emotional Depth",
+            "content": "Subconscious fear of facing the full intensity of emotions."
+        },
+        {
+            "title": "Sensitivity to Criticism",
+            "content": "Fear of being emotionally hurt by others' judgment or criticism."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Emotional Clarity and Boundaries",
+            "Use affirmations to promote emotional clarity and boundary-setting.",
+            [
+                "I honor my own emotions and maintain healthy boundaries.",
+                "I trust myself to navigate emotional experiences with clarity and strength."
+            ],
+            "Repeat these affirmations 5 times each morning.",
+            "Affirmations help create clarity and emotional resilience."
+        ],
+        "quantum": [
+            "Energy Clearing for Emotional Boundaries",
+            "Visualize clearing emotional confusion and strengthening personal boundaries.",
+            [
+                "child should sit comfortably and focus on their breath.",
+                "Visualize a protective shield surrounding their aura, keeping others' emotions separate.",
+                "See any emotional confusion dissolving, allowing clarity and peace to fill their mind."
+            ],
+            "Practice for 5 minutes daily.",
+            "Visualization helps create stronger emotional boundaries and reduces overwhelm."
+        ],
+        "healing": [
+            "Guided Breathing for Grounding and Emotional Clarity",
+            "Grounding breathwork to enhance emotional clarity and release overwhelm.",
+            [
+                "child should sit with feet firmly on the ground.",
+                "Inhale deeply for 4 counts, grounding their energy into the earth.",
+                "Exhale slowly for 6 counts, releasing emotional tension and confusion."
+            ],
+            "Repeat for 5-10 minutes.",
+            "This practice calms the mind, helping child release emotional overwhelm and find clarity."
+        ],
+        "mudra": [
+            "The Prana Mudra for Emotional Strength",
+            "This mudra promotes emotional strength and clarity.",
+            [
+                "child should sit comfortably with palms facing upwards.",
+                "Touch the tips of the thumb, ring, and little fingers together.",
+                "Focus on deep, calming breaths, allowing emotional clarity to emerge."
+            ],
+            "Hold for 5-10 minutes daily.",
+            "The Prana Mudra helps enhance emotional clarity, strength, and stability."
+        ]
+    }
+],
+    "Scorpio": [
+        "child's subconscious mind might be shaped by deep, powerful emotions and intense experiences. With a Scorpio influence, there could be a strong desire to control situations or emotions to avoid feeling vulnerable. This may lead to a tendency to hide emotions or resist change, especially when feeling threatened. Fear of betrayal or being hurt could create subconscious blocks, affecting trust in others and making it difficult to embrace growth. These hidden feelings may sometimes prevent child from fully expressing themselves or opening up to new possibilities.",
+        [
+            {
+                "title": "Fear of Vulnerability",
+                "content": "child might subconsciously guard emotions and resist expressing feelings due to a fear of being hurt or betrayed."
+            },
+            {
+                "title": "Trust Issues",
+                "content": "There may be difficulty trusting others, particularly due to past experiences or fear of betrayal."
+            },
+            {
+                "title": "Intense Emotions",
+                "content": "Strong emotional reactions, such as jealousy or anger, could arise unexpectedly, creating inner turmoil."
+            },
+            {
+                "title": "Resistance to Change",
+                "content": "Subconscious fear of change or the unknown can create emotional blockages that prevent growth."
+            },
+            {
+                "title": "Holding onto the Past",
+                "content": "child may struggle to let go of past emotional wounds, keeping them stuck in unresolved feelings or memories."
+            }
+        ],
+        {
+            "manifestation": [
+                "Affirmations for Trust and Transformation",
+                "Use daily affirmations to help child embrace trust, change, and emotional openness.",
+                [
+                    "I trust myself and others to create positive connections.",
+                    "I embrace change and allow transformation to happen with ease.",
+                    "I release past fears and open my heart to new possibilities."
+                ],
+                "Repeat each affirmation 5 times each morning, feeling the meaning of each word.",
+                "Affirmations can reprogram the subconscious mind, helping to shift negative beliefs and promote trust and transformation."
+            ],
+            "quantum": [
+                "Thought & Emotion Formatting for Positive Vibrations",
+                "Visualize thoughts and emotions as energy patterns that can be changed to raise vibrations and attract positive outcomes.",
+                [
+                    "child should sit comfortably, close their eyes, and focus on their breath.",
+                    "Visualize thoughts as colors: negative thoughts could be gray or dark, while positive thoughts are bright and vibrant.",
+                    "See the gray thoughts slowly transforming into bright colors, feeling the emotional shift as the energy becomes lighter and more positive."
+                ],
+                "Practice for 3-5 minutes, twice a day, ideally after waking up and before bed.",
+                "This visualization technique helps change the emotional frequency of the body, shifting negative energy into positive vibrations, improving overall mood and well-being."
+            ],
+            "healing": [
+                "Releasing Emotional Blockages with Deep Breathing",
+                "Deep breathing can help release stored emotional tension, especially from past experiences.",
+                [
+                    "child should sit comfortably and close their eyes.",
+                    "Inhale deeply through the nose for a count of 4, imagining positive energy filling the body.",
+                    "Hold the breath for 4 counts, letting the energy settle.",
+                    "Exhale slowly for 6 counts, imagining all negative emotions leaving the body."
+                ],
+                "Repeat this breathing pattern for 5-10 minutes daily, especially when feeling overwhelmed or tense.",
+                "Deep breathing promotes relaxation and helps release repressed emotions, bringing emotional clarity and peace."
+            ],
+            "mudra": [
+                "The Prana Mudra for Emotional Healing",
+                "This mudra helps to restore balance, increase energy, and promote emotional healing.",
+                [
+                    "child should sit with a straight back, either in a chair or on the floor.",
+                    "Place the tips of the ring and little fingers to the tip of the thumb, while keeping the index and middle fingers extended.",
+                    "Rest the hands on the knees with the palms facing upward.",
+                    "Focus on breathing deeply, keeping the mind calm and focused on the sensation in the hands."
+                ],
+                "Hold this mudra for 5-10 minutes daily, ideally before bedtime.",
+                "The Prana Mudra increases the flow of life energy (prana), helping to heal emotional wounds and balance the body's energy system."
+            ]
+        }
+    ]
 }
+
+nakshatraContent = {
+    'Ashwini': [
+        {
+            "name": "Sania Mirza",
+            "famous": "Tennis player",
+            "Nakshatra ": "Attractive personality"
+        },
+        {
+            "name": "Yukta Mookhey",
+            "famous": "Miss World",
+            "Nakshatra ": "Beautiful, attractive personality"
+        },
+        {
+            "name": "Bruce Lee",
+            "famous": "Actor",
+            "Nakshatra": "Interest in acting"
+        },
+    ], 
+    'Bharani': [
+        {
+            "name": "Karl Marx",
+            "famous": "Philosopher",
+            "nakshatra": "Leadership, public life."
+        },
+    
+        {
+            "name": "James Braha",
+            "famous": "Writer",
+            "nakshatra": "Literary skills."
+        },
+        {
+            "name": "Carlos Castaneda",
+            "famous": "Writer",
+            "nakshatra": "Literary skills."
+        },
+    ],
+    'Krittika': [
+        {
+            "name": "Bill Clinton",
+            "famous": "US President",
+            "nakshatra": "Attractive personality, famous."
+        },
+        {
+            "name": "Ronald Reagan",
+            "famous": "US President",
+            "nakshatra": "Intelligent, unstable decisions."
+        },
+        {
+            "name": "Bob Dylan",
+            "famous": "Musician",
+            "nakshatra": "Peaceful, good in advising."
+        },
+    ],
+    'Rohini': [
+    {
+        "name": "Lord Krishna",
+        "famous": "Avatara of Vishnu",
+        "nakshatra": "Brilliant, attractive eyes."
+    },
+    {
+        "name": "Burt Reynolds",
+        "famous": "Actor",
+        "nakshatra": "Attractive, popular."
+    },
+    {
+        "name": "General Franco",
+        "famous": "Military General",
+        "nakshatra": "Power."
+    },
+   
+  
+], 'Mrigashira': [
+    {
+        "name": "Dr. Rajendra Prasad",
+        "famous": "Indian President",
+        "nakshatra": "Political power"
+    },
+    {
+        "name": "Dr. B.V.Raman",
+        "famous": "Astrologer, Author",
+        "nakshatra": "Intelligent, writing skills."
+    },
+    {
+        "name": "Walter Mondale",
+        "famous": "US Vice President",
+        "nakshatra": "Political power, wealth."
+    },
+   
+], 'Ardra': [
+    {
+        "name": "Adi Shankaracharya",
+        "famous": "Spiritual leader",
+        "nakshatra": "Knowledge."
+    },
+    {
+        "name": "Ramanujacharya",
+        "famous": "Spiritual leader",
+        "nakshatra": "Knowledge."
+    },
+    {
+        "name": "Swami Kriyananda",
+        "famous": "Spiritual leader",
+        "nakshatra": "Writing skills."
+    },
+    
+], 'Punarvasu':[
+    {
+        "name": "Ramana Maharshi",
+        "famous": "Spiritual leader",
+        "nakshatra": "Knowledge, self-control."
+    },
+    {
+        "name": "Jerry Brown",
+        "famous": "Governor of California",    
+        "nakshatra": "Communication skills, self-control."
+    },
+    {
+        "name": "Paul Simon",
+        "famous": "Singer",
+        "nakshatra": "Troubled marriage."
+    },
+  
+], 'Pushya': [
+    {
+        "name": "Thyagaraja",
+        "famous": "Carnatic music composer",
+        "nakshatra": "Short-tempered."      
+    },
+    {
+        "name": "Janet Reno",
+        "famous": "US Attorney General",
+        "nakshatra": "Systematic."
+    },
+    {
+        "name": "Mussolini",
+        "famous": "Dictator",
+        "nakshatra": "Arrogance."
+    }
+], 'Ashlesha': [
+    
+    {
+        "name": "Jawaharlal Nehru",
+        "famous": "Indian Prime Minister",
+        "nakshatra": "Leadership, political success."
+    },
+   
+    {
+        "name": "Robert Bly",
+        "famous": "Poet",
+        "nakshatra": "Literary skills."
+    },
+   
+    {
+        "name": "Marc Edmund Jones",
+        "famous": "Writer",
+        "nakshatra": "Literary skills."
+    },
+], 'Magha': [
+    {
+        "name": "Paramahansa Yogananda",
+        "famous": "Spiritual leader",
+        "nakshatra": "Honored and respected."
+    },
+    {
+        "name": "Maharishi Mahesh Yogi",
+        "famous": "Spiritual leader",
+        "nakshatra": "Honored and respected."
+    },
+    {
+        "name": "Winston Churchill",
+        "famous": "British Prime Minister",
+        "nakshatra": "Public relations, popularity."
+    },
+ 
+ 
+ 
+], 'Purva Phalguni': [
+    {
+        "name": "Chaitanya Mahaprabhu",       
+        "famous": "Spiritual leader",
+        "nakshatra": "Attractive personality."
+    },
+  
+    {
+        "name": "John F Kennedy",
+        "famous": "US President",
+        "nakshatra": "Leadership qualities."
+    },
+    {
+        "name": "John Travolta",
+        "famous": "Actor",
+        "nakshatra": "Fond of traveling."
+    },
+    
+], 'Uttara Phalguni': [
+    {
+        "name": "Shuddhananda Bharati", 
+        "famous": "Philosopher",        
+        "nakshatra": "Learned, noble."  
+    },
+
+   
+    {
+        "name": "Alexander Graham Bell",
+        "famous": "Inventor",
+        "nakshatra": "Intelligent."
+    },
+  
+   
+    {
+        "name": "Agatha Christie",
+        "famous": "Writer",
+        "nakshatra": "Clean-hearted, independent."
+    }
+], 'Hasta': [
+    {
+        "name": "Swami Vivekananda",
+        "famous": "Spiritual leader",
+        "nakshatra": "Knowledgeable, attractive character, self-discipline."
+    },
+    {
+        "name": "Jagdish Chandra Bose",
+        "famous": "Physicist",
+        "nakshatra": "Knowledgeable, inquisitive."
+    },
+    {
+        "name": "Jimmy Carter",
+        "famous": "US President",
+        "nakshatra": "Wealth late in life, leadership qualities."
+    },
+    
+], 'Chitra': [
+  
+    {
+        "name": "Krishnaraja Wadiyar IV",
+        "famous": "Ruler",
+        "nakshatra": "Interest in music and arts."
+    },
+
+    {
+        "name": "George Bush",
+        "famous": "US President",
+        "nakshatra": "Popular, leadership qualities."
+    },
+  
+    {
+        "name": "Dwight Eisenhower",
+        "famous": "US President",
+        "nakshatra": "Popular, leadership qualities."
+    },
+  
+], 'Swati': [
+    {
+        "name": "Meher Baba",
+        "famous": "Spiritual leader",
+        "nakshatra": "Righteous, compassionate."
+    },
+ 
+    {
+        "name": "Harry Truman",
+        "famous": "US President",
+        "nakshatra": "Adamant, short-tempered."
+    },
+  
+    {
+        "name": "Nelson Rockefeller",
+        "famous": "US Vice President",
+        "nakshatra": "Wealthy."
+    },
+  
+], 'Vishakha': [
+    {
+        "name": "Gautam Buddha",
+        "famous": "Spiritual leader",
+        "nakshatra": "Kindness, sweet talking, intelligence."
+    },
+    {
+        "name": "Swami Muktananda",
+        "famous": "Spiritual leader",
+        "nakshatra": "Intelligent."
+    },
+   
+    {
+        "name": "Alexander",
+        "famous": "Ruler",
+        "nakshatra": "Lives away from family, leadership qualities."
+    },
+   
+], 'Anuradha': [
+    {
+        "name": "Alex Haley",
+        "famous": "Writer",
+        "nakshatra": "Wise, honest, kind."
+    },
+  
+    {
+        "name": "Steve Allen",
+        "famous": "T.V. personality",
+        "nakshatra": "Troubled marriage."
+    },
+    {
+        "name": "Saddam Hussein",
+        "famous": "Ruler",
+        "nakshatra": "Determined."
+    },
+   
+], 'Jyeshtha': [
+    {
+        "name": "Friedrich Nietzche",
+        "famous": "Philosopher",
+        "nakshatra": "Noble, irritable."
+    },
+ 
+    {
+        "name": "Beethoven",
+        "famous": "Composer",
+        "nakshatra": "Talent in music."
+    },
+  
+    {
+        "name": "Howard Hughes",
+        "famous": "Businessman",
+        "nakshatra": "Wealthy."
+    }
+], 'Mula': [
+    {
+        "name": "Sri Aurobindo",
+        "famous": "Spiritual leader",
+        "nakshatra": "Spiritually oriented, charitable."
+    },
+    {
+        "name": "Ramakrishna Dalmia",
+        "famous": "Businessman",
+        "nakshatra": "Wealthy, charitable."
+    },
+    {
+        "name": "Dalai Lama",
+        "famous": "Spiritual leader",
+        "nakshatra": "Peace-loving, spiritually oriented."
+    },
+   
+]
+, 'Purva Ashadha':[
+    {
+        "name": "Osho",
+        "famous": "Spiritual leader",
+        "nakshatra": "Attractive, charismatic."
+    },
+   
+    {
+        "name": "Johnny Carson",
+        "famous": "T.V.Personality",
+        "nakshatra": "Communication skills, intelligence."
+    },
+    {
+        "name": "William James",
+        "famous": "Philosopher",
+        "nakshatra": "Writing skills."
+    },
+  
+], 'Uttara Ashadha': [
+    {
+        "name": "Deepak Chopra",
+        "famous": "Author",
+        "nakshatra": "Charming, graceful."
+    },
+    {
+        "name": "Abraham Lincoln",        
+        "famous": "US President",
+        "nakshatra": "Virtuous, charitable, intelligent."
+    },
+    {
+        "name": "Napolean",
+        "famous": "Ruler",
+        "nakshatra": "Power, leadership qualities."
+    },
+    
+], 'Shravana': [
+    {
+        "name": "Narasimha Bharati Mahaswamiji",
+        "famous": "Spiritual leader",
+        "nakshatra": "Religious, sweet talking."
+    },
+   
+    {
+        "name": "Henry Ford",
+        "famous": "Businessman",
+        "nakshatra": "Wealthy, creative."
+    },
+  
+    {
+        "name": "Jessica Lange",
+        "famous": "Actress",
+        "nakshatra": "Foodie, perfectionist."
+    }
+], 'Dhanishta': [
+    {
+        "name": "Princess Diana",
+        "famous": "British royal family",
+        "nakshatra": "Wealthy, charitable."
+    },
+    {
+        "name": "R Maria Rilke",
+        "famous": "Poet",
+        "nakshatra": "Mystical, liking for music and poetry."
+    },
+    {
+        "name": "Orson Welles",
+        "famous": "Director",
+        "nakshatra": "Difficult to convince."
+    },
+
+], 'Shatabhisha': [
+ 
+    {
+        "name": "Goethe",
+        "famous": "Poet",
+        "nakshatra": "Writing skills, good memory."
+    },
+    {
+        "name": "Ronnie Gale Dreyer",
+        "famous": "Author",
+        "nakshatra": "Interest in astrology."
+    },
+
+    {
+        "name": "J Edgar Hoover",
+        "famous": "Director, FBI",
+        "nakshatra": "Strong opinions, defeat of rivals."
+    },
+ 
+], 'Purva Bhadrapada': [
+    {
+        "name": "Sri Ramakrishna Paramahamsa",
+        "famous": "Spiritual leader",
+        "nakshatra": "Deeply spiritual, teaching skill."
+    },
+  
+    {
+        "name": "Hugh Hefner",
+        "famous": "Publisher",
+        "nakshatra": "Skillful at work, wealthy."
+    },
+    {
+        "name": "Madame Curie",
+        "famous": "Physicist",
+        "nakshatra": "Intelligent,"
+    },
+ 
+], 'Uttara Bhadrapada': [
+    {
+        "name": "Indira Gandhi",        
+        "famous": "Indian PM",
+        "nakshatra": "Attractive."      
+    },
+    {
+        "name": "Robert Kennedy",       
+        "famous": "US Attorney General",
+        "nakshatra": "Virtuous."        
+    },
+
+    {
+        "name": "Christina Collins Hills",
+        "famous": "Astrologer",
+        "nakshatra": "Good marriage."
+    }
+], 'Revati': [
+    {
+        "name": "Rabindranath Tagore",
+        "famous": "Writer",
+        "nakshatra": "Interest in traditions, writing skills."
+    },
+
+    {
+        "name": "James Taylor",
+        "famous": "Cricketer",
+        "nakshatra": "Ambitious, wealthy."
+    },
+ 
+    {
+        "name": "Whitney Houston",
+        "famous": "Singer",
+        "nakshatra": "Magnetic personality."
+    }
+]}

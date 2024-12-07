@@ -150,6 +150,23 @@ def planetPrompt(name):
                 
     return prompt
 
+def planetPromptWithPlanet(name,planets):
+    planet = list(filter(lambda x:x['pos_from_asc'] == name['pos_from_asc'],planets))
+    prompt = f"The {name['Name']} positioned in the {name['pos_from_asc']} house of {name['sign']} in {name['nakshatra']} nakshatra"
+    
+    if len(planet) == 0:
+        return prompt
+    elif len(planet) == 1:
+        prompt += f" along with {planet[0]['Name']} "
+        return prompt
+    else:
+        prompt += " along with Planets "
+        for pl in planet:
+            prompt += f"{pl['Name']} "
+            if planet.index(pl) != len(planet) - 1:
+                prompt += "and "         
+        return prompt
+
 def firstHouse(planets):
     sun = list(filter(lambda x:x['Name'] == "Sun",planets))[0]
     moon = list(filter(lambda x:x['Name'] == "Moon",planets))[0]
@@ -166,90 +183,59 @@ def firstHouse(planets):
 
     return prompt
 
-def physical(planets,index,name,gender):
-    if index == 1:
-        prompt = "Provide Child's Physical Attribute Insights in Paragraph "
-        
-        prompt += lagnaPrompt(planets)
-    
-        prompt += "Write Physical Attributes Insights Child's Body Built, Face Type , Eyes, Physical Appearance, Aura in Detail Explanations Paragraph Do not Explain Planetary Position Details Solely explain the content"
-    
-    if index == 2 :
-        moon = list(filter(lambda x:x['Name'] == "Moon" , planets))[0]
-        nakshatraLord = list(filter(lambda x:x['Name'] == moon['nakshatra_lord'], planets))[0]
-        rasiLord = list(filter(lambda x:x['Name'] == moon['zodiac_lord'], planets))[0]
-        asc = list(filter(lambda x:x['Name'] == "Ascendant" , planets))[0]
-        asc_index = zodiac.index(asc['sign'])
-        shifted_signs = zodiac[asc_index:] + zodiac[:asc_index]
-        content = f"""Create a detailed Outer Personality report for a {name} whose Astrology Details: Child's Janma Nakshatra is  {moon['nakshatra']} Nakshatra and  Nakshatra Lord {nakshatraLord['Name']} placed in the {nakshatraLord['pos_from_asc']} House of {nakshatraLord['sign']} in {nakshatraLord['nakshatra']} Nakshatra. Child's Janma Rashi is {moon['sign']} Rashi and the Rashi Lord {rasiLord['Name']} placed in the {rasiLord['pos_from_asc']} House of {rasiLord['sign']} in {rasiLord['nakshatra']} Nakshatra. {lagnaPrompt(planets)} {secondHouse(planets,shifted_signs,2)} {secondHouse(planets,shifted_signs,3)} {secondHouse(planets,shifted_signs,4)} {secondHouse(planets,shifted_signs,5)} {secondHouse(planets,shifted_signs,6)} {secondHouse(planets,shifted_signs,7)} {secondHouse(planets,shifted_signs,8)} {secondHouse(planets,shifted_signs,9)} {secondHouse(planets,shifted_signs,10)} {secondHouse(planets,shifted_signs,11)} {secondHouse(planets,shifted_signs,12)}.Use {name} and {gender} pronouns all over the content."""
+def physical(planets,index,name,gender):    
+    if index == 2:
+        content = f"""Write {name} Physical Attributes Paragraph Insights Including {name}'s Body Built, Face Type , Eyes, Physical Appearance, Aura ,  and write 3 Personality List ,  3 Character List , 3 behavior List Based on lagna and Lagna Lord Placements and Planet Placed in the Lagna and Write 3  Negative behavior list and explain How this Affects {name}'s Growth {name} {lagnaPrompt(planets)} and Write  Practical Parenting Tips for Change  {name}  Negative Behaviors and Support {name} Growth Use {name} name and {gender} pronoun all over the content."""
         
         function = function = [
   {
     'name': 'generate_child_outer_personality_report',
-    'description': f"Generate a detailed report on the {name}'s character, behavior, and qualities based on astrological insights. This includes insights into the {name}'s Lagna (Ascendant), Lagna Lord placements, and other key planetary and house positions.The report will include 3 character insights, 3 behavior insights, 3  negative personality impacts ",
+    'description': f"Generate a detailed report on Physical Attributes Paragraph Insights Including {name}'s Body Built, Face Type , Eyes, Physical Appearance, Aura ,  and write 3 Personality List,3 Character List , 3 behavior List Based on lagna and Lagna Lord Placements and Planet Placed in the Lagna and Write 3  Negative behavior list and explain How this Affects {name}'s Growth based on the {name}'s lagna position.",
     'parameters': {
       'type': 'object',
       'properties': {
-        'outer_personality': {
-          'type': 'string',
-          'description': f"Provide a brief explanation of the {name}'s outer personality, including physical attributes and outward persona, based on the {name}'s astrological details (Lagna and Lagna Lord placements)."
+        'physical_attributes': {
+            'type': 'string',
+            'description': f"Provide insights into the {name}'s physical attributes, including body built, face type, eyes, physical appearance, and aura, based on the {name}'s astrological details (Lagna and Lagna Lord placements)."
+        },
+        'personality': {
+            'type': 'array',
+            'description': f"Provide 3 personality traits insights of {name} based on Lagna and lagna lord placements and Planet Placed in the Lagna.",
+            'items': {
+                'type': 'string',
+                'description': f"The personality trait of the {name} based on the astrological placements in two lines."
+            }
         },
         'character': {
           'type': 'array',
-          'description': f"Provide 3 insights into the {name}'s character, explained in simple and easy-to-understand language, based on the {name}'s astrological details (Lagna, planets, and house placements). Each insight should include a title and detailed explanation.",
+          'description': f"Provide 3 character traits insights of {name} based on Lagna and lagna lord  placements and Planet Placed in the Lagna.",
           'items': {
-            'type': 'object',
-            'properties': {
-              'title': {
-                'type': 'string',
-                'description': 'The title of the character insight.'
-              },
-              'content': {
-                'type': 'string',
-                'description': 'A detailed explanation of the character insight.'
-              }
-            },
-            'required': ['title', 'content']
+            'type': 'string',
+            'description': f"The character trait of the {name} based on the astrological placements in two lines."
           }
         },
-        'behaviour': {
+        'positive_behavior': {
           'type': 'array',
-          'description': f"Provide 3 insights into the {name}'s behavior, explained in simple language, based on astrological details such as Lagna and planetary house placements. Each insight should be accompanied by a title and detailed explanation.",
+          'description': f"Provide 3 positive behavior traits insights of {name} on Lagna and lagna lord  placements and Planet Placed in the Lagna.",
           'items': {
-            'type': 'object',
-            'properties': {
-              'title': {
-                'type': 'string',
-                'description': 'The title of the behavior insight.'
-              },
-              'content': {
-                'type': 'string',
-                'description': 'A detailed explanation of the behavior insight.'
-              }
-            },
-            'required': ['title', 'content']
+            'type': 'string',
+            'description': f"The positive behavior trait of the {name} based on the astrological placements in two lines."
           }
         },
-        'negative_impact': {
+        'negative_behavior': {
           'type': 'array',
-          'description': f"Provide an array of 3 negative personality or behavior traits that may affect the {name}'s overall development. Include insights into areas for improvement, based on astrological placements. Each trait should be explained with its title and content.",
+          'description': f"Provide 3 negative behavior traits insights of {name} based on Lagna and lagna lord placements and Planet Placed in the Lagna.",
           'items': {
-            'type': 'object',
-            'properties': {
-              'title': {
-                'type': 'string',
-                'description': 'The title of the negative impact.'
-              },
-              'content': {
-                'type': 'string',
-                'description': 'A detailed explanation of the negative impact.'
-              }
-            },
-            'required': ['title', 'content']
+            'type': 'string',
+            'description': f"The negative behavior trait of the {name} based on the astrological placements in two lines."
           }
         },
+        'parenting_tips': {
+            'type' : 'string',
+            'description': f"Write 1 Modern Result oriented Practical Parenting Tips for {name}'s Negative Behavior Challnegs and explain Parenting Tips in Detail with how to do it with Detailed guided Execution steps and write Content in simple Easy to Understand English Format.",
+        }
       },
-      'required': ['outer_personality', 'character', 'behaviour', 'negative_impact']
+      'required': ['physical_attributes','personality', 'character', 'positive_behavior', 'negative_behavior', 'parenting_tips']
     }
   }
 ]
@@ -257,125 +243,105 @@ def physical(planets,index,name,gender):
         
     if index == 3:
         moon = list(filter(lambda x:x['Name'] == "Moon" , planets))[0]
-        nakshatraLord = list(filter(lambda x:x['Name'] == moon['nakshatra_lord'], planets))[0]
-        rasiLord = list(filter(lambda x:x['Name'] == moon['zodiac_lord'], planets))[0]
-        asc = list(filter(lambda x:x['Name'] == "Ascendant" , planets))[0]
-        asc_index = zodiac.index(asc['sign'])
-        shifted_signs = zodiac[asc_index:] + zodiac[:asc_index]
-        content = f"""Create a detailed Inner Personality report for a {name} whose Astrology Details: Child's Janma Nakshatra is  {moon['nakshatra']} Nakshatra and  Nakshatra Lord {nakshatraLord['Name']} placed in the {nakshatraLord['pos_from_asc']} House of {nakshatraLord['sign']} in {nakshatraLord['nakshatra']} Nakshatra. Child's Janma Rashi is {moon['sign']} Rashi and the Rashi Lord {rasiLord['Name']} placed in the {rasiLord['pos_from_asc']} House of {rasiLord['sign']} in {rasiLord['nakshatra']} Nakshatra. {lagnaPrompt(planets)} {secondHouse(planets,shifted_signs,2)} {secondHouse(planets,shifted_signs,3)} {secondHouse(planets,shifted_signs,4)} {secondHouse(planets,shifted_signs,5)} {secondHouse(planets,shifted_signs,6)} {secondHouse(planets,shifted_signs,7)} {secondHouse(planets,shifted_signs,8)} {secondHouse(planets,shifted_signs,9)} {secondHouse(planets,shifted_signs,10)} {secondHouse(planets,shifted_signs,11)} {secondHouse(planets,shifted_signs,12)}.Use {name} and {gender} pronouns all over the content."""
+        content = f"""write {name} Emotional State Insights Paragraph Including Thoughts, beliefs, Emotions  based on Moon Placements Sign and write 3 emotions,3 Feelings,3 reactions List Based on Planet Moon Placement Sign and Write 3 Negative Emotional Imbalance  and explain How this Affects {name}'s Growth.{planetPromptWithPlanet(moon,planets)} and Write  Ancient  Result Oriented Parenting Tips for Change {name} Negative Emotional Imbalance and Support {name} Growth in simple Easy to Understand English Format Use {name} and {gender} pronouns all over the content."""
         
         function = [
   {
     'name': 'generate_child_inner_personality_report',
-    'description': f"Generate a detailed report on the {name}'s inner personality, emotional needs, thoughts, beliefs, feelings, reactions, and emotional stability based on the {name}'s Moon Sign and other relevant astrological placements. The report will include 3  insights each for emotional needs, thoughts & beliefs, feelings & reactions, and emotional stability",
+    'description': f"Generate a detailed report on {name} Emotional State Insights Paragraph Including Thoughts, beliefs, Emotions  based on Moon Placements Sign and write 3 emotions,3 Feelings,3 reactions List Based on Planet Moon Placement Sign and Write 3 Negative Emotional Imbalance  and explain How this Affects {name}'s Growth.",
     'parameters': {
       'type': 'object',
       'properties': {
-        'inner_worlds': {
+        'emotional_state': {
           'type': 'string',
-          'description': f"Provide a brief overview of the {name}'s emotional needs, including insights into {name}'s core emotional world, based on {name}'s astrological details such as Moon Sign and other planetary placements."
+          'description': f"Write a Short paragraph detailing {name}'s emotional state, including thoughts, beliefs, and emotions based on the Moon's placement."
         },
-        'emotional_needs': {
+        'emotions': {
           'type': 'array',
-          'description': f"Provide 3 insights into the {name}'s emotional needs, explained in simple and easy-to-understand language. Each insight should be based on the {name}'s astrological details (Moon Sign, planets, and house placements). Include a title and detailed explanation for each insight.",
+          'description': f"Provide 3 emotions traits insights experienced by based on {name}'s Moon Sign and position.",
           'items': {
-            'type': 'object',
-            'properties': {
-              'title': {
-                'type': 'string',
-                'description': 'The title of the emotional need insight.'
-              },
-              'content': {
-                'type': 'string',
-                'description': 'A detailed explanation of the emotional need insight.'
-              }
-            },
-            'required': ['title', 'content']
+            'type': 'string',
+            'description': f"The emotion trait insights experienced by the {name} based on the Moon's placement in two lines."
           }
         },
-        'impact': {
+        'feelings': {
           'type': 'array',
-          'description': f"Provide an array of negative emotions and feelings that could impact the {name}'s overall development. Each negative trait should be explained, along with the areas that need improvement for emotional growth. The insights should be based on the {name}'s astrological influences.",
-          'items': {
-            'type': 'object',
-            'properties': {
-              'title': {
+          'description': f'Provide 3 feelings traits insights experienced by based on {name} Moon Sign and position.',
+            'items': {
                 'type': 'string',
-                'description': 'The title of the emotional impact.'
-              },
-              'content': {
-                'type': 'string',
-                'description': 'A detailed explanation of the emotional impact.'
-              }
-            },
-            'required': ['title', 'content']
-          }
+                'description': f"The feeling trait insights experienced by the {name} based on the Moon's placement in two lines."
+            }
         },
+        'reactions': {
+            'type': 'array',
+            'description': f'Provide 3 reactions traits insights experienced by based on {name} Moon Sign and position.',
+                'items': {
+                    'type': 'string',
+                    'description': f"The reaction trait insights experienced by the {name} based on the Moon's placement in two lines."
+                }
+        },
+        'negative_imbalance': {
+            'type': 'array',
+            'description': f'Provide 3 negative emotional imbalance traits insights experienced by based on {name} Moon Sign and position.',
+            'items': {
+                'type': 'string',
+                'description': f"The negative emotional imbalance trait insights experienced by the {name} based on the Moon's placement in two lines."
+            }
+        },
+        'parenting_tips': {
+            'type' : 'string',
+            'description': f"Write 1 Modern Result Oriented Practical Parenting Tips for {name} Emotional Imbalance Challanegs Explain   explain Parenting Tips in Detail how to do it with Detailed guided Execution steps and write Content in simple Easy to Understand English Format.",
+        }
       },
-      'required': ['inner_worlds', 'emotional_needs', 'impact']
+      'required': ['emotional_state', 'emotions','feelings','reactions','negative_imbalance', 'parenting_tips']
     }
   }
 ]
 
         function_call = {"name": "generate_child_inner_personality_report"}
     if index == 4:
-      content = f"Create a detailed {name}'s core identity report for a {name} whose Lagna, Moon, and Sun sign placements are {firstHouse(planets)}.Use {name} and {gender} pronouns all over the content."
-      
-      function = [
+        sun = list(filter(lambda x:x['Name'] == "Sun" , planets))[0]
+        content = f"Write {name} Core Identity Motivations Inner Strength Ego Insights in Short Paragraph based on {name}'s Sun Sign Placement {planetPrompt(sun)} Write {name}'s 3 Seek for recognitions, 3 Core Identity, 3 Ego Based on Planet Sun Placement Sign and Write 1 Practical Parenting Tip to Change {name}'s Negative Ego for {name} growth write parenting Tip Name How to do with Guide Write Content in Simple Easy English format Use {name} and {gender} Pronouns all over the content."
+        
+        function = [
         {
           'name': 'generate_child_core_identity_report',
-          'description': f"Analyze the {name}'s core identity,and how {name} balance strength between outer and inner personality traits based on {name}'s Lagna, Sun sign placements. This report includes insights into {name}'s recognition needs, primary motivations, sense of identity, and practical remedies for improving {name}'s core identity and overcoming challenges related to identity and ego.",
+          'description': f"Generate a Detailed report on {name}'s 3 Seek for recognitions, 3 Core Identity, 3 Ego and write How Negative Ego Impacts child Growth Based on Planet Sun Placement Sign",
           'parameters': {
             'type': 'object',
             'properties': {
-              'core_identity': {
+              'core_insights': {
                 'type': 'string',
-                'description': f"Provide an abstract overview of {name}'s core identity, ego, and how {name} balance strengths between {name}'s outer (social) and inner (self-perception) personality traits, based on {name}'s Lagna, Moon, and Sun sign placements"
+                'description': f"Write a short paragraph describing {name}'s core identity, motivations, and inner strength based on the {name}'s Sun sign and placement."
                 },
                 'recognitions': {
                   'type': 'array',
-                  'description': f"Explain the {name}'s Seek  for recognition and how {name} seek acknowledgment from others. Provide 3 insights based on {name}'s Lagna, Moon, and Sun sign placements, with clear explanations in simple terms",
-                  'items': {
-                    'type': 'object',
-                    'properties': {
-                      'title': {
+                  'description': f"Provide 3 {name}'s seeks for recognition, based on the {name}'s Sun sign and placement. Write the contents in an array format.",
+                    'items': {
                         'type': 'string',
-                        'description': 'The title of the recognition insight.'
-                      },
-                      'content': {
-                        'type': 'string',
-                        'description': f'Detailed explanation of the recognition need based on the {name}’s astrological placements.'
-                      }
-                    },
-                    'required': ['title', 'content']
-                  }
-                },
-                'remedies': {
-                  'type': 'array',
-                  'description': f"Provide 3 practical, actionable remedies that help improve the {name}'s core identity, self-confidence, and ego balance with remedies names and How to do them with Guided execution steps These remedies should align with the {name}'s astrological placements (Lagna, Sun, and Moon).",
-                  'items': {
-                    'type': 'object',
-                    'properties': {
-                    'title': {
-                        'type': 'string',
-                        'description': 'The title of the remedy.'
-                    },
-                    'content': {
-                        'type': 'string',
-                        'description': f'Detailed explanation of each remedy, focusing on how to execute it to improve the {name}’s identity and overcome ego-related challenges.'
+                        'description': f"Seek for recognition the based on the {name}'s Sun placement in two lines."
                     }
-                    },
-                    'required': ['title', 'content']
+                },
+                'core_identity': {
+                  'type': 'array',
+                  'description': f"Provide 3 {name}'s core identity insights, based on the {name}'s Sun sign and placement. Write the contents in an array format.",
+                    'items': {
+                        'type': 'string',
+                        'description': f"The core identity insights based on the {name}'s Sun placement in two lines."
+                    }
+                },
+                'parenting_tips': {
+                    'type' : 'string',
+                    'description': f"Write 1 Modrn Practical Parenting Tip for {name}'s Core Identity Challenges and Explain parenting Tip in Detail with how to do it with  Detailed guided Execution steps and write Content in simple Easy to Understand English Format.",
                 }
               }
             },
-            'required': ['core_identity', 'recognitions', 'remedies']
+            'required': ['core_insights', 'recognitions', 'core_identity', 'parenting_tips']
           }
-        }
       ]
 
 
-      function_call = {"name": "generate_child_core_identity_report"}
+        function_call = {"name": "generate_child_core_identity_report"}
     if index == 5:
         moon = list(filter(lambda x:x['Name'] == "Moon" , planets))[0]
         nakshatraLord = list(filter(lambda x:x['Name'] == moon['nakshatra_lord'], planets))[0]
@@ -417,27 +383,6 @@ def physical(planets,index,name,gender):
                         ]
                     }
                     },
-                    'challenges': {
-                    'type': 'array',
-                    'description': f"Write personalized challenges that the {name} faces in social and family relationship. This includes challenges in family, friendship, and social settings, based on planetary influences. Write a minimum of 3 challenges in the array.",
-                    'items': {
-                        'type': 'object',
-                        'properties': {
-                        'title': {
-                            'type': 'string',
-                            'description': 'The title of the challenge.'
-                        },
-                        'content': {
-                            'type': 'string',
-                            'description': 'The explanation of the challenge.'
-                        }
-                        },
-                        'required': [
-                        'title',
-                        'content'
-                        ]
-                    }
-                    },
                     'parenting_support': {
                     'type': 'array',
                     'description': f"Write 3  personalized  parenting support Techniques  Including  life skills Teachings , Nurturing Parenting Strategies, Mindful habit building  that address the {name}'s social and family relationship development challenges. Write  Parenting support Technique name and How to Implement them with guided execution steps. Write the content related to parenting support.",
@@ -463,7 +408,6 @@ def physical(planets,index,name,gender):
                 'required': [
                     'family_relationship',
                     'approaches',
-                    'challenges',
                     'parenting_support'
                 ]
                 }
@@ -471,39 +415,23 @@ def physical(planets,index,name,gender):
             ]
 
         function_call = {"name": "generate_family_and_social_report"}
-
-    if index == 1:
-      completion = client.chat.completions.create(
-          model="gpt-3.5-turbo",
-          max_tokens=4096,
-          messages=[
-              {
-                  "role": "user", "content": prompt
-              }
-          ]
-      )
-      
-      res = completion.choices[0].message.content
-      print(res)
-      return res
     
-    else:
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                {"role": "user", "content": content}
-            ],
-            functions=function,
-            function_call=function_call
-        )
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[
+            {"role": "user", "content": content}
+        ],
+        functions=function,
+        function_call=function_call
+    )
 
-        function_response = response.choices[0].message.function_call.arguments
+    function_response = response.choices[0].message.function_call.arguments
 
-        res_json = json.loads(function_response)
-        
-        print(res_json,"\n")
-        
-        return res_json
+    res_json = json.loads(function_response)
+    
+    print(res_json,"\n")
+    
+    return res_json
     
     
 
@@ -527,8 +455,8 @@ def findDifference(birthYear, birthMonth, dasaStartYear, dasaStartMonth, dasaEnd
 
 def dasaPrompt(date_str,planets,dasa,name,gender):
     year = date_str
-    today = datetime.now().year
-    month = datetime.now().month
+    today = datetime.datetime.now().year
+    month = datetime.datetime.now().month
     AgeDasa = []
     
     if today - year <= 3:
@@ -558,18 +486,11 @@ def dasaPrompt(date_str,planets,dasa,name,gender):
     dataOut = []
         
     for d in AgeDasa:
-        zodiacLord = list(filter(lambda x: x['Name'] == planets[-1]['zodiac_lord'],planets))[0]
         dasa = list(filter(lambda x: x['Name'] == d['Dasa'],planets))[0]
         bhukthi = list(filter(lambda x: x['Name'] == d['Bhukthi'],planets))[0]
+        moon = list(filter(lambda x:x['Name'] == "Moon",planets))[0]   
                
-        content = (
-            f"Create a detailed Dasa Bhukthi Insights report for a {name} based on the following planetary placements: "
-            f"Lagna: {planets[-1]['sign']} Lagna with Lagna Lord {planets[-1]['zodiac_lord']} in the {zodiacLord['pos_from_asc']} house of {zodiacLord['sign']} in {zodiacLord['nakshatra']} Nakshatra. "
-            f"Moon Placed in the {planets[1]['pos_from_asc']} house of {planets[1]['sign']}, Janma Rashi in {planets[1]['nakshatra']} Nakshatra. "
-            f"Dasa & Bhukti Lords: {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti. Dasa lord {d['Dasa']} is in the {dasa['pos_from_asc']}th house of {dasa['sign']} in {dasa['nakshatra']} Nakshatra, "
-            f"and bhukthi Lord {bhukthi['Name']} is in the {bhukthi['pos_from_asc']} house of {bhukthi['sign']} in {bhukthi['nakshatra']} Nakshatra. "
-            f"Use {name} and {gender} pronoun throughout the content."
-        )
+        content = f"Write {name}'s Dasa & Bhukti Predictions Results  Insights in Short Paragraph based on Dasa lord and Bhukthi Lord and Moon Sign {name}'s Dasa is {dasa['Name']} and Bhukti is {bhukthi['Name']} {planetPrompt(dasa)} and {planetPrompt(bhukthi)} and {name}'s Moon Sign {moon['sign']} Write Dasa Bhukti Prediction Insights and Write 3 Favourable Prediction and their Impacts on {name} Life and 3 Unfavourable Predictions results and Its Impacts on {name}'s Life  based on Dasa Lord Bhukthi Lord.Practical Parenting Strategy to Navigate {name}'s Dasa Bukthi Unfavourable results Add Parenting Strategy name How to do it with detailed Guided Execution Steps for {name} Unfavourable results. Use {name} name and {gender} pronouns all over the content."
 
         function = [
             {
@@ -580,68 +501,32 @@ def dasaPrompt(date_str,planets,dasa,name,gender):
                     "properties": {
                         "insights": {
                             "type": "string",
-                            "description": f"Provide {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti predictions based on the Lagna sign, Moon sign, planetary placements of  Dasa Planet {d['Dasa']} and  Bukthi Planet {d['Bhukthi']}. Focus on {name}'s life events insights  such as the impacts of Dasa and Bhukti on {name}'s  life. Use concise and easy-to-understand language, avoiding technical astrology terms. The content should be a single paragraph of approximately 150 words."
+                            "description": f"Provide short insights into {name}'s Dasa and Bhukti predictions based on the Dasa Lord ({d['Dasa']}), Bhukthi Lord ({d['Bhukthi']}), and Moon sign ({moon['sign']})."
                         },
-                        "challenges": {
+                        "favourable": {
                             "type": "array",
                             "description": (
-                                f"Highlight {name}'s 3 potential Life challenges and negative effects the {name} may face during the {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period and Based on {d['Dasa']} Dasa and {d['Bhukthi']} Planets Positions at {name}'s current Age "
+                                f"List 3 favorable predictions and explain how each will positively impact {name}'s life"
                             ),
                             "items": {
-                                "type": "object",
-                                "properties": {
-                                    "title": {
-                                        "type": "string",
-                                        "description": "The title of the challenge."
-                                    },
-                                    "content": {
-                                        "type": "string",
-                                        "description": "The detailed explanation of the challenge."
-                                    }
-                                },
-                                "required": ["title", "content"]
+                                "type": "string",
+                                'description': f"The favorable prediction and its impact on the {name}'s life."
                             }
                         },
-                        "precautions": {
+                        "unfavourable": {
                             "type": "array",
-                            "description": (
-                                f"Provide 2 practical Parenting steps that parents can take to help the {name} navigate the challenges during this {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period Including Life Skills Teachings, Smart Nurturing Parenting Strategies .Explain their names and how to do them with guided execution steps in simple, easy-to-understand English."
-                            ),
+                            "description": f"List 3 unfavorable predictions and explain how each will positively impact {name}'s life",
                             "items": {
-                                "type": "object",
-                                "properties": {
-                                    "title": {
-                                        "type": "string",
-                                        "description": "The title of the precaution."
-                                    },
-                                    "content": {
-                                        "type": "string",
-                                        "description": "The detailed explanation of the precaution."
-                                    }
-                                },
-                                "required": ["title", "content"]
+                                "type": "string",
+                                'description': f"The unfavorable prediction and its impact on the {name}'s life."
                             }
                         },
-                        "remedies": {
-                            "type": "array",
-                            "description": f"Provide 3 actionable remedies and recommendations for this {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti period, focusing on real-life improvements. Include Mindful Habits building , Food & Diets ,  Spiritual Mantras & Sacred Sounds  to Mitigate the {name}'s {d['Dasa']} Dasa and {d['Bhukthi']} Bhukti challenges. Explain Actionable remedies  names and how to do them with guided execution steps in simple, easy-to-understand English",
-                            "items": {
-                                "type": "object",
-                                "properties": {
-                                    "title": {
-                                        "type": "string",
-                                        "description": "The title of the remedy."
-                                    },
-                                    "content": {
-                                        "type": "string",
-                                        "description": "The detailed explanation of the remedy."
-                                    }
-                                },
-                                "required": ["title", "content"]
-                            }
+                        "parenting_tips": {
+                            "type": "string",
+                            "description": f"Provide Practical Parenting Strategy to Navigate {name}'s Dasa Bukthi Unfavourable results Add Parenting Strategy name How to do it with detailed Guided Execution Steps for {name} Unfavourable results.in a single paragraph",
                         }
                     },
-                    "required": ["insights", "challenges", "precautions", "remedies"]
+                    "required": ["insights", "favourable", "unfavourable", "parenting_tips"]
                 }
             }
         ]
@@ -667,9 +552,7 @@ def dasaPrompt(date_str,planets,dasa,name,gender):
             "age" : d['Age'],
             "prediction" : res_json,
         })
-        
-        
-        
+      
     print(dataOut,"\n")
     return dataOut
 
@@ -691,13 +574,9 @@ def chapterPrompt(planets,index,name,gender):
   'parameters': {
     'type': 'object',
     'properties': {
-      'insights': {
-        'type': 'string',
-        'description': f"Provide detailed insights about the {name}'s unique talents, strengths, and inner values, based on Mars, venus, Mercury  planetary and house placements. This should be presented in an abstract paragraph that explains the {name}'s inherent qualities and potential."
-      },
       'education': {
         'type': 'array',
-        'description': f"Identify 5 unique talents related to the {name}'s  Mercury Positions Potential Talents along with Parenting Tips  to nurture these talents effectively . These should align with the {name}'s Planet mercury placements . Include how these talents manifest in the {name}'s mercury related  Natural Talents.",
+        'description': f"Identify 3 unique talents related to the {name}'s  Mercury Positions Potential Talents along with Parenting Tips  to nurture these talents effectively . These should align with the {name}'s Planet mercury placements . Include how these talents manifest in the {name}'s mercury related  Natural Talents.",
         'items': {
           'type': 'object',
           'properties': {
@@ -715,7 +594,7 @@ def chapterPrompt(planets,index,name,gender):
       },
       'arts_creative': {
         'type': 'array',
-        'description': f"Identify 5 unique talents related to the {name}'s Venus Placements Unique Talents Natural Skills  Potentials along with Parenting Tips  to nurture these talents effectively . These should be aligned with the {name}'s Venus  placements, particularly those involving Venus and creative house placements. Explain how these talents influence the {name}'s Venus related Natural Talents.",
+        'description': f"Identify 3 unique talents related to the {name}'s Venus Placements Unique Talents Natural Skills  Potentials along with Parenting Tips  to nurture these talents effectively . These should be aligned with the {name}'s Venus  placements, particularly those involving Venus and creative house placements. Explain how these talents influence the {name}'s Venus related Natural Talents.",
         'items': {
           'type': 'object',
           'properties': {
@@ -733,7 +612,7 @@ def chapterPrompt(planets,index,name,gender):
       },
       'physical_activity': {
         'type': 'array',
-        'description': f"Identify 5 unique talents related to Planet Mars Positions .These should align with the {name}'s planet Mars placements Unique Talents & Skills  along with Parenting Tips  to nurture these talents effectively. Explain how these talents manifest in the {name}'s Marse related natural talents.",
+        'description': f"Identify 3 unique talents related to Planet Mars Positions .These should align with the {name}'s planet Mars placements Unique Talents & Skills  along with Parenting Tips  to nurture these talents effectively. Explain how these talents manifest in the {name}'s Marse related natural talents.",
         'items': {
           'type': 'object',
           'properties': {
@@ -750,7 +629,7 @@ def chapterPrompt(planets,index,name,gender):
         }
       }
     },
-    'required': ['insights', 'education', 'arts_creative', 'physical_activity']
+    'required': ['education', 'arts_creative', 'physical_activity']
   }
 }
 ]
@@ -1108,26 +987,6 @@ def chapterPrompt(planets,index,name,gender):
                 "parameters": {
                     "type": "object",
                     "properties": {
-                        "predictions": {
-                            "type": "string",
-                            "description": f"Provide {name}'s Life Insights predictions based on the above planetary Position and Horoscope Detail."
-                        },
-                        "assessment": {
-                            "type": "string",
-                            "description": f"Provide {name}'s Personality Assessment based on the above planetary Position and Horoscope Detail."
-                        },
-                        "strength": {
-                            "type": "string",
-                            "description": f"Provide {name}'s Strength based on the above planetary Position and Horoscope Detail."
-                        },
-                        "weakness": {
-                            "type": "string",
-                            "description": f"Provide {name}'s Weakness based on the above planetary Position and Horoscope Detail."
-                        },
-                        "action" : {
-                            "type": "string",
-                            "description": f"Provide Parenting Action Plan for {name} based on the above planetary Position and Horoscope Detail."
-                        },
                         "overall" : {
                             "type": "string",
                             "description": f"Provide {name}'s Life Insights Parenting Suggestions based on the above planetary Position and Horoscope Detail."
@@ -1135,9 +994,13 @@ def chapterPrompt(planets,index,name,gender):
                         "recommendations": {
                             "type": "string",
                             "description": f"Provide Nurturing Child Parenting recommendations for {name} based on the above planetary Position and Horoscope Detail."
-                        }
+                        },
+                        "action" : {
+                            "type": "string",
+                            "description": f"Provide Parenting Action Plan for {name} based on the above planetary Position and Horoscope Detail."
+                        },
                     },
-                    "required": ["predictions", "assessment", "strength", "weakness", "action", "overall", "recommendations"]
+                    "required": ["overall","recommendations","action"]
                 }
             }
         ]
