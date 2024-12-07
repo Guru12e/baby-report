@@ -1,7 +1,5 @@
 import swisseph as swe
 import datetime
-from geopy.geocoders import Nominatim
-from geopy.exc import GeocoderTimedOut
 from pytz import timezone
 
 signs = [
@@ -18,19 +16,6 @@ signs = [
     ("Aquarius", 300, 330),
     ("Pisces", 330, 360),
 ]
-
-def get_lat_lon(location_name):
-    geolocator = Nominatim(user_agent="astrology_calculator")
-    try:
-        location = geolocator.geocode(location_name)
-        if location:
-            return location.latitude, location.longitude
-        else:
-            raise ValueError("Location not found.")
-    except GeocoderTimedOut:
-        raise ConnectionError("Geocoding service timed out. Please try again.")
-    except Exception as e:
-        raise RuntimeError(f"An error occurred while geocoding: {e}")
     
 def convert_to_utc(date_str):
     ist = timezone('Asia/Kolkata')
@@ -143,7 +128,7 @@ def degree_to_sign(degree):
             return sign,zodiac_lord[sign],naksha
     return "Unknown"
 
-def find_planets(date_str, location):
+def find_planets(date_str, lat, lon):
     padasList = {
     "Ashwini": [
         [1, 0, 3.20],
@@ -340,13 +325,9 @@ def find_planets(date_str, location):
     ]
 
     try:
-        latitude, longitude = get_lat_lon(location)
+        positions, isRetro = get_planetary_positions(date_str, lat, lon)
     except Exception as e:
-        return
-
-    try:
-        positions, isRetro = get_planetary_positions(date_str, latitude, longitude)
-    except Exception as e:
+        print(e)
         return
     
     planets_adjusted = []

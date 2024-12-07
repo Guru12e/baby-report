@@ -30,46 +30,76 @@ context = [
 
 chakras = {
     "Aries": ["Solar Plexus Chakra"],  
-    "Taurus": ["Heart Chakra", "Sacral Chakra"], 
-    "Gemini": ["Heart Chakra", "Throat Chakra"],  
-    "Cancer": ["Sacral Chakra", "Third Eye Chakra"],  
+    "Taurus": ["Sacral Chakra"], 
+    "Gemini": ["Throat Chakra"],  
+    "Cancer": ["Heart Chakra"],  
     "Leo": ["Solar Plexus Chakra"], 
-    "Virgo": ["Heart Chakra", "Throat Chakra"], 
-    "Libra": ["Heart Chakra", "Sacral Chakra"],  
+    "Virgo": ["Throat Chakra"], 
+    "Libra": ["Heart Chakra"],  
     "Scorpio": ["Solar Plexus Chakra"],  
-    "Sagittarius": ["Third Eye Chakra", "Crown Chakra"], 
+    "Sagittarius": ["Third Eye Chakra"], 
     "Capricorn": ["Root Chakra"], 
     "Aquarius": ["Root Chakra"], 
-    "Pisces": ["Third Eye Chakra", "Crown Chakra"], 
+    "Pisces": ["Crown Chakra"], 
 }
 
-characteristics = {
-    "Aries":[ " is full of energy, courage, and self-confidence, as the Solar Plexus Chakra governs their vitality and personal power. This gives them a strong will to take action, be independent, and lead others. Aries babies are naturally energetic and enthusiastic, showing a zest for life from an early age. They are quick to take initiative, whether it’s through physical activity or intellectual pursuits. Their energy is often contagious, inspiring those around them to take action. They may also exhibit a competitive nature, always eager to win or excel in whatever they do.",
-     "Their Solar Plexus Chakra makes them resilient, and they tend to bounce back quickly from any setbacks they encounter. This strong chakra connection gives them a deep sense of personal power, which they rely on to move forward with confidence. However, this can sometimes lead them to act impulsively without considering all consequences. The drive for independence is strong, and they will often seek to carve their own path in life, regardless of others' opinions. Encouraging them to take risks and challenge themselves will help them grow and develop their leadership qualities."],
-   
-    "Taurus": ["is likely to be nurturing, affectionate, and sensual, with a strong connection to their Heart Chakra, which is ruled by Venus. They will have a calm, grounded presence, bringing a sense of peace to those around them. Their natural ability to create harmonious environments will be evident, and they will enjoy spending time in beautiful, soothing surroundings. Taurus babies will have an appreciation for the finer things in life and may develop a love for nature, food, and art. Their gentle nature will attract others who seek their support and warmth.",
-    "The Sacral Chakra also plays a major role, providing them with emotional depth and creativity. They will show a deep connection to their feelings and may have a strong desire to express themselves artistically. The Sacral Chakra also enhances their sensuality, leading them to enjoy physical pleasures, whether through touch, taste, or beauty. Taurus babies will develop strong bonds with their loved ones, and their loyalty will make them reliable friends and companions. Encouraging their creativity and nurturing their emotional intelligence will help them thrive.",],
-    "Gemini": [" is likely to be communicative, curious, and intelligent, with Mercury ruling their Heart and Throat Chakras. They will express their thoughts and ideas clearly, and they may develop a love for language, storytelling, or engaging with others verbally. Gemini babies are quick learners, always eager to explore new concepts and engage with their surroundings. Their curiosity will drive them to ask many questions, and they will enjoy the process of discovery. They may also exhibit adaptability and a natural ability to pick up new skills or knowledge quickly.",
-        "Their Heart Chakra gives them a friendly, social nature, making them approachable and engaging. Gemini babies are likely to thrive in social settings, enjoying the exchange of ideas and making new friends easily. The Throat Chakra enhances their ability to communicate, enabling them to share their thoughts and feelings with clarity. However, their desire for constant stimulation can sometimes lead them to be restless or distracted. Encouraging them to channel their energy into learning and socializing will help them grow into well-rounded, expressive individuals.",],
-    "Cancer": [ "has a nurturing, protective nature and is highly intuitive, with the Sacral Chakra providing emotional depth and the Third Eye Chakra enhancing their psychic sensitivity. Cancer babies will be emotionally intelligent, showing empathy and understanding for others' feelings. They will develop deep emotional bonds with their family and loved ones, seeking comfort and security in familiar environments. Their natural instinct to care for others will be evident, and they will find joy in providing comfort and love to those around them.",
-       "The Third Eye Chakra strengthens their intuition, allowing them to sense what others need before it is spoken. They may display a keen awareness of their environment and an ability to pick up on subtle emotional cues. Cancer babies will likely be drawn to creative or artistic pursuits, using their imagination to express their inner world. They may also exhibit a protective streak, always looking out for their loved ones. Encouraging them to trust their instincts and nurture their emotional intelligence will help them develop into compassionate, empathetic individuals.",],
-    "Leo": [" is likely to be confident, creative, and has a strong sense of self, with the Solar Plexus Chakra governing their personality. This gives them an inner strength that helps them face challenges with courage and determination. Leo babies will naturally enjoy the spotlight and seek attention for their accomplishments. They are likely to be very expressive, whether through physical play, creative activities, or vocalizing their thoughts. Their charm and warmth will draw people toward them, making them popular in social situations.",
-       "Their Solar Plexus Chakra provides them with an abundance of energy, allowing them to lead and inspire others. Leo babies may have a strong sense of pride, and they will feel fulfilled when they are recognized for their efforts. They are likely to enjoy competition, striving to be the best in everything they do. At times, they may struggle with being the center of attention, but with the right encouragement, they can learn to balance their self-expression with humility. Supporting their creative endeavors and leadership skills will help them thrive.",],
-    "Virgo": ["is detail-oriented, analytical, and caring, with Mercury ruling their Heart and Throat Chakras. They will develop an early interest in understanding how things work and may have a natural curiosity about the world around them. Virgo babies are likely to enjoy organizing their surroundings and paying attention to small details, which will help them excel in tasks that require precision and order. Their analytical abilities will be evident from a young age, and they may show an interest in problem-solving or making sense of patterns.",
- "The Heart Chakra gives them a compassionate and nurturing side, making them caring and attentive to the needs of others. Virgo babies will enjoy helping those around them and may have a natural inclination toward service. They are likely to be calm and methodical, finding satisfaction in completing tasks efficiently. However, their desire for perfection can sometimes make them overly critical or self-demanding. Encouraging their problem-solving abilities and providing emotional support will help them thrive, as they learn to balance their intellect with compassion.",],
-    "Libra": [" is balanced, charming, and loves beauty and harmony, with Venus ruling their Heart and Sacral Chakras. They will naturally gravitate toward relationships and seek peace and equilibrium in their surroundings. Libra babies are likely to enjoy socializing, making friends easily, and showing a deep appreciation for beauty, art, and aesthetics. They will be sensitive to the emotional atmosphere around them and will want to create harmonious environments. Their sense of fairness will be strong, and they may show a desire to help mediate or solve conflicts.",
- "The Sacral Chakra provides them with emotional depth and creativity, helping them express their feelings through art, music, or other creative outlets. Libra babies will enjoy activities that allow them to express themselves in a balanced and beautiful way. Their emotional intelligence will guide them in forming strong, meaningful connections with others. However, they may struggle with making decisions at times, as they often want to please everyone. Encouraging their creativity and helping them develop confidence in their decisions will help them flourish as compassionate and artistic individuals.",],
-    "Scorpio":[ " has an intense, passionate personality, and a strong will, with the Solar Plexus Chakra making them resilient and determined. Scorpio babies are likely to be fearless in the face of challenges, showing a deep strength of character that allows them to push through difficult situations. They may have an emotional intensity that others find captivating and sometimes overwhelming. Scorpio babies will be focused on their goals, displaying determination and an innate desire for transformation and growth. Their intense energy can make them deeply passionate about their interests and pursuits.",
-   "Their emotional depth allows them to form deep, transformative connections with others, but they may also be protective of their feelings. Scorpio babies may be private and reserved, preferring to keep their emotions hidden until they trust others completely. The Solar Plexus Chakra gives them a powerful sense of self, but they must learn to balance this intensity with openness and vulnerability. Encouraging them to embrace both their strength and sensitivity will help them develop into resilient, emotionally intelligent individuals.",],
-    "Sagittarius": [" is adventurous, optimistic, and loves exploring new ideas and horizons, with Jupiter governing their Third Eye and Crown Chakras. Sagittarius babies are likely to be curious and always on the lookout for new experiences and knowledge. They will show a natural sense of wanderlust, wanting to travel, explore, and expand their understanding of the world. Their Third Eye Chakra enhances their ability to think critically and see the bigger picture, while the Crown Chakra connects them to a higher sense of purpose and spirituality.",
-     "Their enthusiasm and optimism will be contagious, and they will inspire others to take risks and explore new possibilities. Sagittarius babies may also show an interest in philosophy, spirituality, or other abstract ideas, as they seek to understand the meaning of life. Their natural optimism and sense of adventure will make them eager to take on challenges and embrace new opportunities. Encouraging their curiosity and giving them the freedom to explore will help them develop into wise, open-minded individuals.",
+chakra_desc = {
+    "Crown Chakra" : [
+        "A dominant crown chakra (Sahasrara) in children supports a strong sense of connection to the world, higher consciousness, and spiritual awareness. Children with an active crown chakra are often open-minded, wise beyond their years, and feel a sense of inner peace.",
+        "If imbalanced, they may appear disconnected, overly introspective, or lack direction.",
+        {
+            "title": "Quiet Reflection and Nature Time",
+            "desc" : "Encourage activities that promote peace and spiritual connection, such as quiet time in nature, deep breathing exercises, or gentle meditation. Help them find moments of stillness to reflect or simply enjoy their surroundings. This supports the crown chakra, fostering a sense of balance and boosting their overall energy."
+        }
     ],
-    "Capricorn":[ " is disciplined, practical, and has a strong sense of responsibility, with the Root Chakra, ruled by Saturn, grounding them and providing stability. Capricorn babies are likely to develop a strong work ethic from an early age, showing a natural inclination toward order, structure, and organization. They may have a serious nature, but they will also have a deep sense of ambition and a desire to achieve their goals. Capricorn babies will appreciate a stable environment and may thrive in situations where they can develop routines and follow through on commitments.",
-      "The Root Chakra gives them a solid foundation, providing them with a sense of security and connection to the physical world. Capricorn babies are likely to be determined and patient, willing to put in the effort required to reach their long-term goals. However, they may sometimes be overly focused on their responsibilities, which could lead to stress or burnout. Encouraging them to take breaks and enjoy the present moment will help them find balance and success in both their personal and professional lives.",],
-    "Aquarius": [" is innovative, independent, and has a unique way of thinking, with Saturn ruling their Root Chakra. Aquarius babies are likely to be forward-thinking, creative, and constantly exploring new ideas and possibilities. They may show a deep interest in technology, science, or social progress, as they strive to understand how things work and how they can contribute to the world. Aquarius babies will have a strong sense of individuality and may resist conventional expectations, preferring to follow their own path and express their originality.",
-    "The Root Chakra gives them a sense of grounding, enabling them to remain steady in their pursuit of new ideas and innovations. Aquarius babies may show a desire to make a difference in the world, guided by their ideals and sense of justice. They are likely to be independent thinkers, unafraid to challenge the status quo or question established norms. Encouraging their creativity and allowing them the freedom to express themselves will help them develop into independent, forward-thinking individuals.",],
-    "Pisces": ["is compassionate, intuitive, and has a deep connection to the spiritual world, with the Third Eye and Crown Chakras, ruled by Jupiter, enhancing their imagination and empathy. Pisces babies are likely to be sensitive and deeply connected to the emotions of others, showing a natural ability to understand and comfort those in need. Their intuition will guide them to understand things beyond the physical world, and they may show an early interest in spirituality, dreams, or creative pursuits. Pisces babies are often dreamers, with rich imaginations and a strong desire to help others.",
-       "The Third Eye Chakra enhances their psychic sensitivity, while the Crown Chakra connects them to a higher consciousness and spiritual guidance. Pisces babies may have vivid dreams and a tendency to be in tune with the energy around them. They are likely to have a strong sense of compassion, making them natural healers and caregivers. However, they may also be prone to escapism, especially when faced with harsh realities. Encouraging them to stay grounded while nurturing their imagination will help them develop into caring, empathetic individuals."]
+    "Third Eye Chakra": [
+        "A dominant third eye chakra (Ajna) in children supports intuition, imagination, and strong mental clarity. Children with an active third eye chakra are perceptive, creative, and insightful. They often have a vivid imagination and are naturally curious.",
+        "If imbalanced, they may struggle with focus, have vivid dreams that cause fear, or become overly analytical.",
+        {
+            "title": "Mindfulness and Visualization Activities",
+            "desc": "Encourage activities that promote inner focus and imagination, such as guided meditation, quiet time with books, or visualizing positive outcomes. Foster opportunities for them to express their thoughts and ask questions. This nurtures the third eye chakra, enhancing their intuition and boosting their energy."
+        }
+    ],
+    "Throat Chakra": [
+        "A dominant throat chakra (Vishuddha) in children supports clear communication, self-expression, and confidence in speaking. Children with a strong throat chakra are articulate, expressive, and able to share their thoughts and feelings easily.",
+        "If imbalanced, they may struggle with expressing themselves, become shy, or overtalk and dominate conversations.",
+        {
+            "title": "Expressive Activities",
+            "desc": "Encourage activities that promote verbal expression, such as storytelling, singing, or playing musical instruments. Create a safe space where your child feels comfortable sharing their thoughts and feelings. This supports the throat chakra, enhancing their confidence and energy."
+        }
+    ],
+    "Heart Chakra": [
+        "A dominant heart chakra (Anahata) in children promotes love, compassion, and a strong sense of connection with others. Children with a balanced heart chakra are empathetic, caring, and able to build healthy relationships.",
+        "If imbalanced, they may become overly sensitive, clingy, or struggle with self-love and setting boundaries.",
+        {
+            "title": "Acts of Kindness and Connection",
+            "desc": "Encourage activities that foster compassion and emotional bonding, such as helping others, sharing, and spending quality time together. Engage in activities like group games or family rituals that emphasize love and connection. This nurtures the heart chakra, boosting their emotional energy and strengthening their aura."
+        }
+    ],
+    "Sacral Chakra": [
+        "A dominant sacral chakra (Swadhisthana) in children nurtures creativity, emotional expression, and healthy social interactions. Children with a strong sacral chakra are imaginative, enthusiastic, and able to form meaningful connections.",
+        "If imbalanced, they may become overly emotional, overly dependent, or struggle with self-expression.",
+        {
+            "title": "Creative and Playful Activities",
+            "desc": "Encourage activities that foster creativity and emotional expression, such as drawing, dancing, or playing with water. Provide opportunities for free play and social interactions with peers to help them connect with their emotions and build confidence. This supports the sacral chakra, enhancing their energy and vitality."
+        }
+    ],
+    "Solar Plexus Chakra": [
+        "A dominant solar plexus chakra (Manipura) in children promotes confidence, willpower, and a strong sense of self. It drives their passions and motivates them to take initiative and pursue their goals.",
+        "However, when imbalanced, children may become overly competitive, controlling, or easily frustrated.",
+        {
+            "title": "Confidence-Building Activities",
+            "desc": "Encourage your child to take on activities that promote independence and self-expression, such as sports, arts, or leadership roles in group activities. Provide praise and support to reinforce their sense of achievement and self-worth. This helps balance their solar plexus chakra, boosting their energy and strengthening their aura."
+        }
+    ],
+    "Root Chakra": [
+        "A dominant root chakra (Muladhara) in children provides a sense of security, stability, and grounding. Children with a strong root chakra feel safe, confident, and connected to their surroundings.",
+        "If imbalanced, they may feel anxious, fearful, or struggle with trust and comfort in new situations.",
+        {
+            "title": "Grounding Activities",
+            "desc": "Incorporate activities that promote stability and connection, such as outdoor play, nature walks, or simple exercises like standing on one leg. Create a consistent daily routine to help your child feel secure and supported. This strengthens their root chakra, enhancing their sense of safety and energy."
+        }
+    ]
 }
 
 dasa_status_table = {
@@ -387,9 +417,37 @@ elements_data = {
 }
 
 Constitution = {
-  "Kapha" : "A Child with a Kapha constitution tends to have a calm, steady, and grounded nature. They are physically strong, with a solid body frame and excellent endurance. Emotionally, they are often compassionate, loving, and patient, but may struggle with lethargy or resistance to change. When out of balance, they can experience weight gain, congestion, and sluggish digestion. They benefit from stimulating activities, light and spicy foods, and staying active to maintain energy and mental clarity. Balancing Kapha involves encouraging movement and variety to prevent stagnation.",
-  "Vadha": "A Child with a Vata constitution tends to be energetic, creative, and quick-thinking. They often have a lean body frame, with active movement and lightness in both body and mind. Emotionally, Vata types are enthusiastic but can become anxious or restless when out of balance. They may experience irregular digestion, dry skin, and cold extremities. To balance Vata, it's beneficial to focus on grounding activities, warm and nourishing foods, and maintaining a regular routine. Stability, warmth, and calm are key to harmonizing the natural variability of Vata.",
-  "Pitta" : "A Child with a Pitta constitution is typically driven, focused, and has strong leadership qualities. They often have a medium build with good muscular development and a warm body temperature. Emotionally, Pitta types are passionate and ambitious but can become easily irritated or aggressive when out of balance. Physically, they may experience issues like inflammation, acid reflux, or skin rashes. To balance Pitta, it's important to incorporate cooling activities, foods that are light and refreshing, and to manage stress effectively. Calming the intense fire of Pitta involves promoting relaxation and moderation.",
+  "Kapha" : [
+      "Children with a dominant Kapha dosha are gentle, calm, and nurturing. They are patient, loving, and enjoy stability and routine. However, they can also be prone to lethargy, stubbornness, and weight gain if not properly stimulated.",
+      "Stocky or solid build, smooth and soft skin, tends to gain weight easily.",
+      "Calm and affectionate, but may be prone to laziness or resistance to change.",
+      "Prone to colds, congestion, and slower digestion, Respiratory Issues.",
+      {
+          "title" : "Active Lifestyle & Light Diet",
+          "desc": "Incorporate activities that keep them active, such as dancing, hiking, or playing sports, to avoid lethargy and promote energy. Provide a diet with light, warm foods and include spices like ginger and black pepper to stimulate digestion. Limit heavy, oily, and overly sweet foods. Create a routine that introduces variety to keep them engaged and prevent stagnation."
+      }
+    ],
+  "Pitta": [
+    "Children with a dominant Pitta dosha are confident, ambitious, and highly intelligent. They are natural leaders and have strong determination. However, they can also be prone to impatience, irritability, and a fiery temperament when stressed.",
+    "Medium build, muscular, warm body temperature, often with a glowing complexion.",
+    "Focused, competitive, and passionate; can become easily frustrated or angry.",
+    "Prone to skin rashes, excessive sweating, digestive issues, and overheating.",
+    {
+        "title": "Cooling Diet & Calming Activities",
+        "desc": "Include foods that have cooling properties, such as cucumbers, melons, and leafy greens. Avoid spicy, acidic, or overly salty foods. Encourage calming activities like swimming, yoga, or relaxing play to help reduce their intense energy. Establish a peaceful routine with regular breaks to prevent overstimulation and promote emotional balance."
+    }
+],
+"Vadha": [
+    "Children with a dominant Vadha dosha are lively, imaginative, and quick to learn. They are often energetic, creative, and curious but may also be prone to anxiety and restlessness. Their energy can be inconsistent, shifting quickly from one activity to another.",
+    "Thin, lean frame; dry skin; often cold hands and feet.",
+    "Quick to excitement, can be anxious or overly sensitive.",
+    "Prone to digestive issues, dry skin, irregular sleep, and joint stiffness.",
+    {
+        "title": "Warm, Nourishing Diet & Routine",
+        "desc": "Provide a diet that includes warm, moist foods like soups, stews, and whole grains. Include healthy fats (e.g., avocados, nuts) and spices like cinnamon and ginger to support digestion. Establish a daily routine with consistent meal times and calming activities, such as warm baths or gentle stretches, to create stability and reduce anxiety."
+    }
+]
+
 }
 constitutionRatio = {
   "Sun": {
@@ -442,121 +500,62 @@ constitutionRatio = {
 
 
 elements_content = {
-  "Fire": {
-      "Earth": [ 
-          "The combination of Fire and Earth elements creates a dynamic interplay between passion and practicality. Fire brings enthusiasm, creativity, and a zest for life, while Earth grounds those fiery impulses with stability and structure. Individuals with this combination often possess a strong drive to pursue their ambitions while maintaining a realistic approach to their goals. They can inspire others with their vibrant energy, yet they also understand the importance of careful planning and perseverance. This blend fosters a unique ability to turn ideas into tangible results. They thrive in environments where their creativity can manifest in practical ways, making them effective leaders and innovators. Ultimately, this combination balances the urge to take risks with the wisdom to proceed thoughtfully.",
-           " To find a work-life balance that energizes you with the Fire and Earth combination, harness your passionate drive while grounding your pursuits in practicality. Set clear goals that ignite your enthusiasm and pursue projects that resonate with your creative spirit. Create a structured routine that allocates time for work, rest, and play to prevent burnout. Incorporate physical activities or hobbies that connect you to the Earth element, like hiking or yoga, to recharge your energy. Regularly assess your priorities and adjust commitments to maintain balance between ambitions and well-being. Surround yourself with supportive people who appreciate your passion yet encourage necessary breaks. By blending fiery motivation with earthy stability, you'll cultivate a fulfilling and energizing work-life balance.  " ,
-           "To make your relationships more harmonious with a Fire and Earth combination, focus on open communication and understanding. Fire's passionate nature can sometimes lead to intensity, so express your feelings in ways that invite dialogue. Emphasize listening to your partner's needs, grounding your fiery enthusiasm with empathy. Plan activities that cater to both elements, engaging in creative projects while enjoying practical moments together. Establish routines that nurture your bond, such as regular date nights or shared hobbies, enhancing stability. Show appreciation for the grounded qualities your partner brings, helping balance your fiery impulses. By blending energy with patience and understanding, you'll foster a deeper, more harmonious connection.",
-           "To achieve steady progress in your life goals and find meaning with a Fire and Earth combination, start by setting clear, actionable objectives that align with your passions. Allow your fiery ambition to drive you toward these goals, keeping your approach grounded in practicality. Break down larger goals into manageable steps, celebrating small victories along the way. Create a structured plan that incorporates both short-term and long-term milestones, maintaining motivation while allowing flexibility. Engage in activities that resonate with your values and bring joy, fostering a sense of purpose. Regularly reflect on your progress and adjust strategies as needed, staying attuned to your desires and practical realities. By balancing passion with stability, you'll cultivate a fulfilling path toward achieving your life goals while finding deeper meaning in your experiences."],
-      "Air": [
-  "The combination of Fire and Air elements creates a vibrant synergy between passion and intellect. Fire embodies enthusiasm, creativity, and spontaneity, while Air brings communication, ideas, and social interaction. Individuals with this combination often possess a lively spirit, thriving on inspiration and new experiences. They can be both adventurous and intellectually curious, seeking out opportunities that stimulate their minds and ignite their passions. This blend fosters an ability to articulate ideas passionately and to inspire others with their vision. They excel in dynamic environments where creativity and collaboration flourish. Ultimately, this combination encourages a balance between action and thoughtful discourse.",
-  
-  "To find a work-life balance that energizes you with the Fire and Air combination, embrace your adventurous spirit while cultivating mental clarity. Set inspiring goals that resonate with your passions and engage your intellect, ensuring you stay motivated and excited. Create a flexible routine that allows for spontaneous activities alongside structured time for reflection and planning. Engage in social activities or creative pursuits that stimulate your mind and energize your spirit. Regularly seek new experiences that challenge your thinking and expand your horizons. Surround yourself with like-minded individuals who encourage both your fiery enthusiasm and intellectual exploration. By blending passion with intellectual curiosity, you'll cultivate a fulfilling and balanced life.",
-  
-  "To enhance your relationships with a Fire and Air combination, prioritize open communication and shared experiences. Fire's passion can infuse energy into interactions, while Air's communicative nature encourages dialogue and connection. Foster an environment where both partners feel free to express their thoughts and emotions. Engage in stimulating conversations and activities that challenge both your creativity and intellect. Plan spontaneous adventures or brainstorming sessions to keep the relationship dynamic and exciting. Show appreciation for each other's ideas and perspectives, as this can deepen your bond. By blending enthusiasm with thoughtful communication, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with a Fire and Air combination, begin by setting inspiring and innovative objectives that align with your passions. Let your fiery ambition propel you forward while using your intellect to devise effective strategies. Break down larger goals into actionable steps that allow for exploration and creativity, celebrating achievements along the way. Create a flexible plan that incorporates both immediate actions and long-term visions, encouraging spontaneity. Engage in activities that spark joy and curiosity, fostering a deeper sense of purpose. Regularly reflect on your experiences and adjust your approach as needed, staying aligned with both your desires and aspirations. By harmonizing passion with intellect, you'll cultivate a meaningful and fulfilling path."
-],
-      "Water": [
-  "The combination of Fire and Water elements creates a complex interplay between passion and emotion. Fire symbolizes enthusiasm, creativity, and action, while Water represents feelings, intuition, and depth. Individuals with this combination often possess a vibrant spirit, fueled by their passions, but they are also deeply attuned to their emotional landscape. This blend fosters a unique ability to express feelings passionately while remaining sensitive to the emotions of others. They thrive in environments where they can channel their energy into creative endeavors that resonate on an emotional level. Ultimately, this combination encourages a balance between fiery ambition and emotional intelligence.",
-  
-  "To find a work-life balance that energizes you with the Fire and Water combination, embrace your passions while staying connected to your emotional needs. Set goals that ignite your creativity and also reflect your feelings, ensuring a fulfilling pursuit. Create a routine that allows for both energetic activities and time for introspection or relaxation, preventing burnout. Engage in creative expressions, such as art or writing, that allow your emotions to flow freely. Regularly check in with your feelings to ensure that your ambitions align with your inner self. Surround yourself with supportive people who appreciate both your fiery drive and your emotional depth. By blending passion with emotional awareness, you'll cultivate a balanced and energizing work-life experience.",
-  
-  "To enhance your relationships with a Fire and Water combination, prioritize emotional honesty and open communication. Fire's passionate nature can infuse energy into interactions, while Water's sensitivity fosters deeper connections. Create a safe space for both partners to express their feelings without fear of judgment. Engage in activities that allow for emotional expression, such as deep conversations or shared creative projects. Show appreciation for each other's emotional insights, which can strengthen your bond. Be mindful of how your fiery impulses may affect your partner's feelings, ensuring that your enthusiasm is tempered with empathy. By blending passion with emotional depth, you'll nurture harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with a Fire and Water combination, start by setting emotionally resonant objectives that ignite your passion. Let your fiery ambition guide you while being mindful of your emotional well-being. Break down larger goals into manageable steps, celebrating both your achievements and the feelings they evoke. Create a flexible plan that incorporates both energetic pursuits and reflective practices, allowing for personal growth. Engage in activities that resonate with your values and emotions, fostering a sense of purpose. Regularly reflect on your journey, ensuring that your ambitions align with your feelings and desires. By harmonizing passion with emotional awareness, you'll cultivate a meaningful and fulfilling path."
-]
-
-    },
-  "Earth": {
-      "Fire": [
-  "The combination of Earth and Fire elements creates a powerful interplay between stability and passion. Earth symbolizes grounding, practicality, and structure, while Fire embodies enthusiasm, creativity, and action. Individuals with this combination often possess a strong drive to pursue their ambitions while maintaining a solid foundation in their lives. They can inspire others with their vibrant energy and innovative ideas while understanding the importance of careful planning and execution. This blend fosters the ability to turn visionary concepts into tangible results, thriving in environments where their creativity can be harnessed effectively. They balance the urge to take risks with the wisdom to proceed thoughtfully. Ultimately, this combination encourages a dynamic approach to achieving goals with both passion and practicality.",
-  
-  "To find a work-life balance that energizes you with the Earth and Fire combination, harness your passionate drive while grounding your pursuits in practicality. Set clear, realistic goals that ignite your enthusiasm and align with your values. Create a structured routine that allows time for work, creativity, and relaxation, preventing burnout. Incorporate physical activities that connect you to the Earth, like hiking or gardening, to recharge your energy and focus. Regularly assess your priorities and adjust commitments to maintain harmony between ambitions and well-being. Surround yourself with supportive individuals who appreciate your passion and help keep you grounded. By blending fiery motivation with earthy stability, you'll cultivate a fulfilling and energizing work-life balance.",
-  
-  "To make your relationships more harmonious with an Earth and Fire combination, focus on open communication and shared goals. Earth's practicality can ground Fire's intensity, creating a balanced partnership. Foster an environment where both partners feel free to express their passions and ambitions. Engage in activities that stimulate both creativity and stability, such as planning future projects together. Show appreciation for the grounded qualities your partner brings, as this can help balance your fiery impulses. Establish routines that nurture your bond while allowing for each other's individuality. By blending energy with stability and understanding, you'll foster a deeper, more harmonious connection.",
-  
-  "To achieve steady progress in your life goals and find meaning with an Earth and Fire combination, start by setting clear, actionable objectives that align with your passions. Allow your fiery ambition to drive you forward, while grounding your approach in practical steps. Break down larger goals into manageable tasks, celebrating both the effort and the results. Create a structured plan that incorporates both immediate actions and long-term milestones, allowing for flexibility and adaptation. Engage in activities that resonate with your values, fostering a sense of purpose and fulfillment. Regularly reflect on your progress and adjust your strategies as needed, staying attuned to both your desires and practical realities. By harmonizing passion with stability, you'll cultivate a meaningful and rewarding path."
-],
-      "Air": [
-  "The combination of Earth and Air elements creates a balanced interplay between stability and intellect. Earth symbolizes grounding, practicality, and structure, while Air represents ideas, communication, and social interaction. Individuals with this combination often possess a solid foundation that supports their intellectual pursuits. They can think critically and creatively, bringing innovative ideas to practical applications. This blend fosters the ability to articulate thoughts clearly while maintaining a realistic perspective. They thrive in environments where their analytical skills can complement their grounded nature, making them effective problem solvers and communicators. Ultimately, this combination encourages a balance between practical action and intellectual exploration.",
-  
-  "To find a work-life balance that energizes you with the Earth and Air combination, harness your intellectual curiosity while grounding your pursuits in practicality. Set clear, achievable goals that align with your ideas and values, ensuring a fulfilling journey. Create a structured routine that allows time for both productive work and intellectual engagement, such as reading or brainstorming sessions. Incorporate activities that stimulate your mind and connect you to the Earth, like nature walks or gardening, to recharge your energy. Regularly assess your priorities to maintain harmony between your intellectual ambitions and practical commitments. Surround yourself with supportive individuals who appreciate your grounded nature and encourage your ideas. By blending stability with intellectual exploration, you'll cultivate a balanced and enriching work-life experience.",
-  
-  "To enhance your relationships with an Earth and Air combination, prioritize open communication and shared goals. Earth's stability can provide a solid foundation for Air's ideas, creating a supportive partnership. Foster an environment where both partners feel free to express their thoughts and ambitions. Engage in stimulating conversations and collaborative projects that encourage creativity and practicality. Show appreciation for the grounded qualities your partner brings, as this can help balance your intellectual pursuits. Establish routines that nurture your bond while allowing for individual exploration of ideas. By blending stability with intellectual curiosity, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with an Earth and Air combination, start by setting clear, actionable objectives that resonate with both your practical aspirations and intellectual pursuits. Allow your grounded approach to guide you while remaining open to new ideas and perspectives. Break down larger goals into manageable steps, celebrating both achievements and insights along the way. Create a flexible plan that incorporates both immediate tasks and long-term visions, allowing for adaptability. Engage in activities that align with your values and stimulate your mind, fostering a sense of purpose. Regularly reflect on your progress, ensuring that your ambitions remain grounded in reality. By harmonizing stability with intellectual exploration, you'll cultivate a meaningful and rewarding path."
-],
-      
-      "Water": [
-  "The combination of Earth and Water elements creates a nurturing interplay between stability and emotion. Earth symbolizes grounding, practicality, and structure, while Water represents feelings, intuition, and fluidity. Individuals with this combination often possess a strong connection to their emotions while maintaining a solid foundation in their lives. They can create safe spaces for themselves and others, allowing for emotional expression and growth. This blend fosters an ability to nurture relationships and cultivate environments where both stability and emotional depth thrive. They excel in situations that require sensitivity and practicality, making them effective caregivers and supportive friends. Ultimately, this combination encourages a balance between nurturing others and maintaining personal boundaries.",
-  
-  "To find a work-life balance that energizes you with the Earth and Water combination, embrace your emotional needs while grounding your pursuits in practicality. Set goals that resonate with your values and also honor your feelings, ensuring a fulfilling journey. Create a routine that allows time for both productive work and reflective practices, such as journaling or meditation. Engage in activities that connect you with nature, like gardening or spending time by water, to recharge your spirit. Regularly assess your priorities to maintain harmony between your emotional well-being and practical commitments. Surround yourself with supportive people who appreciate your nurturing nature and help keep you grounded. By blending stability with emotional awareness, you'll cultivate a balanced and enriching work-life experience.",
-  
-  "To enhance your relationships with an Earth and Water combination, prioritize emotional connection and mutual support. Earth's stability can provide a solid foundation for Water's emotional depth, creating a safe space for vulnerability. Foster open communication about feelings and needs, ensuring both partners feel heard and understood. Engage in nurturing activities together, such as cooking or creative projects, that allow for emotional bonding. Show appreciation for the practical qualities your partner brings, helping to ground your emotional expressions. Establish routines that nurture your bond while allowing for individual emotional exploration. By blending stability with emotional intelligence, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with an Earth and Water combination, start by setting objectives that resonate with both your practical aspirations and emotional needs. Allow your grounded approach to guide you while remaining open to your feelings throughout the journey. Break down larger goals into manageable steps, celebrating both achievements and the emotions they evoke. Create a flexible plan that accommodates both immediate tasks and long-term dreams, allowing for adaptation as needed. Engage in activities that align with your values and provide emotional fulfillment, fostering a sense of purpose. Regularly reflect on your journey, ensuring that your ambitions remain connected to your inner self. By harmonizing stability with emotional awareness, you'll cultivate a meaningful and rewarding path."
-],
-    },
-  "Air": {
-      "Fire": [
-  "The combination of Air and Fire elements creates a dynamic synergy between intellect and passion. Air symbolizes ideas, communication, and social interaction, while Fire embodies enthusiasm, creativity, and action. Individuals with this combination often possess a lively spirit, thriving on inspiration and new experiences. They can be both adventurous and intellectually curious, seeking out opportunities that stimulate their minds and ignite their passions. This blend fosters an ability to articulate ideas passionately and to inspire others with their vision. They excel in dynamic environments where creativity and collaboration flourish. Ultimately, this combination encourages a balance between action and thoughtful discourse.",
-  
-  "To find a work-life balance that energizes you with the Air and Fire combination, embrace your adventurous spirit while cultivating mental clarity. Set inspiring goals that resonate with your passions and engage your intellect, ensuring you stay motivated and excited. Create a flexible routine that allows for spontaneous activities alongside structured time for reflection and planning. Engage in social activities or creative pursuits that stimulate your mind and energize your spirit. Regularly seek new experiences that challenge your thinking and expand your horizons. Surround yourself with like-minded individuals who encourage both your fiery enthusiasm and intellectual exploration. By blending passion with intellectual curiosity, you'll cultivate a fulfilling and balanced life.",
-  
-  "To enhance your relationships with an Air and Fire combination, prioritize open communication and shared experiences. Fire's passion can infuse energy into interactions, while Air's communicative nature encourages dialogue and connection. Foster an environment where both partners feel free to express their thoughts and emotions. Engage in stimulating conversations and activities that challenge both your creativity and intellect. Plan spontaneous adventures or brainstorming sessions to keep the relationship dynamic and exciting. Show appreciation for each other's ideas and perspectives, as this can deepen your bond. By blending enthusiasm with thoughtful communication, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with an Air and Fire combination, begin by setting inspiring and innovative objectives that align with your passions. Let your fiery ambition propel you forward while using your intellect to devise effective strategies. Break down larger goals into actionable steps that allow for exploration and creativity, celebrating achievements along the way. Create a flexible plan that incorporates both immediate actions and long-term visions, encouraging spontaneity. Engage in activities that spark joy and curiosity, fostering a deeper sense of purpose. Regularly reflect on your experiences and adjust your approach as needed, staying aligned with both your desires and aspirations. By harmonizing passion with intellect, you'll cultivate a meaningful and fulfilling path."
-],
-      "Earth": [
-  "The combination of Air and Earth elements creates a balanced interplay between intellect and stability. Air symbolizes ideas, communication, and social interaction, while Earth represents grounding, practicality, and structure. Individuals with this combination often possess a solid foundation that supports their intellectual pursuits. They can think critically and creatively, bringing innovative ideas to practical applications. This blend fosters the ability to articulate thoughts clearly while maintaining a realistic perspective. They thrive in environments where their analytical skills can complement their grounded nature, making them effective problem solvers and communicators. Ultimately, this combination encourages a balance between practical action and intellectual exploration.",
-  
-  "To find a work-life balance that energizes you with the Air and Earth combination, harness your intellectual curiosity while grounding your pursuits in practicality. Set clear, achievable goals that align with your ideas and values, ensuring a fulfilling journey. Create a structured routine that allows time for both productive work and intellectual engagement, such as reading or brainstorming sessions. Incorporate activities that stimulate your mind and connect you to the Earth, like nature walks or gardening, to recharge your energy. Regularly assess your priorities to maintain harmony between your intellectual ambitions and practical commitments. Surround yourself with supportive individuals who appreciate your grounded nature and encourage your ideas. By blending stability with intellectual exploration, you'll cultivate a balanced and enriching work-life experience.",
-  
-  "To enhance your relationships with an Air and Earth combination, prioritize open communication and shared goals. Earth's stability can provide a solid foundation for Air's ideas, creating a supportive partnership. Foster an environment where both partners feel free to express their thoughts and ambitions. Engage in stimulating conversations and collaborative projects that encourage creativity and practicality. Show appreciation for the grounded qualities your partner brings, as this can help balance your intellectual pursuits. Establish routines that nurture your bond while allowing for individual exploration of ideas. By blending stability with intellectual curiosity, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with an Air and Earth combination, start by setting clear, actionable objectives that resonate with both your practical aspirations and intellectual pursuits. Allow your grounded approach to guide you while remaining open to new ideas and perspectives. Break down larger goals into manageable steps, celebrating both achievements and insights along the way. Create a flexible plan that incorporates both immediate tasks and long-term visions, allowing for adaptability. Engage in activities that align with your values and stimulate your mind, fostering a sense of purpose. Regularly reflect on your progress, ensuring that your ambitions remain grounded in reality. By harmonizing stability with intellectual exploration, you'll cultivate a meaningful and rewarding path."
-],
-      "Water": [
-  "The combination of Air and Water elements creates a fluid interplay between intellect and emotion. Air symbolizes ideas, communication, and social interaction, while Water represents feelings, intuition, and depth. Individuals with this combination often possess a keen understanding of the emotional landscape around them while maintaining a strong capacity for intellectual engagement. They can articulate their thoughts and feelings with clarity, fostering deep connections with others. This blend encourages the ability to navigate complex emotional situations with ease, using their intellect to understand and empathize. They thrive in environments where creativity and emotional expression can flourish, making them effective communicators and nurturers. Ultimately, this combination promotes a balance between thoughtful discourse and emotional awareness.",
-  
-  "To find a work-life balance that energizes you with the Air and Water combination, embrace your emotional needs while cultivating your intellectual curiosity. Set goals that resonate with both your feelings and ideas, ensuring a fulfilling pursuit. Create a routine that allows for time dedicated to creative thinking, along with moments for emotional reflection and relaxation. Engage in activities that stimulate your mind and provide emotional nourishment, such as writing or artistic expression. Regularly check in with your emotions to maintain harmony between your intellectual ambitions and personal well-being. Surround yourself with supportive individuals who appreciate both your intellectual pursuits and emotional depth. By blending intellect with emotional awareness, you'll cultivate a balanced and enriching work-life experience.",
-  
-  "To enhance your relationships with an Air and Water combination, prioritize open communication and emotional connection. Air's communicative nature can help articulate feelings, while Water's sensitivity fosters understanding and empathy. Create a safe space for both partners to express their thoughts and emotions freely. Engage in activities that encourage emotional exploration and intellectual exchange, such as deep conversations or collaborative projects. Show appreciation for each other's perspectives and feelings, as this can strengthen your bond. Establish routines that nurture your relationship while allowing for personal emotional growth. By blending communication with emotional depth, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with an Air and Water combination, start by setting objectives that align with both your intellectual aspirations and emotional needs. Allow your curiosity to guide your pursuits while being mindful of your feelings throughout the journey. Break down larger goals into manageable steps, celebrating both your achievements and the emotions they evoke. Create a flexible plan that accommodates both immediate tasks and long-term dreams, allowing for adaptability. Engage in activities that resonate with your values and provide emotional fulfillment, fostering a sense of purpose. Regularly reflect on your journey, ensuring that your ambitions remain connected to your inner self. By harmonizing intellect with emotional awareness, you'll cultivate a meaningful and rewarding path."
-]
-    },
-  "Water": {
-      "Fire": [
-  "The combination of Water and Fire elements creates a powerful interplay between emotion and passion. Water symbolizes feelings, intuition, and depth, while Fire embodies enthusiasm, creativity, and action. Individuals with this combination often possess a profound emotional depth that fuels their fiery ambitions. They can express their passions with intensity while remaining in tune with their inner feelings. This blend fosters a unique ability to inspire others while navigating complex emotional landscapes. They thrive in environments that allow for both creative expression and emotional exploration, making them dynamic leaders and passionate creators. Ultimately, this combination encourages a balance between emotional insight and passionate action.",
-  
-  "To find a work-life balance that energizes you with the Water and Fire combination, embrace your emotional needs while allowing your passions to guide your pursuits. Set goals that resonate with both your feelings and ambitions, ensuring a fulfilling journey. Create a routine that allocates time for both creative endeavors and emotional reflection, preventing burnout. Engage in activities that inspire your spirit and nurture your emotions, such as painting or meditation by water. Regularly check in with your feelings to maintain harmony between your passions and well-being. Surround yourself with supportive individuals who appreciate your intensity and encourage emotional expression. By blending emotional awareness with passionate drive, you'll cultivate a balanced and enriching work-life experience.",
-  
-  "To enhance your relationships with a Water and Fire combination, prioritize open communication and emotional connection. Water's sensitivity can help temper Fire's intensity, creating a supportive environment for both partners. Foster an atmosphere where feelings can be expressed freely, and encourage each other to pursue passions. Engage in activities that allow for both emotional bonding and creative expression, such as shared hobbies or adventures. Show appreciation for each other's strengths, helping to balance emotional depth with passionate pursuits. Establish routines that nurture your relationship while allowing for individual emotional exploration. By blending passion with emotional awareness, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with a Water and Fire combination, start by setting objectives that align with both your emotional insights and passions. Let your feelings guide your ambitions while using your passion to fuel your pursuits. Break down larger goals into actionable steps, celebrating both achievements and the emotions they evoke. Create a flexible plan that accommodates immediate tasks and long-term dreams, allowing for spontaneity. Engage in activities that resonate with your values and provide emotional fulfillment, fostering a sense of purpose. Regularly reflect on your journey, ensuring that your ambitions remain connected to your inner self. By harmonizing emotional awareness with passionate drive, you'll cultivate a meaningful and rewarding path."
-],
-      "Earth": [
-  "The combination of Water and Earth elements creates a nurturing interplay between emotion and stability. Water symbolizes feelings, intuition, and depth, while Earth represents grounding, practicality, and structure. Individuals with this combination often possess a strong emotional awareness that supports their practical pursuits. They can navigate their feelings with sensitivity while maintaining a solid foundation in their lives. This blend fosters an ability to nurture relationships and cultivate environments where emotional expression and stability thrive. They excel in situations that require both empathy and practicality, making them effective caregivers and supportive partners. Ultimately, this combination promotes a balance between emotional insight and practical action.",
-  
-  "To find a work-life balance that energizes you with the Water and Earth combination, embrace your emotional needs while grounding your pursuits in practicality. Set goals that resonate with both your feelings and values, ensuring a fulfilling journey. Create a routine that allows for time dedicated to emotional reflection alongside structured work activities. Engage in practices that connect you to the Earth, such as gardening or spending time in nature, to recharge your emotional energy. Regularly assess your priorities to maintain harmony between your emotional well-being and practical commitments. Surround yourself with supportive individuals who appreciate your sensitivity and help you stay grounded. By blending emotional awareness with practical action, you'll cultivate a balanced and enriching work-life experience.",
-  
-  "To enhance your relationships with a Water and Earth combination, prioritize open communication and emotional nurturing. Earth's stability can provide a solid foundation for Water's feelings, creating a supportive partnership. Foster an environment where both partners feel safe to express their thoughts and emotions. Engage in nurturing activities together, such as cooking or outdoor projects, that allow for emotional bonding. Show appreciation for the grounded qualities your partner brings, helping to balance emotional expression. Establish routines that nurture your relationship while allowing for individual emotional growth. By blending stability with emotional awareness, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with a Water and Earth combination, start by setting clear objectives that align with both your emotional insights and practical aspirations. Allow your feelings to guide your pursuits while using practicality to navigate your goals. Break down larger objectives into manageable steps, celebrating both achievements and emotional growth along the way. Create a flexible plan that accommodates both immediate tasks and long-term dreams, fostering adaptability. Engage in activities that resonate with your values and provide emotional fulfillment, cultivating a sense of purpose. Regularly reflect on your journey, ensuring that your ambitions remain connected to your inner self. By harmonizing emotional insight with practical action, you'll cultivate a meaningful and rewarding path."
-],
-      "Air": [
-  "The combination of Water and Air elements creates a fluid interplay between emotion and intellect. Water symbolizes feelings, intuition, and depth, while Air represents ideas, communication, and social interaction. Individuals with this combination often possess a deep emotional awareness that enhances their intellectual pursuits. They can articulate their feelings and thoughts with clarity, fostering strong connections with others. This blend encourages the ability to navigate complex emotional landscapes while maintaining a curious mindset. They thrive in environments where creativity and emotional expression can flourish, making them effective communicators and empathetic listeners. Ultimately, this combination promotes a balance between thoughtful discourse and emotional depth.",
-  
-  "To find a work-life balance that energizes you with the Water and Air combination, embrace your emotional needs while cultivating your intellectual curiosity. Set goals that resonate with both your feelings and ideas, ensuring a fulfilling journey. Create a routine that allows for time dedicated to both creative thinking and emotional reflection. Engage in activities that stimulate your mind and provide emotional nourishment, such as writing or participating in discussions. Regularly check in with your feelings to maintain harmony between your intellectual ambitions and personal well-being. Surround yourself with supportive individuals who appreciate both your intellectual pursuits and emotional depth. By blending intellect with emotional awareness, you'll cultivate a balanced and enriching work-life experience.",
-  
-  "To enhance your relationships with a Water and Air combination, prioritize open communication and emotional connection. Air's communicative nature can help articulate feelings, while Water's sensitivity fosters understanding and empathy. Create a safe space for both partners to express their thoughts and emotions freely. Engage in activities that encourage emotional exploration and intellectual exchange, such as deep conversations or collaborative projects. Show appreciation for each other's perspectives and feelings, as this can strengthen your bond. Establish routines that nurture your relationship while allowing for personal emotional growth. By blending communication with emotional depth, you'll cultivate harmonious and fulfilling relationships.",
-  
-  "To achieve steady progress in your life goals and find meaning with a Water and Air combination, start by setting objectives that align with both your emotional aspirations and intellectual pursuits. Allow your emotional insights to guide your ambitions while being open to new ideas and perspectives. Break down larger goals into manageable steps, celebrating both your achievements and the emotions they evoke. Create a flexible plan that accommodates immediate tasks and long-term dreams, allowing for adaptability. Engage in activities that resonate with your values and stimulate your mind, fostering a sense of purpose. Regularly reflect on your journey, ensuring that your ambitions remain connected to your inner self. By harmonizing emotional awareness with intellectual exploration, you'll cultivate a meaningful and rewarding path."
-]
-
-  }
+    "Earth": [ 
+        "Children with a dominant earth element are grounded, reliable, and nurturing. They are practical, patient, and enjoy activities that provide stability. They are natural caretakers but may sometimes struggle with adaptability or taking risks.",
+        ["Dependability", "patience", "responsibility", "strong work ethic."],
+        ["Over-cautiousness", "resistance to change", "potential stubbornness", "worry"],
+        {
+        "title": "Encourage New Experiences",
+        "desc" : "Introduce activities that promote flexibility and exploration, such as trying new hobbies, outdoor adventures, or creative arts. This helps them become more adaptable and open to change."
+        },
+        {
+        "Fire" : "Engage in energetic play or leadership activities to boost confidence and enthusiasm.",
+        "Water" : "Include storytelling, imaginative play, or water-based activities to enhance emotional depth and adaptability.",
+        "Air" : "Foster creative play, music, and dance to improve communication and mental agility."
+        }
+    ],
+    "Air": [  
+        "Children with a dominant air element are curious, imaginative, and highly social. They love exploring ideas, communicating, and engaging in creative activities. They are quick thinkers but may sometimes struggle with focus and consistency.",
+        ["Creativity", "adaptability", "strong communication", "quick thinking"],
+        ["Lack of focus", "indecisiveness", "restlessness", "scattered attention"],
+        {
+            "title": "Structured Routine",
+            "desc": "Incorporate a clear daily schedule with defined tasks and breaks to help them stay focused and organized. Include activities that balance their creativity with structure, such as guided activities and goal-setting."
+        },
+        {
+            "Earth": "Include activities like building projects and nature walks to promote stability and patience.",
+            "Fire": "Engage in high-energy games and physical activities to enhance confidence and motivation.",
+            "Water": "Introduce calming activities like storytelling or water play to foster emotional depth."
+        }
+    ],
+    "Water": [  
+        "Children with a dominant water element are sensitive, empathetic, and intuitive. They have a strong emotional depth and are often in tune with their surroundings. They excel in creative and imaginative play but may struggle with self-confidence or setting boundaries.",
+        ["Emotional intelligence", "empathy", "creativity", "adaptability"],
+        ["Over-sensitivity", "shyness", "difficulty with assertiveness", "prone to anxiety"],
+        {
+            "title": "Confidence-Building Activities",
+            "desc": "Encourage activities that foster self-assurance and resilience, such as role-playing games or taking part in group activities where they can express themselves. This helps build emotional strength and assertiveness."
+        },
+        {
+            "Earth": "Engage in hands-on activities like gardening or building to promote stability and confidence.",
+            "Fire": "Include energetic play and leadership activities to boost enthusiasm and motivation.",
+            "Air": "Encourage storytelling, music, and creative play to enhance communication and mental agility."
+        }
+    ],
+    "Fire": [  
+        "Children with a dominant fire element are full of energy, confidence, and enthusiasm. They are natural leaders, passionate, and driven to explore new challenges. However, they may struggle with impulsivity, impatience, and emotional intensity.",
+        ["Leadership", "high energy", "motivation", "creativity"],
+        ["Impulsivity", "impatience", "difficulty focusing", "quick temper"],
+        {
+            "title": "Mindful Breaks",
+            "desc": "Incorporate calming activities such as deep breathing, guided imagery, or short yoga sessions to help your child learn to manage their energy and emotions. Schedule these during transitions or before bedtime to create balance."
+        },
+        {
+            "Earth": "Encourage activities like building, gardening, and hands-on crafts to promote stability and patience.",
+            "Water": "Introduce water play or storytelling to enhance emotional awareness and adaptability.",
+            "Air": "Foster creative play, music, or dance to boost communication and open-mindedness."
+        }
+    ]
 }
 
 
@@ -1727,7 +1726,7 @@ karanamContent =  {
       ],
     [
         "May become perfectionist, leading to frustration.",
-        "Tends to avoid tasks if they feel they won’t be perfect.",
+        "Tends to avoid tasks if they feel they won't be perfect.",
         "Can be slow to adapt to unexpected changes."
       ],
        {
@@ -1747,7 +1746,7 @@ karanamContent =  {
       ],
        {
         "Tip": "Promote open communication and encourage teamwork.",
-        "Execution": "Encourage them to express their needs and feelings. Let them know it’s okay to ask for help, and praise collaborative efforts."
+        "Execution": "Encourage them to express their needs and feelings. Let them know it's okay to ask for help, and praise collaborative efforts."
       }
 ],
   "Vanija": [ [
@@ -1872,4 +1871,2522 @@ yogamLord = {
   "27": "Yama"
 }
 
+weekPlanet = {
+    "Sunday": "Sun",
+    "Monday": "Moon",
+    "Tuesday": "Mars",
+    "Wednesday": "Mercury",
+    "Thursday": "Jupiter",
+    "Friday": "Venus",
+    "Saturday": "Saturn"
+}
 
+weekPlanetContent = {
+    "Sunday" : [ [
+        "Leadership qualities and confidence",
+        "High energy and vitality",
+        "Strong willpower and determination"
+      ],
+    [
+        "Can be overly dominant or stubborn",
+        "Tendency to be self-centered or arrogant",
+        "May face challenges with authority or teamwork"
+      ],
+    {
+        "Tip": "Encourage healthy leadership by giving them small responsibilities and tasks they can lead.",
+        "Execution": "Provide opportunities where your child can take charge, such as leading a group activity or planning family events. Praise their efforts to build confidence while teaching them to listen to others."
+      }
+],
+    "Monday" : [[
+        "Emotional sensitivity and empathy",
+        "Strong nurturing and caring nature",
+        "Good intuition and creativity"
+      ],
+    [
+        "Prone to mood swings or emotional vulnerability",
+        "Can be overly dependent or shy",
+        "May struggle with decision-making due to sensitivity"
+      ],
+    {
+        "Tip": "Create a calm and nurturing environment that allows them to express their emotions freely.",
+        "Execution": "Spend quiet time with them, use stories or art to help them express feelings, and ensure they feel safe and supported. Offer reassurance and practice calming activities like deep breathing."
+      }
+],
+    "Tuesday" : [ [
+        "High energy, motivation, and enthusiasm",
+        "Strong will and determination",
+        "Bold, confident, and courageous nature"
+      ],
+    [
+        "Can be impulsive or aggressive",
+
+
+        "May have a quick temper",
+        "Struggles with patience and can be headstrong"
+      ],
+    {
+        "Tip": "Channel their energy into physical activities that build discipline.",
+        "Execution": "Enroll them in sports or activities that require teamwork and controlled energy, such as martial arts or group games. Praise their progress and teach them techniques to manage frustration."
+      }
+],
+    "Wednesday" : [ [
+        "Sharp intellect and quick learning",
+        "Excellent communication and language skills",
+        "Adaptable and curious nature"
+      ],
+    [
+        "Prone to overthinking or nervousness",
+        "Can be inconsistent or distracted",
+        "May have trouble focusing on one task at a time"
+      ],
+    {
+        "Tip": "Encourage structured learning and creative play that taps into their curiosity.",
+        "Execution": "Introduce puzzles, science kits, or activities that require them to use logic and creativity. Use visual schedules to help them stay on task, and praise their achievements."
+      }
+],
+    "Thursday" : [ [
+        "Positive and optimistic outlook",
+        "Strong sense of fairness and generosity",
+        "Great potential for wisdom and deep thinking"
+      ],
+    [
+        "Can be overly idealistic or overconfident",
+        "May struggle with practicality",
+        "Tendency to be complacent or lazy at times"
+      ],
+    {
+        "Tip": "Promote balanced growth through activities that encourage both exploration and practical tasks.",
+        "Execution": "Incorporate activities that combine fun with learning, like educational games or group projects. Remind them to set achievable goals and celebrate their small successes."
+      }
+],
+    "Friday" : [ [
+        "Creative, artistic, and imaginative",
+        "Social and affectionate nature",
+        "Strong sense of beauty and harmony"
+      ],
+    [
+        "Can be overly sensitive or overly concerned with appearance",
+        "May seek validation and be influenced by others",
+        "Can be indecisive or prone to procrastination"
+      ],
+    {
+        "Tip": "Foster their creativity with art and music while building self-confidence.",
+        "Execution": "Provide opportunities for creative expression, such as drawing, playing an instrument, or dance. Reinforce their strengths and teach them to focus on their true self, not just external opinions."
+      }
+],
+    "Saturday" : [ [
+        "Responsible and disciplined",
+        "Strong work ethic and perseverance",
+        "Good at problem-solving and planning"
+      ],
+    [
+        "Can be overly serious or pessimistic",
+        "May have low self-esteem or be critical of themselves",
+        "Struggles with flexibility or adapting to change"
+      ],
+    {
+        "Tip": "Encourage balance by helping them manage stress and build confidence.",
+        "Execution": "Introduce activities that mix routine with play, like structured but fun chores or projects. Recognize their hard work, and gently remind them that mistakes are part of learning."
+      }
+]
+}
+
+
+sunIdentity = {
+  "Aries" : "child, born with Sun in Mesha (Aries) has a strong and confident core identity. Child is energetic, independent, and eager to take on new challenges. The desire to lead and start new things shapes child's sense of self. Child's personality is bold, and child is not afraid to act quickly. Child's natural courage and enthusiasm drive actions and decisions, making child a go-getter.",
+  "Taurus": "child, born with Sun in Vrishabha (Taurus) has a steady and grounded core identity. Child values stability, comfort, and material security. Determination and persistence drive child to work hard for goals. Child's approach to life is patient and methodical, seeking lasting rewards. Child thrives on reliability, and emotional security forms the foundation of personal identity.",
+  "Gemini": "child, born with Sun in Mithuna (Gemini) has an adaptable and curious core identity. Child is intellectually driven, always seeking knowledge and new experiences. Child's identity is shaped by communication and social interactions, making child versatile and quick-witted. Child's ability to connect with others and adapt to different environments defines core nature.",
+  "Cancer": "child, born with Sun in Karka (Cancer) has a sensitive and nurturing core identity. Child's sense of self is closely tied to family and home life. Emotions guide child's decisions and actions, with a strong desire to care for others. Child's identity is rooted in deep emotional connections, loyalty, and the need to protect loved ones.",
+  "Leo": "child, born with Sun in Simha (Leo) has a confident and vibrant core identity. Child craves attention, recognition, and creative self-expression. Child's identity is built on self-esteem, personal achievements, and the desire to inspire others. Child's natural leadership abilities shine through, and the spotlight fuels inner confidence.",
+  "Virgo": "child, born with Sun in Kanya (Virgo) has a practical and analytical core identity. Child is focused on details and constantly strives for self-improvement. Child's identity is shaped by a strong sense of duty and desire to be of service. Child's self-worth comes from helping others and solving problems with precision.",
+  "Libra": "child, born with Sun in Tula (Libra) has a balanced and harmonious core identity. Child values relationships, fairness, and beauty in life. A strong desire for harmony and peace shapes child's sense of self. Child's identity is formed through partnerships, and the need for social interaction and compromise guides decisions.",
+  "Scorpio": "child, born with Sun in Vrischika (Scorpio) has a powerful and intense core identity. Child's identity is driven by passion, determination, and a deep need for transformation. Child is not afraid to confront challenges and explore the unknown. Emotional depth and resilience define child's sense of self and personal power.",
+  "Sagittarius": "child, born with Sun in Dhanu (Sagittarius) has an adventurous and philosophical core identity. Child's sense of self is defined by a love for freedom, exploration, and knowledge. Optimism and a desire to expand horizons guide child's path. Child values truth and strives for growth, both intellectually and spiritually.",
+  "Capricorn": "child, born with Sun in Makara (Capricorn) has a disciplined and ambitious core identity. Child's identity is shaped by a strong sense of responsibility and determination to succeed. Child values hard work and is focused on achieving long-term goals. Practicality and perseverance drive child's sense of self and personal growth.",
+  "Aquarius": "child, born with Sun in Kumbha (Aquarius) has an independent and innovative core identity. Child's sense of self is shaped by a desire for individuality and a deep connection to humanity. Intellectual curiosity and a strong sense of social justice guide child's path. Child is driven by the need to bring change and new ideas to the world.",
+  "Pisces": "child, born with Sun in Meena (Pisces) has a compassionate and imaginative core identity. Child's identity is deeply connected to emotions, dreams, and spirituality. Intuition and empathy define child's sense of self, and a desire to help others is a central part of child's nature. Artistic expression and a rich inner world are essential for child's personal fulfillment."
+}
+
+
+moonIdentity = {
+    "Aries": "child's Rashi Sign is Mesham A Mesha Rashi (Aries Moon Sign) child is always energetic, quick to act, and emotionally expressive. Child experiences emotions intensely and reacts quickly to situations. Emotional nature is often spontaneous, leading to both excitement and frustration. Child has a strong desire for independence and can feel frustrated when restricted. However, child's enthusiasm helps overcome emotional challenges, bringing a positive and dynamic energy to daily life.",
+    "Taurus": "child's Rashi Sign is Vrishabha Rashi (Taurus Moon Sign) child is always calm, stable, and emotionally grounded. Child values security and comfort, often seeking peace in familiar surroundings. Emotions are steady, and child is slow to anger, but when upset, emotions can linger for a while. Child has a strong attachment to loved ones and feels safe in nurturing relationships.",
+    "Gemini": "child's Rashi Sign is Mithuna Rashi (Gemini Moon Sign) child is always curious, communicative, and emotionally versatile. Child's emotions are constantly changing, reflecting a need for mental stimulation. Child expresses feelings easily, but may quickly move on to other emotions. Child enjoys social interactions and feels emotionally energized through conversation and sharing ideas.",
+    "Cancer": "child's Rashi Sign is Karka Rashi (Cancer Moon Sign) child is always sensitive, nurturing, and emotionally protective. Child's emotions are deep and influenced by family and home life. Intuitive and empathetic, child can sense the moods of others and is highly attuned to emotional needs. When upset, child seeks comfort in familiar surroundings and close relationships.",
+    "Leo": "child's Rashi Sign is Simha Rashi (Leo Moon Sign) child is always confident, warm-hearted, and emotionally expressive. Child's emotions are strong, and child craves attention and appreciation. Child's emotional state is often tied to recognition and praise, feeling joyful when admired and hurt when ignored. Child's positive attitude and enthusiasm light up the environment.",
+    "Virgo": "child's Rashi Sign is Kanya Rashi (Virgo Moon Sign) child is always practical, analytical, and emotionally reserved. Child's emotions are often controlled, and child seeks logical solutions to emotional challenges. Sensitivity is directed toward others' needs, with child tending to offer care and support. Child may feel anxious or worried when things are disorganized or uncertain.",
+    "Libra": "child's Rashi Sign is Tula Rashi (Libra Moon Sign) child is always balanced, harmonious, and emotionally diplomatic. Child seeks fairness in all relationships and can be easily affected by conflict. Emotions are balanced, with child striving for peace and avoiding emotional confrontations. Child is happiest when surrounded by beauty and harmony.",
+    "Scorpio": "child's Rashi Sign is Vrischika Rashi (Scorpio Moon Sign) child is always intense, passionate, and emotionally profound. Child experiences emotions deeply and may struggle to express them at times. Child's emotional world is private, but when feelings are shared, they are intense and transformative. Trust is essential for child to open up emotionally.",
+    "Sagittarius": "child's Rashi Sign is Dhanu Rashi (Sagittarius Moon Sign) child is always optimistic, adventurous, and emotionally independent. Child's emotions are free-spirited and tend to be linked to a desire for exploration and new experiences. Emotional reactions are quick but not lasting, with child seeking freedom to express feelings openly and without restriction.",
+    "Capricorn": "child's Rashi Sign is Makara Rashi (Capricorn Moon Sign) child is always disciplined, reserved, and emotionally strong. Child's emotions are steady, but child tends to hide vulnerabilities and may not easily express feelings. Child feels secure through structure and achievement and may become upset if personal goals are disrupted. Emotional stability is a key trait.",
+    "Aquarius": "child's Rashi Sign is Kumbha Rashi (Aquarius Moon Sign) child is always intellectual, independent, and emotionally detached. Child's emotions are often influenced by logical thinking and the desire for individuality. Child may struggle with expressing emotions in conventional ways and seeks mental stimulation over emotional connection. Child values personal space and freedom.",
+    "Pisces": "child's Rashi Sign is Meena Rashi (Pisces Moon Sign) child is always compassionate, dreamy, and emotionally sensitive. Child's emotions are deep and often clouded by imagination. Child can easily absorb the emotions of others, making them empathetic but also vulnerable. Sensitive nature leads to emotional fluctuations, with child often seeking comfort and retreat in solitude or creative expression."
+}
+
+lagnaIdentity = {
+  "Aries": "child's Born Lagna is Mesha Lagna. child is always energetic, confident, and independent. Child has a natural ability to lead and take initiative. Strong drive helps child face challenges with courage. Child’s enthusiasm and vitality inspire others to act. Adventurous spirit pushes child to explore new experiences and overcome obstacles.",
+  "Taurus": "child's Born Lagna is Vrishabha Lagna. child is always calm, reliable, and practical. Child has a strong connection to stability and enjoys comfort. Persistent nature helps child achieve goals with patience and consistency. Child’s love for beauty and harmony creates peace and balance in surroundings.",
+  "Gemini": "child's Born Lagna is Mithuna Lagna. child is always curious, communicative, and adaptable. Child enjoys learning new things and has a natural ability to express ideas. Social and quick-thinking nature helps child connect easily with others. Versatility allows child to thrive in various situations.",
+  "Cancer": "child's Born Lagna is Karka Lagna. child is always nurturing, sensitive, and protective. Child forms strong emotional bonds with family and friends. Intuitive nature helps child understand the feelings of others. Caring personality motivates child to protect and care for loved ones.",
+  "Leo": "child's Born Lagna is Simha Lagna. child is always confident, creative, and charismatic. Child has natural leadership qualities and loves being in the spotlight. Courageous nature drives child to pursue big dreams and achieve greatness. Child’s strong sense of self-worth and loyalty inspires others.",
+  "Virgo": "child's Born Lagna is Kanya Lagna. child is always intelligent, detail-oriented, and organized. Child has a sharp mind and enjoys tasks that require critical thinking. Analytical nature helps child excel in planning and problem-solving. Child’s practical approach makes them reliable and efficient.",
+  "Libra": "child's Born Lagna is Tula Lagna. child is always charming, diplomatic, and fair-minded. Child values balance and seeks harmony in relationships. Ability to see all perspectives helps child mediate conflicts. Child’s love for beauty and art brings creativity and aesthetics to life.",
+  "Scorpio": "child's Born Lagna is Vrischika Lagna. child is always intense, passionate, and determined. Child has a deep curiosity about life and seeks to uncover hidden truths. Resilient nature helps child overcome obstacles and stay focused on goals. Powerful will enables child to achieve great success.",
+  "Sagittarius": "child's Born Lagna is Dhanu Lagna. child is always optimistic, adventurous, and philosophical. Child has a strong desire for freedom and exploration. Enthusiastic nature drives child to seek new knowledge and experiences. Positive outlook and thirst for growth inspire those around them.",
+  "Capricorn": "child's Born Lagna is Makara Lagna. child is always disciplined, responsible, and ambitious. Child has a strong sense of duty and works hard to achieve long-term goals. Persistent nature helps child overcome challenges. Practical approach and determination drive child toward success.",
+  "Aquarius": "child's Born Lagna is Kumbha Lagna. child is always innovative, independent, and humanitarian. Child values individuality and enjoys exploring new ideas. Intellectual and open-minded nature drives child to bring about change. Child’s desire to improve the world motivates them to act in unique ways.",
+  "Pisces": "child's Born Lagna is Meena Lagna. child is always compassionate, imaginative, and intuitive. Child has a strong connection to emotions and a deep sense of empathy. Creative nature drives child to explore artistic or spiritual pursuits. Sensitive personality makes child understanding and caring toward others."
+}
+
+healthContent =  {
+  "Aries" : [
+      [
+          "Headaches (due to excess heat and energy in the head region)",
+          "Upper Respiratory Issues (e.g., sinus infections, throat irritation)",
+          "Skin Problems (acne, rashes, inflammation)",
+          "Ear Infections (frequent due to fiery nature)",
+          "High Fever (prone to fevers, especially during infections)"
+      ],
+      [
+          "Digestive Issues (irregular appetite, acid reflux)",
+          "Inflammation (swollen joints, painful conditions)",
+          "Weak Immunity (frequent cold, infections)",
+          "Fatigue (due to overstimulation and lack of rest)"
+      ],
+      [
+          "Fire (Pitta)",
+          "Skin Burns (sensitive to extreme heat or sun exposure)",
+          "Acid Reflux (heartburn, gastritis)",
+          "Overheating (prone to hot flushes and dehydration)",
+          "Inflammatory Conditions (joint pain, sore muscles)"
+      ],
+      {
+          "natural" : [
+              "Cooling Herbal Tea (Pitta Balancing)",
+              "1 tsp of Chamomile, 1 tsp of Mint leaves, 1 tsp of Fennel seeds.",
+              "Boil 1 cup of water, add all ingredients, and steep for 5 minutes. Drink once daily.",
+              "Soothes inflammation, reduces digestive issues, balances excess heat."
+          ],
+          "mudra" : [
+              "Prithvi Mudra (Earth Element Mudra)",
+              [
+                  "Sit in a comfortable position.",
+                  "Touch the tip of your ring finger to the tip of your thumb.",
+                  "Keep the other fingers straight and relaxed.",
+                  "Hold for 5-10 minutes daily."
+              ],
+              "Balances fiery energy, reduces inflammation, and promotes calmness."
+          ],
+          "energy" : [
+              "Reiki (Root and Solar Plexus Chakras)",
+              [
+                  "Sit or lie down in a relaxed position.",
+                  "Focus on your child’s root chakra (base of spine) and solar plexus (above the navel).",
+                  "Place your hands over the areas and channel calming energy for 10-15 minutes."
+              ],
+              "Promotes grounding, relieves digestive discomfort, calms the body's fiery tendencies."
+          ],
+          "meditation": [
+              "Grounding Meditation (for fire element balancing)",
+              [
+                  "Sit in a comfortable, upright position.",
+                  "Close the eyes and focus on deep, slow breaths.",
+                  "Visualize roots growing from the feet into the earth, drawing cool, grounding energy.",
+                  "Continue for 10-15 minutes."
+              ]
+          ],
+          "foods" : [
+              [
+                  "Coconut water (for hydration and cooling effect)",
+                  "Cucumber (for reducing internal heat)",
+                  "Aloe vera juice (to cool the digestive system)"
+              ],
+              [
+                  "Spicy foods (can aggravate the fire element)",
+                  "Fried and oily foods (can lead to inflammation and digestive issues)"
+              ],
+              [
+                  "Drink 1 cup of coconut water daily, especially during hot weather.",
+                  "Include fresh cucumber slices in meals.",
+                  "Drink aloe vera juice in the morning (1/4 cup mixed with water)."
+              ],
+              "These foods cool the body, reduce inflammation, and balance the fiery energy."
+          ]
+      }
+  ],
+  "Taurus": [
+      [
+          "Throat Problems (sore throat, tonsillitis)",
+          "Stomach Disorders (slow digestion, bloating)",
+          "Respiratory Issues (sinus congestion)",
+          "Neck and Shoulder Tension (stiffness, pain)",
+          "Heavy Weight Gain (prone to being overweight)"
+      ],
+      [
+          "Digestive Issues (constipation, sluggish metabolism)",
+          "Joint and Muscle Pain (due to sedentary lifestyle)",
+          "Weak Circulation (cold hands, feet, sluggish blood flow)",
+          "Kidney Stones or Urinary Issues (slow-moving metabolic processes)"
+      ],
+      [
+          "Earth (Prithvi)",
+          "Stomach and Digestion (poor absorption of nutrients, slow digestion)",
+          "Throat and Neck Problems (chronic tension, stiffness)",
+          "Obesity or Weight Gain (due to slower metabolism and excess earth element)",
+          "Swollen Limbs (due to fluid retention)"
+      ],
+      {
+          "natural": [
+              "Triphala Herbal Powder (for digestion)",
+              "1 tsp of Triphala powder, 1 cup of warm water.",
+              "Mix Triphala powder in warm water and drink before bedtime.",
+              "Aids digestion, relieves constipation, detoxifies the body, balances the earth element."
+          ],
+          "mudra": [
+              "Vayu Mudra (Air Element Mudra)",
+              [
+                  "Sit comfortably with your back straight.",
+                  "Fold your index finger to touch the base of the thumb.",
+                  "Press the thumb gently over the folded index finger.",
+                  "Hold for 10-15 minutes daily."
+              ],
+              "Helps balance excess earth energy, relieves digestive issues, improves flexibility."
+          ],
+          "energy": [
+              "Reiki (Throat and Solar Plexus Chakras)",
+              [
+                  "Sit or lie down in a relaxed position.",
+                  "Focus on the throat chakra (neck area) and the solar plexus (above the navel).",
+                  "Place your hands over these areas and channel healing energy for 10-15 minutes."
+              ],
+              "Relieves throat discomfort, enhances digestion, and supports metabolic balance."
+          ],
+          "meditation": [
+              "Earth Connection Meditation",
+              [
+                  "Sit comfortably with your feet on the ground, close your eyes.",
+                  "Imagine roots growing from your feet deep into the earth.",
+                  "Breathe deeply, feeling connected to the earth and grounded.",
+                  "Continue for 10-15 minutes."
+              ]
+          ],
+          "foods": [
+              [
+                  "Ginger (helps with digestion and stomach discomfort)",
+                  "Leafy greens (rich in nutrients, supports digestion)",
+                  "Cucumber (helps with hydration and detox)"
+              ],
+              [
+                  "Heavy, greasy foods (slow digestion and increase weight)",
+                  "Dairy products in excess (can cause bloating and mucus buildup)"
+              ],
+              [
+                  "Include ginger tea after meals to aid digestion.",
+                  "Add leafy greens like spinach or kale in salads or soups.",
+                  "Drink cucumber water (slices in water) for hydration and detox."
+              ],
+              "These foods promote healthy digestion, prevent weight gain, and support detoxification."
+          ]
+      }
+  ],
+  "Gemini": [
+      [
+          "Respiratory Issues (asthma, allergies, frequent colds)",
+          "Nervous System Disorders (tension headaches, nerve pain)",
+          "Throat Problems (hoarseness, coughs, speech issues)",
+          "Digestive Issues (irregular bowel movements, bloating)",
+          "Excessive Nervous Energy (restlessness, hyperactivity)"
+      ],
+      [
+          "Digestive Sensitivity (gastritis, indigestion, acid reflux)",
+          "Respiratory Weakness (prone to coughing, breathing difficulties)",
+          "Nervous System Imbalance (frequent headaches, muscle twitches)",
+          "Weak Immune System (frequent colds, infections)"
+      ],
+      [
+          "Air (Vayu)",
+          "Breathing Issues (asthma, sinus problems, breathlessness)",
+          "Restlessness (nervous energy leading to lack of concentration)",
+          "Digestive Irregularity (gas, bloating, and variable appetite)",
+          "Tension in Shoulders and Neck (due to stress or anxiety)"
+      ],
+      {
+          "natural": [
+              "Ginger and Honey Tea (for digestion and respiratory relief)",
+              "1 tsp ginger juice, 1 tsp honey, 1 cup hot water.",
+              "Add ginger juice and honey to hot water, stir well, and drink warm.",
+              "Aids digestion, clears respiratory passages, soothes throat."
+          ],
+          "mudra": [
+              "Pranayama Mudra (for better breathing)",
+              [
+                  "Sit in a comfortable position, with your spine straight.",
+                  "Fold the index and middle fingers of both hands, and place the thumb on the right nostril, the ring and little fingers on the left nostril.",
+                  "Breathe in deeply through the left nostril, close it with your thumb, and exhale through the right nostril. Alternate nostrils.",
+                  "Practice for 5-10 minutes, 1-2 times daily."
+              ],
+              "Balances nervous energy, improves breathing, calms the mind."
+          ],
+          "energy": [
+              "Reiki (Throat and Heart Chakras)",
+              [
+                  "Sit or lie down comfortably.",
+                  "Focus on the throat chakra (around the neck) and the heart chakra (center of chest).",
+                  "Place hands on these areas and channel soothing energy for 10-15 minutes."
+              ],
+              "Relieves tension in the throat, improves communication, balances nervous energy."
+          ],
+          "meditation": [
+              "Breath-Focused Meditation (for calming the mind)",
+              [
+                  "Sit in a comfortable, upright position, and close the eyes.",
+                  "Focus on your breath, breathing deeply and slowly.",
+                  "As you inhale, count to 4. As you exhale, count to 4.",
+                  "Continue this pattern for 10-15 minutes."
+              ]
+          ],
+          "foods": [
+              [
+                  "Lemon water (to cleanse the digestive system)",
+                  "Peppermint tea (soothes the digestive system and relieves nausea)",
+                  "Bananas (easy to digest, calming for the stomach)"
+              ],
+              [
+                  "Caffeinated drinks (increase restlessness, cause anxiety)",
+                  "Spicy or fried foods (aggravate the digestive system)"
+              ],
+              [
+                  "Drink a glass of lemon water first thing in the morning.",
+                  "Consume peppermint tea after meals to ease digestion.",
+                  "Include bananas as a snack to maintain energy levels and calm digestion."
+              ],
+              "These foods support digestion, reduce digestive discomfort, calm the nervous system, and improve overall well-being."
+          ]
+      }
+  ],
+  "Cancer": [
+      [
+          "Digestive Problems (bloating, indigestion)",
+          "Stomach Ulcers (due to emotional stress)",
+          "Breast or Chest Issues (cysts, tenderness)",
+          "Fluid Retention (swelling in the abdomen or legs)",
+          "Respiratory Issues (frequent colds, coughs)"
+      ],
+      [
+          "Weak Stomach (sensitive to foods, poor digestion)",
+          "Emotional Eating (leading to weight issues)",
+          "Breast Health Concerns (prone to inflammation or discomfort)",
+          "Weak Immune System (frequent infections)"
+      ],
+      [
+          "Water (Jala)",
+          "Stomach Weakness (acid reflux, indigestion)",
+          "Excessive Fluid Retention (swollen feet, puffy face)",
+          "Chest Colds (congestion, mucus buildup)",
+          "Menstrual Problems (irregular cycles)"
+      ],
+      {
+          "natural": [
+              "Fennel and Cumin Tea (for digestion and gas relief)",
+              "1 tsp fennel seeds, 1 tsp cumin seeds, 1 cup hot water.",
+              "Boil the seeds in water for 5 minutes, then strain and drink warm.",
+              "Helps with bloating, improves digestion, reduces fluid retention."
+          ],
+          "mudra": [
+              "Apan Vayu Mudra (for digestive health)",
+              [
+                  "Sit comfortably with your spine straight.",
+                  "Touch the tips of your middle and ring fingers to the tips of the thumb, keeping the index and little fingers straight.",
+                  "Hold for 5-10 minutes daily."
+              ],
+              "Supports digestion, helps with detoxification and fluid retention."
+          ],
+          "energy": [
+              "Reiki (Solar Plexus and Sacral Chakras)",
+              [
+                  "Sit or lie down in a comfortable position.",
+                  "Focus on the solar plexus (stomach area) and sacral chakra (below the navel).",
+                  "Place your hands over these areas and channel healing energy for 10-15 minutes."
+              ],
+              "Promotes digestion, balances water retention, and supports emotional balance."
+          ],
+          "meditation": [
+              "Water Element Meditation",
+              [
+                  "Sit comfortably, close your eyes, and focus on slow breathing.",
+                  "Imagine yourself surrounded by water, feeling calm and refreshed.",
+                  "Visualize the water cleansing and soothing your body.",
+                  "Continue for 10-15 minutes."
+              ]
+          ],
+          "foods": [
+              [
+                  "Coconut water (hydrates, reduces swelling)",
+                  "Melons (cooling, supports hydration)",
+                  "Ginger (aids digestion)"
+              ],
+              [
+                  "Heavy dairy (can cause bloating and mucus production)",
+                  "Excessive salty foods (increases fluid retention)"
+              ],
+              [
+                  "Drink coconut water or melon juice daily.",
+                  "Include ginger in teas or meals to aid digestion."
+              ],
+              "These foods help with digestion, reduce water retention, and soothe the stomach."
+          ]
+      }
+  ],
+  "Leo": [
+      [
+          "Back and Spine Problems (lower back pain, spinal issues)",
+          "Heartburn and Acid Reflux (due to fiery digestion)",
+          "High Fever (prone to elevated body temperature)",
+          "Digestive Issues (poor digestion, constipation)",
+          "Blood Pressure Issues (either high or low)"
+      ],
+      [
+          "Weak Heart (prone to palpitations or stress-related heart issues)",
+          "Liver Imbalance (digestive issues, sluggish liver function)",
+          "Increased Body Heat (heat rash, sun sensitivity)",
+          "Tendency to Overeat (leading to indigestion and weight gain)"
+      ],
+      [
+          "Fire (Agni)",
+          "Acid Reflux (due to excess heat in the stomach)",
+          "Blood Pressure Problems (heat can increase circulation and pressure)",
+          "Heart Issues (due to heat and stress)",
+          "Fever and Inflammation (prone to feverish conditions)"
+      ],
+      {
+          "natural": [
+              "Aloe Vera Juice (for cooling and digestion)",
+              "2 tbsp aloe vera juice, 1 cup water.",
+              "Mix aloe vera juice with water and drink on an empty stomach.",
+              "Reduces internal heat, aids digestion, soothes the stomach."
+          ],
+          "mudra": [
+              "Surya Mudra (for balancing fire energy)",
+              [
+                  "Sit comfortably with your back straight.",
+                  "Touch the tip of your ring finger to the base of your thumb.",
+                  "Hold for 10-15 minutes daily."
+              ],
+              "Helps cool excessive heat in the body, aids digestion."
+          ],
+          "energy": [
+              "Reiki (Heart and Solar Plexus Chakras)",
+              [
+                  "Sit or lie comfortably.",
+                  "Focus on the heart chakra (center of chest) and solar plexus (upper abdomen).",
+                  "Place hands over these areas and channel energy for 10-15 minutes."
+              ],
+              "Balances heat, calms digestive and heart issues."
+          ],
+          "meditation": [
+              "Cooling Breath Meditation",
+              [
+                  "Sit in a comfortable position with closed eyes.",
+                  "Inhale deeply through the nose, and exhale through the mouth with a 'ha' sound.",
+                  "Focus on calming the body's heat.",
+                  "Continue for 10-15 minutes."
+              ]
+          ],
+          "foods": [
+              [
+                  "Cucumber (cooling and hydrating)",
+                  "Coconut water (natural coolant)",
+                  "Leafy greens (easy on digestion, cooling)"
+              ],
+              [
+                  "Spicy and oily foods (increase internal heat)",
+                  "Caffeinated drinks (aggravate acidity)"
+              ],
+              [
+                  "Drink coconut water and eat fresh cucumber daily.",
+                  "Incorporate leafy greens into meals for cooling and digestive support."
+              ],
+              "These foods balance internal heat, soothe digestion, and help with hydration."
+          ]
+      }
+  ],
+  "Virgo": [
+      [
+          "Digestive Disorders (irregular bowel movements, constipation)",
+          "Nervous Stomach (nausea, anxiety-related stomach issues)",
+          "Skin Problems (acne, eczema, dry skin)",
+          "Muscle Tension (tight muscles, cramping)",
+          "Food Sensitivities (allergies, intolerances)"
+      ],
+      [
+          "Weak Digestion (difficulty in digesting heavy foods)",
+          "Excessive Worry (leading to digestive discomfort)",
+          "Nervous System Weakness (tension headaches, anxiety)",
+          "Overly Sensitive Skin (prone to rashes, allergies)"
+      ],
+      [
+          "Earth (Prithvi) and Air (Vayu)",
+          "Digestive Weakness (irregular appetite, poor absorption)",
+          "Skin Sensitivities (prone to rashes, eczema)",
+          "Nervous Digestive Issues (stress-related indigestion)"
+      ],
+      {
+          "natural": [
+              "Triphala Powder (for digestion and detoxification)",
+              "1 tsp Triphala powder, warm water.",
+              "Mix with warm water and drink before bed.",
+              "Enhances digestion, relieves constipation, detoxifies the body."
+          ],
+          "mudra": [
+              "Apan Mudra (for digestive health)",
+              [
+                  "Sit comfortably with your back straight.",
+                  "Touch the tips of the middle and ring fingers to the tips of the thumb.",
+                  "Hold for 5-10 minutes daily."
+              ],
+              "Promotes digestive health, helps with elimination."
+          ],
+          "energy": [
+              "Reiki (Solar Plexus and Root Chakras)",
+              [
+                  "Sit or lie comfortably.",
+                  "Focus on the solar plexus (digestive area) and root chakra (base of the spine).",
+                  "Place hands over these areas and channel energy for 10-15 minutes."
+              ],
+              "Relieves digestive discomfort, balances nervous tension."
+          ],
+          "meditation": [
+              "Grounding Meditation",
+              [
+                  "Sit comfortably, with your feet touching the ground.",
+                  "Focus on deep, slow breathing.",
+                  "Visualize roots growing from your feet into the earth.",
+                  "Continue for 10-15 minutes."
+              ]
+          ],
+          "foods": [
+              [
+                  "Ginger (aids digestion, reduces nausea)",
+                  "Leafy greens (supports digestion, rich in fiber)",
+                  "Warm soups (easy to digest, soothing)"
+              ],
+              [
+                  "Cold, raw foods (hard to digest, can upset stomach)",
+                  "Fried or greasy foods (aggravate digestion)"
+              ],
+              [
+                  "Drink ginger tea after meals for better digestion.",
+                  "Include fresh leafy greens and warm soups regularly."
+              ],
+              "These foods support digestion, reduce bloating, and balance the digestive system."
+          ]
+      }
+  ],
+  "Libra": [
+      [
+          "Kidney and Urinary Issues (prone to infections, kidney stones)",
+          "Back Pain (especially in lower back)",
+          "Skin Problems (acne, dryness)",
+          "Hormonal Imbalance (affects skin and mood)",
+          "Liver and Blood Circulation Issues (poor detoxification)"
+      ],
+      [
+          "Weak Kidneys (susceptibility to infections)",
+          "Skin Sensitivities (dryness, eczema)",
+          "Digestive Problems (bloating, constipation)",
+          "Fluid Retention (swelling, puffiness)"
+      ],
+      [
+          "Air (Vayu) and Water (Jala)",
+          "Kidney Weakness (susceptibility to infections)",
+          "Hormonal Imbalance (affects skin and overall energy)",
+          "Circulatory Problems (slow blood flow, puffiness)"
+      ],
+      {
+          "natural": [
+              "Cumin and Coriander Tea (for kidney and digestive health)",
+              "1 tsp cumin, 1 tsp coriander, 1 cup hot water.",
+              "Steep cumin and coriander in hot water for 5 minutes, strain, and drink warm.",
+              "Improves digestion, supports kidney function, reduces fluid retention."
+          ],
+          "mudra": [
+              "Prithvi Mudra (for balancing water element)",
+              [
+                  "Sit comfortably with your spine straight.",
+                  "Touch the tips of your ring fingers to your thumbs.",
+                  "Hold for 10-15 minutes."
+              ],
+              "Helps balance water retention, improves digestion, and supports kidney health."
+          ],
+          "energy": [
+              "Reiki (Kidney and Root Chakras)",
+              [
+                  "Sit comfortably with your hands resting on your lap.",
+                  "Focus on the kidney area and root chakra (base of spine).",
+                  "Channel healing energy for 10-15 minutes."
+              ],
+              "Supports kidney health, balances hormonal levels, improves circulation."
+          ],
+          "meditation": [
+              "Balancing Water Element Meditation",
+              [
+                  "Sit with a straight spine and close your eyes.",
+                  "Focus on your breath, imagining waves of water soothing your body.",
+                  "Continue for 10-15 minutes."
+              ]
+          ],
+          "foods": [
+              [
+                  "Cucumber (hydrates and detoxes)",
+                  "Pineapple (helps with digestion and kidney function)",
+                  "Leafy greens (support kidney health)"
+              ],
+              [
+                  "Excess salty foods (increases water retention)",
+                  "Processed foods (can affect kidney and skin health)"
+              ],
+              [
+                  "Drink cucumber and pineapple juice daily.",
+                  "Eat leafy greens regularly for kidney and digestive support."
+              ],
+              "These foods improve hydration, support kidney health, and reduce water retention."
+          ]
+      }
+  ],
+  "Scorpio": [
+      [
+          "Reproductive System Issues (irregular periods, cramps)",
+          "Urinary Tract Infections (prone to infections)",
+          "Detoxification Problems (sluggish liver, constipation)",
+          "Digestive Disorders (IBS, bloating, acidity)",
+          "Skin Issues (acne, psoriasis)"
+      ],
+      [
+          "Liver Imbalance (poor detoxification, sluggish digestion)",
+          "Circulatory Issues (varicose veins, blood pressure problems)",
+          "Weak Immune System (susceptible to infections)",
+          "Hormonal Imbalance (affects the reproductive system)"
+      ],
+      [
+          "Water (Jala) and Fire (Agni)",
+          "Digestive Issues (acid reflux, ulcers)",
+          "Hormonal Imbalance (affects reproductive organs)",
+          "Detoxification Problems (sluggish liver and kidney)",
+          "Heat-related Issues (inflammation, rashes)"
+      ],
+      {
+          "natural": [
+              "Triphala Powder (for detoxification and digestion)",
+              "1 tsp Triphala powder, warm water.",
+              "Mix Triphala powder with warm water and drink before bed.",
+              "Promotes digestion, detoxifies the liver, supports the immune system."
+          ],
+          "mudra": [
+              "Prithvi Mudra (for detoxification and grounding)",
+              [
+                  "Sit in a comfortable position.",
+                  "Touch the tip of the ring finger to the tip of the thumb.",
+                  "Hold for 10-15 minutes."
+              ],
+              "Aids in detoxification, helps reduce inflammation."
+          ],
+          "energy": [
+              "Reiki (Sacral and Solar Plexus Chakras)",
+              [
+                  "Sit or lie comfortably.",
+                  "Focus on the sacral chakra (lower abdomen) and solar plexus (upper abdomen).",
+                  "Place your hands on these areas and channel energy for 10-15 minutes."
+              ],
+              "Helps with hormonal balance, improves digestion, and enhances detoxification."
+          ],
+          "meditation": [
+              "Water Element Meditation",
+              [
+                  "Sit comfortably and focus on deep breathing.",
+                  "Visualize the flow of water cleansing your body and mind.",
+                  "Continue for 10-15 minutes."
+              ]
+          ],
+          "foods": [
+              [
+                  "Cucumber (cooling and detoxifying)",
+                  "Lemon water (cleanses and supports digestion)",
+                  "Pomegranate (improves circulation and digestion)"
+              ],
+              [
+                  "Processed foods (affect liver and digestion)",
+                  "Spicy foods (aggravate acidity and inflammation)"
+              ],
+              [
+                  "Drink lemon water and include pomegranate in meals for improved digestion.",
+                  "Eat cucumber daily for detoxification."
+              ],
+              "These foods aid detoxification, balance digestion, and reduce inflammation."
+          ]
+      }
+  ],
+  "Sagittarius": [
+      [
+          "Hips and Thighs (muscle strain, joint issues)",
+          "Liver Issues (overburdened, sluggish)",
+          "Digestive Problems (overeating, poor digestion)",
+          "Lung Problems (bronchitis, asthma, frequent coughs)",
+          "Back Pain (due to overexertion)"
+      ],
+      [
+          "Liver Imbalance (prone to overconsumption of alcohol or fatty foods)",
+          "Digestive Sensitivity (irregular appetite, indigestion)",
+          "Joint Pain (especially in hips, knees, and thighs)",
+          "Breathing Problems (excessive coughing, shortness of breath)"
+      ],
+      [
+          "Fire (Agni) and Air (Vayu)",
+          "Overactive Digestion (prone to acidity, indigestion)",
+          "Joint and Muscle Tension (strained hips, back, and thighs)",
+          "Breathing Disorders (asthma, bronchitis, frequent colds)"
+      ],
+      {
+          "natural": [
+              "Ginger and Turmeric Tea (for digestion and inflammation)",
+              "1 tsp fresh ginger, 1/2 tsp turmeric, 1 cup hot water.",
+              "Boil the ginger and turmeric in water for 5 minutes, strain, and drink warm.",
+              "Supports digestion, reduces inflammation, helps with joint pain."
+          ],
+          "mudra": [
+              "Vayu Mudra (for balancing air element and digestion)",
+              [
+                  "Sit comfortably with your spine straight.",
+                  "Fold your index finger towards the base of your thumb, and press the thumb gently on the index finger.",
+                  "Hold for 10-15 minutes."
+              ],
+              "Balances air energy, improves digestion, calms nervous tension."
+          ],
+          "energy": [
+              "Reiki (Root and Solar Plexus Chakras)",
+              [
+                  "Sit or lie comfortably.",
+                  "Focus on the root chakra (base of spine) and solar plexus (stomach area).",
+                  "Channel energy to these areas for 10-15 minutes."
+              ],
+              "Enhances digestion, supports joint health, and improves breathing."
+          ],
+          "meditation": [
+              "Breathing Meditation",
+              [
+                  "Sit comfortably, with your spine straight.",
+                  "Focus on slow, deep breaths, inhaling for 4 counts, exhaling for 4 counts.",
+                  "Continue for 10-15 minutes."
+              ],
+              "Calms the respiratory system, improves lung capacity, and aids digestion."
+          ],
+          "foods": [
+              [
+                  "Papaya (aids digestion and reduces bloating)",
+                  "Turmeric (anti-inflammatory, supports joint health)",
+                  "Lentils (rich in fiber, supports digestion)"
+              ],
+              [
+                  "Excessive alcohol (damages the liver)",
+                  "Oily and fried foods (slow digestion, burden the liver)"
+              ],
+              [
+                  "Include papaya and turmeric in your diet regularly for improved digestion and joint support.",
+                  "Avoid oily and fried foods."
+              ],
+              "These foods reduce inflammation, support digestion, and protect the liver."
+          ]
+      }
+  ],
+  "Capricorn": [
+      [
+          "Bone and Joint Issues (arthritis, knee pain, fractures)",
+          "Skin Problems (dry, flaky skin)",
+          "Liver and Gallbladder Issues (sluggish function, indigestion)",
+          "Dental Problems (tooth sensitivity, cavities)",
+          "Poor Circulation (cold hands, feet)"
+      ],
+      [
+          "Weak Bones (prone to fractures or joint pain)",
+          "Liver Imbalance (difficulty detoxifying, sluggish digestion)",
+          "Skin Dryness (prone to dryness, eczema)",
+          "Poor Digestion (difficulty absorbing nutrients)"
+      ],
+      [
+          "Earth (Prithvi) and Water (Jala)",
+          "Bone Weakness (prone to fractures and joint pain)",
+          "Skin Dryness (eczema, rough skin)",
+          "Poor Circulation (prone to cold extremities)"
+      ],
+      {
+          "natural": [
+              "Ghee and Honey (for bone strength and digestion)",
+              "1 tsp ghee, 1 tsp honey.",
+              "Mix ghee and honey and consume daily on an empty stomach.",
+              "Promotes bone health, enhances digestion, lubricates joints."
+          ],
+          "mudra": [
+              "Prithvi Mudra (for strengthening bones and circulation)",
+              [
+                  "Sit comfortably with your back straight.",
+                  "Touch the tip of the ring finger to the tip of the thumb.",
+                  "Hold for 10-15 minutes."
+              ],
+              "Strengthens bones, improves circulation, reduces dryness."
+          ],
+          "energy": [
+              "Reiki (Root Chakra and Sacral Chakra)",
+              [
+                  "Sit comfortably with your hands on your lap.",
+                  "Focus on the root chakra (base of the spine) and sacral chakra (lower abdomen).",
+                  "Channel healing energy for 10-15 minutes."
+              ],
+              "Improves circulation, strengthens bones, supports digestion."
+          ],
+          "meditation": [
+              "Grounding Meditation",
+              [
+                  "Sit with your feet touching the ground, spine straight.",
+                  "Focus on your breath, visualizing roots growing from your feet into the earth.",
+                  "Continue for 10-15 minutes."
+              ],
+              "Improves circulation, reduces cold extremities, strengthens bones."
+          ],
+          "foods": [
+              [
+                  "Leafy greens (rich in calcium for bones)",
+                  "Carrots (supports bone health)",
+                  "Almonds (rich in calcium and healthy fats)"
+              ],
+              [
+                  "Excess salt (weakens bones and affects digestion)",
+                  "Dairy-heavy foods (in some children, it may cause skin dryness)"
+              ],
+              [
+                  "Eat leafy greens and carrots regularly for bone strength.",
+                  "Avoid excess salt and processed foods."
+              ],
+              "Supports bone health, reduces skin dryness, and improves circulation."
+          ]
+      }
+  ],
+  "Aquarius": [
+      [
+          "Circulatory Issues (poor blood flow, cold extremities)",
+          "Ankle and Lower Leg Problems (weak circulation, prone to sprains)",
+          "Neurological Issues (nervous system imbalance)",
+          "Skin Sensitivity (dryness, rashes)",
+          "Foot Problems (calluses, corns)"
+      ],
+      [
+          "Weak Circulation (prone to cold hands, feet, poor blood flow)",
+          "Skin Sensitivity (prone to rashes or dryness)",
+          "Nervous System Imbalance (overactive or underactive nervous responses)",
+          "Ankle and Foot Issues (weak circulation or strain)"
+      ],
+      [
+          "Air (Vayu) and Ether (Akasha)",
+          "Circulatory Problems (poor blood flow)",
+          "Skin Sensitivity (dry or rash-prone skin)",
+          "Nervous System Imbalance (inconsistent energy levels, stress-related)"
+      ],
+      {
+          "natural": [
+              "Ashwagandha and Ginger Tea (for circulation and nervous system balance)",
+              "1 tsp Ashwagandha powder, 1 tsp ginger, 1 cup hot water.",
+              "Boil Ashwagandha and ginger in hot water for 5 minutes, strain, and drink warm.",
+              "Improves circulation, calms the nervous system, boosts energy."
+          ],
+          "mudra": [
+              "Apana Vayu Mudra (for calming the nervous system and improving circulation)",
+              [
+                  "Sit comfortably with a straight spine.",
+                  "Touch the tips of the middle and ring fingers to the tips of the thumb.",
+                  "Hold for 10-15 minutes."
+              ],
+              "Improves circulation, calms the nervous system, reduces stress."
+          ],
+          "energy": [
+              "Reiki (Heart and Root Chakras)",
+              [
+                  "Sit or lie comfortably.",
+                  "Focus on the heart chakra (center of chest) and root chakra (base of spine).",
+                  "Channel energy to these areas for 10-15 minutes."
+              ],
+              "Balances circulation, improves skin health, and calms nervous tension."
+          ],
+          "meditation": [
+              "Mindful Breathing",
+              [
+                  "Sit comfortably and focus on slow, deep breaths.",
+                  "Inhale for 4 counts, hold for 4 counts, exhale for 4 counts.",
+                  "Continue for 10-15 minutes."
+              ],
+              "Improves circulation, reduces stress, balances nervous energy."
+          ],
+          "foods": [
+              [
+                  "Beets (supports circulation and detoxification)",
+                  "Ginger (supports digestion and circulation)",
+                  "Leafy greens (rich in antioxidants and improve circulation)"
+              ],
+              [
+                  "Processed foods (affect circulation and skin)",
+                  "Excess caffeine (upsets the nervous system)"
+              ],
+              [
+                  "Eat beets and leafy greens regularly for improved circulation.",
+                  "Avoid excessive caffeine and processed foods."
+              ],
+              "Enhances circulation, improves skin health, balances the nervous system."
+          ]
+      }
+  ],
+  "Pisces": [
+    [
+        "Liver and Digestive Issues (sluggish digestion, bloating)",
+        "Respiratory Problems (frequent colds, coughs)",
+        "Foot Issues (swollen feet, sensitivity)",
+        "Hormonal Imbalance (affecting skin and mood)",
+        "Immune System Weakness (prone to infections)"
+    ],
+    [
+        "Weak Immune System (susceptible to infections)",
+        "Liver Imbalance (poor detoxification)",
+        "Foot and Leg Sensitivity (swelling, fatigue)",
+        "Hormonal Imbalance (affects mood and skin)"
+    ],
+    [
+        "Water (Jala) and Ether (Akasha)",
+        "Weak Immune System (prone to colds and infections)",
+        "Digestive Issues (slow metabolism, bloating)",
+        "Respiratory Problems (frequent coughing, asthma)",
+        "Fluid Retention (swollen feet, legs)"
+    ],
+    {
+      "natural": [
+          "Triphala and Turmeric Tea (for digestion and detoxification)",
+          "1 tsp Triphala powder, 1/2 tsp turmeric, 1 cup hot water.",
+          "Mix Triphala and turmeric with hot water, stir, and drink warm.",
+          "Enhances digestion, supports liver health, detoxifies the body."
+      ],
+      "mudra": [
+          "Apana Mudra (for detoxification and fluid balance)",
+          [
+              "Sit comfortably with a straight spine.",
+              "Touch the tips of the middle finger and ring finger to the tip of the thumb.",
+              "Hold for 10-15 minutes."
+          ],
+          "Supports detoxification, balances fluid retention, improves digestion."
+      ],
+      "energy": [
+          "Reiki (Throat and Heart Chakras)",
+          [
+              "Sit or lie comfortably.",
+              "Focus on the throat chakra (neck) and heart chakra (center of chest).",
+              "Channel healing energy for 10-15 minutes."
+          ],
+          "Boosts the immune system, improves respiratory health."
+      ],
+      "meditation": [
+          "Ocean Breath Meditation",
+          [
+              "Sit comfortably with your spine straight.",
+              "Inhale deeply, then exhale with a hissing sound, like the sound of waves.",
+              "Continue for 10-15 minutes."
+          ],
+          "Calms the mind, improves breathing, supports digestion."
+      ],
+      "foods": [
+        [
+            "Ginger (improves digestion, reduces nausea)",
+            "Pineapple (supports liver detox and digestion)",
+            "Coconut water (helps with fluid balance)"
+        ],
+        [
+            "Processed sugars (weakens the immune system)",
+            "Dairy-heavy foods (may aggravate mucus production)"
+        ],
+        [
+            "Drink coconut water and eat pineapple regularly.",
+            "Avoid processed sugars and excessive dairy."
+        ],
+        "Supports digestion, boosts immunity, helps detoxify."
+      ]
+    }
+  ]
+}
+
+healthInsights = {
+  "Aries": "Aries in the 6th house may cause health issues related to the head, eyes, or face, like headaches or sinus troubles. child may also be prone to minor injuries from being active and adventurous. Encouraging regular exercise and a balanced diet will help maintain overall health. Avoid overly spicy foods to prevent acidity or stomach discomfort. Early care and teaching caution during physical activities can keep child healthy and safe.",
+  
+  "Taurus": "Taurus in the 6th house suggests good physical strength and endurance. child may have a tendency to enjoy rich or heavy foods, which could lead to weight gain or digestive issues. Common health concerns may include throat, neck, or thyroid problems. Encourage regular physical activity and a diet that avoids overeating. Proper hydration and moderation in sweets or fatty foods will help maintain good health.",
+  
+  "Gemini": "Gemini in the 6th house points to an active mind and body but may bring issues with the lungs, shoulders, or arms. child could experience allergies, colds, or respiratory sensitivities. Encourage outdoor activities to improve lung health and ensure a stable routine to avoid stress. Consistent sleep patterns and light breathing exercises can help maintain well-being.",
+  
+  "Cancer": "Cancer in the 6th house indicates sensitivity in the stomach and digestive system. child may be prone to digestive discomfort or water retention. Emotional stress could also affect health. A balanced diet with warm, home-cooked meals and plenty of hydration is essential. Provide emotional support and stability to keep child in good spirits and health.",
+  
+  "Leo": "Leo in the 6th house suggests strong vitality but potential issues with the heart, back, or spine. child may thrive on attention and activity but should avoid overexertion. Encourage activities that promote flexibility and relaxation, like yoga. A diet rich in heart-healthy foods and regular checkups will support long-term health.",
+  
+  "Virgo": "Virgo in the 6th house indicates a focus on health but a tendency toward worry or stress, which can lead to digestive issues or anxiety. child may be particular about cleanliness or diet. Encourage mindfulness practices, a simple routine, and a fiber-rich diet to maintain gut health. Keeping a calm environment will benefit both mental and physical well-being.",
+  
+  "Libra": "Libra in the 6th house suggests a balanced approach to health but may create concerns around the kidneys, lower back, or skin. child may be sensitive to stress, which can affect digestion or skin health. Encourage relaxation techniques, such as gentle stretching or mindfulness, and a diet that supports kidney health. Regular skin care and staying hydrated are also beneficial for overall well-being.",
+  
+  "Scorpio": "Scorpio in the 6th house indicates intense energy but may bring health challenges related to the reproductive system, bladder, or circulatory system. child could experience issues with intense emotions affecting physical health. Encourage regular physical activity, especially activities that release tension, like swimming or cycling. A balanced diet and stress management will help maintain strong health.",
+  
+  "Sagittarius": "Sagittarius in the 6th house suggests a love for adventure, which could lead to injuries or overindulgence in physical activities. child may be prone to problems related to the hips, thighs, or liver. Encourage outdoor activities, but emphasize safety. A healthy diet with plenty of fruits, vegetables, and liver-supporting foods will promote overall health. Regular checkups for joint health and staying active can keep child healthy and strong.",
+  
+  "Capricorn": "Capricorn in the 6th house indicates a strong and disciplined nature, but health concerns may arise in the bones, joints, or knees. child could experience issues related to stiffness or slow recovery from physical strain. Encourage activities that strengthen bones and joints, like walking or gentle exercise. A diet rich in calcium and vitamin D, along with regular stretching, will help keep child in good health.",
+  
+  "Aquarius": "Aquarius in the 6th house suggests a unique approach to health but may bring issues with the nervous system or circulation. child may experience nervous tension or anxiety, which could affect sleep or energy levels. Encourage mental relaxation techniques, such as meditation or quiet time. A balanced diet that includes brain-boosting foods, along with regular physical activity, will help child maintain a healthy body and mind.",
+  
+  "Pisces": "Pisces in the 6th house indicates a sensitive health nature, with a tendency to experience issues related to the feet, immune system, or emotional well-being. child may be prone to feeling tired or overwhelmed by stress. Encourage a calm, soothing environment and regular physical activity, such as swimming or walking. A diet that supports the immune system and plenty of rest will keep child healthy and balanced."
+}
+
+
+carrer = {
+    "Aries": [
+        "The 10th house in astrology represents career, fame, and public life. If a child's 10th house is in Aries, it indicates a dynamic, energetic, and ambitious approach to career. Aries is ruled by Mars, the planet of action, courage, and assertiveness. Individuals with Aries in the 10th house are likely to seek careers that allow them to take the lead, initiate projects, and pursue their goals with passion and determination. They thrive in fast-paced environments and are often drawn to positions that require boldness and a competitive edge.",
+        {
+            "Entrepreneurship": "Aries individuals are natural leaders and risk-takers, making them highly suited for starting their own business or leading innovative projects.",
+            "Sales and Marketing": "Careers that involve persuasion, competitive spirit, and a direct approach, such as sales or marketing, are ideal for Aries individuals.",
+            "Sports and Athletics": "Aries' high energy and drive for competition can lead to success in professional sports or athletic careers.",
+            "Military or Law Enforcement": "Leadership and assertiveness make Aries well-suited for military careers or roles in law enforcement, where decisiveness and courage are essential.",
+            "Emergency Services": "Careers in fields like firefighting, paramedics, or other high-stress, action-driven jobs fit Aries' desire to act quickly and decisively."
+        }
+    ],
+    "Taurus": [
+        "The 10th house represents career, fame, and public life. If a child's 10th house is in Taurus, it suggests a stable, reliable, and practical approach to career. Taurus is ruled by Venus, the planet of beauty, harmony, and material success. Individuals with Taurus in the 10th house tend to seek careers that offer financial stability, long-term growth, and the ability to build something solid and enduring. They are often drawn to careers that provide comfort, security, and a sense of value.",
+        {
+            "Finance and Banking": "Taurus' strong financial instincts make them well-suited for careers in banking, investment, or financial planning.",
+            "Real Estate": "Careers in real estate, property management, or interior design align with Taurus' appreciation for beauty and material success.",
+            "Luxury Goods and Retail": "Working with luxury products, jewelry, or high-end services can bring Taurus both success and fulfillment.",
+            "Agriculture and Farming": "A deep connection to the earth can lead to success in agriculture, farming, or environmental conservation.",
+            "Culinary Arts": "Careers in cooking, food management, or restaurant ownership resonate with Taurus' love for comfort and sensual pleasures."
+        }
+    ],
+    "Cancer": [
+        "If a child's 10th house is in Cancer, it indicates a nurturing, empathetic, and intuitive approach to career. Cancer is ruled by the Moon, representing emotions, home, and family. Individuals with Cancer in the 10th house are often drawn to careers where they can care for others, create emotional connections, or build a secure, supportive environment. They value emotional fulfillment and a strong sense of belonging in their careers.",
+        {
+            "Healthcare and Nursing": "Careers in nursing, therapy, or healthcare provide an opportunity to care for others, aligning with Cancer's nurturing instincts.",
+            "Teaching and Counseling": "Cancer's empathetic nature makes them great counselors, teachers, or social workers.",
+            "Hospitality and Event Planning": "Organizing events, managing hotels, or working in hospitality appeals to Cancer’s desire to create safe, welcoming environments.",
+            "Psychology": "Counseling, therapy, or psychological research offer emotional depth and connection for Cancer.",
+            "Home Management or Interior Design": "Careers that involve creating comfort, such as interior design or home organization, align with Cancer's emotional and family-centered approach."
+        }
+    ],
+    "Leo": [
+        "With the 10th house in Leo, career ambitions are driven by a desire for recognition, leadership, and creativity. Leo is ruled by the Sun, symbolizing vitality, confidence, and creativity. Individuals with Leo in the 10th house seek careers that allow them to shine, express themselves, and be in the spotlight. They excel in leadership positions and often desire to inspire or entertain others.",
+        {
+            "Entertainment and Performing Arts": "Leo's love for the spotlight makes them ideal for careers in acting, music, dance, or other performance-based fields.",
+            "Leadership Roles": "Whether in business or politics, Leo thrives in positions of power and influence where they can lead and inspire others.",
+            "Public Speaking or Media": "Leo’s confidence and charisma make them well-suited for roles in media, journalism, or motivational speaking.",
+            "Creative Director or Artist": "Careers in fashion, design, or visual arts provide an outlet for Leo’s creativity and desire for recognition.",
+            "Event Management": "Organizing and leading large-scale events or public functions offers Leo the chance to be in charge and receive recognition."
+        }
+    ],
+    "Virgo": [
+        "With Virgo in the 10th house, career success is linked to precision, practicality, and a strong work ethic. Virgo is ruled by Mercury, the planet of communication and organization. Individuals with Virgo in the 10th house are often drawn to careers that require attention to detail, problem-solving, and a methodical approach. They excel in roles that demand efficiency, organization, and service to others.",
+        {
+            "Healthcare and Medicine": "Careers in medicine, nursing, or allied health fields where attention to detail and care are critical are ideal for Virgo.",
+            "Accounting or Finance": "Virgo’s analytical skills and ability to manage finances make them well-suited for careers in accounting, auditing, or financial planning.",
+            "Research or Science": "Virgo’s methodical and detail-oriented nature thrives in research, laboratory work, or scientific inquiry.",
+            "Education": "Teaching, tutoring, or educational administration allows Virgo to use their organizational skills while helping others.",
+            "Project Management or Consulting": "Virgo excels in roles that require structure, organization, and efficiency, making them great project managers or consultants."
+        }
+    ],
+    "Libra": [
+        "With Libra in the 10th house, career success is linked to balance, harmony, and relationships. Libra is ruled by Venus, the planet of beauty, love, and diplomacy. Individuals with Libra in the 10th house are often drawn to careers that involve collaboration, fairness, and aesthetic appeal. They seek work environments that promote peace and harmony, and they are well-suited for roles where their diplomatic skills can shine.",
+        {
+            "Law and Mediation": "Libra's strong sense of justice and fairness makes them well-suited for careers in law, mediation, or arbitration.",
+            "Diplomacy and Foreign Affairs": "Diplomatic roles or positions in international relations appeal to Libra’s desire for balance and peace.",
+            "Fashion and Design": "Careers in fashion, interior design, or styling tap into Libra’s love for beauty and aesthetics.",
+            "Public Relations": "Working in PR, marketing, or communications allows Libra to use their diplomatic and relationship-building skills.",
+            "Counseling and Therapy": "Libra's desire to help others and create harmony makes them excellent counselors, therapists, or psychologists."
+        }
+    ],
+    "Scorpio": [
+        "With Scorpio in the 10th house, career success is driven by intensity, transformation, and deep passion. Scorpio is ruled by Pluto, the planet of transformation and power. Individuals with Scorpio in the 10th house are drawn to careers that involve investigation, power, and emotional depth. They excel in roles that require strategic thinking and the ability to manage crises or transformation.",
+        {
+            "Psychology and Counseling": "Scorpio’s ability to delve into deep emotional layers makes them well-suited for careers in psychology, counseling, or therapy.",
+            "Investigation and Forensics": "Roles in criminal investigation, forensic science, or detective work match Scorpio’s desire to uncover hidden truths.",
+            "Finance and Investment": "Careers in investment banking, stock trading, or financial management appeal to Scorpio’s strategic mindset and desire for power.",
+            "Medicine or Surgery": "The medical field, especially in areas requiring precision and care, like surgery, resonates with Scorpio’s intense focus.",
+            "Research and Science": "Careers in research, especially those involving deep analysis and uncovering new knowledge, fit Scorpio’s investigative nature."
+        }
+    ],
+    "Sagittarius": [
+        "With Sagittarius in the 10th house, career success is focused on exploration, knowledge, and freedom. Sagittarius is ruled by Jupiter, the planet of expansion, optimism, and philosophy. Individuals with Sagittarius in the 10th house are drawn to careers that allow them to explore new horizons, travel, or share their knowledge and experiences with others. They are motivated by personal growth and the pursuit of truth.",
+        {
+            "Education and Teaching": "Sagittarius’ love for knowledge and philosophy makes them great teachers, professors, or educational administrators.",
+            "Travel and Tourism": "Careers in travel, tourism, or international business allow Sagittarius to explore new cultures and expand their horizons.",
+            "Writing and Journalism": "Sagittarius excels in writing, especially travel journalism, or any field that involves sharing ideas and experiences.",
+            "Philosophy and Religious Studies": "A career in philosophy, theology, or cultural studies appeals to Sagittarius’ love for exploration of big ideas.",
+            "Entrepreneurship": "With their adventurous spirit, Sagittarius is often successful in starting businesses that cater to their passions, especially those related to travel or culture."
+        }
+    ],
+    "Capricorn": [
+        "With Capricorn in the 10th house, career success is linked to structure, discipline, and long-term planning. Capricorn is ruled by Saturn, the planet of responsibility and hard work. Individuals with Capricorn in the 10th house thrive in careers that require persistence, leadership, and authority. They excel in roles where they can build a stable foundation and achieve long-term success through determination and professionalism.",
+        {
+            "Government or Administrative Roles": "These individuals excel in structured environments like government services, public administration, or law enforcement, where discipline and responsibility are key.",
+            "Corporate Leadership": "Careers in business management, finance, or entrepreneurship can be highly successful, especially in executive positions or roles requiring long-term planning.",
+            "Engineering/Architecture": "Fields that require precision, planning, and hard work, such as engineering or architecture, are ideal for Capricorn's meticulous nature.",
+            "Law or Judiciary": "Legal careers, including law, judgeships, or paralegal roles, align well with Capricorn's sense of justice and order.",
+            "Real Estate Development": "Real estate, especially property development or investment, can offer financial success due to Capricorn's knack for planning and building from the ground up."
+        }
+    ],
+    "Aquarius": [
+        "With Aquarius in the 10th house, career success is focused on innovation, individuality, and social progress. Aquarius is ruled by Uranus, the planet of revolution and unconventionality. Individuals with Aquarius in the 10th house are drawn to careers that challenge the status quo, innovate, and contribute to society in unique ways. They excel in roles that involve technology, social change, and forward-thinking ideas.",
+        {
+            "Technology and Innovation": "Careers in tech, such as software development, engineering, or IT, are ideal for Aquarius’ inventive nature.",
+            "Social Reform and Activism": "Aquarius’ desire for social justice and equality makes them excellent candidates for roles in activism, politics, or humanitarian work.",
+            "Science and Research": "Careers in scientific research, particularly in cutting-edge or experimental fields, resonate with Aquarius’ love for knowledge and progress.",
+            "Inventor or Entrepreneur": "Aquarius’ forward-thinking mindset makes them well-suited for entrepreneurship, especially in fields related to innovation and technology.",
+            "Aerospace or Engineering": "Roles in the aerospace industry or other engineering fields allow Aquarius to push boundaries and work on groundbreaking projects."
+        }
+    ],
+    "Pisces": [
+        "With Pisces in the 10th house, career success is driven by creativity, compassion, and spiritual fulfillment. Pisces is ruled by Neptune, the planet of imagination, intuition, and idealism. Individuals with Pisces in the 10th house are often drawn to careers that allow them to express their artistic abilities, connect with others on an emotional level, or work in service to humanity. They are motivated by a desire to make the world a better place through their work.",
+        {
+            "Arts and Entertainment": "Pisces is naturally creative and artistic, making them well-suited for careers in music, art, or film.",
+            "Psychology and Counseling": "Pisces' deep empathy and intuitive nature make them excellent counselors, therapists, or social workers.",
+            "Healing Professions": "Careers in alternative healing, such as acupuncture, massage therapy, or holistic health, resonate with Pisces' desire to help others.",
+            "Nonprofit Work and Social Services": "Pisces’ compassion makes them ideal for roles in nonprofit organizations, social work, or charity-based careers.",
+            "Writing and Creative Arts": "Writing, poetry, or other forms of creative expression are ideal for Pisces’ imaginative and emotionally driven nature."
+        }
+    ]
+}
+
+education = {
+  "Aries": [
+    "child, born under Aries Rashi, is energetic, ambitious, and loves challenges. child thrives in environments that offer independence and opportunities to take the lead. child enjoys subjects related to leadership, entrepreneurship, sports, or any field that requires competitive drive and determination. A dynamic and action-oriented learning environment is best for child.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Business, Entrepreneurship, Sports, Engineering, Military Studies, Leadership."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Hands-on learning, competitive challenges, and individual projects."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Interactive learning, leadership roles, practical applications, and real-world tasks."
+        }
+    ],
+    [
+        {
+            "title": "Action-Oriented",
+            "content": "child prefers to learn by doing, engaging in physical activities, and solving problems through action."
+        },
+        {
+            "title": "Leader",
+            "content": "child is naturally drawn to leadership roles and enjoys being in charge of projects or teams."
+        },
+        {
+            "title": "Competitive",
+            "content": "Thrives in environments where achievements and progress are recognized and rewarded."
+        }
+    ],
+    "Foster Leadership Skills and Competitive Spirit",
+    [
+        {
+            "title": "Encourage Leadership Opportunities",
+            "content": "Give child chances to lead group projects or participate in team-based activities."
+        },
+        {
+            "title": "Provide Competitive Challenges",
+            "content": "Set up tasks or challenges where child can compete and measure progress, such as academic competitions or sports."
+        },
+        {
+            "title": "Support Independence",
+            "content": "Allow child to take ownership of their learning process and make decisions about their academic path."
+        }
+    ]
+],
+  "Taurus": [
+    "child, born under Taurus Rashi, is practical, patient, and focused on achieving long-term goals. child thrives in environments that provide stability, structure, and tangible results. child enjoys subjects related to finance, agriculture, arts, or any field that involves steady progress and real-world applications. A well-organized and methodical learning approach works best for child.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Finance, Agriculture, Architecture, Arts, Environmental Science."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Step-by-step learning, practical applications, and real-world case studies."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Structured learning, hands-on projects, fieldwork, and internships."
+        }
+    ],
+    [
+        {
+            "title": "Practical Learner",
+            "content": "child excels when applying theoretical knowledge to real-life situations."
+        },
+        {
+            "title": "Methodical",
+            "content": "child prefers to take a steady, consistent approach to learning, focusing on building expertise over time."
+        },
+        {
+            "title": "Determined",
+            "content": "Shows persistence and patience in completing tasks, focusing on long-term success."
+        }
+    ],
+    "Promote Practical Learning and Goal Setting",
+    [
+        {
+            "title": "Encourage Steady Progress",
+            "content": "Help child set long-term academic goals and break them into manageable tasks."
+        },
+        {
+            "title": "Support Hands-On Learning",
+            "content": "Provide opportunities for practical, real-world experiences, such as internships or fieldwork."
+        },
+        {
+            "title": "Build Consistency",
+            "content": "Establish a consistent study routine and ensure that child focuses on steady progress rather than rushing through tasks."
+        }
+    ]
+],
+  "Gemini": [
+    "child, born under Gemini Rashi (Gemini), is naturally curious, quick-witted, and loves learning new things. child thrives in environments that encourage intellectual discussions, debates, and hands-on problem-solving. child enjoys subjects that are dynamic and allow room for creativity, such as science, technology, literature, and languages. A flexible and interactive learning approach works best for child, where exploration, questions, and practical tasks are encouraged.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Technology, Science, Engineering, Languages, Communication, Psychology, Social Sciences."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Active learning through group discussions, problem-solving, and debates."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Online courses, interactive classes, project-based learning."
+        }
+    ],
+    [
+        {
+            "title": "Curiosity-Driven",
+            "content": "child enjoys exploring new topics independently, often seeking answers through various resources."
+        },
+        {
+            "title": "Analytical",
+            "content": "child excels in breaking down problems into smaller, manageable parts and solving them step by step."
+        },
+        {
+            "title": "Social Learning",
+            "content": "Collaboration with peers in group studies and discussions helps child stay engaged and motivated."
+        }
+    ],
+    "Foster Critical Thinking Through Discussions & Projects",
+    [
+        {
+            "title": "Set Up Regular Learning Sessions",
+            "content": "Dedicate time for discussions on different topics related to child’s interests. This can be done after school or on weekends."
+        },
+        {
+            "title": "Encourage Problem-Solving",
+            "content": "Provide real-life challenges that require logical thinking. For example, puzzles, coding tasks, or science experiments."
+        },
+        {
+            "title": "Promote Group Work",
+            "content": "Encourage participation in group activities or projects, where child can engage with peers, share ideas, and learn from others."
+        }
+    ]
+],
+  "Cancer": [
+    "child, born under Cancer Rashi, is sensitive, intuitive, and emotionally driven in learning. child thrives in environments that offer emotional support and allow for personal connections with the subject matter. child enjoys subjects that involve creativity, helping others, or understanding human behavior, such as psychology, literature, arts, or social sciences. A calm, nurturing, and structured learning environment works best, allowing child to feel secure and confident.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Psychology, Literature, Social Sciences, Arts, Education, Healthcare."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Emotional engagement, one-on-one mentorship, small group discussions."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "A mix of traditional learning with personalized support and hands-on learning."
+        }
+    ],
+    [
+        {
+            "title": "Emotionally Driven",
+            "content": "child connects well with subjects that evoke emotional responses and can relate them to personal experiences."
+        },
+        {
+            "title": "Intuitive Learner",
+            "content": "Relies on gut feelings and intuition to grasp concepts and ideas."
+        },
+        {
+            "title": "Support-Oriented",
+            "content": "Needs encouragement and personalized guidance to feel confident and motivated."
+        }
+    ],
+    "Build Emotional Connections to Learning",
+    [
+        {
+            "title": "Create a Safe Learning Environment",
+            "content": "Ensure child feels emotionally supported and safe while learning. This helps build confidence."
+        },
+        {
+            "title": "Incorporate Emotional Aspects",
+            "content": "Connect subjects with real-life stories, people, or experiences that can emotionally engage child."
+        },
+        {
+            "title": "Encourage Creative Expression",
+            "content": "Allow child to express learning through creative outlets like writing, art, or discussions."
+        }
+    ]
+],
+  "Leo": [
+    "child, born under Leo Rashi, is confident, creative, and enjoys leadership roles. child thrives in environments where there is recognition for achievements and opportunities for self-expression. child is attracted to subjects like performing arts, management, leadership studies, or any field that allows for creative self-expression and the ability to inspire others. A learning environment that provides room for independence and recognition works best for child.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Performing Arts, Management, Business, Leadership Studies, Marketing, Design."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Self-directed learning, project-based work, leadership opportunities."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Interactive classes, internships, real-world applications, creative workshops."
+        }
+    ],
+    [
+        {
+            "title": "Self-Confident",
+            "content": "child enjoys being in the spotlight and leads projects or group activities with ease."
+        },
+        {
+            "title": "Creative",
+            "content": "Thrives when able to express creativity in different forms, such as through design, art, or storytelling."
+        },
+        {
+            "title": "Goal-Oriented",
+            "content": "Focuses on achieving personal and academic goals and enjoys setting challenges for growth."
+        }
+    ],
+    "Foster Leadership and Creativity",
+    [
+        {
+            "title": "Encourage Independent Projects",
+            "content": "Provide opportunities for child to lead projects or take responsibility for group work."
+        },
+        {
+            "title": "Praise Efforts and Achievements",
+            "content": "Recognize and celebrate child’s academic and creative accomplishments to boost self-esteem."
+        },
+        {
+            "title": "Incorporate Creativity",
+            "content": "Encourage child to engage in creative outlets like music, drama, or design alongside academic work."
+        }
+    ]
+],
+  "Virgo": [
+    "child, born under Virgo Rashi, is analytical, detail-oriented, and has a strong desire to help others. child thrives in structured environments where clear expectations are set. child enjoys subjects that require precision and critical thinking, such as mathematics, science, healthcare, or engineering. A systematic and organized approach to learning is crucial for child to excel.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Mathematics, Science, Engineering, Healthcare, Data Analysis, Accounting."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Structured, systematic learning with clear goals and detailed information."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Lectures, research, hands-on experimentation, and data analysis."
+        }
+    ],
+    [
+        {
+            "title": "Detail-Oriented",
+            "content": "child excels when working through problems in a step-by-step manner, paying attention to every detail."
+        },
+        {
+            "title": "Logical Thinker",
+            "content": "Enjoys solving complex problems and applying critical thinking to find solutions."
+        },
+        {
+            "title": "Service-Oriented",
+            "content": "Finds satisfaction in work that helps others, particularly in healthcare, social services, or teaching."
+        }
+    ],
+    "Develop Strong Organizational Skills",
+    [
+        {
+            "title": "Set Clear Goals and Plans",
+            "content": "Help child create detailed study schedules, break down tasks into manageable steps, and set academic goals."
+        },
+        {
+            "title": "Encourage Routine Learning",
+            "content": "Create a regular study schedule that allows time for consistent learning and revision."
+        },
+        {
+            "title": "Support Practical Learning",
+            "content": "Provide opportunities for hands-on learning, such as science experiments, real-world problem-solving, or internships."
+        }
+    ]
+],
+  "Libra": [
+    "child, born under Libra Rashi, is balanced, diplomatic, and enjoys working in harmonious environments. child thrives in subjects that involve social interaction, fairness, and creativity, such as law, art, design, or social sciences. A cooperative, team-oriented approach to learning works best, where child can collaborate with others and discuss ideas.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Law, Social Sciences, Art, Design, Diplomacy, Psychology."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Collaborative work, group discussions, and debates."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Interactive learning with group projects, class discussions, and real-world application."
+        }
+    ],
+    [
+        {
+            "title": "Diplomatic",
+            "content": "child works well in group settings, often mediating and facilitating cooperation among peers."
+        },
+        {
+            "title": "Creative Thinker",
+            "content": "Enjoys subjects that allow for creative expression and the ability to see multiple perspectives."
+        },
+        {
+            "title": "Analytical",
+            "content": "Has a strong ability to weigh different viewpoints and make balanced, fair decisions."
+        }
+    ],
+    "Encourage Collaborative Learning & Discussions",
+    [
+        {
+            "title": "Promote Teamwork",
+            "content": "Encourage child to participate in group projects or clubs where team dynamics and shared ideas are emphasized."
+        },
+        {
+            "title": "Foster Open Conversations",
+            "content": "Set aside time for discussions on various topics, encouraging child to express ideas and consider different viewpoints."
+        },
+        {
+            "title": "Support Creative Projects",
+            "content": "Provide resources for artistic or creative work, such as art supplies or access to design platforms."
+        }
+    ]
+],
+  "Scorpio": [
+    "child, born under Scorpio Rashi, is intense, focused, and driven by curiosity. child thrives in environments that challenge the intellect and allow for deep exploration of topics. child enjoys subjects that involve investigation, research, psychology, or anything that involves uncovering hidden truths. A learning approach that encourages depth, self-reflection, and transformation works best.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Psychology, Research, Medicine, Science, Criminal Justice, Forensic Studies."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Independent research, critical thinking, problem-solving, and deep analysis."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Project-based learning, research, case studies, and experiential learning."
+        }
+    ],
+    [
+        {
+            "title": "Focused and Determined",
+            "content": "child works best when tackling complex subjects or problems, showing persistence and dedication."
+        },
+        {
+            "title": "Investigative",
+            "content": "Loves to dig deep into subjects, seeking to understand the underlying causes or truths."
+        },
+        {
+            "title": "Resilient",
+            "content": "child thrives in challenging academic environments that require perseverance and self-discipline."
+        }
+    ],
+    "Cultivate Research Skills and Critical Thinking",
+    [
+        {
+            "title": "Encourage Independent Research",
+            "content": "Provide opportunities for child to explore topics in-depth through books, online resources, and research projects."
+        },
+        {
+            "title": "Challenge with Complex Problems",
+            "content": "Present problems or challenges that require critical thinking and analysis."
+        },
+        {
+            "title": "Foster Self-Reflection",
+            "content": "Encourage child to reflect on academic progress and identify areas for improvement."
+        }
+    ]
+],
+  "Sagittarius": [
+    "child, born under Sagittarius Rashi, is adventurous, optimistic, and loves exploring new ideas. child thrives in environments that offer freedom, exploration, and the opportunity to engage in philosophical or broad-minded subjects. child enjoys subjects that allow for travel, global perspectives, or philosophical discussions, such as international relations, philosophy, or world history.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Philosophy, International Relations, Travel & Tourism, Literature, Anthropology."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Independent learning, exploration, broad-based knowledge, and global perspectives."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Online learning, travel-based learning, cultural exchange, and experiential education."
+        }
+    ],
+    [
+        {
+            "title": "Explorer",
+            "content": "child loves exploring new ideas, cultures, and philosophies, often seeking out experiences outside the traditional classroom."
+        },
+        {
+            "title": "Big-Picture Thinker",
+            "content": "Focuses on understanding broad concepts and seeing the connections between different areas of knowledge."
+        },
+        {
+            "title": "Optimistic",
+            "content": "Approaches learning with enthusiasm, always looking for new opportunities and experiences."
+        }
+    ],
+    "Encourage Exploration and Broad Learning",
+    [
+        {
+            "title": "Provide Opportunities for Travel",
+            "content": "Encourage experiences that expand child’s worldview, such as cultural trips or exchange programs."
+        },
+        {
+            "title": "Introduce Diverse Topics",
+            "content": "Expose child to a wide range of subjects, including philosophy, world history, or global issues."
+        },
+        {
+            "title": "Promote Independent Learning",
+            "content": "Allow child to pursue self-directed projects and research that align with personal interests."
+        }
+    ]
+]
+,
+  "Capricorn": [
+    "child, born under Capricorn Rashi, is disciplined, practical, and highly focused on achieving long-term goals. child thrives in structured, goal-oriented environments where hard work and perseverance are emphasized. child enjoys subjects that are practical and lead to tangible results, such as business, finance, engineering, or law. A structured and goal-driven learning environment is ideal for child.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Business, Finance, Engineering, Law, Accounting, Architecture."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Structured learning with clear goals, practical applications, and real-world experiences."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Lectures, hands-on projects, internships, and professional training programs."
+        }
+    ],
+    [
+        {
+            "title": "Practical Thinker",
+            "content": "child enjoys applying theoretical knowledge to real-world situations and solving practical problems."
+        },
+        {
+            "title": "Goal-Oriented",
+            "content": "Focuses on setting and achieving long-term academic and professional goals."
+        },
+        {
+            "title": "Disciplined and Responsible",
+            "content": "Works diligently, often without needing external motivation, to achieve success."
+        }
+    ],
+    "Set Clear Goals and Provide Practical Learning Experiences",
+    [
+        {
+            "title": "Help Set Long-Term Goals",
+            "content": "Encourage child to set clear academic and career goals, breaking them down into manageable steps."
+        },
+        {
+            "title": "Provide Practical Opportunities",
+            "content": "Offer real-world learning experiences, such as internships, work experiences, or projects related to child’s academic interests."
+        },
+        {
+            "title": "Instill a Strong Work Ethic",
+            "content": "Emphasize the importance of hard work, discipline, and persistence in achieving goals."
+        }
+    ]
+],
+  "Aquarius": [
+    "child, born under Aquarius Rashi, is innovative, forward-thinking, and values individuality. child thrives in environments that encourage independent thinking and allow for exploration of unconventional ideas. child enjoys subjects that involve technology, science, or social change, such as robotics, environmental science, or sociology. A learning approach that encourages creativity, innovation, and social impact is ideal for child.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Technology, Robotics, Environmental Science, Sociology, Political Science, Innovation."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Independent study, brainstorming, and collaboration on innovative projects."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Hands-on projects, online learning, group collaboration, and fieldwork."
+        }
+    ],
+    [
+        {
+            "title": "Innovative Thinker",
+            "content": "child excels in exploring new ideas and creating innovative solutions."
+        },
+        {
+            "title": "Idealistic",
+            "content": "Driven by a desire to make a difference in the world, child focuses on subjects that can bring about social change."
+        },
+        {
+            "title": "Collaborative",
+            "content": "Enjoys working with others on projects that have a wider impact on society."
+        }
+    ],
+    "Foster Innovation Through Creative Exploration",
+    [
+        {
+            "title": "Encourage Independent Learning",
+            "content": "Provide resources like books, documentaries, and online courses that allow child to explore new and unconventional ideas."
+        },
+        {
+            "title": "Support Social Impact Projects",
+            "content": "Help child get involved in community projects or initiatives that focus on making a positive difference."
+        },
+        {
+            "title": "Facilitate Brainstorming Sessions",
+            "content": "Engage in regular brainstorming activities where child can share ideas and develop creative solutions."
+        }
+    ]
+],
+ "Pisces": [
+    "child, born under Pisces Rashi, is intuitive, creative, and empathetic. child thrives in environments that nurture imagination and emotional expression. child enjoys subjects related to art, psychology, music, or spirituality, where they can express themselves and explore deeper meanings. A supportive, creative, and flexible learning environment works best for child.",
+    [
+        {
+            "title": "Subjects of Interest",
+            "content": "Psychology, Arts, Music, Literature, Spirituality, Philosophy."
+        },
+        {
+            "title": "Preferred Learning Style",
+            "content": "Creative exploration, introspection, and imaginative thinking."
+        },
+        {
+            "title": "Mode of Learning",
+            "content": "Art-based learning, creative writing, individual projects, and experiential learning."
+        }
+    ],
+    [
+        {
+            "title": "Intuitive Learner",
+            "content": "child often relies on intuition and imagination to grasp new concepts."
+        },
+        {
+            "title": "Empathetic",
+            "content": "Finds it easy to connect with others on an emotional level, making social sciences or psychology appealing."
+        },
+        {
+            "title": "Creative Thinker",
+            "content": "Loves subjects that allow for self-expression, creativity, and artistic exploration."
+        }
+    ],
+    "Nurture Creativity and Emotional Intelligence",
+    [
+        {
+            "title": "Provide Creative Outlets",
+            "content": "Encourage activities like drawing, painting, music, or writing that allow child to express their emotions."
+        },
+        {
+            "title": "Support Emotional Reflection",
+            "content": "Help child connect academic subjects to personal experiences, fostering deeper understanding and emotional engagement."
+        },
+        {
+            "title": "Allow Flexibility in Learning",
+            "content": "Give child the freedom to explore subjects in their own way, without strict rules or rigid timelines."
+        }
+    ]
+]
+}
+
+planetDesc = {
+  "Sun" : [
+    "The Sun represents strength, vitality, leadership, and self-confidence. Strengthening the Sun brings clarity, health, and a strong sense of self-worth.",
+    [
+      "Wake Up Early",
+      "Encourage Magizh to wake up with the Sun. Early rising fosters discipline and energy.",
+      'Set an alarm for 6:00 AM. Teach Magizh to say, "Thank you, Sun, for a new day," as they wake up.',
+      "Starting the day early brings energy and helps you accomplish more."
+    ],
+    [
+      "Take Responsibility",
+      "Give Magizh small daily tasks, like watering plants or organizing their toys, to build responsibility.",
+      'Say, "You take care of your plants, just like the Sun cares for the world."',
+      '"Responsibility makes you strong and dependable, like the Sun."'
+    ],
+    [
+      'Sun Salutations (Surya Namaskar)',
+      "Practice 5 rounds of Sun Salutations with Magizh each morning. This energizes the body and connects to the Sun's power.",
+      "Teach Magizh how to do each posture, slowly and with gratitude.",
+      "When you move your body and express gratitude, you invite strength and energy."
+    ],
+    [
+      "Vitality Foods",
+      "Include foods like oranges, carrots, and whole grains in the diet. These foods nourish the body with vitality.",
+      "Serve orange juice or carrot sticks with a meal.",
+      "Healthy foods make you strong and vibrant, just like the Sun."
+    ],
+    [
+      "Donate on Sundays",
+      "On Sundays, donate wheat, jaggery, or anything yellow.",
+      "Let's give something to others today, to spread the Sun's warmth and kindness.",
+      "Sharing brings warmth and light to others, just like the Sun."
+    ]
+  ],
+  "Moon" : [
+    "The Moon represents emotions, peace, intuition, and nurturing. Strengthening the Moon brings emotional balance and calmness.",
+    [
+      "Nighttime Calmness",
+      "Establish a calm bedtime routine to help Magizh relax and sleep well.",
+      'Read a peaceful story or play soft music before bed.',
+      "A calm mind at night leads to peaceful sleep, just like the Moon calms the night sky."
+    ],
+    [
+      "Emotional Awareness",
+      "Teach Magizh to express their feelings, whether happy or sad, in a calm and gentle way.",
+      'Encourage saying, "I feel happy because of the sunny day," or, "I feel sad but will talk about it."',
+      "Understanding your emotions helps you feel peaceful and balanced like the Moon."
+    ],
+    [
+      "Relaxing Night Walks",
+      "Take a short walk under the moonlight to connect with the Moon’s peaceful energy.",
+      "Say, 'Let’s walk and feel the peace the Moon gives us.'",
+      "Taking time for peaceful moments brings calmness and clarity."
+    ],
+    [
+      "Cooling Foods",
+      "Include foods like milk, cucumber, and rice to cool the body.",
+      "Serve a cucumber salad or warm milk at night.",
+      "Cooling foods calm your body and mind, like the Moon calms the night."
+    ],
+    [
+      "Give White Items",
+      "On Mondays, donate white items such as clothes or food.",
+      "Sharing white items brings peace and harmony, like the Moon.",
+      "Sharing brings peace to both you and others, just like the Moon brings peace to the night."
+    ]
+  ],
+  "Mars" : [
+    "Mars represents courage, energy, and determination. Strengthening Mars encourages action, assertiveness, and bravery.",
+    [
+      "Exercise and Challenges",
+      "Encourage Magizh to take on physical challenges like running or climbing.",
+      'Let’s race to the tree or climb the slide!',
+      "Physical challenges teach you to be brave and strong, like Mars."
+    ],
+    [
+      "Bravery and Determination",
+      "Teach Magizh to face difficulties without giving up.",
+      'If you fall, get up and try again. Bravery helps you grow.',
+      "Facing challenges builds strength, just like Mars gives courage."
+    ],
+    [
+      "Martial Arts or Active Games",
+      "Enroll Magizh in martial arts, yoga, or sports to channel energy positively.",
+      "Every movement strengthens your body and mind, just like Mars.",
+      "Physical discipline teaches you focus, strength, and perseverance."
+    ],
+    [
+      "Strengthening Foods",
+      "Include red foods like apples, lentils, and tomatoes in the diet.",
+      "Serve red lentils or apple slices as snacks.",
+      "These foods give you strength and vitality, just like Mars gives you energy."
+    ],
+    [
+      "Donate Red Items",
+      "On Tuesdays, donate red items such as clothes or lentils.",
+      "Sharing red items boosts your courage and helps others.",
+      "Giving creates strength, just like Mars makes us strong."
+    ]
+  ],
+  "Mercury" : [
+    "Mercury represents communication, intelligence, and adaptability. Strengthening Mercury enhances learning, curiosity, and mental agility.",
+    [
+      "Daily Learning",
+      "Set aside time for daily learning through puzzles, reading, or exploring new topics.",
+      'Let’s read a story or solve a puzzle together.',
+      "Learning helps you grow smarter and quicker, just like Mercury sharpens the mind."
+    ],
+    [
+      "Curiosity and Communication",
+      "Encourage Magizh to ask questions and explore the world around them.",
+      'What would you like to learn today? Let’s find out together.',
+      "Asking questions leads to learning, just like Mercury helps us understand the world."
+    ],
+    [
+      "Mind Games and Puzzles",
+      "Play memory or word games to boost cognitive abilities.",
+      "Let’s play a game to remember words or numbers.",
+      "Training your mind makes you sharper and clever, just like Mercury."
+    ],
+    [
+      "Brain Foods",
+      "Include walnuts, almonds, and green vegetables in the diet.",
+      "Serve almonds or spinach with meals.",
+      "These foods make your brain sharp, like Mercury enhances intelligence."
+    ],
+    [
+      "Donate Books",
+      "On Wednesdays, donate books or educational materials.",
+      "Let’s donate books to spread knowledge and wisdom.",
+      "Sharing knowledge brings wisdom to everyone, just like Mercury teaches us."
+    ]
+  ],
+  "Jupiter" : [
+    "Jupiter represents wisdom, spirituality, knowledge, and good fortune. Strengthening Jupiter brings higher learning, faith, and a sense of purpose.",
+    [
+      "Practice Gratitude",
+      "Teach Magizh to start the day by saying 'thank you' for the blessings received.",
+      'Every morning, Magizh, express one thing you are grateful for.',
+      "Gratitude brings abundance and positivity, just like Jupiter blesses with wisdom."
+    ],
+    [
+      "Seek Knowledge",
+      "Encourage Magizh to read or learn something new every day.",
+      'Let’s read a book about a subject you like or try a new activity together.',
+      "Continuous learning brings wisdom and joy, just like Jupiter helps us grow mentally."
+    ],
+    [
+      "Offer Water to Lord Vishnu",
+      "Teach Magizh to offer water to Lord Vishnu or chant the 'Om Namo Bhagavate Vasudevaya' mantra.",
+      "Let’s chant the mantra together to invite wisdom and spirituality into our lives.",
+      "Chanting brings wisdom and purifies the mind, like Jupiter’s blessings."
+    ],
+    [
+      "Saffron and Yellow Foods",
+      "Include saffron, yellow lentils, and pumpkin in the diet to connect with Jupiter’s energy.",
+      "Serve yellow foods like pumpkin curry or lentil soup.",
+      "Food can nourish the body and mind, just like Jupiter nourishes our wisdom."
+    ],
+    [
+      "Donate Yellow Items",
+      "On Thursdays, donate yellow items such as bananas, saffron, or clothes.",
+      "Let’s donate yellow items to spread joy and wisdom.",
+      "Charity brings blessings of wisdom and prosperity, like Jupiter’s influence."
+    ]
+  ],
+  "Venus" : [
+    "Venus represents love, beauty, creativity, and prosperity. Strengthening Venus brings harmony, creativity, and material comforts.",
+    [
+      "Practice Kindness and Love",
+      "Encourage Magizh to express kindness to everyone, whether through words or actions.",
+      'Say something kind to others today, like “I appreciate you!”',
+      "Being kind brings harmony and joy, just like Venus spreads love and beauty."
+    ],
+    [
+      "Appreciate Beauty in Everything",
+      "Teach Magizh to notice and appreciate beauty in nature, art, and relationships.",
+      'Let’s look at the flowers or clouds today and see how beautiful they are!',
+      "Appreciating beauty makes life joyful and harmonious, like Venus."
+    ],
+    [
+      "Creative Time",
+      "Dedicate time each day for Magizh to explore creative activities like painting or music.",
+      "Let’s paint a picture or sing a song today.",
+      "Creativity brings peace and joy, just like Venus nurtures creativity."
+    ],
+    [
+      "Sweet and Tasty Foods",
+      "Include foods like sweets, dairy, and fruits to nourish the body and senses.",
+      "Serve fruits like mangoes or a small piece of sweet dish.",
+      "Food can be a source of pleasure and nourishment, just like Venus brings joy."
+    ],
+    [
+      "Donate White Items",
+      "On Fridays, donate white items such as clothes, sweets, or flowers.",
+      "Let’s donate white items to spread love and positivity.",
+      "Giving brings peace and prosperity, just like Venus."
+    ]
+  ],
+  "Saturn" : [
+    "Saturn represents discipline, hard work, patience, and responsibility. Strengthening Saturn brings perseverance, wisdom, and a sense of duty.",
+    [
+      "Daily Routine",
+      "Establish a fixed routine for Magizh, including time for work, rest, and play.",
+      'Let’s follow a schedule each day to be responsible.',
+      "A disciplined routine helps you succeed, just like Saturn teaches us responsibility."
+    ],
+    [
+      "Patience and Hard Work",
+      "Teach Magizh that success comes with consistent effort and patience.",
+      'If you want to achieve something, keep trying every day.',
+      "Hard work and patience lead to success, just like Saturn teaches us."
+    ],
+    [
+      "Service and Duty",
+      "Encourage Magizh to take on responsibilities at home, like organizing or helping with chores.",
+      "Let’s clean up the room together as part of our routine.",
+      "Doing your duty brings strength and wisdom, like Saturn’s influence."
+    ],
+    [
+      "Nourishing Foods for the Body",
+      "Include dark-colored foods like black sesame seeds, grains, and root vegetables in the diet.",
+      "Serve dishes made from dark-colored grains or root vegetables.",
+      "These foods give you the strength and stamina to face challenges, just like Saturn."
+    ],
+    [
+      "Donate Black Items",
+      "On Saturdays, donate items like black clothes, sesame seeds, or oil.",
+      "Let’s donate black items to help others and earn Saturn’s blessings.",
+      "Giving brings strength and stability, just like Saturn."
+    ]
+  ],
+  "Rahu" : [
+    "Rahu represents illusion, desire, and ambition. It can bring rapid growth but also challenges. Strengthening Rahu brings clarity, focus, and breaking free from illusions.",
+    [
+      "Focus on Goals",
+      "Encourage Magizh to set one clear goal and work towards it daily.",
+      'Let’s set a goal for the day and take small steps towards it.',
+      "Focused effort helps you achieve your dreams, just like Rahu pushes us towards growth."
+    ],
+    [
+      "Overcome Illusions",
+      "Teach Magizh to see things clearly and not get distracted by false promises.",
+      'If something sounds too good to be true, it might be an illusion.',
+      "Understanding what is real and what is not brings true success."
+    ],
+    [
+      "Meditation and Mindfulness",
+      "Introduce Magizh to basic meditation techniques to calm the mind and increase focus.",
+      "Let’s sit quietly and focus on your breath for 5 minutes every day.",
+      "Meditation helps clear the mind and focus on true desires."
+    ],
+    [
+      "Avoid Overindulgence",
+      "Encourage simple, balanced meals without excessive spices or sweets.",
+      "Serve healthy, balanced meals and limit processed food.",
+      "Moderation in food helps clear the mind, just like Rahu helps us find clarity."
+    ],
+    [
+      "Donate Items for Growth",
+      "On Saturdays, donate items related to ambition, like books or educational materials.",
+      "Let’s donate books or useful items to help others grow.",
+      "Helping others grow brings growth to yourself, just like Rahu’s influence."
+    ]
+  ],
+  "Ketu" : [
+    "Ketu represents spiritual growth, liberation, and detachment. It helps in breaking free from material attachments and focusing on higher consciousness. Strengthening Ketu brings peace, spiritual enlightenment, and the ability to let go of attachments.",
+    [
+      "Simplify Life",
+      "Teach Magizh to focus on essentials and detach from unnecessary distractions.",
+      'Let’s organize your space and only keep the things you truly need.',
+      "Simplicity in life brings peace and clarity, just like Ketu teaches detachment."
+    ],
+    [
+      "Let Go of Attachments",
+      "Teach Magizh that true happiness comes from within and not from material possessions.",
+      'Sometimes, giving away things we don’t need makes space for new opportunities.',
+      "Detaching from unnecessary things helps us grow spiritually, just like Ketu shows the way to liberation."
+    ],
+    [
+      "Spiritual Practices",
+      "Introduce Magizh to daily prayer or reflection as a way to connect with higher consciousness.",
+      "Let’s sit together for 5 minutes every morning and reflect on the day ahead.",
+      "Spiritual practices bring peace and liberation, just like Ketu helps us connect to our higher self."
+    ],
+    [
+      "Simple and Light Foods",
+      "Encourage a diet focused on simplicity, like fruits, vegetables, and light meals that nourish the body without overloading it.",
+      "Let’s eat simple meals today, like fruits or vegetable soup, to feel light and clear.",
+      "Simple foods support clarity and peace, just like Ketu’s energy helps us let go of distractions."
+    ],
+    [
+      "Donate Spiritual Materials",
+      "On Sundays, donate spiritual books or items related to meditation and learning.",
+      "Let’s donate books, clothes, or spiritual items to help others grow.",
+      "Sharing spiritual knowledge helps you grow, just like Ketu’s influence brings enlightenment."
+    ]
+  ]
+}
+
+subContent = {
+    "Aries" : [
+        "Magizh's subconscious mind may be driven by strong desires to act decisively and independently. With an 8th house in Aries, there may be an instinct to face challenges head-on, but this impulsiveness can also bring about subconscious fears or resistance, particularly around being in control of situations. When feeling threatened or challenged, Magizh might struggle with the urge to react too quickly or resist vulnerability. These subconscious patterns can sometimes hinder Magizh’s growth by creating internal conflict, especially when it comes to trusting others or handling emotional situations with patience.",
+        [ 
+            {"title" : "Impulsiveness",
+            "content" : "A tendency to act quickly without fully considering the consequences, which can sometimes lead to regret or missed opportunities."},
+            {"title": "Fear of Losing Control", "content": "A deep-seated need to maintain control over situations, leading to difficulty in trusting others or letting go."},
+            {"title":"Emotional Reactivity","content": "Strong emotional reactions (anger, frustration) can arise quickly, affecting relationships and inner peace."},
+            {"title" : "Resistance to Vulnerability","content" : "A subconscious fear of showing weakness or being hurt, which may prevent emotional growth."},
+            {"title" : "Difficulty Embracing Change", "content" : "Fearing the unknown, Magizh may resist transformation or growth due to a subconscious attachment to the status quo."}
+        ],
+        {
+            "manifestation" : [
+                "Affirmations for Patience and Trust",
+                "Repeating positive affirmations to help Magizh embrace patience, self-control, and trust.",
+                [
+                    "I trust myself and others to navigate change with patience.",
+                    "I release fear and allow myself to grow through challenges."
+                ],
+                "Repeat these affirmations 5 times in the morning with intention.",
+                "Affirmations create new thought patterns, helping to overcome fear and impulsive behavior."
+            ],
+            "quantum" : [
+                "Shifting Energy for Emotional Balance",
+                "Visualizing emotional energy as vibrations that can be altered to promote calmness and positivity.",
+                [
+                    "Magizh should sit quietly and focus on breathing.",
+                    "Imagine emotions as waves or energy, with negative emotions represented as dark, heavy energy.",
+                    "Visualize this energy shifting into light, peaceful vibrations."   
+                ],
+                "Practice for 3-5 minutes twice a day, after waking and before bed.",
+                "Visualizing energy transformation can help release emotional blocks, raising vibrational energy to a positive state."
+            ],
+            "healing" : [
+                "Breathing for Emotional Release",
+                "Use deep breathing to release intense emotions like anger or frustration.",
+                [
+                    "Magizh should sit comfortably and focus on their breath.",
+                    "Inhale deeply for 4 counts, imagining calm energy filling the body.",
+                    "Hold the breath for 4 counts and exhale slowly for 6 counts."
+                ],
+                "Repeat for 5-10 minutes whenever feeling overwhelmed.",
+                "Deep breathing reduces stress and calms emotional responses, aiding in emotional release."
+            ],
+            "mudra" : [
+                "The Surya Mudra for Empowerment",
+                "This mudra enhances personal power, calmness, and emotional control.",
+                [
+                    "Magizh should sit straight, palms facing upwards.",
+                    "Place the ring finger at the base of the thumb, keeping the other fingers extended.",
+                    "Hold this position while focusing on deep breathing."
+                ],
+                "Hold for 5-10 minutes daily.",
+                "The Surya Mudra helps calm emotional reactions and supports inner strength."
+            ]
+        }
+    ],
+    "Taurus": [
+    "Magizh's subconscious mind with an 8th house in Taurus may be deeply connected to emotional security and the need for stability. However, this can also create subconscious blocks when it comes to change or unexpected events. Magizh may have a strong desire for material or emotional stability and could feel threatened by any shifts that challenge this sense of security. These deep-rooted fears may create resistance to change or cause stubbornness in adapting to new situations, potentially hindering emotional growth and personal transformation.",
+    [
+        {
+            "title": "Fear of Change",
+            "content": "Subconscious resistance to change due to a need for security and stability."
+        },
+        {
+            "title": "Stubbornness",
+            "content": "A tendency to hold onto old beliefs or routines, making it difficult to adapt or let go of the past."
+        },
+        {
+            "title": "Attachment to Comfort",
+            "content": "A deep attachment to physical or emotional comfort, which may prevent embracing new challenges."
+        },
+        {
+            "title": "Materialism",
+            "content": "A subconscious focus on possessions or external validation, which can cloud inner peace."
+        },
+        {
+            "title": "Avoidance of Emotional Risk",
+            "content": "Fear of emotional loss or vulnerability, leading to avoiding new emotional experiences."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Growth and Adaptability",
+            "Repeating affirmations to help Magizh embrace change and let go of past attachments.",
+            [
+                "I am open to change and trust that it brings growth.",
+                "I release my attachment to comfort and embrace new opportunities."
+            ],
+            "Say these affirmations 5 times every morning.",
+            "Affirmations create new subconscious patterns, helping to reduce fear of change and enhance adaptability."
+        ],
+        "quantum": [
+            "Transforming Fearful Energy",
+            "Use the concept of energy transformation to release fear and anxiety related to change.",
+            [
+                "Magizh should sit comfortably and focus on breathing.",
+                "Imagine fear or resistance as a dark, heavy cloud surrounding the body.",
+                "Visualize this cloud dissipating and being replaced by a warm, bright light of peace and trust."
+            ],
+            "Practice this for 3-5 minutes each morning.",
+            "This practice helps shift subconscious fear into positive energy, promoting emotional healing."
+        ],
+        "healing": [
+            "Grounding Breathwork for Stability",
+            "Focus on grounding and calming breathwork to help let go of fear and find inner peace.",
+            [
+                "Magizh should sit comfortably with feet flat on the floor.",
+                "Inhale deeply through the nose for 4 counts.",
+                "Hold for 4 counts, then slowly exhale through the mouth for 6 counts."
+            ],
+            "Do this for 5-10 minutes each day, focusing on grounding energy.",
+            "This breathing practice helps create a sense of stability and reduces anxiety."
+        ],
+        "mudra": [
+            "The Prithvi Mudra for Grounding",
+            "This mudra promotes stability, grounding, and emotional balance.",
+            [
+                "Magizh should sit with a straight back, palms facing upwards.",
+                "Touch the tip of the ring finger to the tip of the thumb, keeping other fingers extended.",
+                "Focus on deep breathing and grounding energy into the body."
+            ],
+            "Hold for 5-10 minutes daily.",
+            "The Prithvi Mudra enhances stability and emotional calmness, helping release fear and attachment."
+        ]
+    }
+],
+    "Gemini": [
+    "Magizh's subconscious mind with an 8th house in Gemini may be constantly seeking knowledge and understanding. There may be a subconscious need for communication, mental stimulation, and new ideas. However, this mental restlessness can sometimes lead to difficulty focusing or forming deep emotional connections. Magizh might subconsciously avoid emotional depth, preferring intellectual pursuits, which can block personal growth in emotional or transformative areas of life.",
+    [
+        {
+            "title": "Mental Restlessness",
+            "content": "Difficulty focusing on one thing or staying emotionally grounded due to a constant flow of thoughts."
+        },
+        {
+            "title": "Avoiding Emotional Depth",
+            "content": "A tendency to intellectualize emotions rather than connect with them on a deeper level."
+        },
+        {
+            "title": "Difficulty with Commitment",
+            "content": "A subconscious fear of being tied down or restricted in relationships or life choices."
+        },
+        {
+            "title": "Shifting Attention",
+            "content": "Constantly changing interests or goals, making it hard to follow through with deep personal growth."
+        },
+        {
+            "title": "Superficial Connections",
+            "content": "Tendency to form shallow relationships or avoid meaningful emotional bonds."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Focus and Emotional Depth",
+            "Use affirmations to enhance emotional connection and mental clarity.",
+            [
+                "I focus my energy on meaningful emotional connections.",
+                "I embrace the depth of my feelings and allow myself to experience emotional growth."
+            ],
+            "Repeat these affirmations 5 times in the morning.",
+            "Affirmations help focus the mind and encourage deeper emotional connections."
+        ],
+        "quantum": [
+            "Focusing Energy for Emotional Clarity",
+            "Use visualization to focus and direct energy towards emotional clarity.",
+            [
+                "Magizh should sit comfortably and breathe deeply.",
+                "Visualize energy flowing to the heart, clearing away any confusion or distractions.",
+                "See this energy expanding, bringing emotional clarity and deep connections."
+            ],
+            "Practice for 5 minutes twice a day.",
+            "This technique uses the mind’s power to direct energy for emotional clarity and deeper connections."
+        ],
+        "healing": [
+            "Deep Breathing for Grounding",
+            "Use deep breathing to ground the mind and bring emotional focus.",
+            [
+                "Magizh should sit comfortably with feet on the ground.",
+                "Inhale slowly for 4 counts, hold for 4, and exhale slowly for 6 counts."
+            ],
+            "Repeat for 5-10 minutes to calm the mind.",
+            "Deep breathing helps bring focus and reduces mental restlessness."
+        ],
+        "mudra": [
+            "The Gyan Mudra for Clarity",
+            "This mudra enhances mental clarity and emotional connection.",
+            [
+                "Magizh should sit with a straight back.",
+                "Touch the tips of the index fingers and thumbs together, keeping other fingers extended.",
+                "Focus on calming the mind and deepening emotional awareness."
+            ],
+            "Hold this position for 5-10 minutes daily.",
+            "The Gyan Mudra helps clear mental clutter, improving emotional depth and clarity."
+        ]
+    }
+],
+    "Cancer": [
+    "Magizh’s subconscious mind, with the 8th house in Cancer, may be deeply connected to emotional security, family, and the need to protect loved ones. However, this can create subconscious fears and attachments related to vulnerability, emotional loss, and abandonment. Magizh may subconsciously suppress their emotions or avoid confronting deeper feelings to maintain a sense of safety. There may be an intense desire to shield oneself and others from emotional pain, which could hinder growth and emotional freedom. This emotional armor can also make it challenging for Magizh to fully trust and open up in relationships.",
+    [
+        {
+            "title": "Fear of Abandonment",
+            "content": "Subconscious fears of being left behind or not being loved can create emotional blocks."
+        },
+        {
+            "title": "Emotional Suppression",
+            "content": "A tendency to hide emotions, making it hard to process feelings and express vulnerability."
+        },
+        {
+            "title": "Overprotectiveness",
+            "content": "A subconscious need to control and protect, which can create tension in relationships."
+        },
+        {
+            "title": "Fear of Emotional Pain",
+            "content": "Avoiding emotional depth due to the fear of being hurt or experiencing loss."
+        },
+        {
+            "title": "Difficulty Letting Go",
+            "content": "Subconsciously holding onto past emotional wounds or relationships, making it hard to move forward."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Emotional Freedom and Trust",
+            "Use affirmations to encourage trust, emotional expression, and letting go of past pain.",
+            [
+                "I trust myself to open my heart and embrace my emotions.",
+                "I release fear and trust that I am safe to express my feelings."
+            ],
+            "Repeat these affirmations 5 times in the morning and evening.",
+            "Affirmations reprogram the subconscious mind, creating space for emotional release and trust."
+        ],
+        "quantum": [
+            "Energy Transformation for Emotional Healing",
+            "Visualize emotional energy shifting from fear to calm and peace.",
+            [
+                "Magizh should sit quietly and focus on breathing.",
+                "Visualize fear or emotional pain as dark energy around the chest area.",
+                "See this dark energy transforming into warm, golden light, filling the body with peace and emotional freedom."
+            ],
+            "Practice this visualization for 3-5 minutes each morning.",
+            "Visualization transforms negative emotional energy into positive vibrations, helping to release fear and past pain."
+        ],
+        "healing": [
+            "Healing Through Heart-Centered Breathing",
+            "Use deep heart-centered breathing to calm emotional reactions and release stress.",
+            [
+                "Magizh should sit comfortably, place hands on the heart, and focus on deep breathing.",
+                "Inhale deeply through the nose for 4 counts, imagining light entering the heart.",
+                "Hold for 4 counts and exhale slowly for 6 counts, releasing tension."
+            ],
+            "Repeat for 5-10 minutes, especially when feeling overwhelmed or emotionally triggered.",
+            "Heart-centered breathing calms the nervous system, promoting emotional healing and peace."
+        ],
+        "mudra": [
+            "The Apan Vayu Mudra for Emotional Balance",
+            "This mudra helps release emotional tension and encourages inner peace.",
+            [
+                "Magizh should sit comfortably with their hands resting on the knees, palms facing upward.",
+                "Touch the tips of the index and middle fingers to the tips of the thumb, while keeping the other fingers extended.",
+                "Focus on deep, calm breathing and visualize emotional healing."
+            ],
+            "Hold the mudra for 5-10 minutes daily.",
+            "The Apan Vayu Mudra promotes emotional balance, reducing fear and promoting calmness."
+        ]
+    }
+],
+  "Leo": [
+    "Magizh’s subconscious mind with the 8th house in Leo may carry a deep need for recognition, attention, and validation. There could be subconscious fears about not being appreciated or seen, leading to emotional blocks around expressing their true selves. Magizh may subconsciously seek to control how they are perceived by others, which can create resistance to vulnerability. Fear of being judged or criticized might also prevent Magizh from fully embracing emotional depth or change, causing them to hide their true feelings behind a façade of confidence.",
+    [
+        {
+            "title": "Fear of Rejection",
+            "content": "Subconscious fear of not being accepted or seen for who they truly are."
+        },
+        {
+            "title": "Overcompensation",
+            "content": "A tendency to seek constant validation or attention to feel emotionally secure."
+        },
+        {
+            "title": "Emotional Pride",
+            "content": "A subconscious need to protect pride, which may prevent Magizh from admitting vulnerability or emotional pain."
+        },
+        {
+            "title": "Need for Control",
+            "content": "A tendency to control situations to ensure recognition and validation."
+        },
+        {
+            "title": "Avoiding Vulnerability",
+            "content": "Subconsciously avoiding emotional depth or honesty due to fear of being judged or misunderstood."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Self-Acceptance and Emotional Honesty",
+            "Repeat affirmations to encourage self-love, emotional expression, and acceptance.",
+            [
+                "I am worthy of love and acceptance just as I am.",
+                "I embrace my vulnerability and trust that it strengthens me."
+            ],
+            "Repeat these affirmations 5 times each morning.",
+            "Affirmations help shift subconscious beliefs, fostering self-love and emotional openness."
+        ],
+        "quantum": [
+            "Transforming Emotional Energy for Authenticity",
+            "Use energy visualization to shift from fear of rejection to personal authenticity.",
+            [
+                "Magizh should sit in a quiet space and breathe deeply.",
+                "Visualize a dark cloud of self-doubt or fear of rejection surrounding the body.",
+                "See this cloud dissolving, and replace it with golden, radiant energy that represents authenticity and confidence."
+            ],
+            "Practice for 3-5 minutes daily.",
+            "Visualization can help transform negative emotional patterns, allowing for greater authenticity and emotional freedom."
+        ],
+        "healing": [
+            "Breathwork for Emotional Release",
+            "Deep breathing to release emotional blockages and restore inner calm.",
+            [
+                "Magizh should sit comfortably, focusing on their breath.",
+                "Inhale deeply for 4 counts, imagining positive energy entering the body.",
+                "Hold the breath for 4 counts, then slowly exhale for 6 counts, releasing tension."
+            ],
+            "Repeat for 5-10 minutes, especially when feeling emotionally stuck or tense.",
+            "Breathwork clears emotional tension, promoting healing and emotional freedom."
+        ],
+        "mudra": [
+            "The Surya Mudra for Confidence",
+            "This mudra enhances self-confidence and emotional balance.",
+            [
+                "Magizh should sit with their back straight, palms facing upward.",
+                "Touch the ring finger to the base of the thumb while keeping the other fingers extended.",
+                "Focus on deep breathing and visualize feelings of self-assurance and inner strength."
+            ],
+            "Hold the mudra for 5-10 minutes daily.",
+            "The Surya Mudra promotes confidence and emotional balance, helping to release fear of rejection and insecurity."
+        ]
+    }
+],
+  "Virgo": [
+    "Magizh’s subconscious mind with the 8th house in Virgo may be highly analytical and detail-oriented, but this can sometimes lead to subconscious worry and overthinking. There might be a tendency to focus on perfectionism, which can create emotional barriers or resistance to change. Magizh may subconsciously feel the need to control every detail of life to feel safe, leading to anxiety when things are out of order or when they are unable to meet high standards. These deep-seated concerns can cause them to resist transformation or emotional depth, as they focus too much on fixing external situations rather than allowing internal growth.",
+    [
+        {
+            "title": "Perfectionism",
+            "content": "A subconscious drive to make everything perfect, which can lead to frustration or avoidance of emotional expression."
+        },
+        {
+            "title": "Worry and Overthinking",
+            "content": "A tendency to overanalyze, creating mental and emotional stress."
+        },
+        {
+            "title": "Fear of Imperfection",
+            "content": "Subconscious fears of making mistakes or being judged for not being 'good enough.'"
+        },
+        {
+            "title": "Difficulty Letting Go",
+            "content": "A tendency to hold on to minor details or past events, preventing emotional healing."
+        },
+        {
+            "title": "Resistance to Vulnerability",
+            "content": "Fear of being imperfect or judged may lead Magizh to avoid emotional depth or change."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Self-Acceptance and Relaxation",
+            "Use affirmations to release the need for perfectionism and embrace emotional growth.",
+            [
+                "I am enough just as I am, without needing to be perfect.",
+                "I release worry and trust the process of growth."
+            ],
+            "Repeat these affirmations 5 times in the morning and evening.",
+            "Affirmations can help Magizh shift from perfectionism to self-acceptance and emotional openness."
+        ],
+        "quantum": [
+            "Energy Release for Emotional Freedom",
+            "Visualize releasing control over minor details and shifting to emotional freedom.",
+            [
+                "Magizh should sit quietly and focus on deep breathing.",
+                "Visualize holding tightly to mental clutter or perfectionist tendencies.",
+                "See these tensions dissolving and being replaced with a feeling of peace and calm."
+            ],
+            "Practice for 5 minutes daily.",
+            "Visualization helps release the need for perfection and fosters emotional freedom."
+        ],
+        "healing": [
+            "Guided Breathing for Letting Go",
+            "Focused breathing to release emotional tension and let go of control.",
+            [
+                "Magizh should sit comfortably with hands on the belly.",
+                "Inhale deeply through the nose for 4 counts, expanding the belly.",
+                "Exhale through the mouth for 6 counts, releasing tension in the body."
+            ],
+            "Repeat for 5-10 minutes to promote relaxation and release anxiety.",
+            "Breathing helps reduce mental chatter and fosters emotional healing."
+        ],
+        "mudra": [
+            "The Apana Mudra for Emotional Release",
+            "This mudra helps let go of control and release emotional tension.",
+            [
+                "Magizh should sit with their back straight and palms facing upward.",
+                "Touch the tips of the middle and ring fingers to the tips of the thumb.",
+                "Focus on breathing and releasing any emotional tension."
+            ],
+            "Hold for 5-10 minutes each day.",
+            "The Apana Mudra helps release deep-seated emotions and brings emotional calm."
+        ]
+    }
+],
+  "Libra": [
+    "Magizh's subconscious mind with the 8th house in Libra may have a deep-seated need for balance, harmony, and justice, which could cause them to avoid confronting difficult emotions. Magizh might fear conflict and might subconsciously suppress their own needs or emotions in favor of keeping peace or seeking approval from others. This can create challenges in standing up for themselves and expressing personal boundaries, as they might fear alienating others or being seen as confrontational. The desire for balanced relationships may sometimes create unconscious emotional imbalances, where Magizh struggles to deal with personal conflicts.",
+    [
+        {
+            "title": "Fear of Conflict",
+            "content": "Subconscious fear of disagreements or being judged can lead to emotional avoidance."
+        },
+        {
+            "title": "Lack of Self-Assertion",
+            "content": "Difficulty expressing personal boundaries or asserting their own needs."
+        },
+        {
+            "title": "People-Pleasing",
+            "content": "A tendency to prioritize others’ needs over their own, creating internal resentment."
+        },
+        {
+            "title": "Over-Reliance on Relationships",
+            "content": "Subconscious belief that their worth is tied to how well they relate to others."
+        },
+        {
+            "title": "Avoidance of Emotional Depth",
+            "content": "Fear of deep emotional confrontations or conflicts, leading to emotional detachment."
+        }
+    ],
+    {
+        "manifestation": [
+            "Affirmations for Healthy Boundaries and Confidence",
+            "Use affirmations to encourage emotional independence and self-assertion.",
+            [
+                "I honor my emotions and express my needs confidently.",
+                "I create healthy boundaries with others and respect my personal space."
+            ],
+            "Repeat these affirmations 5 times each morning.",
+            "Affirmations help shift subconscious beliefs towards healthy self-expression and boundaries."
+        ],
+        "quantum": [
+            "Energy Release for Emotional Independence",
+            "Visualize emotional energy being released to create independence from others’ expectations.",
+            [
+                "Magizh should sit comfortably and close their eyes.",
+                "Visualize energetic cords connecting them to others, draining their emotional energy.",
+                "See these cords dissolving, and feel the energy returning to them as an aura of confidence and independence."
+            ],
+            "Practice this visualization for 5 minutes daily.",
+            "Visualization helps Magizh disconnect from emotional reliance on others and strengthens their personal energy."
+        ],
+        "healing": [
+            "Heart-Centered Breathing for Inner Balance",
+            "Use deep breathing to calm emotions and restore balance within the heart.",
+            [
+                "Magizh should sit comfortably and place hands on the heart.",
+                "Inhale deeply for 4 counts, imagining love and balance flowing into the heart.",
+                "Exhale slowly for 6 counts, releasing any emotional tension or conflict."
+            ],
+            "Repeat for 5-10 minutes to calm the mind and restore emotional balance.",
+            "Heart-centered breathing promotes emotional calm, helping to manage anxiety and maintain balance."
+        ],
+        "mudra": [
+            "The Apan Vayu Mudra for Emotional Clarity",
+            "This mudra helps release emotional tension and encourages clarity in relationships.",
+            [
+                "Magizh should sit comfortably with palms facing upward.",
+                "Touch the tips of the index and middle fingers to the tips of the thumb, keeping the other fingers extended.",
+                "Focus on breathing deeply, allowing clarity and emotional healing."
+            ],
+            "Hold for 5-10 minutes daily.",
+            "The Apan Vayu Mudra promotes emotional clarity and balance, helping to reduce conflicts."
+        ]
+    }
+],
+    
+}

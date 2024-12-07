@@ -1,9 +1,6 @@
 import datetime
-from geopy.geocoders import Nominatim
-from geopy.exc import GeocoderTimedOut
 from sunrise import get_sun_times
 import math
-import time
 
 ganam_nakshatras = {
     "Deva_Ganam": [
@@ -71,25 +68,6 @@ nakshatra_yoni = {
     'Revati': 'Elephant'
 }
 
-def get_lat_lon(location_name, max_retries=3, timeout_duration=5):
-    """Retrieve latitude and longitude for a given location name."""
-    geolocator = Nominatim(user_agent="astrology_calculator")
-
-    for attempt in range(max_retries):
-        try:
-            location = geolocator.geocode(location_name, timeout=timeout_duration)
-            if location:
-                return location.latitude, location.longitude
-            else:
-                raise ValueError("Location not found.")
-        except GeocoderTimedOut:
-            print(f"Attempt {attempt + 1} timed out. Retrying...")
-            time.sleep(2)  
-        except Exception as e:
-            raise RuntimeError(f"An error occurred while geocoding: {e}")
-    
-    raise ConnectionError("Failed to retrieve location after multiple attempts.")
-
 nakshatrasData = [
     (0.000000000000000, 13.333333333333334),   
     (13.333333333333334, 26.666666666666668),  
@@ -121,6 +99,36 @@ nakshatrasData = [
 ]
 
 
+yogas = [
+    "Vishkambha",
+    "Priti",
+    "Ayushman",
+    "Saubhagya",
+    "Shobhana",
+    "Atiganda",
+    "Sukarman",
+    "Dhriti",
+    "Shoola",
+    "Ganda",
+    "Vriddhi",
+    "Dhruva",
+    "Vyaghata",
+    "Harsana",
+    "Vajra",
+    "Siddhi",
+    "Vyatipata",
+    "Variyana",
+    "Parigha",
+    "Shiva",
+    "Siddha",
+    "Sadhya",
+    "Shubha",
+    "Shukla",
+    "Brahma",
+    "Indra",
+    "Vaidhriti"
+]
+
 def calculate_tithi(sun_pos, moon_pos):
     tithis = ["Pratipada", "Ditiya", "Tritiya", "Chaturthi", "Panchami", "Shashthi", "Saptami", "Ashtami", "Navami", "Dashami", "Ekadashi", "Dwadashi", "Trayodashi", "Chaturdashi", "Purnima"]
     sun_longitude, moon_longitude =sun_pos,moon_pos
@@ -150,35 +158,6 @@ def calculate_yoga(moon_pos, sun_pos):
         angular_diff += 360
     
     yoga_index = int(angular_diff) % 27
-    yogas = [
-        "Vishkambha",
-        "Priti",
-        "Ayushman",
-        "Saubhagya",
-        "Shobhana",
-        "Atiganda",
-        "Sukarman",
-        "Dhriti",
-        "Shoola",
-        "Ganda",
-        "Vriddhi",
-        "Dhruva",
-        "Vyaghata",
-        "Harsana",
-        "Vajra",
-        "Siddhi",
-        "Vyatipata",
-        "Variyana",
-        "Parigha",
-        "Shiva",
-        "Siddha",
-        "Sadhya",
-        "Shubha",
-        "Shukla",
-        "Brahma",
-        "Indra",
-        "Vaidhriti"
-    ]
     
     return yogas[yoga_index], yoga_index + 1
 
@@ -233,7 +212,7 @@ def calculate_karana(tithi,sun_pos, moon_pos):
         return karanas[tithi - 1][0] , (tithi * 2 ) - 1
     
     
-def calculate_panchang(date_str, moon_pos, sun_pos, location):
+def calculate_panchang(date_str, moon_pos, sun_pos,lat,lon):
     date_obj = datetime.datetime.strptime(date_str, '%Y-%m-%d %H:%M:%S')
     day_of_week = date_obj.strftime('%A')
         
@@ -241,7 +220,7 @@ def calculate_panchang(date_str, moon_pos, sun_pos, location):
     nakshatra,nakshatraIndex = calculate_nakshatra(moon_pos)
     yoga,yoga_index = calculate_yoga(sun_pos,moon_pos)
     karanam,karanamIndex = calculate_karana(thithi_number,sun_pos,moon_pos)
-    sunrise,sunset = get_sun_times(location,date_str)
+    sunrise,sunset = get_sun_times(lat,lon,date_str)
     
     panchang_values = {
         "thithi": thithi,
