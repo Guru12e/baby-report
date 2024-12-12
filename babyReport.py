@@ -1878,7 +1878,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         else:
             planet['status'] = "Neutral"
             
-
         pdf.AddPage(path)
             
         pdf.set_text_color(hex_to_rgb("#966A2F"))
