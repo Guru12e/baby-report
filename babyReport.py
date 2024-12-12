@@ -175,21 +175,65 @@ class PDF(FPDF):
             self.multi_cell(self.w - 40, 13, f"{title}", align='C') 
             
     def ContentDesign(self,color,title,content,path,name,image=None):
-        if image:
-            self.image(f"{path}/icons/{image}", self.w / 2 - 10 , self.get_y() , 20 , 20)
-            self.set_y(self.get_y() + 20)
+        ContentImages = {
+            'Physical Attributes': "pg 19_physical.png",
+            'Outer Personality' : "pg 19_character.png", 
+            'Character' : "pg 19_outer.png",
+            'Positive Behavior' : "pg 19_behaviour.png",
+            'Behavior Challenges' : "pg 19_impact.png",
+            f"Parenting Tips For {name}'s Behaviour Challenges" : "pg 35_parenting.png",
+            f"{name}'s Emotional State Insights" : "pg 22_emotional.png", 
+            f"{name}'s Emotions" : "pg 22_inner worlds.png",
+            f"{name}'s Personality" : "pg 14_child.png",
+            f"{name}'s Core Identity" : "pg 15_core identity.png",
+            f"{name}'s Feelings" : "pg 24_desire.png",
+            f"{name}'s Reactions" : "pg 14_emotional.png",
+            f"{name}'s Emotional Imbalance Challenges" : "pg 25_build.png",
+            f"Parenting Tips": "pg 35_parenting.png",
+            f"{name}'s Soul Desire" : "pg 24_soul.png",
+            f"Seek For Recognition" : "pg 45_physical.png", 
+            "Core Identity" : "pg 15_core identity.png", 
+            f"Parenting Tips For Self Identity Challenges" : "pg 26_challenges.png",
+            "Education and Intellectual Insights" : "pg 32_unique.png",
+            "Higher Education Preferences" : "pg 31.png", 
+            "Learning Approaches" : "pg 31_education.png", 
+            "How To Do It:" : "pg 84_assesment.png",
+            f"{name}'s Approaches for Forming Relationships" : "pg 35_challenges.png",
+            f"Parenting Support for Improve {name}'s Social Developments" : "pg_34.png",
+            f"{name}'s Successful Career Path & Suitable Professions" : "pg 37.png", 
+            "Business & Entrepreneurial Potentials" : "pg 38_business.png",
+            "Saturn's Life Lesson" : "pg 47_saturn.png",
+            "Rahu's Life Lesson" : "pg 47_rahu.png",
+            "Ketu's Life Lesson": "pg 47_ketu.png",
+            "Unique Talents in Academics" : "pg 55.png", 
+            "Unique Talents in Arts & Creativity" : "pg 44_art.png",
+            "Unique Talents in Physical Activity" : "pg 45_physical.png"
+        }
+        
+        
+        if title in ContentImages.keys():
+            image = ContentImages[title]
         self.set_text_color(0,0,0)
         self.set_y(self.get_y() + 5)
         self.set_font('Karma-Semi', '', 16)
         if title != "":
             self.set_xy(22.5,self.get_y() + 5)
-            roundedBox(self, color, 20 , self.get_y()  - 2.5, self.w - 40, (self.no_of_lines(title,self.w - 45) * 7) + 10, 4)
+            if image:
+                roundedBox(self, color, 20 , self.get_y()  - 2.5, self.w - 40, (self.no_of_lines(title,self.w - 45) * 7) + 30, 4)
+                self.image(f"{path}/icons/{image}", self.w / 2 - 7.5, self.get_y() , 15 , 15)
+                self.set_y(self.get_y() + 15)
+            else:
+                roundedBox(self, color, 20 , self.get_y()  - 2.5, self.w - 40, (self.no_of_lines(title,self.w - 45) * 7) + 10, 4)
+            self.set_xy(22.5,self.get_y() + 2.5)
             self.multi_cell(self.w - 45, 7,title, align='C')
         if isinstance(content, str):
             content = content.replace("child", name)
             self.set_font('Karma-Regular', '', 14)
             self.set_xy(22.5,self.get_y() + 2.5)
-            self.lineBreak(f"        {content}",path,color)
+            if title == "":
+                self.roundedContent(f"        {content}",color)   
+            else:
+                self.lineBreak(f"        {content}",path,color)
         elif isinstance(content,dict):
             for k,v in content.items():
                 self.set_font('Karma-Semi', '', 16)
@@ -317,6 +361,11 @@ class PDF(FPDF):
             self.cell(30,8, f"{b['bhukthi']}",align='L')
             self.cell(20,8,f"upto {months_dict[b['end_month']]} {b['end_year']}",align='R')
             
+    def roundedContent(self, content , color):
+        roundedBox(self, color, 20 , self.get_y() , self.w - 40, self.no_of_lines(f"        {content}",self.w - 45) * 7 + 7.5)
+        self.set_xy(22.5,self.get_y() + 2.5)
+        self.multi_cell(self.w - 45, 7 ,f"       {content}",align='L')
+            
     def lineBreak(self, content, path,color):
         cell_width = self.w - 45 
         line_height = 7
@@ -324,6 +373,7 @@ class PDF(FPDF):
         current_y = self.get_y()
         
         if (current_y + (self.get_string_width(content) / cell_width) * line_height) < 250:
+            roundedBox(self,color,20,self.get_y(), self.w - 40 , 5 , status=False)
             roundedBox(self, color, 20 , self.get_y() , self.w - 40, self.no_of_lines(f"        {content}",self.w - 45) * 7 + 7.5, 4)
             self.set_xy(22.5,self.get_y() + 2.5)
             self.multi_cell(cell_width,line_height,f"       {content}",align='L')
@@ -411,23 +461,33 @@ class PDF(FPDF):
         for index, row in enumerate(data):
             col_width = (self.w - 40) / 2
 
-            self.set_font('Karma-Regular', '', 14)
+            self.set_font('Karma-Regular', '', 13)
 
             initial_y = self.get_y()
             
             content = max(self.get_string_width(row[0]), self.get_string_width(row[1]))
             
-            if index != len(data) - 1:
-                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y(), col_width, (content / (col_width - 10)) * 8 + 8, 0,status=False)
-                roundedBox(self, "#DAFFDC", 20 , self.get_y(), col_width, (content / (col_width - 10)) * 8 + 8, 0,status=False)
+            if index == 0:
+                roundedBox(self, "#DAFFDC", 20 + col_width / 2 , self.get_y(), col_width / 2, 5 ,status=False)
+                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y(), col_width / 2, 5 ,status=False)
+                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y(), col_width, 20)
+                roundedBox(self, "#DAFFDC", 20 , self.get_y(), col_width, 20)
+            elif index != len(data) - 1:
+                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y(), col_width, (content / (col_width - 8)) * 8 + 8, status=False)
+                roundedBox(self, "#DAFFDC", 20 , self.get_y(), col_width, (content / (col_width - 8)) * 8 + 8, status=False)
             else:
-                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y(), col_width, (content / (col_width - 10)) * 8 + 5, 0,status=False)
-                roundedBox(self, "#DAFFDC", 20 , self.get_y(), col_width, (content / (col_width - 10)) * 8 + 5, 0,status=False)
+                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y(), col_width, 5,status=False)
+                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y(), col_width, (content / (col_width - 8)) * 8 + 5)
+                roundedBox(self, "#DAFFDC", 20 , self.get_y(), col_width, 5,status=False)
+                roundedBox(self, "#DAFFDC", 20 , self.get_y(), col_width, (content / (col_width - 8)) * 8 + 5)
+                roundedBox(self, "#DAFFDC", 20 + col_width / 2 , self.get_y() + (content / (col_width - 8)) * 8, col_width / 2, 5 ,status=False)
+                roundedBox(self, "#FFDADA", self.w / 2 , self.get_y() + (content / (col_width - 8)) * 8, col_width / 2, 5 ,status=False)
+                
             if index == 0:
                 self.multi_cell(col_width, 8, row[0], new_x=XPos.RIGHT, new_y=YPos.TOP, align='C')
             else:
-                self.cell(10, 8, f"{index}) ", new_x=XPos.RIGHT, new_y=YPos.TOP, align='C')
-                self.multi_cell(col_width - 10, 8, row[0], new_x=XPos.RIGHT, new_y=YPos.TOP,align='L')
+                self.cell(8, 7, f"{index}) ", new_x=XPos.RIGHT, new_y=YPos.TOP, align='C')
+                self.multi_cell(col_width - 8, 7, row[0], new_x=XPos.RIGHT, new_y=YPos.TOP,align='L')
 
             y_after_col1 = self.get_y()
 
@@ -437,14 +497,13 @@ class PDF(FPDF):
             if index == 0:
                 self.multi_cell(col_width, 8, row[1], align='C')
             else:
-                self.cell(10, 8, f"{index}) ", align='C')
-                self.multi_cell(col_width - 10, 8, row[1], align='L')
+                self.cell(8, 7, f"{index}) ", align='C')
+                self.multi_cell(col_width - 8, 7, row[1], align='L')
 
             y_after_col2 = self.get_y()
 
             y_start = max(y_after_col1, y_after_col2)
             self.set_xy(x_start, y_start)
-
             
 def hex_to_rgb(hex_color):
     hex_color = hex_color.lstrip('#')
@@ -921,10 +980,12 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             pdf.set_y(30)
         pdf.image(f"{path}/babyImages/{titleImage[i]}",pdf.w / 2 - 10,pdf.get_y() + 5,20,20) 
         pdf.set_y(pdf.get_y() + 25)
+        
         if i == 0:
             positive = thithiContent[panchang['thithi']][0]
             negative = thithiContent[panchang['thithi']][1]
             tips = thithiContent[panchang['thithi']][2]
+            
     
             pdf.set_xy(22.5,pdf.get_y() + 5)
             pdf.set_font('Karma-Semi', '', 18)
@@ -947,8 +1008,10 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             
             pdf.panchangTable(data)
                 
-            pdf.checkNewPage(path)
-            pdf.set_xy(30,pdf.get_y() + 5)
+            if pdf.get_y() + 20 > 270:
+                pdf.AddPage(path)
+                pdf.set_y(20)
+            pdf.set_xy(30,pdf.get_y() + 10)
             pdf.set_fill_color(hex_to_rgb(random.choice(DesignColors)))
             pdf.set_font("Times", '', 14)
             pdf.cell(pdf.w - 60,10,f"Thithi Lord: **{thithiLord[panchang['thithi']]}**",align='C',fill=True,new_y=YPos.NEXT,markdown=True)
@@ -981,12 +1044,12 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             ]
             
             pdf.panchangTable(data)         
-                   
+                
             pdf.checkNewPage(path)
-            pdf.set_xy(30,pdf.get_y() + 5)
-            pdf.set_fill_color(hex_to_rgb(random.choice(DesignColors)))
             pdf.set_font("Times", '', 14)
-            pdf.cell(pdf.w - 60,10,f"Rulling Planet: **{weekPlanet[panchang['week_day']]}**",align='C',fill=True,new_y=YPos.NEXT,markdown=True)
+            roundedBox(pdf,random.choice(DesignColors),40,pdf.get_y() + 5,pdf.w - 80,10)
+            pdf.set_xy(30,pdf.get_y() + 5)
+            pdf.cell(pdf.w - 60,10,f"Rulling Planet: **{weekPlanet[panchang['week_day']]}**",align='C',new_y=YPos.NEXT,markdown=True)
             
             pdf.set_xy(22.5,pdf.get_y() + 5)
             pdf.multi_cell(pdf.w - 45,7,f"**Parenting Tips** : {tips['Tip']} {tips['Execution']}",align='L',markdown=True)
@@ -1033,7 +1096,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.set_y(pdf.get_y() + 5)
     pdf.set_font('Karma-Regular', '', 14)
     pdf.set_text_color(0,0,0) 
-    pdf.lineBreak(insights,path,random.choice(DesignColors))
+    pdf.roundedContent(insights,random.choice(DesignColors))
     color = random.choice(DesignColors)
     color2 = random.choice(DesignColors)
     col_width = pdf.w / 2 - 10 - 2.5
@@ -1092,7 +1155,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     colors = ["#CBF3DB","#FFD6A5", "#DEE2FF"]
     for i,t in enumerate(title): 
         pdf.set_xy(30,pdf.get_y())
-        roundedBox(pdf,colors[i], pdf.w / 2 - 50, pdf.get_y(), 100, 10, corner=10)
+        roundedBox(pdf,colors[i], pdf.w / 2 - 50, pdf.get_y(), 100, 10, corner=20)
         pdf.cell(pdf.w - 60,10,t,align='C')
         pdf.set_y(pdf.get_y() + 15)
     
@@ -1211,7 +1274,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
 
     content3 = {'emotional_state': 'Magizh, with the Moon positioned in the 7th house of Aries in Bharani nakshatra along with Planets Moon and Jupiter, tends to have a strong sense of independence and a need for personal space. Magizh believes in taking action and being assertive in order to achieve their goals. Emotionally, Magizh is passionate, determined, and sometimes impatient.', 'emotions': ['Passionate and enthusiastic in pursuing their desires', "Can become easily frustrated when things don't go as planned", 'Has a fiery and competitive spirit when faced with challenges'], 'feelings': ['Feels a strong sense of individuality and self-reliance', 'Experiences a drive to constantly seek new experiences and adventures', 'May feel restless or impulsive when restricted or confined'], 'reactions': ['Responds quickly to situations with courage and boldness', 'May become defensive when their independence is questioned', 'Takes the lead and initiates action in group settings'], 'negative_imbalance': ['Tendency towards impulsiveness leading to rash decision-making', "Difficulty in compromising and considering others' perspectives", 'Struggles with anger issues and maintaining harmony in relationships'], 'parenting_tips': "To support Magizh in managing their negative emotional imbalances and foster growth, it is important to encourage self-reflection and mindfulness. Parents can help Magizh by teaching them the importance of taking a pause before reacting impulsively. Encourage open communication and active listening to understand others' viewpoints. Provide outlets for physical activities to channel the excess energy positively. Set boundaries and teach conflict resolution skills to promote healthy relationships. Practice gratitude and positivity to cultivate emotional balance."}
 
-    content4 = {'core_insights': 'Magizh, with the Sun positioned in the 3rd house of Sagittarius in Mula nakshatra, is driven by curiosity, communication, and self-expression. His core motivations revolve around expanding his knowledge, exploring new ideas, and connecting with others on a deeper level. His inner strength lies in his ability to adapt to change, think critically, and articulate his beliefs confidently. Magizh seeks recognition through his intellect, communication skills, and cultural insights. His core identity is shaped by his adventurous spirit, philosophical outlook, and love for learning. However, his ego may manifest in being overly opinionated, impatient, and restless.', 'recognitions': ['Magizh seeks recognition for his intellectual insights and communication prowess.', 'He craves acknowledgment for his philosophical outlook and love for cultural exploration.', 'Magizh desires to be recognized for his adaptability and curiosity towards learning new things.'], 'core_identity': ["Magizh's core identity is rooted in his adventurous spirit and quest for knowledge.", 'His philosophical outlook shapes his beliefs and values, defining his sense of purpose.', "Magizh's love for cultural exploration influences his interactions and connections with others."], 'parenting_tips': "Shifting Magizh's negative ego can be done through 'Empathy Building' technique. To practice this, as a parent, start by acknowledging Magizh's feelings and validating his experiences. Encourage open communication and active listening to understand his perspectives better. Guide him to empathize with others by putting himself in their shoes and considering their feelings. Foster a supportive environment where Magizh learns to prioritize understanding and compassion over ego-driven reactions. Remember, modeling empathy in your own interactions with Magizh will positively influence Magizh's growth and development in managing his ego."}
+    content4 = {'core_insights': "Magizh, with the Sun positioned in the 3rd house of Sagittarius in Mula nakshatra, is driven by a deep desire for knowledge and intellectual pursuits. His core identity is centered around exploration, seeking truth and meaning, and expressing his beliefs with conviction. His inner strength lies in his optimism, curiosity, and adaptability, which enable him to navigate various challenges with a sense of adventure and purpose. However, Magizh's ego can sometimes be overly proud and self-righteous, leading to conflicts in relationships and a tendency to impose his views on others.", 'recognitions': ['Magizh seeks recognition for his intellectual achievements and philosophical insights.', 'He also craves acknowledgment for his ability to communicate persuasively and inspire others.', 'Magizh desires recognition for his adventurous spirit and willingness to explore new ideas and cultures.'], 'core_identity': ["Magizh's core identity is shaped by his quest for truth and wisdom.", 'His belief in the power of knowledge and education drives his actions and interactions with others.', "Magizh's identity is rooted in his philosophical nature, love for learning, and his ability to inspire those around him."], 'parenting_tips': 'Encourage Magizh to practice humility and empathy in his interactions with others. Teach him to listen actively, consider different perspectives, and appreciate the diversity of opinions and experiences. Guide Magizh to engage in meaningful conversations that foster understanding and mutual respect. By nurturing these qualities, Magizh can develop a more balanced sense of self and build stronger connections with those around him.'}
     
     content = [content2,content3,content4]
     titles = [{
@@ -1290,13 +1353,19 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
                 pdf.AddPage(path)
                 pdf.set_y(20)
                 
-            pdf.set_y(pdf.get_y() + 10)
+            pdf.set_y(pdf.get_y())
+            pdf.image(f"{path}/icons/pg 33_personalized.png",pdf.w / 2 - 10,pdf.get_y(),20,20)
+            pdf.set_y(pdf.get_y() + 25)
             pdf.set_font('Karma-Semi' , '' , 18)
             pdf.cell(0,0,"Parenting Tip for Academic Excellence:", align='C')
             pdf.set_font_size(15)
             pdf.set_y(pdf.get_y() + 10) 
             pdf.cell(0,0, content[3],align='C')
             pdf.set_y(pdf.get_y() + 5)
+            
+            if pdf.get_y() + 40 >= 260:  
+                pdf.AddPage(path)
+                pdf.set_y(30)
             
         pdf.ContentDesign(random.choice(DesignColors),educationTitle[k],v,path,name)
             
@@ -1514,8 +1583,8 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     
     uniqueTitle = {
         'insights': "", 
-        'education' : "Unique Talents in Academics ", 
-        'arts_creative' :"Unique Talents in Arts & creativity ",
+        'education' : "Unique Talents in Academics", 
+        'arts_creative' :"Unique Talents in Arts & Creativity",
         'physical_activity': "Unique Talents in Physical Activity"
     }
     # con = chapterPrompt(planets,0,name,gender)
@@ -2014,8 +2083,8 @@ def babyReport(dob,location,lat,lon,path,gender,name):
         print("Dasa Calculated")    
         birthchart = generate_birth_navamsa_chart(planets,f'{path}/chart/',dob,location,name)
         # birthchart = {
-            # 'birth_chart' : '1.png',
-            # 'navamsa_chart' : '2.png'
+        #     'birth_chart' : '1.png',
+        #     'navamsa_chart' : '2.png'
         # }
         print("Birth Chart Generated")
         print("Lat Lon Found")
