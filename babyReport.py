@@ -11,36 +11,6 @@ from dasa import calculate_dasa
 from promptSection import panchangPrompt,physical,dasaPrompt,healthPrompt,chapterPrompt,PlanetPrompt
 import os
 
-nakshatras = [
-    "Ashwini",
-    "Bharani",
-    "Krittika", 
-    "Rohini", 
-    "Mrigashira", 
-    "Ardra",
-    "Punarvasu", 
-    "Pushya",
-    "Ashlesha",
-    "Magha", 
-    "Purva Phalguni", 
-    "Uttara Phalguni",
-    "Hasta", 
-    "Chitra", 
-    "Swati", 
-    "Vishakha", 
-    "Anuradha", 
-    "Jyeshtha", 
-    "Mula",
-    "Purva Ashadha", 
-    "Uttara Ashadha",
-    "Shravana",
-    "Dhanishta",
-    "Shatabhisha", 
-    "Purva Bhadrapada", 
-    "Uttara Bhadrapada",
-    "Revati", 
-]
-
 number = {
     1: "First",
     2: "Second",
@@ -519,16 +489,11 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.add_font('Karma-Regular', '', f'{path}/fonts/Linotte-Regular.otf')
     
     pdf.add_page()
-    pdf.set_font('Karma-Semi', '', 36)
-    pdf.set_text_color(0,0,0)
+    pdf.set_font('Karma-Semi', '', 38)
+    pdf.set_text_color(hex_to_rgb("#040606"))
     pdf.image(f"{path}/babyImages/main.png", 0 , 0 , pdf.w , pdf.h)
-    pdf.set_xy(30,180)
-    pdf.multi_cell(pdf.w - 60, 15, f"{name}'s Astrology Report", align='C')
-    pdf.set_y(260)
-    pdf.set_font_size(22)
-    pdf.cell(0,0,f"{formatted_date} {formatted_time}",align='C')
-    pdf.set_y(pdf.get_y() + 10)
-    pdf.cell(0,0,f"{location}",align='C')
+    pdf.set_xy(30,40)
+    pdf.multi_cell(pdf.w - 60, 18, f"{name.split()[0]}'s First Astrology Report", align='C')
     
     pdf.AddPage(path)
     pdf.set_y(30)
@@ -2025,18 +1990,32 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
 
     table_data = [
         (f"Name", f"Fields", "Characteristics"),
-        (f"{content[0]['name']}", f"{content[0]['famous']}",f"{content[0]['nakshatra']}"),
-        (f"{content[1]['name']}", f"{content[1]['famous']}",f"{content[1]['nakshatra']}"),
-        (f"{content[2]['name']}", f"{content[2]['famous']}",f"{content[2]['nakshatra']}"),
     ]
     
-    for row in table_data:
+    for con in content:
+        table_data.append((f"{con['name']}", f"{con['famous']}",f"{con['nakshatra']}"))
+        
+    width = (pdf.w - 40) / 3
+    
+    color = random.choice(DesignColors)
+    
+    for index,row in enumerate(table_data):
+        content = max(pdf.get_string_width(row[0]), pdf.get_string_width(row[1]), pdf.get_string_width(row[2]))
+            
+        if index == 0:
+            roundedBox(pdf, color, 20 , pdf.get_y(), pdf.w - 40, 20)
+        elif index != len(table_data) - 1:
+            roundedBox(pdf, color, 20 , pdf.get_y(), pdf.w - 40, (content / width) * 10 + 8, status=False)
+        else:
+            roundedBox(pdf, color, 20 , pdf.get_y(), pdf.w - 40, 5,status=False)
+            roundedBox(pdf, color, 20 , pdf.get_y(), pdf.w - 40, (content / width) * 10 + 5)
+            
         pdf.set_font('Karma-Regular', '', 14)
-        pdf.cell(50, 10, row[0], new_x=XPos.RIGHT, new_y=YPos.TOP,border=1,align='C')
+        pdf.multi_cell(width, 10, row[0], new_x=XPos.RIGHT, new_y=YPos.TOP,align='C')
         pdf.set_font('Karma-Regular', '', 14)
-        pdf.cell(50, 10, row[1], new_x=XPos.RIGHT, new_y=YPos.TOP,border=1,align='C')
+        pdf.multi_cell(width, 10, row[1], new_x=XPos.RIGHT, new_y=YPos.TOP,align='C')
         pdf.set_font('Karma-Regular', '', 14)
-        pdf.multi_cell(50, 10, row[2],align='L',border=1)
+        pdf.multi_cell(width, 10, row[2],align='L')
         y_start = pdf.get_y()
         pdf.set_xy(x_start, y_start)    
     

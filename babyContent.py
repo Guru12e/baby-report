@@ -4745,62 +4745,196 @@ subContent = {
 
 nakshatraContent = {
     'Ashwini': [
-        {
-            "name": "Sania Mirza",
-            "famous": "Tennis player",
-            "Nakshatra ": "Attractive personality"
-        },
-        {
-            "name": "Yukta Mookhey",
-            "famous": "Miss World",
-            "Nakshatra ": "Beautiful, attractive personality"
-        },
-        {
-            "name": "Bruce Lee",
-            "famous": "Actor",
-            "Nakshatra": "Interest in acting"
-        },
-    ], 
+    {
+        "name": "Prince Charles",
+        "famous": "Heir to the British throne, philanthropy, charity",
+        "nakshatra": "Attractive personality, gives hope to others, charity, religious."
+    },
+    {
+        "name": "Sania Mirza",
+        "famous": "Tennis player",
+        "nakshatra": "Attractive personality"
+    },
+    {
+        "name": "Yukta Mookhey",
+        "famous": "Miss World",
+        "nakshatra": "Beautiful, attractive personality"
+    },
+    {
+        "name": "Jacqueline Kennedy Onassis",
+        "famous": "Wife of US President John.F.Kennedy, fashion icon",
+        "nakshatra": "Attractive personality"
+    },
+    {
+        "name": "Jerry Lewis",
+        "famous": "American Comedian",
+        "nakshatra": "Interest in acting, music, charity"
+    },
+    {
+        "name": "Alfred Adler",
+        "famous": "Austrian Psychotherapist",
+        "nakshatra": "Healing"
+    },
+    {
+        "name": "Bruce Lee",
+        "famous": "Actor",
+        "nakshatra": "Interest in acting"
+    },
+    {
+        "name": "Richard Tamas",
+        "famous": "Cultural Historian and Astrologer",
+        "nakshatra": "Intelligent, bright, interest in spirituality"
+    },
+    {
+        "name": "Aldous Huxley",
+        "famous": "Writer and Philosopher",
+        "nakshatra": "Intelligent, interest in philosophy"
+    },
+    {
+        "name": "Ingrid Bergman",
+        "famous": "Swedish actress",
+        "nakshatra": "Beautiful, interest in acting"
+    },
+    {
+        "name": "Geena Davis",
+        "famous": "American actress",
+        "nakshatra": "Beautiful, interest in acting"
+    },
+    {
+        "name": "Pamela Anderson",
+        "famous": "American actress",
+        "nakshatra": "Beautiful, interest in acting"
+    },
+    {
+        "name": "Selena Gomez",
+        "famous": "Singer",
+        "nakshatra": "Beautiful. interest in music"
+    }
+], 
     'Bharani': [
-        {
-            "name": "Karl Marx",
-            "famous": "Philosopher",
-            "nakshatra": "Leadership, public life."
-        },
-    
-        {
-            "name": "James Braha",
-            "famous": "Writer",
-            "nakshatra": "Literary skills."
-        },
-        {
-            "name": "Carlos Castaneda",
-            "famous": "Writer",
-            "nakshatra": "Literary skills."
-        },
-    ],
+    {
+        "name": "C.G.Jung",
+        "famous": "Psychiatrist",
+        "nakshatra": "Investigative mind."
+    },
+    {
+        "name": "Karl Marx",
+        "famous": "Philosopher",
+        "nakshatra": "Leadership, public life."
+    },
+    {
+        "name": "Elton John",
+        "famous": "Singer",
+        "nakshatra": "Charismatic, public life."
+    },
+    {
+        "name": "Oliver Stone",
+        "famous": "Filmmaker",
+        "nakshatra": "Public life, literary skills."
+    },
+    {
+        "name": "Edgar Cayce",
+        "famous": "Clairvoyant",
+        "nakshatra": "Occult."
+    },
+    {
+        "name": "James Braha",
+        "famous": "Writer",
+        "nakshatra": "Literary skills."
+    },
+    {
+        "name": "Carlos Castaneda",
+        "famous": "Writer",
+        "nakshatra": "Literary skills."
+    },
+    {
+        "name": "Tonya Harding",
+        "famous": "Skater",
+        "nakshatra": "Attractive, public life."
+    },
+    {
+        "name": "Sir Ashutosh Mukherjee",
+        "famous": "Jurist, educationist",
+        "nakshatra": "Public life, leadership"
+    },
+    {
+        "name": "Swami Shivananda",
+        "famous": "Spiritual Guru",
+        "nakshatra": "Charismatic, public life, healthy."
+    },
+    {
+        "name": "Mahboob Ali Khan - the Nizam of Hyderabad",
+        "famous": "Ruler",
+        "nakshatra": "Poetic skills."
+    }
+],
     'Krittika': [
-        {
-            "name": "Bill Clinton",
-            "famous": "US President",
-            "nakshatra": "Attractive personality, famous."
-        },
-        {
-            "name": "Ronald Reagan",
-            "famous": "US President",
-            "nakshatra": "Intelligent, unstable decisions."
-        },
-        {
-            "name": "Bob Dylan",
-            "famous": "Musician",
-            "nakshatra": "Peaceful, good in advising."
-        },
-    ],
+    {
+        "name": "Guru Nanak",
+        "famous": "Spiritual Guru",      
+        "nakshatra": "Famous, preceptor."
+    },
+    {
+        "name": "Bill Clinton",
+        "famous": "US President",        
+        "nakshatra": "Attractive personality, famous."
+    },
+    {
+        "name": "Ronald Reagan",
+        "famous": "US President",
+        "nakshatra": "Intelligent, unstable decisions."
+    },
+    {
+        "name": "Bob Dylan",
+        "famous": "Musician",
+        "nakshatra": "Peaceful, good in advising."
+    },
+    {
+        "name": "Frida Kahlo",
+        "famous": "Painter",
+        "nakshatra": "Engaged in arts."
+    },
+    {
+        "name": "Mick Jagger",
+        "famous": "Singer",
+        "nakshatra": "Living away from the place of birth."
+    },
+    {
+        "name": "Gregory Peck",
+        "famous": "Actor",
+        "nakshatra": "Good periods - 25 to 35 years, 50 to 55 years."
+    },
+    {
+        "name": "Peter Sellers",
+        "famous": "Actor",
+        "nakshatra": "Attached to mother."
+    },
+    {
+        "name": "Jimmy Hoffa",
+        "famous": "Labor leader",
+        "nakshatra": "Combative."
+    }
+],
     'Rohini': [
     {
         "name": "Lord Krishna",
         "famous": "Avatara of Vishnu",
         "nakshatra": "Brilliant, attractive eyes."
+    },
+    {
+        "name": "Werner Erhard",
+        "famous": "Author",
+        "nakshatra": "Leadership, wealthy."
+    },
+    {
+        "name": "Queen Victoria",
+        "famous": "Legacy,'Empire",
+        "nakshatra": "Power, popularity."
+    },
+    {
+        "name": "Michelle Pfeiffer",
+        "famous": "Actress",
+        "nakshatra": "Attractive, popular."
     },
     {
         "name": "Burt Reynolds",
@@ -4812,16 +4946,25 @@ nakshatraContent = {
         "famous": "Military General",
         "nakshatra": "Power."
     },
-   
-  
-], 'Mrigashira': [
     {
-        "name": "Dr. Rajendra Prasad",
-        "famous": "Indian President",
-        "nakshatra": "Political power"
+        "name": "John Milton",
+        "famous": "Poet",
+        "nakshatra": "Poetic skills."
     },
     {
-        "name": "Dr. B.V.Raman",
+        "name": "Bernard Shaw",
+        "famous": "Playwright",
+        "nakshatra": "Literature."
+    }
+],
+    'Mrigashira': [
+    {
+        "name": "Dr. Rajendra Prasad", 
+        "famous": "Indian President",  
+        "nakshatra": "Political power" 
+    },
+    {
+        "name": "Dr. B.V.Raman",       
         "famous": "Astrologer, Author",
         "nakshatra": "Intelligent, writing skills."
     },
@@ -4830,15 +4973,30 @@ nakshatraContent = {
         "famous": "US Vice President",
         "nakshatra": "Political power, wealth."
     },
-   
-], 'Ardra': [
+    {
+        "name": "Shirley Temple",
+        "famous": "Ambassador",
+        "nakshatra": "Religious."
+    },
+    {
+        "name": "Brooke Shields",
+        "famous": "Actress",
+        "nakshatra": "Attractive, popular, bold."
+    },
+    {
+        "name": "Doris Day",
+        "famous": "Actress",
+        "nakshatra": "Attractive, popular"
+    }
+],
+    'Ardra': [
     {
         "name": "Adi Shankaracharya",
         "famous": "Spiritual leader",
-        "nakshatra": "Knowledge."
+        "nakshatra": "Knowledge."    
     },
     {
-        "name": "Ramanujacharya",
+        "name": "Ramanujacharya",    
         "famous": "Spiritual leader",
         "nakshatra": "Knowledge."
     },
@@ -4847,16 +5005,46 @@ nakshatraContent = {
         "famous": "Spiritual leader",
         "nakshatra": "Writing skills."
     },
-    
-], 'Punarvasu':[
+    {
+        "name": "Albert Einstein",
+        "famous": "Scientist",
+        "nakshatra": "Intelligent."
+    },
+    {
+        "name": "Hilary Clinton",
+        "famous": "Politician",
+        "nakshatra": "Communication skills."
+    },
+    {
+        "name": "Ross Perot",
+        "famous": "Businessman",
+        "nakshatra": "Indecisiveness."
+    },
+    {
+        "name": "Babe Ruth",
+        "famous": "Baseball player",
+        "nakshatra": "Athletic, skillful."
+    },
+    {
+        "name": "Marie Antoinette",
+        "famous": "French Queen",
+        "nakshatra": "Ungrateful."
+    }
+],
+    'Punarvasu':[
     {
         "name": "Ramana Maharshi",
         "famous": "Spiritual leader",
         "nakshatra": "Knowledge, self-control."
     },
     {
+        "name": "Bob Hope",
+        "famous": "Comedian",
+        "nakshatra": "Happy, contented."
+    },
+    {
         "name": "Jerry Brown",
-        "famous": "Governor of California",    
+        "famous": "Governor of California",
         "nakshatra": "Communication skills, self-control."
     },
     {
@@ -4864,12 +5052,27 @@ nakshatraContent = {
         "famous": "Singer",
         "nakshatra": "Troubled marriage."
     },
-  
-], 'Pushya': [
+    {
+        "name": "Ira Progoff",
+        "famous": "Psychotherapist",
+        "nakshatra": "Writing skills."
+    }
+],
+    'Pushya': [
     {
         "name": "Thyagaraja",
         "famous": "Carnatic music composer",
         "nakshatra": "Short-tempered."      
+    },
+    {
+        "name": "Arnold Schwarzenegger",    
+        "famous": "Actor",
+        "nakshatra": "Wealthy, successful."
+    },
+    {
+        "name": "Maxfield Parrish",
+        "famous": "Painter",
+        "nakshatra": "Artistic, sensitive."
     },
     {
         "name": "Janet Reno",
@@ -4881,34 +5084,63 @@ nakshatraContent = {
         "famous": "Dictator",
         "nakshatra": "Arrogance."
     }
-], 'Ashlesha': [
-    
+],
+    'Ashlesha': [
+    {
+        "name": "Mahatma Gandhi",
+        "famous": "Nonviolence",
+        "nakshatra": "Leadership, political success."
+    },
     {
         "name": "Jawaharlal Nehru",
         "famous": "Indian Prime Minister",
         "nakshatra": "Leadership, political success."
     },
-   
+    {
+        "name": "Paul McCartney",
+        "famous": "Singer",
+        "nakshatra": "Mystical."
+    },
+    {
+        "name": "Bepin Bihari",
+        "famous": "Astrologer, author",
+        "nakshatra": "Skill in the occult, literary skills."
+    },
     {
         "name": "Robert Bly",
         "famous": "Poet",
         "nakshatra": "Literary skills."
     },
-   
+    {
+        "name": "Dennis Harness",
+        "famous": "Astrologer",
+        "nakshatra": "Skill in the occult."
+    },
     {
         "name": "Marc Edmund Jones",
         "famous": "Writer",
         "nakshatra": "Literary skills."
     },
-], 'Magha': [
     {
-        "name": "Paramahansa Yogananda",
-        "famous": "Spiritual leader",
+        "name": "Barbara Streisand",
+        "famous": "Singer",
+        "nakshatra": "Troubled marriage."
+    },
+    {
+        "name": "Oscar Wilde",
+        "famous": "Poet",
+        "nakshatra": "Literary skills."
+    }
+],
+    'Magha': [
+    {
+        "name": "Paramahansa Yogananda",     
+        "famous": "Spiritual leader",        
         "nakshatra": "Honored and respected."
     },
     {
-        "name": "Maharishi Mahesh Yogi",
-        "famous": "Spiritual leader",
+        "name": "Maharshi Mahesh Yogi",      
+        "famous": "Spiritual leader",        
         "nakshatra": "Honored and respected."
     },
     {
@@ -4916,16 +5148,33 @@ nakshatraContent = {
         "famous": "British Prime Minister",
         "nakshatra": "Public relations, popularity."
     },
- 
- 
- 
-], 'Purva Phalguni': [
+    {
+        "name": "Dennis Flaherty",
+        "famous": "Astrologer",
+        "nakshatra": "Skill in the occult.."
+    },
+    {
+        "name": "Walt Whitman",
+        "famous": "Poet",
+        "nakshatra": "Enjoys life."
+    },
+    {
+        "name": "Joseph Stalin",
+        "famous": "Russian Premier",
+        "nakshatra": "Short-tempered."
+    }
+],
+    'Purva Phalguni': [
     {
         "name": "Chaitanya Mahaprabhu",       
         "famous": "Spiritual leader",
         "nakshatra": "Attractive personality."
     },
-  
+    {
+        "name": "Dustin Hoffman",
+        "famous": "Actor",
+        "nakshatra": "Creative, intelligent."
+    },
     {
         "name": "John F Kennedy",
         "famous": "US President",
@@ -4936,22 +5185,52 @@ nakshatraContent = {
         "famous": "Actor",
         "nakshatra": "Fond of traveling."
     },
-    
+    {
+        "name": "Robert Redford",
+        "famous": "Actor",
+        "nakshatra": "Handsome, sweet talking."
+    },
+    {
+        "name": "Shirley McLaine",
+        "famous": "Actress",
+        "nakshatra": "`Mystical, teaching skills."
+    },
+    {
+        "name": "Madonna",
+        "famous": "Singer",
+        "nakshatra": "Troubled mind."
+    }
 ], 'Uttara Phalguni': [
     {
-        "name": "Shuddhananda Bharati", 
-        "famous": "Philosopher",        
-        "nakshatra": "Learned, noble."  
+        "name": "Shuddhananda Bharati",
+        "famous": "Philosopher",       
+        "nakshatra": "Learned, noble." 
     },
-
-   
+    {
+        "name": "Sean Connery",        
+        "famous": "Actor",
+        "nakshatra": "Popular, wealthy."
+    },
+    {
+        "name": "Jack Nicholson",
+        "famous": "Actor",
+        "nakshatra": "Respected, luxury in life."
+    },
     {
         "name": "Alexander Graham Bell",
         "famous": "Inventor",
         "nakshatra": "Intelligent."
     },
-  
-   
+    {
+        "name": "Jonathan Winters",
+        "famous": "Comedian",
+        "nakshatra": "Happy, winters."
+    },
+    {
+        "name": "Mel Gibson",
+        "famous": "Actor",
+        "nakshatra": "Good period 38 to 62 years."
+    },
     {
         "name": "Agatha Christie",
         "famous": "Writer",
@@ -4973,47 +5252,94 @@ nakshatraContent = {
         "famous": "US President",
         "nakshatra": "Wealth late in life, leadership qualities."
     },
-    
-], 'Chitra': [
-  
     {
-        "name": "Krishnaraja Wadiyar IV",
+        "name": "Rudolph Valentino",
+        "famous": "Actor",
+        "nakshatra": "Attractive, sweet smile."
+    },
+    {
+        "name": "Burt Reynolds",
+        "famous": "Actor",
+        "nakshatra": "Friendly."
+    },
+    {
+        "name": "Robert Duvall",
+        "famous": "Actor",
+        "nakshatra": "Moody nature."
+    },
+    {
+        "name": "Richard Burton",
+        "famous": "Actor",
+        "nakshatra": "Cunning nature."
+    }
+],'Chitra': [
+    {
+        "name": "Chhatrapati Shivaji Maharaj",
+        "famous": "Ruler",
+        "nakshatra": "Visionary, fearless."   
+    },
+    {
+        "name": "Krishnaraja Wadiyar IV",     
         "famous": "Ruler",
         "nakshatra": "Interest in music and arts."
     },
-
+    {
+        "name": "Richard Chamberlain",
+        "famous": "Actor",
+        "nakshatra": "Handsome, artistic."
+    },
     {
         "name": "George Bush",
         "famous": "US President",
         "nakshatra": "Popular, leadership qualities."
     },
-  
+    {
+        "name": "Nicholas cage",
+        "famous": "Actor",
+        "nakshatra": "Popular."
+    },
     {
         "name": "Dwight Eisenhower",
         "famous": "US President",
         "nakshatra": "Popular, leadership qualities."
     },
-  
+    {
+        "name": "Marie Antoinette",
+        "famous": "Queen of France",
+        "nakshatra": "Troubled marriage."
+    }
 ], 'Swati': [
     {
         "name": "Meher Baba",
         "famous": "Spiritual leader",
         "nakshatra": "Righteous, compassionate."
     },
- 
+    {
+        "name": "Charlie Chaplin",
+        "famous": "Comedian",
+        "nakshatra": "Intelligent, famous."
+    },
     {
         "name": "Harry Truman",
         "famous": "US President",
         "nakshatra": "Adamant, short-tempered."
     },
-  
+    {
+        "name": "James Dean",
+        "famous": "Actor",
+        "nakshatra": "Troubled marriage."
+    },
     {
         "name": "Nelson Rockefeller",
         "famous": "US Vice President",
         "nakshatra": "Wealthy."
     },
-  
-], 'Vishakha': [
+    {
+        "name": "Edith Hathaway",
+        "famous": "Author",
+        "nakshatra": "Charitable."
+    }
+], 'Vishakha':[
     {
         "name": "Gautam Buddha",
         "famous": "Spiritual leader",
@@ -5024,20 +5350,37 @@ nakshatraContent = {
         "famous": "Spiritual leader",
         "nakshatra": "Intelligent."
     },
-   
+    {
+        "name": "Robert Handerson",
+        "famous": "Author",
+        "nakshatra": "Writing skills, ability to convince."
+    },
+    {
+        "name": "Warren Beatty",
+        "famous": "Actor",
+        "nakshatra": "Attractive, popular."
+    },
     {
         "name": "Alexander",
         "famous": "Ruler",
         "nakshatra": "Lives away from family, leadership qualities."
     },
-   
+    {
+        "name": "Mario Cuomo",
+        "famous": "NY Governor",
+        "nakshatra": "Humanitarian."
+    }
 ], 'Anuradha': [
     {
         "name": "Alex Haley",
         "famous": "Writer",
         "nakshatra": "Wise, honest, kind."
     },
-  
+    {
+        "name": "Kevin Costner",
+        "famous": "Actor",
+        "nakshatra": "Charismatic, hardworking, brave."
+    },
     {
         "name": "Steve Allen",
         "famous": "T.V. personality",
@@ -5048,20 +5391,37 @@ nakshatraContent = {
         "famous": "Ruler",
         "nakshatra": "Determined."
     },
-   
+    {
+        "name": "Gerard Depardieu",
+        "famous": "Actor",
+        "nakshatra": "Determined."
+    }
 ], 'Jyeshtha': [
     {
-        "name": "Friedrich Nietzche",
-        "famous": "Philosopher",
+        "name": "Friedrich Nietzche",   
+        "famous": "Philosopher",        
         "nakshatra": "Noble, irritable."
     },
- 
+    {
+        "name": "Mozart",
+        "famous": "Composer",
+        "nakshatra": "Talent in music."
+    },
     {
         "name": "Beethoven",
         "famous": "Composer",
         "nakshatra": "Talent in music."
     },
-  
+    {
+        "name": "Al Pacino",
+        "famous": "Actor",
+        "nakshatra": "Physical strength."
+    },
+    {
+        "name": "Vincent Van Gogh",
+        "famous": "Painter",
+        "nakshatra": "Trouble in early life."
+    },
     {
         "name": "Howard Hughes",
         "famous": "Businessman",
@@ -5083,26 +5443,47 @@ nakshatraContent = {
         "famous": "Spiritual leader",
         "nakshatra": "Peace-loving, spiritually oriented."
     },
-   
-]
-, 'Purva Ashadha':[
+    {
+        "name": "Al Gore",
+        "famous": "US Vice President",
+        "nakshatra": "Proud, attractive."
+    },
+    {
+        "name": "Billy Graham",
+        "famous": "Evangelist",
+        "nakshatra": "Communication skills. success in foreign lands."
+    },
+    {
+        "name": "Judy Garland",
+        "famous": "Actress",
+        "nakshatra": "Wealthy, spendthrift."
+    }
+],'Purva Ashadha': [
     {
         "name": "Osho",
         "famous": "Spiritual leader",
         "nakshatra": "Attractive, charismatic."
     },
-   
+    {
+        "name": "Adolf Hitler",
+        "famous": "Dictator",
+        "nakshatra": "Power to convince, obstinate."
+    },
     {
         "name": "Johnny Carson",
         "famous": "T.V.Personality",
-        "nakshatra": "Communication skills, intelligence."
+        "nakshatra": "Communication skills, intelligent."
     },
     {
         "name": "William James",
         "famous": "Philosopher",
         "nakshatra": "Writing skills."
     },
-  
+    {
+        "name": "Donna Summer",
+        "famous": "Singer",
+        "nakshatra": "Attachment to friends."
+    }
 ], 'Uttara Ashadha': [
     {
         "name": "Deepak Chopra",
@@ -5119,20 +5500,47 @@ nakshatraContent = {
         "famous": "Ruler",
         "nakshatra": "Power, leadership qualities."
     },
-    
+    {
+        "name": "Cary Grant",
+        "famous": "Actor",
+        "nakshatra": "Popular, many friends."
+    },
+    {
+        "name": "Cat Stevens",
+        "famous": "Singer",
+        "nakshatra": "Grateful, straightforward."
+    },
+    {
+        "name": "John Lennon",
+        "famous": "Singer",
+        "nakshatra": "Troubled marriage."
+    }
 ], 'Shravana': [
     {
         "name": "Narasimha Bharati Mahaswamiji",
         "famous": "Spiritual leader",
         "nakshatra": "Religious, sweet talking."
     },
-   
+    {
+        "name": "David Frawley",
+        "famous": "Author",
+        "nakshatra": "Intelligent, famous."
+    },
     {
         "name": "Henry Ford",
         "famous": "Businessman",
         "nakshatra": "Wealthy, creative."
     },
-  
+    {
+        "name": "Muhammad Ali",
+        "famous": "Boxer",
+        "nakshatra": "Principled, charitable."
+    },
+    {
+        "name": "Bruce Willis",
+        "famous": "Actor",
+        "nakshatra": "Religious, good marriage."
+    },
     {
         "name": "Jessica Lange",
         "famous": "Actress",
@@ -5141,8 +5549,13 @@ nakshatraContent = {
 ], 'Dhanishta': [
     {
         "name": "Princess Diana",
-        "famous": "British royal family",
+        "famous": "British royal family",  
         "nakshatra": "Wealthy, charitable."
+    },
+    {
+        "name": "Timothy Leary",
+        "famous": "Psychologist",
+        "nakshatra": "Daring, controversial."
     },
     {
         "name": "R Maria Rilke",
@@ -5154,9 +5567,22 @@ nakshatraContent = {
         "famous": "Director",
         "nakshatra": "Difficult to convince."
     },
-
+    {
+        "name": "Marilyn Monroe",
+        "famous": "Actress",
+        "nakshatra": "Trouble in marriage."
+    }
 ], 'Shatabhisha': [
- 
+    {
+        "name": "Paul Newman",
+        "famous": "Actor",
+        "nakshatra": "Principled, charitable."
+    },
+    {
+        "name": "Michelangelo",
+        "famous": "Painter",
+        "nakshatra": "Truthful, principled."
+    },
     {
         "name": "Goethe",
         "famous": "Poet",
@@ -5167,31 +5593,52 @@ nakshatraContent = {
         "famous": "Author",
         "nakshatra": "Interest in astrology."
     },
-
+    {
+        "name": "Robin Williams",
+        "famous": "Actor",
+        "nakshatra": "Daring, adamant."
+    },
     {
         "name": "J Edgar Hoover",
         "famous": "Director, FBI",
         "nakshatra": "Strong opinions, defeat of rivals."
     },
- 
+    {
+        "name": "Paul Klee",
+        "famous": "Artist",
+        "nakshatra": "Interest in arts, independent."
+    }
 ], 'Purva Bhadrapada': [
     {
         "name": "Sri Ramakrishna Paramahamsa",
         "famous": "Spiritual leader",
         "nakshatra": "Deeply spiritual, teaching skill."
     },
-  
+    {
+        "name": "Aleister Crowley",
+        "famous": "Occultist",
+        "nakshatra": "Interest in the occult."
+    },
     {
         "name": "Hugh Hefner",
         "famous": "Publisher",
         "nakshatra": "Skillful at work, wealthy."
     },
     {
+        "name": "Robert De Niro",
+        "famous": "Actor",
+        "nakshatra": "Wealthy, good at work."
+    },
+    {
         "name": "Madame Curie",
         "famous": "Physicist",
         "nakshatra": "Intelligent,"
     },
- 
+    {
+        "name": "Groucho Marx",
+        "famous": "Comedian",
+        "nakshatra": "Cynical, witty,"
+    }
 ], 'Uttara Bhadrapada': [
     {
         "name": "Indira Gandhi",        
@@ -5201,9 +5648,13 @@ nakshatraContent = {
     {
         "name": "Robert Kennedy",       
         "famous": "US Attorney General",
-        "nakshatra": "Virtuous."        
+        "nakshatra": "Virtuous."
     },
-
+    {
+        "name": "Cary Grant",
+        "famous": "Actor",
+        "nakshatra": "Self-control, defeats rivals."
+    },
     {
         "name": "Christina Collins Hills",
         "famous": "Astrologer",
@@ -5215,16 +5666,30 @@ nakshatraContent = {
         "famous": "Writer",
         "nakshatra": "Interest in traditions, writing skills."
     },
-
+    {
+        "name": "Marlon Brando",
+        "famous": "Actor",
+        "nakshatra": "Popular, independent, ambitious."
+    },
     {
         "name": "James Taylor",
         "famous": "Cricketer",
         "nakshatra": "Ambitious, wealthy."
     },
- 
+    {
+        "name": "Joe Pesci",
+        "famous": "Actor",
+        "nakshatra": "Wisdom."
+    },
+    {
+        "name": "Jim Jones",
+        "famous": "Preacher",
+        "nakshatra": "Interest in religion."
+    },
     {
         "name": "Whitney Houston",
         "famous": "Singer",
         "nakshatra": "Magnetic personality."
     }
 ]}
+
