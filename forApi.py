@@ -4,6 +4,7 @@ from pytz import timezone
 import requests
 import random
 
+
 signs = [
     ("Aries", 0, 30),
     ("Taurus", 30, 60),
@@ -18,8 +19,6 @@ signs = [
     ("Aquarius", 300, 330),
     ("Pisces", 330, 360),
 ]
-
-differencesValue = {'Sun': 0.004278025934769796, 'Moon': 0.7925893604297366, 'Mercury': 0.015786450284347504, 'Venus': 0.009218726962701445, 'Mars': 0.010303429602187235, 'Jupiter': 0.008374749145047211, 'Saturn': 0.029996640678980384, 'Rahu': 0.00148081909652393, 'Ketu': 0.0014808190965309085, 'Ascendant': 1.4594593541943275}
     
 def convert_to_utc(date_str):
     ist = timezone('Asia/Kolkata')
@@ -27,7 +26,7 @@ def convert_to_utc(date_str):
     local_datetime = ist.localize(naive_datetime)
     return local_datetime.astimezone(timezone('UTC'))
     
-def calculate_lagna(datetime_str, latitude, longitude):
+def calculate_lagna(datetime_str, latitude, longitude,timezone):
     datetime_obj = datetime.datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
 
     year, month, day = datetime_obj.year, datetime_obj.month, datetime_obj.day
@@ -37,7 +36,7 @@ def calculate_lagna(datetime_str, latitude, longitude):
 
     jd = swe.julday(year, month, day, hour_decimal)
 
-    jd_utc = jd - (5.30 / 24.0)
+    jd_utc = jd - (float(timezone) / 24.0)
 
     swe.set_sid_mode(swe.SIDM_LAHIRI)
 
@@ -53,9 +52,13 @@ def calculate_lagna(datetime_str, latitude, longitude):
 
     return ascendant_sidereal
  
-def get_planetary_positions(date_str, lat, lon):
+def get_planetary_positions(date_str, lat, lon, timezone):
     date_time_ist = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
+    
+    hours = int(timezone.split(".")[0])
+    minutes = int(timezone.split(".")[1])
 
+    # date_time_utc = date_time_ist - datetime.timedelta(hours=hours, minutes=minutes)
     date_time_utc = convert_to_utc(date_str)
 
     jd = swe.julday(date_time_utc.year, date_time_utc.month, date_time_utc.day, date_time_utc.hour + date_time_utc.minute / 60.0 + date_time_ist.second / 3600.0, swe.GREG_CAL)
@@ -71,7 +74,7 @@ def get_planetary_positions(date_str, lat, lon):
     }
 
     positions = {}
-    positions['Ascendant'] = calculate_lagna(date_str, lat, lon)
+    positions['Ascendant'] = calculate_lagna(date_str, lat, lon, timezone)
     
     swe.set_sid_mode(swe.SIDM_LAHIRI)
     swe.set_topo(lon, lat, 0)
@@ -132,7 +135,7 @@ def degree_to_sign(degree):
             return sign,zodiac_lord[sign],naksha
     return "Unknown"
 
-def find_planets(date_str, lat, lon):
+def find_planets(date_str, lat, lon,timezone):
     padasList = {
     "Ashwini": [
         [1, 0, 3.20],
@@ -329,15 +332,13 @@ def find_planets(date_str, lat, lon):
     ]
 
     try:
-        positions, isRetro = get_planetary_positions(date_str, lat, lon)
+        positions, isRetro = get_planetary_positions(date_str, lat, lon,timezone)
     except Exception as e:
         print(e)
         return
     
     planets_adjusted = []
     for planet, position in positions.items():    
-        position = position - differencesValue[planet]
-        
         if position < 0:
             position += 360
         elif position >= 360:
@@ -364,28 +365,29 @@ def find_planets(date_str, lat, lon):
 
     return planets_adjusted
 
-url = "https://json.apiastro.com/planets"
+planets = [
+    "Sun",	
+    "Moon",
+    "Mercury",
+    "Venus",
+    "Mars",
+    "Jupiter",
+    "Saturn",
+    "Rahu",
+    "Ketu",
+    "Ascendant"
+]
+
+nakshatrasIndex = [
+    "Ashwini","Bharani", "Krittika","Rohini","Mrigashira","Ardra","Punarvasu","Pushya","Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni","Hasta","Chitra", "Swati", "Vishakha", "Anuradha","Jyeshtha","Mula","Purva Ashadha", "Uttara Ashadha","Shravana", "Dhanishta","Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada","Revati", 
+]
+
+url = "https://json.apiastro.com/planets/extended"
 
 headers = {
     "Content-Type": "application/json",
     "x-api-key": "JqD6oA5PUZ2p2LOcMLd6P9gC7yd6txfw1dslNT2w" 
 }
-
-differences = {
-    "Sun": [],
-    "Moon": [],
-    "Mercury": [],
-    "Venus": [],
-    "Mars": [],
-    "Jupiter": [],
-    "Saturn": [],
-    "Rahu": [],
-    "Ketu": [],
-    "Ascendant": []
-}
-ourData = []
-correctData = []
-
 for _ in range(50):
     random_date = datetime.datetime(1970, 1, 1) + datetime.timedelta(days=random.randint(0, 365 * 53))
     random_time = {
@@ -409,32 +411,23 @@ for _ in range(50):
         response.raise_for_status()
 
         if response.status_code == 200:
-            api_result = response.json()["output"][1]
+            api_result = response.json()["output"]
             our_result = find_planets(
                 f"{data['year']}-{data['month']:02d}-{data['date']:02d} {data['hours']:02d}:{data['minutes']:02d}:{data['seconds']:02d}",
-                data['latitude'], data['longitude']
+                data['latitude'], data['longitude'],"5.30"
             )
-            
-            print(data)
-            print(api_result["Moon"]['fullDegree'],our_result[2]['full_degree'])
 
-            for planet in differences:
+            for planet in planets :
                 if planet in api_result and planet in [item['Name'] for item in our_result]:
-                    api_degree = api_result[planet]['fullDegree']
+                    api_degree = api_result[planet]['nakshatra_number']
+                    
                     our_degree = next(
-                        item['full_degree'] for item in our_result if item['Name'] == planet
+                        item['nakshatra'] for item in our_result if item['Name'] == planet
                     )
-                    differences[planet].append(abs(api_degree - our_degree))
+                    
+                    if api_degree != (nakshatrasIndex.index(our_degree) + 1):
+                        print(data)
+                        print(planet,"failed")
 
     except requests.exceptions.RequestException as e:
         print(f"An error occurred: {e}")
-        
-print(len(ourData), len(correctData))
-        
-for planet, diffs in differences.items():
-    if diffs:
-        differencesValue[planet] = sum(diffs) / len(diffs)
-    else:
-        print(f"{planet}: No data available")
-
-print(differencesValue)

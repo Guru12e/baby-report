@@ -1,6 +1,5 @@
 import swisseph as swe
 import datetime
-from pytz import timezone
 
 signs = [
     ("Aries", 0, 30),
@@ -17,13 +16,7 @@ signs = [
     ("Pisces", 330, 360),
 ]
     
-def convert_to_utc(date_str):
-    ist = timezone('Asia/Kolkata')
-    naive_datetime = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
-    local_datetime = ist.localize(naive_datetime)
-    return local_datetime.astimezone(timezone('UTC'))
-    
-def calculate_lagna(datetime_str, latitude, longitude):
+def calculate_lagna(datetime_str, latitude, longitude,timezone):
     datetime_obj = datetime.datetime.strptime(datetime_str, "%Y-%m-%d %H:%M:%S")
 
     year, month, day = datetime_obj.year, datetime_obj.month, datetime_obj.day
@@ -33,7 +26,7 @@ def calculate_lagna(datetime_str, latitude, longitude):
 
     jd = swe.julday(year, month, day, hour_decimal)
 
-    jd_utc = jd - (5.30 / 24.0)
+    jd_utc = jd - (float(timezone) / 24.0)
 
     swe.set_sid_mode(swe.SIDM_LAHIRI)
 
@@ -49,10 +42,13 @@ def calculate_lagna(datetime_str, latitude, longitude):
 
     return ascendant_sidereal
  
-def get_planetary_positions(date_str, lat, lon):
+def get_planetary_positions(date_str, lat, lon, timezone):
     date_time_ist = datetime.datetime.strptime(date_str, "%Y-%m-%d %H:%M:%S")
+    
+    hours = int(timezone.split(".")[0])
+    minutes = int(timezone.split(".")[1]) if len(timezone.split(".")) > 1 else 0
 
-    date_time_utc = convert_to_utc(date_str)
+    date_time_utc = date_time_ist - datetime.timedelta(hours=hours, minutes=minutes)
 
     jd = swe.julday(date_time_utc.year, date_time_utc.month, date_time_utc.day, date_time_utc.hour + date_time_utc.minute / 60.0 + date_time_ist.second / 3600.0, swe.GREG_CAL)
     
@@ -67,7 +63,7 @@ def get_planetary_positions(date_str, lat, lon):
     }
 
     positions = {}
-    positions['Ascendant'] = calculate_lagna(date_str, lat, lon)
+    positions['Ascendant'] = calculate_lagna(date_str, lat, lon, timezone)
     
     swe.set_sid_mode(swe.SIDM_LAHIRI)
     swe.set_topo(lon, lat, 0)
@@ -128,7 +124,7 @@ def degree_to_sign(degree):
             return sign,zodiac_lord[sign],naksha
     return "Unknown"
 
-def find_planets(date_str, lat, lon):
+def find_planets(date_str, lat, lon,timezone):
     padasList = {
     "Ashwini": [
         [1, 0, 3.20],
@@ -325,7 +321,7 @@ def find_planets(date_str, lat, lon):
     ]
 
     try:
-        positions, isRetro = get_planetary_positions(date_str, lat, lon)
+        positions, isRetro = get_planetary_positions(date_str, lat, lon,timezone)
     except Exception as e:
         print(e)
         return

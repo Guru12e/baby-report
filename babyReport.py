@@ -11,6 +11,8 @@ from dasa import calculate_dasa
 from promptSection import panchangPrompt,physical,dasaPrompt,healthPrompt,chapterPrompt,PlanetPrompt
 import os
 
+nakshatras = ["Ashwini", "Bharani", "Krittika", "Rohini", "Mrigashira", "Ardra", "Punarvasu", "Pushya", "Ashlesha", "Magha", "Purva Phalguni", "Uttara Phalguni", "Hasta", "Chitra", "Swati", "Vishakha", "Anuradha", "Jyeshtha", "Mula", "Purva Ashadha", "Uttara Ashadha", "Shravana", "Dhanishta", "Shatabhisha", "Purva Bhadrapada", "Uttara Bhadrapada", "Revati"]
+
 number = {
     1: "First",
     2: "Second",
@@ -262,23 +264,32 @@ class PDF(FPDF):
         self.set_xy(x, y)  
         self.set_fill_color(hex_to_rgb(colors))
         self.set_xy(x,y)
-        self.rect(x - 2.5,self.get_y(),65,39,style='F',round_corners=True,corner_radius=2)
+        self.rect(x - 2.5,self.get_y(),65,65,style='F',round_corners=True,corner_radius=2)
         self.cell(60, 8, f"Planet : {planet['Name']}", align='C')
         
         self.set_xy(x, y + 8)  
-        self.cell(60, 8, f"Nakshatra: {planet['nakshatra']}", align='C')
+        self.cell(60, 8, f"Full Degree: {planet['full_degree']:.5f}", align='C')
         
         self.set_xy(x, y + 16)  
-        self.cell(60, 8, f"Pada: {planet['pada']}", align='C')
+        self.cell(60, 8, f"Sign: {planet['sign']}", align='C')
         
         self.set_xy(x, y + 24)  
+        self.cell(60, 8, f"Sign Lord: {planet['zodiac_lord']}", align='C')
+        
+        self.set_xy(x, y + 32)  
+        self.cell(60, 8, f"Retrogate: {planet['isRetro']}", align='C')
+        
+        self.set_xy(x, y + 40)  
+        self.cell(60, 8, f"Nakshatra: {planet['nakshatra']}", align='C')
+        
+        self.set_xy(x, y + 48)  
         self.cell(60, 8, f"Karagan: {karagan[planet['Name']]}", align='C')
         
         if planet['Name'] == 'Ascendant':
-            self.set_xy(x, y + 32)  
+            self.set_xy(x, y + 56)  
             self.cell(60, 8, f"Status: Ubayam", align='C')
         else:
-            self.set_xy(x, y + 32)  
+            self.set_xy(x, y + 56)  
             self.cell(60, 8, f"Status: {findStatus(planet['Name'], planet['zodiac_lord'], planet['sign'])}", align='C')
             
         if planet['Name'] != "Ascendant":
@@ -623,6 +634,40 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             if not (year == b['end_year'] and b['end_month'] >= month):
                 pdf.cell(0,0,f"Dasa : {planets[2]['nakshatra_lord']} Bhukthi : {b['bhukthi']}",align='C')
                 break
+            
+    pdf.AddPage(path)
+    pdf.set_y(30)
+    pdf.set_font('Karma-Heavy', '', 32)  
+    pdf.cell(0,0,'Planetary Positions',align='C')
+    pdf.set_fill_color(200, 220, 255)  
+    pdf.set_font('Karma-Regular', '', 12)
+        
+    start_x = 5
+    start_y = 50
+    spacing_x = 80  
+    spacing_y = 80 
+    
+    colors = ["#FFFDAC","#EAECE8","#FFAF7B","#C6B9A9","#FFE8B2","#FDD29D","#C3B3AA","#A4EDFF","#C5FFB5","#FFF6F6"]
+    
+    for i, planet in enumerate(planets):
+        if i == 6:
+            pdf.AddPage(path)
+            x = start_x + 30
+            y = 30
+        elif i == 7:
+            x = start_x + spacing_x + 30
+            y = 30
+        elif i == 8:
+            x = start_x + 30
+            y = start_y + spacing_y - 20
+        elif i == 9:
+            x = start_x + spacing_x + 30
+            y = start_y + spacing_y - 20
+        else:
+            x = start_x + (i % 2) * spacing_x + 30  
+            y = start_y + (i // 2) * spacing_y 
+        
+        pdf.table(planet, x, y,path,colors[i])
         
     pdf.AddPage(path)
     pdf.set_font('Karma-Heavy', '', 22)
@@ -1552,8 +1597,8 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         'arts_creative' :"Unique Talents in Arts & Creativity",
         'physical_activity': "Unique Talents in Physical Activity"
     }
-    # con = chapterPrompt(planets,0,name,gender)
     
+    # con = chapterPrompt(planets,0,name,gender)
     con = {'education': [{'title': 'Analytical Skills', 'content': 'Magizh has a natural talent for analyzing information and making logical connections. With Mercury positioned in the 3rd house of Sagittarius, in Mula nakshatra, he is likely to have a deep curiosity and a thirst for knowledge. Encourage him to explore various subjects and engage in intellectual pursuits to enhance his analytical abilities.'}, {'title': 'Communication Skills', 'content': 'Due to Mercury in the 3rd house of Sagittarius, Magizh possesses excellent communication skills. He is likely to be articulate, expressive, and persuasive in his speech. Foster his communication skills by encouraging him to participate in debates, public speaking, or writing activities.'}, {'title': 'Adventurous Learning', 'content': 'With Mercury in Sagittarius in Mula nakshatra, Magizh excels in adventurous learning experiences. He may thrive in environments that offer hands-on learning, travel opportunities, and exposure to diverse cultures. Encourage him to pursue academic interests that challenge his intellect and broaden his horizons.'}], 'arts_creative': [{'title': 'Visual Arts', 'content': 'Magizh has a natural talent for visual arts, thanks to Venus positioned in the 1st house of Libra in Vishakha nakshatra. He may excel in painting, drawing, or graphic design. Provide him with opportunities to explore and develop his artistic skills through classes, workshops, or creative projects.'}, {'title': 'Harmonious Expression', 'content': 'With Venus in the 1st house of Libra, Magizh possesses a talent for harmonious expression in his artistic endeavors. He may have a keen sense of aesthetics and a knack for creating beauty. Encourage him to express himself through art, music, or design to tap into his creative potential.'}, {'title': 'Emotional Sensitivity', 'content': 'Venus in Libra in Vishakha nakshatra endows Magizh with emotional sensitivity and empathy. He may excel in artistic fields that require emotional depth and understanding. Nurture his emotional intelligence by encouraging him to explore poetry, music, or theatre to enhance his creative abilities.'}], 'physical_activity': [{'title': 'Endurance and Stamina', 'content': 'Magizh possesses strong physical abilities, particularly in endurance and stamina, with Mars in the 2nd house of Scorpio in Jyeshtha nakshatra. He may excel in activities that require physical strength and perseverance. Support his interest in sports, martial arts, or other physical pursuits to enhance his physical abilities.'}, {'title': 'Competitive Spirit', 'content': 'With Mars in Scorpio in Jyeshtha nakshatra, Magizh has a competitive spirit and enjoys challenges. He may thrive in competitive sports or activities that push his limits. Encourage him to engage in healthy competition to channel his energy effectively and achieve personal growth.'}, {'title': 'Leadership Skills', 'content': 'Mars in Scorpio in Jyeshtha nakshatra indicates that Magizh has strong leadership qualities. He may naturally take charge in group activities and inspire others to follow his lead. Foster his leadership skills by providing opportunities for him to take on roles of responsibility and lead by example.'}]}
     
     for index,(k, v) in enumerate(con.items()):
@@ -1566,7 +1611,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         
     pdf.AddPage(path,"Karmic Life Lessons")        
     # con = chapterPrompt(planets,7,name,gender)
-    
     con = {'child_responsibility_discipline': "Magizh's karmic life lesson based on Saturn in the Fifth house of Aquarius sign emphasizes the importance of taking responsibility and embracing discipline in all aspects of life. Magizh should avoid being too laid-back or reckless, as Saturn urges him to learn the value of structure and commitment. By cultivating a sense of duty and maturity, Magizh can overcome challenges related to authority and self-discipline.", 'child_desire_ambition': "Magizh's karmic life lesson based on Rahu in the Sixth house of Pisces sign highlights the need to balance and control desires and ambitions. He should avoid indulging in excessive desires or taking shortcuts in pursuit of his ambitions. Rahu's placement suggests that Magizh's purpose in life lies in overcoming illusions and developing a deeper spiritual connection. By staying grounded and focusing on inner growth, Magizh can fulfill his true potential.", 'child_spiritual_wisdom': "Magizh's karmic life lesson based on Ketu in the 12th house of Virgo sign signifies a journey towards spiritual wisdom and detachment. He should avoid getting too attached to material possessions and worldly pursuits, as Ketu encourages letting go of attachments and embracing spiritual insights. Magizh's destiny is aligned with seeking solitude, introspection, and unraveling the mysteries of life. By detaching from material desires and seeking spiritual knowledge, Magizh can fulfill his spiritual destiny."}
 
     
@@ -1749,7 +1793,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.multi_cell(pdf.w - 45,8,"       According to the scriptures, worshiping your Ishta Dev gives desired results. Determination of the Ishta Dev or Devi is determined by our past life karmas. There are many methods of determining the deity in astrology. Here, We have used the Jaimini Atmakaraka for Isht Dev decision.",align='L')
 
     pdf.set_text_color(0,0,0)
-    pdf.image(f"{path}/images/{isthaDeva[0]}.jpeg",pdf.w / 2 - 22.5, pdf.get_y() + 15,45,0)
+    pdf.image(f"{path}/babyImages/{isthaDeva[0]}.jpeg",pdf.w / 2 - 22.5, pdf.get_y() + 15,45,0)
     pdf.set_y(pdf.get_y() + 100)
     pdf.set_font('Karma-Semi', '', 22)
     pdf.cell(0,0,f"{isthaDeva[0]}",align='C')
@@ -2020,7 +2064,7 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         pdf.set_xy(x_start, y_start)    
     
     # content = chapterPrompt(planets,9,name,gender)
-    content = {'overall': 'Magizh is a Libra ascendant with a strong influence of Venus in the 1st house, indicating a charming and diplomatic personality. The placement of Mars in the 2nd house of Scorpio suggests determination and strength in communication. The presence of Sun, Mercury, and Jupiter in the 3rd house of Sagittarius highlights intelligence and communication skills. Saturn in the 4th house of Capricorn signifies discipline and responsibility in the home environment. Aquarius in the 5th house with Saturn indicates a love for intellectual pursuits and a structured approach to creativity.', 'recommendations': 'To nurture Magizh, it is important to encourage their diplomatic skills and charm. Providing opportunities for effective communication and expression of ideas will further enhance their strengths. Encouraging disciplined and responsible behavior at home will help in fostering a sense of structure and security. Supporting their love for intellectual pursuits and creativity will also be beneficial for their overall development.', 'action': 'Action Plan: 1. Encourage diplomatic skills and charm through social interactions. 2. Foster effective communication and expression of ideas. 3. Establish a sense of discipline and responsibility at home. 4. Support intellectual pursuits and creativity.'}
+    content = {'overall': 'Nilan is a Cancer ascendant with Moon in the 2nd house in Leo. The 2nd house Lord, Sun, is in the 6th house of Sagittarius along with Mercury. The 3rd house is Virgo with the 3rd house Lord, Mercury, in the 6th house of Sagittarius along with the Sun. The 4th house is Libra with the 4th house Lord, Venus, in the 7th house of Capricorn along with Saturn. The 5th house is Scorpio with Mars and Ketu, and the 5th house Lord, Mars, in Scorpio along with Ketu. The 6th house is Sagittarius with Sun and Mercury, and the 6th house Lord, Jupiter, in the 8th house of Aquarius. The 7th house is Capricorn with Venus and Saturn, and the 7th house Lord, Saturn, in Capricorn along with Venus. The 8th house is Aquarius with Jupiter in the 8th house and the 8th house Lord, Saturn, in Capricorn along with Venus. The 9th house is Pisces with Jupiter in the 8th house of Aquarius. The 10th house is Aries with Mars in Scorpio along with Ketu. The 11th house is Taurus with Rahu in the 11th house and the 11th house Lord, Venus, in Capricorn along with Saturn. The 12th house is Gemini with the 12th house Lord, Mercury, in the 6th house of Sagittarius along with the Sun.', 'recommendations': "Based on Nilan's planetary positions, it is suggested to nurture his creative and communicative skills. Encouragement in exploring different forms of self-expression can be beneficial. Creating a structured routine for emotional stability and encouraging introspection for personal growth is recommended. Building strong foundations in relationships and emphasizing the importance of discipline and responsibility will support Nilan's overall development.", 'action': "To support Nilan's growth and development, it is advisable to engage in activities that stimulate his creativity and communication skills. Encouraging self-expression through art, writing, or public speaking can boost his confidence. Establishing a daily routine that fosters emotional well-being and setting boundaries to promote discipline and accountability will be beneficial. Providing a nurturing and supportive environment that values introspection and personal growth will help Nilan thrive in all aspects of life."}  
 
     
     pdf.AddPage(path,f"Summary Insights for Parents and Child")
@@ -2043,9 +2087,9 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     
     pdf.output(f'{path}/pdf/{name} - babyReport.pdf')
     
-def babyReport(dob,location,lat,lon,path,gender,name):
+def babyReport(dob,location,lat,lon,path,gender,name,timezone):
     print("Generating Baby Report")
-    planets = find_planets(dob,lat,lon)
+    planets = find_planets(dob,lat,lon,timezone)
     print("Planets Found")
     panchang = calculate_panchang(dob,planets[2]['full_degree'],planets[1]['full_degree'],lat,lon)
     print("Panchang Calculated")
@@ -2054,7 +2098,7 @@ def babyReport(dob,location,lat,lon,path,gender,name):
         
     for key in panchang.keys():
         print(key,panchang[key])
-    value = "y"
+    value = "n"
     
     if value.lower() == 'y':
         dasa = calculate_dasa(dob,planets[2])
@@ -2115,4 +2159,4 @@ def babyReport(dob,location,lat,lon,path,gender,name):
     
     # return "Sucess"
 
-babyReport("2023-12-23 03:03:00","Madurai, Tamil Nadu , India",9.939093, 78.121719,os.getcwd(),"male","Magizh Siranjeevi")
+babyReport("2019-09-01 10:18:15","Madurai, Tamil Nadu , India",8.9643, 77.556,os.getcwd(),"male","Nilan","5.30")
