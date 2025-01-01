@@ -7,9 +7,9 @@ context = [
     "Dominant Chakra (Energy Center of the Child)",
     "Child's True Self (Sun, Moon, Ascendant/Lagna)",
     "Child's Panchangam Growth Drivers",
+    "Potential Health Challenges and Holistic Wellness Solutions",
     "Outer World - Physical Attributes, Personality, and Behavior",
     "Inner World - Emotional Needs and Soul Desire",
-    "Potential Health Challenges and Holistic Wellness Solutions",
     "Education and Intellect (Educational Preferences and Cognitive Ability)",
     "Family and Relationships",
     "Career and Professions (Including Business and Entrepreneurship Potential)",
@@ -2964,6 +2964,16 @@ carrer = {
             "Culinary Arts": "Careers in cooking, food management, or restaurant ownership resonate with Taurus' love for comfort and sensual pleasures."
         }
     ],
+    "Gemini": [
+    "The 10th house in astrology represents career, fame, and public life. If a child's 10th house is in Gemini, it indicates versatility, adaptability, and a communicative approach to career. Gemini is ruled by Mercury, the planet of communication, intellect, and learning. Individuals with Gemini in the 10th house are likely to seek careers that involve intellectual stimulation, social interaction, and opportunities to express their ideas. They thrive in dynamic environments and are often drawn to professions that require quick thinking and multitasking.",
+    {
+        "Media and Journalism": "Gemini individuals' strong communication skills and curiosity make them highly suited for careers in writing, reporting, or broadcasting.",
+        "Teaching and Education": "Their love for sharing knowledge and engaging with others makes education a natural fit for Gemini.",
+        "Public Relations and Marketing": "Careers that involve networking, creativity, and persuasion, such as public relations or advertising, align well with Gemini's strengths.",
+        "Travel and Tourism": "Gemini's adventurous nature and adaptability are ideal for roles in travel, tourism, or as a tour guide.",
+        "Technology and IT": "With their quick learning ability and love for intellectual challenges, Gemini can excel in technology-driven careers, such as programming or digital marketing."
+    }
+],
     "Cancer": [
         "If a child's 10th house is in Cancer, it indicates a nurturing, empathetic, and intuitive approach to career. Cancer is ruled by the Moon, representing emotions, home, and family. Individuals with Cancer in the 10th house are often drawn to careers where they can care for others, create emotional connections, or build a secure, supportive environment. They value emotional fulfillment and a strong sense of belonging in their careers.",
         {

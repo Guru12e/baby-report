@@ -306,7 +306,7 @@ def physical(planets,index,name,gender):
         function = [
         {
           'name': 'generate_child_core_identity_report',
-          'description': f"Generate a Detailed report on {name}'s 3 Seek for recognitions, 3 Core Identity, 3 Ego and write How Negative Ego Impacts child Growth Based on Planet Sun Placement Sign",
+          'description': f"Generate a Detailed report on {name}'s 3 Seek for recognitions, 3 Core Identity and write How Negative Ego Impacts child Growth Based on Planet Sun Placement Sign",
           'parameters': {
             'type': 'object',
             'properties': {

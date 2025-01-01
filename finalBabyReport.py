@@ -264,23 +264,32 @@ class PDF(FPDF):
         self.set_xy(x, y)  
         self.set_fill_color(hex_to_rgb(colors))
         self.set_xy(x,y)
-        self.rect(x - 2.5,self.get_y(),65,39,style='F',round_corners=True,corner_radius=2)
+        self.rect(x - 2.5,self.get_y(),65,65,style='F',round_corners=True,corner_radius=2)
         self.cell(60, 8, f"Planet : {planet['Name']}", align='C')
         
         self.set_xy(x, y + 8)  
-        self.cell(60, 8, f"Nakshatra: {planet['nakshatra']}", align='C')
+        self.cell(60, 8, f"Full Degree: {planet['full_degree']:.5f}", align='C')
         
         self.set_xy(x, y + 16)  
-        self.cell(60, 8, f"Pada: {planet['pada']}", align='C')
+        self.cell(60, 8, f"Sign: {planet['sign']}", align='C')
         
         self.set_xy(x, y + 24)  
+        self.cell(60, 8, f"Sign Lord: {planet['zodiac_lord']}", align='C')
+        
+        self.set_xy(x, y + 32)  
+        self.cell(60, 8, f"Retrogate: {planet['isRetro']}", align='C')
+        
+        self.set_xy(x, y + 40)  
+        self.cell(60, 8, f"Nakshatra: {planet['nakshatra']}", align='C')
+        
+        self.set_xy(x, y + 48)  
         self.cell(60, 8, f"Karagan: {karagan[planet['Name']]}", align='C')
         
         if planet['Name'] == 'Ascendant':
-            self.set_xy(x, y + 32)  
+            self.set_xy(x, y + 56)  
             self.cell(60, 8, f"Status: Ubayam", align='C')
         else:
-            self.set_xy(x, y + 32)  
+            self.set_xy(x, y + 56)  
             self.cell(60, 8, f"Status: {findStatus(planet['Name'], planet['zodiac_lord'], planet['sign'])}", align='C')
             
         if planet['Name'] != "Ascendant":
@@ -625,6 +634,40 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             if not (year == b['end_year'] and b['end_month'] >= month):
                 pdf.cell(0,0,f"Dasa : {planets[2]['nakshatra_lord']} Bhukthi : {b['bhukthi']}",align='C')
                 break
+            
+    pdf.AddPage(path)
+    pdf.set_y(30)
+    pdf.set_font('Karma-Heavy', '', 32)  
+    pdf.cell(0,0,'Planetary Positions',align='C')
+    pdf.set_fill_color(200, 220, 255)  
+    pdf.set_font('Karma-Regular', '', 12)
+        
+    start_x = 5
+    start_y = 50
+    spacing_x = 80  
+    spacing_y = 80 
+    
+    colors = ["#FFFDAC","#EAECE8","#FFAF7B","#C6B9A9","#FFE8B2","#FDD29D","#C3B3AA","#A4EDFF","#C5FFB5","#FFF6F6"]
+    
+    for i, planet in enumerate(planets):
+        if i == 6:
+            pdf.AddPage(path)
+            x = start_x + 30
+            y = 30
+        elif i == 7:
+            x = start_x + spacing_x + 30
+            y = 30
+        elif i == 8:
+            x = start_x + 30
+            y = start_y + spacing_y - 20
+        elif i == 9:
+            x = start_x + spacing_x + 30
+            y = start_y + spacing_y - 20
+        else:
+            x = start_x + (i % 2) * spacing_x + 30  
+            y = start_y + (i // 2) * spacing_y 
+        
+        pdf.table(planet, x, y,path,colors[i])
         
     pdf.AddPage(path)
     pdf.set_font('Karma-Heavy', '', 22)
@@ -931,14 +974,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     
     titleImage = ['waningMoon.png' if panchang['thithi_number'] <= 15 else 'waxingMoon.png','week.png','nakshatra.png','yogam.png','karanam.png']
     
-    # panchangContent = [
-    #     "",
-    #     "",
-    #     "Magizh, born under the Bharani Nakshatra, possesses a dynamic and determined personality. He is known for his strong willpower, ambitious nature, and unwavering focus on achieving his goals. Magizh is often seen as a natural leader, with a charismatic presence that draws others towards him. His life path is marked by transformation and growth, as he navigates challenges with resilience and adaptability. Overall, Magizh's Bharani Nakshatra characteristics make him a force to be reckoned with, capable of achieving great success and making a lasting impact in the world.",
-    #     "Magizh, born under the Shiva Yogam, possesses a deep connection to spirituality and a strong sense of inner peace and tranquility. His goals revolve around achieving spiritual growth, enlightenment, and self-realization. With a profound understanding of the interconnectedness of all things, Magizh strives to spread positivity and uplift others around him, leaving a lasting impact of harmony and balance wherever he goes.",
-    #     ""
-    # ]
-    
     pdf.set_text_color(0,0,0)
     pdf.set_y(pdf.get_y() + 5)
     for i in range(0,5):
@@ -1052,7 +1087,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             pdf.set_y(pdf.get_y() + 10)
         else:
             con = panchangPrompt(panchang,i,name,gender)
-            # con = panchangContent[i]
             pdf.ContentDesign(random.choice(DesignColors),titles[i],con,path,name)   
             
     sifted = zodiac[zodiac.index(asc['sign']):] + zodiac[:zodiac.index(asc['sign'])]
@@ -1236,12 +1270,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     content2 = physical(planets,2,name,gender)
     content3 = physical(planets,3,name,gender)
     content4 = physical(planets,4,name,gender)
-
-    # content2 = {'physical_attributes': 'Magizh has a balanced body built with a charming face type. His eyes are expressive and hold a sense of harmony. His physical appearance exudes grace and elegance, while his aura is charismatic and magnetic, drawing others towards him.', 'personality': ['Magizh possesses a charming and diplomatic personality, which helps him navigate social situations with ease.', 'He has a strong sense of justice and fairness, making him a reliable and trustworthy individual.', 'Magizh is creative and artistic, with an eye for beauty and design.'], 'character': ['Magizh is cooperative and seeks harmony in all his interactions, making him a peacemaker in his social circles.', 'He is sociable and enjoys connecting with others, forming meaningful relationships.', 'Magizh is adaptable and can easily adjust to new environments and circumstances.'], 'positive_behavior': ['Magizh exhibits a sense of balance and equilibrium in his actions, making thoughtful decisions.', 'He values relationships and shows empathy towards others, creating a supportive environment.', 'Magizh is diplomatic in his communication, resolving conflicts peacefully and effectively.'], 'negative_behavior': ['Magizh may struggle with indecisiveness, finding it challenging to make firm choices.', 'He might have a tendency to avoid confrontation and suppress his true emotions.', 'Magizh could be overly focused on maintaining external harmony, neglecting his own needs and desires.'], 'parenting_tips': 'To help Magizh overcome his negative behaviors and support his growth, encourage him to express his opinions and feelings openly. Teach him the importance of setting boundaries and asserting himself when necessary. Provide opportunities for Magizh to practice decision-making and assertiveness skills, guiding him to prioritize his own well-being while maintaining harmonious relationships with others. Foster a supportive and nurturing environment that values both his diplomatic nature and his individual needs. Encourage Magizh to seek counseling or therapy if needed to address any underlying issues causing his avoidance of conflict and emotional suppression. Remember to praise and reinforce his efforts towards personal growth and self-expression.'}
-
-    # content3 = {'emotional_state': 'Magizh, with the Moon positioned in the 7th house of Aries in Bharani nakshatra along with Planets Moon and Jupiter, tends to have a strong sense of independence and a need for personal space. Magizh believes in taking action and being assertive in order to achieve their goals. Emotionally, Magizh is passionate, determined, and sometimes impatient.', 'emotions': ['Passionate and enthusiastic in pursuing their desires', "Can become easily frustrated when things don't go as planned", 'Has a fiery and competitive spirit when faced with challenges'], 'feelings': ['Feels a strong sense of individuality and self-reliance', 'Experiences a drive to constantly seek new experiences and adventures', 'May feel restless or impulsive when restricted or confined'], 'reactions': ['Responds quickly to situations with courage and boldness', 'May become defensive when their independence is questioned', 'Takes the lead and initiates action in group settings'], 'negative_imbalance': ['Tendency towards impulsiveness leading to rash decision-making', "Difficulty in compromising and considering others' perspectives", 'Struggles with anger issues and maintaining harmony in relationships'], 'parenting_tips': "To support Magizh in managing their negative emotional imbalances and foster growth, it is important to encourage self-reflection and mindfulness. Parents can help Magizh by teaching them the importance of taking a pause before reacting impulsively. Encourage open communication and active listening to understand others' viewpoints. Provide outlets for physical activities to channel the excess energy positively. Set boundaries and teach conflict resolution skills to promote healthy relationships. Practice gratitude and positivity to cultivate emotional balance."}
-
-    # content4 = {'core_insights': "Magizh, with the Sun positioned in the 3rd house of Sagittarius in Mula nakshatra, is driven by a deep desire for knowledge and intellectual pursuits. His core identity is centered around exploration, seeking truth and meaning, and expressing his beliefs with conviction. His inner strength lies in his optimism, curiosity, and adaptability, which enable him to navigate various challenges with a sense of adventure and purpose. However, Magizh's ego can sometimes be overly proud and self-righteous, leading to conflicts in relationships and a tendency to impose his views on others.", 'recognitions': ['Magizh seeks recognition for his intellectual achievements and philosophical insights.', 'He also craves acknowledgment for his ability to communicate persuasively and inspire others.', 'Magizh desires recognition for his adventurous spirit and willingness to explore new ideas and cultures.'], 'core_identity': ["Magizh's core identity is shaped by his quest for truth and wisdom.", 'His belief in the power of knowledge and education drives his actions and interactions with others.', "Magizh's identity is rooted in his philosophical nature, love for learning, and his ability to inspire those around him."], 'parenting_tips': 'Encourage Magizh to practice humility and empathy in his interactions with others. Teach him to listen actively, consider different perspectives, and appreciate the diversity of opinions and experiences. Guide Magizh to engage in meaningful conversations that foster understanding and mutual respect. By nurturing these qualities, Magizh can develop a more balanced sense of self and build stronger connections with those around him.'}
     
     content = [content2,content3,content4]
     titles = [{
@@ -1338,7 +1366,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
             
     pdf.AddPage(path,"Family and Relationships")
     con = physical(planets,5,name,gender)
-    # con = {'family_relationship': "Based on Magizh's astrology details, it can be inferred that Magizh's social development, friendship dynamics, peer interactions, and family relationships are influenced by the placements of planets in the 7th House (Aries), 11th House (Leo), Sun (Sagittarius), Moon (Aries), and Venus (Libra). Magizh's family relationships are characterized by strong bonds with parents and siblings, with a focus on nurturing and supportive interactions. In terms of social development, Magizh tends to form friendships based on mutual respect and shared interests, seeking harmony and balance in relationships.", 'approaches': [{'title': 'Building Relationships with Father (Sun in Sagittarius)', 'content': 'Magizh can bond with the father by engaging in intellectual discussions, exploring new ideas and beliefs together, and participating in activities that promote personal growth and expansion of knowledge.'}, {'title': 'Bonding with Mother (Moon in Aries)', 'content': 'Magizh can connect with the mother through emotional expression, support in times of need, and engaging in physical activities together to foster a sense of closeness and security.'}, {'title': 'Strengthening Sibling Relationships', 'content': 'Magizh can enhance sibling relationships by fostering open communication, being supportive and understanding, and engaging in collaborative activities that promote mutual growth and bonding.'}, {'title': 'Developing Friendships', 'content': 'Magizh can build friendships by being a good listener, showing empathy and understanding, and participating in social activities that align with shared values and interests.'}], 'parenting_support': [{'title': 'Encouraging Open Communication', 'content': 'Parents can encourage Magizh to express thoughts and feelings openly, create a safe space for dialogue, and actively listen to his concerns and experiences to strengthen the parent-child relationship.'}, {'title': 'Promoting Independence', 'content': 'Parents can support Magizh in developing independence, decision-making skills, and autonomy by allowing him to take on responsibilities and make choices within a safe and supportive environment.'}, {'title': 'Cultivating Emotional Intelligence', 'content': "Parents can help Magizh develop emotional intelligence by teaching him to identify and manage his emotions, understand others' perspectives, and communicate effectively in various social settings."}]}
     
     familyTitle = {
         'family_relationship' : "",
@@ -1554,9 +1581,8 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         'arts_creative' :"Unique Talents in Arts & Creativity",
         'physical_activity': "Unique Talents in Physical Activity"
     }
-    con = chapterPrompt(planets,0,name,gender)
     
-    # con = {'education': [{'title': 'Analytical Skills', 'content': 'Magizh has a natural talent for analyzing information and making logical connections. With Mercury positioned in the 3rd house of Sagittarius, in Mula nakshatra, he is likely to have a deep curiosity and a thirst for knowledge. Encourage him to explore various subjects and engage in intellectual pursuits to enhance his analytical abilities.'}, {'title': 'Communication Skills', 'content': 'Due to Mercury in the 3rd house of Sagittarius, Magizh possesses excellent communication skills. He is likely to be articulate, expressive, and persuasive in his speech. Foster his communication skills by encouraging him to participate in debates, public speaking, or writing activities.'}, {'title': 'Adventurous Learning', 'content': 'With Mercury in Sagittarius in Mula nakshatra, Magizh excels in adventurous learning experiences. He may thrive in environments that offer hands-on learning, travel opportunities, and exposure to diverse cultures. Encourage him to pursue academic interests that challenge his intellect and broaden his horizons.'}], 'arts_creative': [{'title': 'Visual Arts', 'content': 'Magizh has a natural talent for visual arts, thanks to Venus positioned in the 1st house of Libra in Vishakha nakshatra. He may excel in painting, drawing, or graphic design. Provide him with opportunities to explore and develop his artistic skills through classes, workshops, or creative projects.'}, {'title': 'Harmonious Expression', 'content': 'With Venus in the 1st house of Libra, Magizh possesses a talent for harmonious expression in his artistic endeavors. He may have a keen sense of aesthetics and a knack for creating beauty. Encourage him to express himself through art, music, or design to tap into his creative potential.'}, {'title': 'Emotional Sensitivity', 'content': 'Venus in Libra in Vishakha nakshatra endows Magizh with emotional sensitivity and empathy. He may excel in artistic fields that require emotional depth and understanding. Nurture his emotional intelligence by encouraging him to explore poetry, music, or theatre to enhance his creative abilities.'}], 'physical_activity': [{'title': 'Endurance and Stamina', 'content': 'Magizh possesses strong physical abilities, particularly in endurance and stamina, with Mars in the 2nd house of Scorpio in Jyeshtha nakshatra. He may excel in activities that require physical strength and perseverance. Support his interest in sports, martial arts, or other physical pursuits to enhance his physical abilities.'}, {'title': 'Competitive Spirit', 'content': 'With Mars in Scorpio in Jyeshtha nakshatra, Magizh has a competitive spirit and enjoys challenges. He may thrive in competitive sports or activities that push his limits. Encourage him to engage in healthy competition to channel his energy effectively and achieve personal growth.'}, {'title': 'Leadership Skills', 'content': 'Mars in Scorpio in Jyeshtha nakshatra indicates that Magizh has strong leadership qualities. He may naturally take charge in group activities and inspire others to follow his lead. Foster his leadership skills by providing opportunities for him to take on roles of responsibility and lead by example.'}]}
+    con = chapterPrompt(planets,0,name,gender)
     
     for index,(k, v) in enumerate(con.items()):
         if pdf.get_y() + 40 >= 260:  
@@ -1568,9 +1594,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         
     pdf.AddPage(path,"Karmic Life Lessons")        
     con = chapterPrompt(planets,7,name,gender)
-    
-    # con = {'child_responsibility_discipline': "Magizh's karmic life lesson based on Saturn in the Fifth house of Aquarius sign emphasizes the importance of taking responsibility and embracing discipline in all aspects of life. Magizh should avoid being too laid-back or reckless, as Saturn urges him to learn the value of structure and commitment. By cultivating a sense of duty and maturity, Magizh can overcome challenges related to authority and self-discipline.", 'child_desire_ambition': "Magizh's karmic life lesson based on Rahu in the Sixth house of Pisces sign highlights the need to balance and control desires and ambitions. He should avoid indulging in excessive desires or taking shortcuts in pursuit of his ambitions. Rahu's placement suggests that Magizh's purpose in life lies in overcoming illusions and developing a deeper spiritual connection. By staying grounded and focusing on inner growth, Magizh can fulfill his true potential.", 'child_spiritual_wisdom': "Magizh's karmic life lesson based on Ketu in the 12th house of Virgo sign signifies a journey towards spiritual wisdom and detachment. He should avoid getting too attached to material possessions and worldly pursuits, as Ketu encourages letting go of attachments and embracing spiritual insights. Magizh's destiny is aligned with seeking solitude, introspection, and unraveling the mysteries of life. By detaching from material desires and seeking spiritual knowledge, Magizh can fulfill his spiritual destiny."}
-
     
     karmicTitle = {
         "child_responsibility_discipline": "Saturn's Life Lesson",
@@ -1775,7 +1798,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
     pdf.image(f"{path}/babyImages/dasa.png",110,25,90,0)
     
     dasaOut = dasaPrompt(year,planets,dasa,name,gender)
-    # dasaOut = [{'dasa': 'Venus', 'bhukthi': 'Mars', 'age': "At Magizh's age, Between 1 to 2", 'prediction': {'insights': "During Magizh's Venus Dasa and Mars Bhukti period, the focus will be on relationships and transformation. With Venus in the 1st house of Libra in Vishakha nakshatra and Mars in the 2nd house of Scorpio in Jyeshtha nakshatra, there may be challenges related to self-worth and communication, but also opportunities for growth and assertiveness. Magizh's Moon sign Aries adds a fiery and dynamic energy to the mix, guiding him towards leadership and independence.", 'favourable': ['1. Success in professional endeavors: Magizh will excel in his career and receive recognition for his hard work and dedication, leading to new opportunities for growth and advancement.', '2. Strengthened relationships: Magizh will experience deeper connections with loved ones, fostering a sense of support and unity in his personal life.', '3. Enhanced creativity and self-expression: Magizh will find inspiration and creative outlets to express himself, leading to personal satisfaction and fulfillment.'], 'unfavourable': ['1. Communication challenges: Magizh may face misunderstandings or conflicts in his interactions with others, requiring patience and understanding to overcome obstacles.', '2. Financial strain: Magizh may encounter financial setbacks or unexpected expenses, requiring careful budgeting and financial planning to manage resources effectively.', '3. Health concerns: Magizh may experience health issues or fatigue during this period, necessitating self-care and prioritization of well-being.'], 'parenting_tips': 'Strategic Support and Communication Building - Encourage Magizh to express his feelings and thoughts openly, and actively listen to his concerns to foster trust and understanding. Implement regular family meetings to discuss challenges and solutions together, creating a supportive and connected environment. Additionally, practice stress-relief activities like mindfulness or yoga with Magizh to promote emotional balance and resilience during difficult times.'}}, {'dasa': 'Venus', 'bhukthi': 'Rahu', 'age': "At Magizh's age, Between 2 to 5", 'prediction': {'insights': 'Magizh, during the Venus Dasa and Rahu Bhukti period, is likely to experience a mix of positive and challenging situations. Venus in the 1st house of Libra in Vishakha nakshatra indicates a focus on relationships and harmony, while Rahu in the 6th house of Pisces in Revati nakshatra suggests unexpected changes and challenges ahead. With Moon sign Aries, there may be a strong sense of individuality and drive for success.', 'favourable': ['During this period, Magizh may experience increased creativity and artistic talents, leading to recognition and success in creative pursuits.', 'There is a possibility of positive developments in personal relationships, leading to stronger bonds with loved ones and a sense of emotional fulfillment.', 'Magizh may have opportunities for personal growth and self-improvement, leading to a greater sense of confidence and inner peace.'], 'unfavourable': ['Magizh may face challenges in maintaining balance in relationships, leading to conflicts and misunderstandings with others.', 'There may be difficulties in handling financial matters and investments, requiring cautious decision-making to avoid losses.', 'Health issues or unexpected obstacles in career and personal life may arise, causing stress and instability.'], 'parenting_tips': 'To navigate Magizh\'s Dasa and Bhukti period\'s unfavorable results, implement the "Emotional Regulation Technique". Guide Magizh to identify and regulate their emotions effectively by practicing mindfulness and deep breathing exercises. Encourage open communication and provide a safe space to express feelings. Teach problem-solving skills to help Magizh face challenges confidently and seek support when needed. Foster a supportive and understanding environment to navigate through tough times with resilience and emotional strength.'}}, {'dasa': 'Venus', 'bhukthi': 'Jupiter', 'age': "At Magizh's age, Between 5 to 8", 'prediction': {'insights': "During Magizh's Venus Dasa and Jupiter Bhukti period, there may be significant changes in relationships and partnerships due to the influence of Venus in the 1st house of Libra and Jupiter in the 7th house of Aries. Magizh's strong willpower and adventurous spirit, as indicated by the Moon in Aries, will play a key role in shaping these predictions.", 'favourable': ['Magizh is likely to experience a boost in creativity and artistic pursuits, leading to recognition and success in his endeavors.', "Improved communication skills and networking opportunities may enhance Magizh's social connections and bring about new opportunities for growth and expansion in his career.", 'The positive influence of Jupiter in the 7th house may bring about a harmonious and supportive relationship with his partner, fostering mutual understanding and deepening emotional bonds.'], 'unfavourable': ['Magizh may face challenges in maintaining a work-life balance, leading to stress and exhaustion in his daily routine.', 'There could be misunderstandings or conflicts in close relationships, requiring patience and effective communication to resolve differences.', 'Financial setbacks or unexpected expenses may arise, prompting Magizh to reevaluate his financial management and budgeting strategies.'], 'parenting_tips': "To navigate Magizh's Dasa Bhukti unfavourable results, the 'Emotional Regulation Technique' can be effective. Encourage Magizh to express his emotions through journaling or art, practice mindfulness techniques to manage stress, and engage in physical activities to release pent-up energy. Provide a safe space for Magizh to share his feelings and thoughts openly, and offer guidance on problem-solving and conflict resolution skills. Encouraging healthy outlets for emotional expression and promoting self-care practices will empower Magizh to navigate through challenging times with resilience and positivity."}}]
     
     for i,dasaNow in enumerate(dasaOut):
         pdf.set_text_color(hex_to_rgb("#966A2F"))
@@ -2022,8 +2044,6 @@ def generateBabyReport(formatted_date,formatted_time,location,lat,lon,planets,pa
         pdf.set_xy(x_start, y_start)    
     
     content = chapterPrompt(planets,9,name,gender)
-    # content = {'overall': 'Magizh is a Libra ascendant with a strong influence of Venus in the 1st house, indicating a charming and diplomatic personality. The placement of Mars in the 2nd house of Scorpio suggests determination and strength in communication. The presence of Sun, Mercury, and Jupiter in the 3rd house of Sagittarius highlights intelligence and communication skills. Saturn in the 4th house of Capricorn signifies discipline and responsibility in the home environment. Aquarius in the 5th house with Saturn indicates a love for intellectual pursuits and a structured approach to creativity.', 'recommendations': 'To nurture Magizh, it is important to encourage their diplomatic skills and charm. Providing opportunities for effective communication and expression of ideas will further enhance their strengths. Encouraging disciplined and responsible behavior at home will help in fostering a sense of structure and security. Supporting their love for intellectual pursuits and creativity will also be beneficial for their overall development.', 'action': 'Action Plan: 1. Encourage diplomatic skills and charm through social interactions. 2. Foster effective communication and expression of ideas. 3. Establish a sense of discipline and responsibility at home. 4. Support intellectual pursuits and creativity.'}
-
     
     pdf.AddPage(path,f"Summary Insights for Parents and Child")
     
@@ -2056,16 +2076,12 @@ def babyReport(dob,location,lat,lon,path,gender,name,timezone):
         
     for key in panchang.keys():
         print(key,panchang[key])
-    value = "n"
+    value = "y"
     
     if value.lower() == 'y':
         dasa = calculate_dasa(dob,planets[2])
         print("Dasa Calculated")    
         birthchart = generate_birth_navamsa_chart(planets,f'{path}/chart/',dob,location,name)
-        # birthchart = {
-        #     'birth_chart' : '1.png',
-        #     'navamsa_chart' : '2.png'
-        # }
         print("Birth Chart Generated")
         print("Lat Lon Found")
         dt = datetime.strptime(dob, "%Y-%m-%d %H:%M:%S")
@@ -2117,4 +2133,4 @@ def babyReport(dob,location,lat,lon,path,gender,name,timezone):
     
     # return "Sucess"
 
-babyReport("2021-12-24 19:24:00","Madurai, Tamil Nadu , India",40.7128, 74.0060,os.getcwd(),"male","Nilan","5")
+babyReport("2008-02-23 16:05:18","",9.8216,77.9891,os.getcwd(),"male","Praveen","5.30")
